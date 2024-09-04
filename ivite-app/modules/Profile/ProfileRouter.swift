@@ -1,0 +1,2 @@
+final class ProfileRouter: BaseRouter {
+}

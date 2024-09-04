@@ -10,10 +10,12 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    var window: UIWindow?
+        var serviceProvider: ServiceProvider?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        serviceProvider = ServiceProvider()
+        setupTabBarAppearance()
         return true
     }
 
@@ -30,7 +32,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
+    private func setupTabBarAppearance() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .white
+        appearance.shadowColor = nil
+        appearance.stackedLayoutAppearance.normal.iconColor = .dark30
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
+            .foregroundColor: UIColor.dark30,
+            .font: UIFont.interFont(ofSize: 12, weight: .bold)
+        ]
+        appearance.stackedLayoutAppearance.selected.iconColor = .accent
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
+            .foregroundColor: UIColor.dark30,
+            .font: UIFont.interFont(ofSize: 12, weight: .bold)
+        ]
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+       }
 }
 

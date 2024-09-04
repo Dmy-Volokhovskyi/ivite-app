@@ -1,0 +1,2 @@
+final class EventsRouter: BaseRouter {
+}
