@@ -1,9 +1,15 @@
 import UIKit
 
 protocol ContactEventHandler: AnyObject {
+    func viewDidLoad()
+    func didTouchMenu(for indexPath: IndexPath?)
 }
 
 protocol ContactDataSource: AnyObject {
+    var numberOfRows: Int { get }
+    var numberOfSections: Int { get }
+    
+    func contactCardModel(for indexPath: IndexPath) -> ContactCardModel
 }
 
 final class ContactController: BaseViewController {
@@ -13,6 +19,8 @@ final class ContactController: BaseViewController {
     private let searchBarView = MainSearchBarView()
     private let listHeaderView = ListHeaderView(actionButton: UIButton(configuration: .primary(title: "Add New", image: .chewronDown)), title: "Contact List")
     private let invitesLeftView = InvitesLeftView()
+    private let tableView = UITableView(frame: .zero, style: .grouped)
+    private let tableViewBackgroundView = TableViewBackgroundView()
     
     init(eventHandler: ContactEventHandler, dataSource: ContactDataSource) {
         self.eventHandler = eventHandler
@@ -31,6 +39,17 @@ final class ContactController: BaseViewController {
         view.backgroundColor = .white
         
         invitesLeftView.configure(invitesLeft: "136")
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
+        tableView.backgroundView = tableViewBackgroundView
+        tableView.showsVerticalScrollIndicator = false
+        
+        tableViewBackgroundView.configure(text: "Your event list is empty")
+        
+        tableView.register(ContactCardCell.self)
     }
     
     override func addSubviews() {
@@ -39,7 +58,8 @@ final class ContactController: BaseViewController {
         [
             searchBarView,
             listHeaderView,
-            invitesLeftView
+            invitesLeftView,
+            tableView
         ].forEach({ view.addSubview($0) })
     }
     
@@ -59,8 +79,68 @@ final class ContactController: BaseViewController {
         invitesLeftView.autoPinEdge(.top, to: .bottom, of: listHeaderView, withOffset: 16)
         invitesLeftView.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
         invitesLeftView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
+        
+        tableView.autoPinEdge(.top, to: .bottom, of: invitesLeftView)
+        tableView.autoPinEdgesToSuperviewSafeArea(with: .init(top: 16, left: 16, bottom: 16, right: 16),
+                                                  excludingEdge: .top)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        eventHandler.viewDidLoad()
     }
 }
 
 extension ContactController: ContactViewInterface {
+    func reloadTableView() {
+        tableView.reloadData()
+    }
+}
+
+extension ContactController: UITableViewDelegate {
+    
+}
+
+extension ContactController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        tableView.backgroundView?.isHidden = dataSource.numberOfSections != 0
+        return dataSource.numberOfSections
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        dataSource.numberOfRows
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView()
+        footerView.backgroundColor = .clear
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = .clear
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section == 0 ? 16 : 8
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        section == dataSource.numberOfSections ? 16 : 8
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(ContactCardCell.self, for: indexPath)
+        cell.configure(with: dataSource.contactCardModel(for: indexPath))
+        cell.delegate = self
+        return cell
+    }
+}
+
+extension ContactController: ContactCardCellDelegate {
+    func didTouchMenu(for cell: BaseTableViewCell) {
+        eventHandler.didTouchMenu(for: tableView.indexPath(for: cell))
+    }
 }

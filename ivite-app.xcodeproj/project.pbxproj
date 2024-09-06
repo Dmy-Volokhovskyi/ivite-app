@@ -67,6 +67,8 @@
 		76096B042C8B1E580004BEE0 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096B032C8B1E580004BEE0 /* BaseTableViewCell.swift */; };
 		76096B072C8B1E910004BEE0 /* Reusable in Frameworks */ = {isa = PBXBuildFile; productRef = 76096B062C8B1E910004BEE0 /* Reusable */; };
 		76A34F8F2C8B5035003D3E87 /* TableViewBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A34F8E2C8B5035003D3E87 /* TableViewBackgroundView.swift */; };
+		76A34F922C8B5D1A003D3E87 /* ContactCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A34F912C8B5D1A003D3E87 /* ContactCardModel.swift */; };
+		76A34F952C8B5E61003D3E87 /* ContactCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A34F942C8B5E61003D3E87 /* ContactCardCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +132,8 @@
 		76096B012C8B1E0A0004BEE0 /* EventCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardCell.swift; sourceTree = "<group>"; };
 		76096B032C8B1E580004BEE0 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		76A34F8E2C8B5035003D3E87 /* TableViewBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewBackgroundView.swift; sourceTree = "<group>"; };
+		76A34F912C8B5D1A003D3E87 /* ContactCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardModel.swift; sourceTree = "<group>"; };
+		76A34F942C8B5E61003D3E87 /* ContactCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +273,8 @@
 		76096A4C2C861C260004BEE0 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				76A34F932C8B5E52003D3E87 /* View */,
+				76A34F902C8B5D12003D3E87 /* Model */,
 				76096A4D2C861C420004BEE0 /* ContactController.swift */,
 				76096A4E2C861C420004BEE0 /* ContactInteractor.swift */,
 				76096A4F2C861C420004BEE0 /* ContactRouter.swift */,
@@ -379,6 +385,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		76A34F902C8B5D12003D3E87 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				76A34F912C8B5D1A003D3E87 /* ContactCardModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		76A34F932C8B5E52003D3E87 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				76A34F942C8B5E61003D3E87 /* ContactCardCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -473,9 +495,11 @@
 				76096A732C861C990004BEE0 /* MainScreenController.swift in Sources */,
 				76096AEF2C88F1900004BEE0 /* UIButton+Configuration.swift in Sources */,
 				76096A742C861C990004BEE0 /* MainScreenInteractor.swift in Sources */,
+				76A34F952C8B5E61003D3E87 /* ContactCardCell.swift in Sources */,
 				76096A752C861C990004BEE0 /* MainScreenRouter.swift in Sources */,
 				76096A762C861C990004BEE0 /* MainScreenBuilder.swift in Sources */,
 				76096A772C861C990004BEE0 /* MainScreenPresenter.swift in Sources */,
+				76A34F922C8B5D1A003D3E87 /* ContactCardModel.swift in Sources */,
 				76096A522C861C420004BEE0 /* ContactController.swift in Sources */,
 				76096A532C861C420004BEE0 /* ContactInteractor.swift in Sources */,
 				76096A542C861C420004BEE0 /* ContactRouter.swift in Sources */,

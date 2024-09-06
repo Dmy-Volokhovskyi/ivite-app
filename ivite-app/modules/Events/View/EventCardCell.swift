@@ -29,6 +29,7 @@ final class EventCardCell: BaseTableViewCell {
         
         textStackView.axis = .vertical
         textStackView.spacing = 8
+        textStackView.alignment = .leading
         
         titleLabel.font = .interFont(ofSize: 18, weight: .semiBold)
         titleLabel.textColor = .secondary1

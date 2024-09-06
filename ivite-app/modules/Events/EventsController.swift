@@ -38,6 +38,8 @@ final class EventsController: BaseViewController {
         
         view.backgroundColor = .white
         
+        invitesLeftView.configure(invitesLeft: "136")
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -48,8 +50,6 @@ final class EventsController: BaseViewController {
         tableViewBackgroundView.configure(text: "Your event list is empty")
         
         tableView.register(EventCardCell.self)
-        
-        invitesLeftView.configure(invitesLeft: "136")
     }
     
     override func addSubviews() {

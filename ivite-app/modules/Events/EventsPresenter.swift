@@ -37,11 +37,6 @@ extension EventsPresenter: EventsDataSource {
     var numberOfSections: Int {
         interactor.eventCards.count - 1
     }
-    
-    var eventCardModels: [EventCardModel] {
-        interactor.eventCards
-    }
-    
 }
 
 extension EventsPresenter: EventsInteractorDelegate {
