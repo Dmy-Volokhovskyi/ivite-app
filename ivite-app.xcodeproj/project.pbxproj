@@ -9,21 +9,118 @@
 /* Begin PBXBuildFile section */
 		76096A052C84F8670004BEE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A042C84F8670004BEE0 /* AppDelegate.swift */; };
 		76096A072C84F8670004BEE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A062C84F8670004BEE0 /* SceneDelegate.swift */; };
-		76096A092C84F8670004BEE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A082C84F8670004BEE0 /* ViewController.swift */; };
-		76096A0C2C84F8670004BEE0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 76096A0B2C84F8670004BEE0 /* Base */; };
 		76096A0E2C84F8680004BEE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76096A0D2C84F8680004BEE0 /* Assets.xcassets */; };
 		76096A112C84F8680004BEE0 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 76096A102C84F8680004BEE0 /* Base */; };
+		76096A212C84FAD60004BEE0 /* LaunchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A1C2C84FAD60004BEE0 /* LaunchController.swift */; };
+		76096A222C84FAD60004BEE0 /* LaunchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A1D2C84FAD60004BEE0 /* LaunchInteractor.swift */; };
+		76096A232C84FAD60004BEE0 /* LaunchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A1E2C84FAD60004BEE0 /* LaunchRouter.swift */; };
+		76096A242C84FAD60004BEE0 /* LaunchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A1F2C84FAD60004BEE0 /* LaunchBuilder.swift */; };
+		76096A252C84FAD60004BEE0 /* LaunchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A202C84FAD60004BEE0 /* LaunchPresenter.swift */; };
+		76096A282C84FB010004BEE0 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A272C84FB010004BEE0 /* BaseView.swift */; };
+		76096A2A2C84FB180004BEE0 /* BaseControll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A292C84FB180004BEE0 /* BaseControll.swift */; };
+		76096A2D2C84FB440004BEE0 /* BaseBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A2C2C84FB440004BEE0 /* BaseBuilder.swift */; };
+		76096A2F2C84FB6A0004BEE0 /* BasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A2E2C84FB6A0004BEE0 /* BasePresenter.swift */; };
+		76096A312C84FB8C0004BEE0 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A302C84FB8C0004BEE0 /* BaseRouter.swift */; };
+		76096A332C84FBA90004BEE0 /* BaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A322C84FBA90004BEE0 /* BaseInteractor.swift */; };
+		76096A362C84FBD40004BEE0 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A352C84FBD40004BEE0 /* ServiceProvider.swift */; };
+		76096A382C84FC2B0004BEE0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A372C84FC2B0004BEE0 /* BaseViewController.swift */; };
+		76096A3A2C84FE6E0004BEE0 /* UIApplication+AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A392C84FE6E0004BEE0 /* UIApplication+AppDelegate.swift */; };
+		76096A3E2C8500680004BEE0 /* PureLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 76096A3D2C8500680004BEE0 /* PureLayout */; };
+		76096A402C8501950004BEE0 /* UIWindow+SwitchRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A3F2C8501950004BEE0 /* UIWindow+SwitchRoot.swift */; };
+		76096A462C861C1B0004BEE0 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A412C861C1B0004BEE0 /* HomeController.swift */; };
+		76096A472C861C1B0004BEE0 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A422C861C1B0004BEE0 /* HomeInteractor.swift */; };
+		76096A482C861C1B0004BEE0 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A432C861C1B0004BEE0 /* HomeRouter.swift */; };
+		76096A492C861C1B0004BEE0 /* HomeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A442C861C1B0004BEE0 /* HomeBuilder.swift */; };
+		76096A4A2C861C1B0004BEE0 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A452C861C1B0004BEE0 /* HomePresenter.swift */; };
+		76096A522C861C420004BEE0 /* ContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A4D2C861C420004BEE0 /* ContactController.swift */; };
+		76096A532C861C420004BEE0 /* ContactInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A4E2C861C420004BEE0 /* ContactInteractor.swift */; };
+		76096A542C861C420004BEE0 /* ContactRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A4F2C861C420004BEE0 /* ContactRouter.swift */; };
+		76096A552C861C420004BEE0 /* ContactBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A502C861C420004BEE0 /* ContactBuilder.swift */; };
+		76096A562C861C420004BEE0 /* ContactPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A512C861C420004BEE0 /* ContactPresenter.swift */; };
+		76096A5D2C861C550004BEE0 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A582C861C550004BEE0 /* EventsController.swift */; };
+		76096A5E2C861C550004BEE0 /* EventsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A592C861C550004BEE0 /* EventsInteractor.swift */; };
+		76096A5F2C861C550004BEE0 /* EventsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A5A2C861C550004BEE0 /* EventsRouter.swift */; };
+		76096A602C861C550004BEE0 /* EventsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A5B2C861C550004BEE0 /* EventsBuilder.swift */; };
+		76096A612C861C550004BEE0 /* EventsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A5C2C861C550004BEE0 /* EventsPresenter.swift */; };
+		76096A682C861C860004BEE0 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A632C861C860004BEE0 /* ProfileController.swift */; };
+		76096A692C861C860004BEE0 /* ProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A642C861C860004BEE0 /* ProfileInteractor.swift */; };
+		76096A6A2C861C860004BEE0 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A652C861C860004BEE0 /* ProfileRouter.swift */; };
+		76096A6B2C861C860004BEE0 /* ProfileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A662C861C860004BEE0 /* ProfileBuilder.swift */; };
+		76096A6C2C861C860004BEE0 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A672C861C860004BEE0 /* ProfilePresenter.swift */; };
+		76096A732C861C990004BEE0 /* MainScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A6E2C861C990004BEE0 /* MainScreenController.swift */; };
+		76096A742C861C990004BEE0 /* MainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A6F2C861C990004BEE0 /* MainScreenInteractor.swift */; };
+		76096A752C861C990004BEE0 /* MainScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A702C861C990004BEE0 /* MainScreenRouter.swift */; };
+		76096A762C861C990004BEE0 /* MainScreenBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A712C861C990004BEE0 /* MainScreenBuilder.swift */; };
+		76096A772C861C990004BEE0 /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A722C861C990004BEE0 /* MainScreenPresenter.swift */; };
+		76096A792C8620FF0004BEE0 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A782C8620FE0004BEE0 /* BaseTabBarController.swift */; };
+		76096A7D2C8730E30004BEE0 /* Inter-VariableFont_opsz,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76096A7B2C8730E20004BEE0 /* Inter-VariableFont_opsz,wght.ttf */; };
+		76096A7E2C8730E30004BEE0 /* Inter-Italic-VariableFont_opsz,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76096A7C2C8730E30004BEE0 /* Inter-Italic-VariableFont_opsz,wght.ttf */; };
+		76096A812C8731AD0004BEE0 /* UIFont+Inter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A802C8731AD0004BEE0 /* UIFont+Inter.swift */; };
+		76096AEF2C88F1900004BEE0 /* UIButton+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096AEE2C88F1900004BEE0 /* UIButton+Configuration.swift */; };
+		76096AF22C88F75E0004BEE0 /* MainSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096AF12C88F75E0004BEE0 /* MainSearchBarView.swift */; };
+		76096AF42C89F9E40004BEE0 /* DynamicSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096AF32C89F9E40004BEE0 /* DynamicSearchBar.swift */; };
+		76096AF62C89FAF80004BEE0 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096AF52C89FAF80004BEE0 /* SearchBar.swift */; };
+		76096AFA2C8A58A40004BEE0 /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096AF92C8A58A40004BEE0 /* ListHeaderView.swift */; };
+		76096AFC2C8B11FC0004BEE0 /* InvitesLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096AFB2C8B11FC0004BEE0 /* InvitesLeftView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		76096A012C84F8670004BEE0 /* ivite-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ivite-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76096A042C84F8670004BEE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76096A062C84F8670004BEE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		76096A082C84F8670004BEE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		76096A0B2C84F8670004BEE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		76096A0D2C84F8680004BEE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76096A102C84F8680004BEE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76096A122C84F8680004BEE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		76096A1C2C84FAD60004BEE0 /* LaunchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchController.swift; sourceTree = "<group>"; };
+		76096A1D2C84FAD60004BEE0 /* LaunchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchInteractor.swift; sourceTree = "<group>"; };
+		76096A1E2C84FAD60004BEE0 /* LaunchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchRouter.swift; sourceTree = "<group>"; };
+		76096A1F2C84FAD60004BEE0 /* LaunchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchBuilder.swift; sourceTree = "<group>"; };
+		76096A202C84FAD60004BEE0 /* LaunchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchPresenter.swift; sourceTree = "<group>"; };
+		76096A272C84FB010004BEE0 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		76096A292C84FB180004BEE0 /* BaseControll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseControll.swift; sourceTree = "<group>"; };
+		76096A2C2C84FB440004BEE0 /* BaseBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBuilder.swift; sourceTree = "<group>"; };
+		76096A2E2C84FB6A0004BEE0 /* BasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePresenter.swift; sourceTree = "<group>"; };
+		76096A302C84FB8C0004BEE0 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
+		76096A322C84FBA90004BEE0 /* BaseInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInteractor.swift; sourceTree = "<group>"; };
+		76096A352C84FBD40004BEE0 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		76096A372C84FC2B0004BEE0 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		76096A392C84FE6E0004BEE0 /* UIApplication+AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+AppDelegate.swift"; sourceTree = "<group>"; };
+		76096A3F2C8501950004BEE0 /* UIWindow+SwitchRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+SwitchRoot.swift"; sourceTree = "<group>"; };
+		76096A412C861C1B0004BEE0 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		76096A422C861C1B0004BEE0 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		76096A432C861C1B0004BEE0 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		76096A442C861C1B0004BEE0 /* HomeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBuilder.swift; sourceTree = "<group>"; };
+		76096A452C861C1B0004BEE0 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		76096A4D2C861C420004BEE0 /* ContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactController.swift; sourceTree = "<group>"; };
+		76096A4E2C861C420004BEE0 /* ContactInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInteractor.swift; sourceTree = "<group>"; };
+		76096A4F2C861C420004BEE0 /* ContactRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRouter.swift; sourceTree = "<group>"; };
+		76096A502C861C420004BEE0 /* ContactBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactBuilder.swift; sourceTree = "<group>"; };
+		76096A512C861C420004BEE0 /* ContactPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPresenter.swift; sourceTree = "<group>"; };
+		76096A582C861C550004BEE0 /* EventsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
+		76096A592C861C550004BEE0 /* EventsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsInteractor.swift; sourceTree = "<group>"; };
+		76096A5A2C861C550004BEE0 /* EventsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRouter.swift; sourceTree = "<group>"; };
+		76096A5B2C861C550004BEE0 /* EventsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsBuilder.swift; sourceTree = "<group>"; };
+		76096A5C2C861C550004BEE0 /* EventsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsPresenter.swift; sourceTree = "<group>"; };
+		76096A632C861C860004BEE0 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		76096A642C861C860004BEE0 /* ProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInteractor.swift; sourceTree = "<group>"; };
+		76096A652C861C860004BEE0 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
+		76096A662C861C860004BEE0 /* ProfileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBuilder.swift; sourceTree = "<group>"; };
+		76096A672C861C860004BEE0 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		76096A6E2C861C990004BEE0 /* MainScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenController.swift; sourceTree = "<group>"; };
+		76096A6F2C861C990004BEE0 /* MainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenInteractor.swift; sourceTree = "<group>"; };
+		76096A702C861C990004BEE0 /* MainScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenRouter.swift; sourceTree = "<group>"; };
+		76096A712C861C990004BEE0 /* MainScreenBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenBuilder.swift; sourceTree = "<group>"; };
+		76096A722C861C990004BEE0 /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
+		76096A782C8620FE0004BEE0 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		76096A7B2C8730E20004BEE0 /* Inter-VariableFont_opsz,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-VariableFont_opsz,wght.ttf"; sourceTree = "<group>"; };
+		76096A7C2C8730E30004BEE0 /* Inter-Italic-VariableFont_opsz,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Italic-VariableFont_opsz,wght.ttf"; sourceTree = "<group>"; };
+		76096A802C8731AD0004BEE0 /* UIFont+Inter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Inter.swift"; sourceTree = "<group>"; };
+		76096AEE2C88F1900004BEE0 /* UIButton+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Configuration.swift"; sourceTree = "<group>"; };
+		76096AF12C88F75E0004BEE0 /* MainSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSearchBarView.swift; sourceTree = "<group>"; };
+		76096AF32C89F9E40004BEE0 /* DynamicSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicSearchBar.swift; sourceTree = "<group>"; };
+		76096AF52C89FAF80004BEE0 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		76096AF92C8A58A40004BEE0 /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
+		76096AFB2C8B11FC0004BEE0 /* InvitesLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitesLeftView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76096A3E2C8500680004BEE0 /* PureLayout in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +154,199 @@
 		76096A032C84F8670004BEE0 /* ivite-app */ = {
 			isa = PBXGroup;
 			children = (
-				76096A042C84F8670004BEE0 /* AppDelegate.swift */,
-				76096A062C84F8670004BEE0 /* SceneDelegate.swift */,
-				76096A082C84F8670004BEE0 /* ViewController.swift */,
-				76096A0A2C84F8670004BEE0 /* Main.storyboard */,
-				76096A0D2C84F8680004BEE0 /* Assets.xcassets */,
-				76096A0F2C84F8680004BEE0 /* LaunchScreen.storyboard */,
+				76096A7F2C8731990004BEE0 /* extensions */,
+				76096A1B2C84FA8A0004BEE0 /* app */,
+				76096A342C84FBC00004BEE0 /* services */,
+				76096A262C84FAEE0004BEE0 /* base */,
+				76096AF02C88F6860004BEE0 /* common */,
+				76096A192C84FA650004BEE0 /* modules */,
 				76096A122C84F8680004BEE0 /* Info.plist */,
+				76096A1A2C84FA710004BEE0 /* Resources */,
 			);
 			path = "ivite-app";
+			sourceTree = "<group>";
+		};
+		76096A182C84F8D50004BEE0 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				76096A0F2C84F8680004BEE0 /* LaunchScreen.storyboard */,
+				76096A1C2C84FAD60004BEE0 /* LaunchController.swift */,
+				76096A1D2C84FAD60004BEE0 /* LaunchInteractor.swift */,
+				76096A1E2C84FAD60004BEE0 /* LaunchRouter.swift */,
+				76096A1F2C84FAD60004BEE0 /* LaunchBuilder.swift */,
+				76096A202C84FAD60004BEE0 /* LaunchPresenter.swift */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		76096A192C84FA650004BEE0 /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				76096A182C84F8D50004BEE0 /* Launch */,
+				76096A6D2C861C8E0004BEE0 /* MainScreen */,
+				76096A622C861C7F0004BEE0 /* Profile */,
+				76096A572C861C490004BEE0 /* Events */,
+				76096A4C2C861C260004BEE0 /* Contacts */,
+				76096A4B2C861C1F0004BEE0 /* Home */,
+			);
+			path = modules;
+			sourceTree = "<group>";
+		};
+		76096A1A2C84FA710004BEE0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				76096A7A2C8730540004BEE0 /* Fonts */,
+				76096A0D2C84F8680004BEE0 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		76096A1B2C84FA8A0004BEE0 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				76096A042C84F8670004BEE0 /* AppDelegate.swift */,
+				76096A062C84F8670004BEE0 /* SceneDelegate.swift */,
+				76096A392C84FE6E0004BEE0 /* UIApplication+AppDelegate.swift */,
+				76096A3F2C8501950004BEE0 /* UIWindow+SwitchRoot.swift */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		76096A262C84FAEE0004BEE0 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				76096A2B2C84FB340004BEE0 /* viper */,
+				76096A272C84FB010004BEE0 /* BaseView.swift */,
+				76096A292C84FB180004BEE0 /* BaseControll.swift */,
+				76096A372C84FC2B0004BEE0 /* BaseViewController.swift */,
+				76096A782C8620FE0004BEE0 /* BaseTabBarController.swift */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		76096A2B2C84FB340004BEE0 /* viper */ = {
+			isa = PBXGroup;
+			children = (
+				76096A2C2C84FB440004BEE0 /* BaseBuilder.swift */,
+				76096A2E2C84FB6A0004BEE0 /* BasePresenter.swift */,
+				76096A302C84FB8C0004BEE0 /* BaseRouter.swift */,
+				76096A322C84FBA90004BEE0 /* BaseInteractor.swift */,
+			);
+			path = viper;
+			sourceTree = "<group>";
+		};
+		76096A342C84FBC00004BEE0 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				76096A352C84FBD40004BEE0 /* ServiceProvider.swift */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
+		76096A4B2C861C1F0004BEE0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				76096A412C861C1B0004BEE0 /* HomeController.swift */,
+				76096A422C861C1B0004BEE0 /* HomeInteractor.swift */,
+				76096A432C861C1B0004BEE0 /* HomeRouter.swift */,
+				76096A442C861C1B0004BEE0 /* HomeBuilder.swift */,
+				76096A452C861C1B0004BEE0 /* HomePresenter.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		76096A4C2C861C260004BEE0 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				76096A4D2C861C420004BEE0 /* ContactController.swift */,
+				76096A4E2C861C420004BEE0 /* ContactInteractor.swift */,
+				76096A4F2C861C420004BEE0 /* ContactRouter.swift */,
+				76096A502C861C420004BEE0 /* ContactBuilder.swift */,
+				76096A512C861C420004BEE0 /* ContactPresenter.swift */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		76096A572C861C490004BEE0 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				76096A582C861C550004BEE0 /* EventsController.swift */,
+				76096A592C861C550004BEE0 /* EventsInteractor.swift */,
+				76096A5A2C861C550004BEE0 /* EventsRouter.swift */,
+				76096A5B2C861C550004BEE0 /* EventsBuilder.swift */,
+				76096A5C2C861C550004BEE0 /* EventsPresenter.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		76096A622C861C7F0004BEE0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				76096A632C861C860004BEE0 /* ProfileController.swift */,
+				76096A642C861C860004BEE0 /* ProfileInteractor.swift */,
+				76096A652C861C860004BEE0 /* ProfileRouter.swift */,
+				76096A662C861C860004BEE0 /* ProfileBuilder.swift */,
+				76096A672C861C860004BEE0 /* ProfilePresenter.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		76096A6D2C861C8E0004BEE0 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				76096A6E2C861C990004BEE0 /* MainScreenController.swift */,
+				76096A6F2C861C990004BEE0 /* MainScreenInteractor.swift */,
+				76096A702C861C990004BEE0 /* MainScreenRouter.swift */,
+				76096A712C861C990004BEE0 /* MainScreenBuilder.swift */,
+				76096A722C861C990004BEE0 /* MainScreenPresenter.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		76096A7A2C8730540004BEE0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				76096A7C2C8730E30004BEE0 /* Inter-Italic-VariableFont_opsz,wght.ttf */,
+				76096A7B2C8730E20004BEE0 /* Inter-VariableFont_opsz,wght.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		76096A7F2C8731990004BEE0 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				76096A802C8731AD0004BEE0 /* UIFont+Inter.swift */,
+				76096AEE2C88F1900004BEE0 /* UIButton+Configuration.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		76096AF02C88F6860004BEE0 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				76096AF82C8A58840004BEE0 /* ListHeader */,
+				76096AF72C8A587C0004BEE0 /* Search */,
+				76096AFB2C8B11FC0004BEE0 /* InvitesLeftView.swift */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		76096AF72C8A587C0004BEE0 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				76096AF12C88F75E0004BEE0 /* MainSearchBarView.swift */,
+				76096AF32C89F9E40004BEE0 /* DynamicSearchBar.swift */,
+				76096AF52C89FAF80004BEE0 /* SearchBar.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		76096AF82C8A58840004BEE0 /* ListHeader */ = {
+			isa = PBXGroup;
+			children = (
+				76096AF92C8A58A40004BEE0 /* ListHeaderView.swift */,
+			);
+			path = ListHeader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +365,9 @@
 			dependencies = (
 			);
 			name = "ivite-app";
+			packageProductDependencies = (
+				76096A3D2C8500680004BEE0 /* PureLayout */,
+			);
 			productName = "ivite-app";
 			productReference = 76096A012C84F8670004BEE0 /* ivite-app.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +396,9 @@
 				Base,
 			);
 			mainGroup = 760969F82C84F8670004BEE0;
+			packageReferences = (
+				76096A3C2C8500680004BEE0 /* XCRemoteSwiftPackageReference "PureLayout" */,
+			);
 			productRefGroup = 76096A022C84F8670004BEE0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,8 +414,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				76096A0E2C84F8680004BEE0 /* Assets.xcassets in Resources */,
+				76096A7D2C8730E30004BEE0 /* Inter-VariableFont_opsz,wght.ttf in Resources */,
 				76096A112C84F8680004BEE0 /* Base in Resources */,
-				76096A0C2C84F8670004BEE0 /* Base in Resources */,
+				76096A7E2C8730E30004BEE0 /* Inter-Italic-VariableFont_opsz,wght.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +427,62 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76096A092C84F8670004BEE0 /* ViewController.swift in Sources */,
+				76096A792C8620FF0004BEE0 /* BaseTabBarController.swift in Sources */,
+				76096A2F2C84FB6A0004BEE0 /* BasePresenter.swift in Sources */,
 				76096A052C84F8670004BEE0 /* AppDelegate.swift in Sources */,
+				76096AF42C89F9E40004BEE0 /* DynamicSearchBar.swift in Sources */,
+				76096AF22C88F75E0004BEE0 /* MainSearchBarView.swift in Sources */,
+				76096AF62C89FAF80004BEE0 /* SearchBar.swift in Sources */,
 				76096A072C84F8670004BEE0 /* SceneDelegate.swift in Sources */,
+				76096A3A2C84FE6E0004BEE0 /* UIApplication+AppDelegate.swift in Sources */,
+				76096A2A2C84FB180004BEE0 /* BaseControll.swift in Sources */,
+				76096A462C861C1B0004BEE0 /* HomeController.swift in Sources */,
+				76096A472C861C1B0004BEE0 /* HomeInteractor.swift in Sources */,
+				76096A732C861C990004BEE0 /* MainScreenController.swift in Sources */,
+				76096AEF2C88F1900004BEE0 /* UIButton+Configuration.swift in Sources */,
+				76096A742C861C990004BEE0 /* MainScreenInteractor.swift in Sources */,
+				76096A752C861C990004BEE0 /* MainScreenRouter.swift in Sources */,
+				76096A762C861C990004BEE0 /* MainScreenBuilder.swift in Sources */,
+				76096A772C861C990004BEE0 /* MainScreenPresenter.swift in Sources */,
+				76096A522C861C420004BEE0 /* ContactController.swift in Sources */,
+				76096A532C861C420004BEE0 /* ContactInteractor.swift in Sources */,
+				76096A542C861C420004BEE0 /* ContactRouter.swift in Sources */,
+				76096A552C861C420004BEE0 /* ContactBuilder.swift in Sources */,
+				76096A562C861C420004BEE0 /* ContactPresenter.swift in Sources */,
+				76096A482C861C1B0004BEE0 /* HomeRouter.swift in Sources */,
+				76096A812C8731AD0004BEE0 /* UIFont+Inter.swift in Sources */,
+				76096A492C861C1B0004BEE0 /* HomeBuilder.swift in Sources */,
+				76096A4A2C861C1B0004BEE0 /* HomePresenter.swift in Sources */,
+				76096A212C84FAD60004BEE0 /* LaunchController.swift in Sources */,
+				76096A682C861C860004BEE0 /* ProfileController.swift in Sources */,
+				76096AFA2C8A58A40004BEE0 /* ListHeaderView.swift in Sources */,
+				76096A692C861C860004BEE0 /* ProfileInteractor.swift in Sources */,
+				76096A6A2C861C860004BEE0 /* ProfileRouter.swift in Sources */,
+				76096A6B2C861C860004BEE0 /* ProfileBuilder.swift in Sources */,
+				76096A6C2C861C860004BEE0 /* ProfilePresenter.swift in Sources */,
+				76096A362C84FBD40004BEE0 /* ServiceProvider.swift in Sources */,
+				76096A2D2C84FB440004BEE0 /* BaseBuilder.swift in Sources */,
+				76096A312C84FB8C0004BEE0 /* BaseRouter.swift in Sources */,
+				76096A222C84FAD60004BEE0 /* LaunchInteractor.swift in Sources */,
+				76096A232C84FAD60004BEE0 /* LaunchRouter.swift in Sources */,
+				76096A5D2C861C550004BEE0 /* EventsController.swift in Sources */,
+				76096A5E2C861C550004BEE0 /* EventsInteractor.swift in Sources */,
+				76096A5F2C861C550004BEE0 /* EventsRouter.swift in Sources */,
+				76096A602C861C550004BEE0 /* EventsBuilder.swift in Sources */,
+				76096A612C861C550004BEE0 /* EventsPresenter.swift in Sources */,
+				76096A282C84FB010004BEE0 /* BaseView.swift in Sources */,
+				76096A242C84FAD60004BEE0 /* LaunchBuilder.swift in Sources */,
+				76096A382C84FC2B0004BEE0 /* BaseViewController.swift in Sources */,
+				76096AFC2C8B11FC0004BEE0 /* InvitesLeftView.swift in Sources */,
+				76096A252C84FAD60004BEE0 /* LaunchPresenter.swift in Sources */,
+				76096A332C84FBA90004BEE0 /* BaseInteractor.swift in Sources */,
+				76096A402C8501950004BEE0 /* UIWindow+SwitchRoot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		76096A0A2C84F8670004BEE0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				76096A0B2C84F8670004BEE0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		76096A0F2C84F8680004BEE0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,7 +625,7 @@
 				INFOPLIST_FILE = "ivite-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -307,9 +635,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "d.volokhovskyi.ivite-app.ivite-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -325,7 +657,7 @@
 				INFOPLIST_FILE = "ivite-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -335,9 +667,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "d.volokhovskyi.ivite-app.ivite-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -363,6 +699,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		76096A3C2C8500680004BEE0 /* XCRemoteSwiftPackageReference "PureLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/PureLayout/PureLayout.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		76096A3D2C8500680004BEE0 /* PureLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 76096A3C2C8500680004BEE0 /* XCRemoteSwiftPackageReference "PureLayout" */;
+			productName = PureLayout;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 760969F92C84F8670004BEE0 /* Project object */;
 }

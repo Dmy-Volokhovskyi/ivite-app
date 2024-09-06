@@ -40,12 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appearance.stackedLayoutAppearance.normal.iconColor = .dark30
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
             .foregroundColor: UIColor.dark30,
-            .font: UIFont.interFont(ofSize: 12, weight: .bold)
+            .font: UIFont.interFont(ofSize: 12, weight: .regular)
         ]
         appearance.stackedLayoutAppearance.selected.iconColor = .accent
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
             .foregroundColor: UIColor.dark30,
-            .font: UIFont.interFont(ofSize: 12, weight: .bold)
+            .font: UIFont.interFont(ofSize: 12, weight: .regular)
         ]
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
