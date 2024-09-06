@@ -41,10 +41,10 @@ extension UIButton.Configuration {
         return config
     }
 
-    static func image(image: UIImage) -> UIButton.Configuration {
+    static func image(image: UIImage, color: UIColor? = nil) -> UIButton.Configuration {
         var config = UIButton.Configuration.bordered()
         config.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
-        config.baseBackgroundColor = .dark10
+        config.baseBackgroundColor = color ?? .dark10
         config.baseForegroundColor = .dark30
         config.cornerStyle = .capsule
         config.image = image

@@ -28,7 +28,7 @@ final class ListHeaderView: BaseView {
         
 
         titleLabel.font = .interFont(ofSize: 24, weight: .semiBold)
-        titleLabel.textColor = .secondary
+        titleLabel.textColor = .secondary1
     }
     
     override func addSubviews() {
