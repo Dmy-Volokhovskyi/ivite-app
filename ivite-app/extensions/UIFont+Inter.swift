@@ -28,14 +28,7 @@ extension UIFont {
         } else {
             fontName = "Inter-Regular\(weight.rawValue)"
         }
-        
-        for family in UIFont.familyNames {
-            print("Font Family: \(family)")
-            for name in UIFont.fontNames(forFamilyName: family) {
-                print("   Font Name: \(name)")
-            }
-        }
-        
+
         guard let font = UIFont(name: fontName, size: size) else {
             fatalError("Critical Error: Font \(fontName) not found. Make sure the font is added correctly.")
         }
