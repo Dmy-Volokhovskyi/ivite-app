@@ -1,0 +1,141 @@
+{
+    "canvas": {
+        "size": {
+            "width": 1620,
+            "height": 2160
+        },
+        "number_of_layers": 7,
+        "content": [
+            {
+                "name": "image",
+                "coordinates": {
+                    "x": 0,
+                    "y": 0
+                },
+                "size": {
+                    "width": 1620,
+                    "height": 2160
+                },
+                "editable": false,
+                "type": "image",
+                "image_file": "image"
+            },
+            {
+                "name": "image",
+                "coordinates": {
+                    "x": 0,
+                    "y": 0
+                },
+                "size": {
+                    "width": 1620,
+                    "height": 2160
+                },
+                "editable": false,
+                "type": "image",
+                "image_file": "image1"
+            },
+            {
+                "name": "GRADUARION",
+                "coordinates": {
+                    "x": 0,
+                    "y": 0
+                },
+                "size": {
+                    "width": 1620,
+                    "height": 2160
+                },
+                "editable": false,
+                "type": "text",
+                "text_value": "GRADUARION",
+                "font": "Unknown Font",
+                "font_size": 63.9,
+                "text_box_coordinates": {
+                    "x": 510,
+                    "y": 235,
+                    "width": 788,
+                    "height": 87
+                }
+            },
+            {
+                "name": "Year 2024",
+                "coordinates": {
+                    "x": 0,
+                    "y": 0
+                },
+                "size": {
+                    "width": 1620,
+                    "height": 2160
+                },
+                "editable": false,
+                "type": "text",
+                "text_value": "Year 2024",
+                "font": "Unknown Font",
+                "font_size": 48.2,
+                "text_box_coordinates": {
+                    "x": 664,
+                    "y": 470,
+                    "width": 410,
+                    "height": 67
+                }
+            },
+            {
+                "name": "Editable",
+                "coordinates": {
+                    "x": 0,
+                    "y": 0
+                },
+                "size": {
+                    "width": 1620,
+                    "height": 2160
+                },
+                "editable": true,
+                "type": "image",
+                "cropped_size": {
+                    "width": 972,
+                    "height": 729
+                },
+                "cropped_coordinates": {
+                    "x": 2,
+                    "y": 587
+                },
+                "image_file": "image3"
+            },
+            {
+                "name": "\u0421\u043b\u043e\u0439 6",
+                "coordinates": {
+                    "x": 0,
+                    "y": 0
+                },
+                "size": {
+                    "width": 1620,
+                    "height": 2160
+                },
+                "editable": false,
+                "type": "image",
+                "image_file": "image2"
+            },
+            {
+                "name": "Locki the cat",
+                "coordinates": {
+                    "x": 0,
+                    "y": 0
+                },
+                "size": {
+                    "width": 1620,
+                    "height": 2160
+                },
+                "editable": false,
+                "type": "text",
+                "text_value": "Locki the cat",
+                "font": "Unknown Font",
+                "font_size": 131.4,
+                "text_box_coordinates": {
+                    "x": 99,
+                    "y": 1927,
+                    "width": 1464,
+                    "height": 187
+                }
+            }
+        ]
+    }
+}

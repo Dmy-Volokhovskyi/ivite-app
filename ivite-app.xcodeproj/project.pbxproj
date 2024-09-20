@@ -66,6 +66,7 @@
 		76096B022C8B1E0A0004BEE0 /* EventCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096B012C8B1E0A0004BEE0 /* EventCardCell.swift */; };
 		76096B042C8B1E580004BEE0 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096B032C8B1E580004BEE0 /* BaseTableViewCell.swift */; };
 		76096B072C8B1E910004BEE0 /* Reusable in Frameworks */ = {isa = PBXBuildFile; productRef = 76096B062C8B1E910004BEE0 /* Reusable */; };
+		766AB7522C933010004FC6EE /* canvasData.json in Resources */ = {isa = PBXBuildFile; fileRef = 766AB7512C933010004FC6EE /* canvasData.json */; };
 		76A34F8F2C8B5035003D3E87 /* TableViewBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A34F8E2C8B5035003D3E87 /* TableViewBackgroundView.swift */; };
 		76A34F922C8B5D1A003D3E87 /* ContactCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A34F912C8B5D1A003D3E87 /* ContactCardModel.swift */; };
 		76A34F952C8B5E61003D3E87 /* ContactCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A34F942C8B5E61003D3E87 /* ContactCardCell.swift */; };
@@ -133,6 +134,7 @@
 		76096AFF2C8B1BF90004BEE0 /* EventCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardModel.swift; sourceTree = "<group>"; };
 		76096B012C8B1E0A0004BEE0 /* EventCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCardCell.swift; sourceTree = "<group>"; };
 		76096B032C8B1E580004BEE0 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		766AB7512C933010004FC6EE /* canvasData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = canvasData.json; sourceTree = "<group>"; };
 		76A34F8E2C8B5035003D3E87 /* TableViewBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewBackgroundView.swift; sourceTree = "<group>"; };
 		76A34F912C8B5D1A003D3E87 /* ContactCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardModel.swift; sourceTree = "<group>"; };
 		76A34F942C8B5E61003D3E87 /* ContactCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardCell.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		760969F82C84F8670004BEE0 = {
 			isa = PBXGroup;
 			children = (
+				766AB7512C933010004FC6EE /* canvasData.json */,
 				76096A032C84F8670004BEE0 /* ivite-app */,
 				76096A022C84F8670004BEE0 /* Products */,
 			);
@@ -481,6 +484,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				766AB7522C933010004FC6EE /* canvasData.json in Resources */,
 				76096A0E2C84F8680004BEE0 /* Assets.xcassets in Resources */,
 				76096A7D2C8730E30004BEE0 /* Inter-VariableFont_opsz,wght.ttf in Resources */,
 				76096A112C84F8680004BEE0 /* Base in Resources */,
