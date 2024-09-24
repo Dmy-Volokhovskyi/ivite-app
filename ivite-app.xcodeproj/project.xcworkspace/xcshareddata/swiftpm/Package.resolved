@@ -1,0 +1,24 @@
+{
+  "originHash" : "e7c61394c0e3b0cec86c909f125d25b66c9b19242a4e050011457ea4cd0f1a0a",
+  "pins" : [
+    {
+      "identity" : "purelayout",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/PureLayout/PureLayout.git",
+      "state" : {
+        "revision" : "5561683c96dc49b023c1299bfe4f6fbeed5f8199",
+        "version" : "3.1.9"
+      }
+    },
+    {
+      "identity" : "reusable",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gonzalezreal/Reusable.git",
+      "state" : {
+        "revision" : "107ad33ea50f2cf700f0c7eb24d97961b597427f",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}

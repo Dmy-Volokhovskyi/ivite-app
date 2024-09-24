@@ -72,6 +72,33 @@
 		76A34F952C8B5E61003D3E87 /* ContactCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A34F942C8B5E61003D3E87 /* ContactCardCell.swift */; };
 		76A34F982C8B9AA9003D3E87 /* CategoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A34F972C8B9AA9003D3E87 /* CategoriesCollectionView.swift */; };
 		76A34F9A2C8B9AF0003D3E87 /* BaseUICollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A34F992C8B9AF0003D3E87 /* BaseUICollectionViewItem.swift */; };
+		F62D68492CA5ACB40090ADE5 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62D68482CA5ACB40090ADE5 /* Canvas.swift */; };
+		F67F1CCD2CA43E3200F00044 /* FontSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67F1CCC2CA43E3200F00044 /* FontSelectionView.swift */; };
+		F67F1CD02CA43E9500F00044 /* FontTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67F1CCF2CA43E9500F00044 /* FontTableViewCell.swift */; };
+		F6B47ACA2CB1965000E6DF0A /* DownloadableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B47AC92CB1965000E6DF0A /* DownloadableImageView.swift */; };
+		F6B47ACC2CB1966400E6DF0A /* UserImageLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B47ACB2CB1966400E6DF0A /* UserImageLibraryManager.swift */; };
+		F6B47ACE2CB45C4F00E6DF0A /* SpacingPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B47ACD2CB45C4F00E6DF0A /* SpacingPickerView.swift */; };
+		F6CBD9632CAB2AA300911DF7 /* FontSizePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CBD9622CAB2AA300911DF7 /* FontSizePickerView.swift */; };
+		F6CBD9652CAB2F7100911DF7 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CBD9642CAB2F7100911DF7 /* ColorPickerView.swift */; };
+		F6CBD9672CAB328900911DF7 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CBD9662CAB328900911DF7 /* UIColor+Hex.swift */; };
+		F6CBD9692CAB384300911DF7 /* TextFormatPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CBD9682CAB384300911DF7 /* TextFormatPickerView.swift */; };
+		F6D3CBA62CA2D21600E29761 /* TextEditMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3CBA52CA2D21600E29761 /* TextEditMenu.swift */; };
+		F6D3CBA92CA2D2F600E29761 /* TextEditMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3CBA82CA2D2F600E29761 /* TextEditMenuView.swift */; };
+		F6D3CBAB2CA2D73400E29761 /* TextEditMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3CBAA2CA2D73400E29761 /* TextEditMenuButton.swift */; };
+		F6D3CBB22CA2E36C00E29761 /* GripViewBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3CBB12CA2E36C00E29761 /* GripViewBorderView.swift */; };
+		F6D3CBB62CA2E76200E29761 /* ResizableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3CBB52CA2E76200E29761 /* ResizableView.swift */; };
+		F6EBF55B2CA441170058F7B2 /* TemplateEditorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF55A2CA441170058F7B2 /* TemplateEditorRouter.swift */; };
+		F6EBF55C2CA441170058F7B2 /* TemplateEditorBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5562CA441170058F7B2 /* TemplateEditorBuilder.swift */; };
+		F6EBF55D2CA441170058F7B2 /* TemplateEditorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5582CA441170058F7B2 /* TemplateEditorInteractor.swift */; };
+		F6EBF55E2CA441170058F7B2 /* TemplateEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5572CA441170058F7B2 /* TemplateEditorController.swift */; };
+		F6EBF55F2CA441170058F7B2 /* TemplateEditorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5592CA441170058F7B2 /* TemplateEditorPresenter.swift */; };
+		F6EBF5632CA446EE0058F7B2 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5622CA446EE0058F7B2 /* Layer.swift */; };
+		F6EBF5652CA4470C0058F7B2 /* CanvasResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5642CA4470C0058F7B2 /* CanvasResponse.swift */; };
+		F6EBF5672CA449380058F7B2 /* TileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5662CA449380058F7B2 /* TileCollectionViewCell.swift */; };
+		F6EBF56A2CA4496F0058F7B2 /* TileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5692CA4496F0058F7B2 /* TileModel.swift */; };
+		F6EBF56C2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF56B2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift */; };
+		F6EBF56E2CA4A1120058F7B2 /* CreatorFlowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF56D2CA4A1120058F7B2 /* CreatorFlowModel.swift */; };
+		F6EBF5702CA4A1EA0058F7B2 /* CreationFlowBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF56F2CA4A1EA0058F7B2 /* CreationFlowBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +167,33 @@
 		76A34F942C8B5E61003D3E87 /* ContactCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCardCell.swift; sourceTree = "<group>"; };
 		76A34F972C8B9AA9003D3E87 /* CategoriesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionView.swift; sourceTree = "<group>"; };
 		76A34F992C8B9AF0003D3E87 /* BaseUICollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUICollectionViewItem.swift; sourceTree = "<group>"; };
+		F62D68482CA5ACB40090ADE5 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		F67F1CCC2CA43E3200F00044 /* FontSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSelectionView.swift; sourceTree = "<group>"; };
+		F67F1CCF2CA43E9500F00044 /* FontTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTableViewCell.swift; sourceTree = "<group>"; };
+		F6B47AC92CB1965000E6DF0A /* DownloadableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadableImageView.swift; sourceTree = "<group>"; };
+		F6B47ACB2CB1966400E6DF0A /* UserImageLibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageLibraryManager.swift; sourceTree = "<group>"; };
+		F6B47ACD2CB45C4F00E6DF0A /* SpacingPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacingPickerView.swift; sourceTree = "<group>"; };
+		F6CBD9622CAB2AA300911DF7 /* FontSizePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizePickerView.swift; sourceTree = "<group>"; };
+		F6CBD9642CAB2F7100911DF7 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		F6CBD9662CAB328900911DF7 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		F6CBD9682CAB384300911DF7 /* TextFormatPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatPickerView.swift; sourceTree = "<group>"; };
+		F6D3CBA52CA2D21600E29761 /* TextEditMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditMenu.swift; sourceTree = "<group>"; };
+		F6D3CBA82CA2D2F600E29761 /* TextEditMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditMenuView.swift; sourceTree = "<group>"; };
+		F6D3CBAA2CA2D73400E29761 /* TextEditMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditMenuButton.swift; sourceTree = "<group>"; };
+		F6D3CBB12CA2E36C00E29761 /* GripViewBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripViewBorderView.swift; sourceTree = "<group>"; };
+		F6D3CBB52CA2E76200E29761 /* ResizableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableView.swift; sourceTree = "<group>"; };
+		F6EBF5562CA441170058F7B2 /* TemplateEditorBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorBuilder.swift; sourceTree = "<group>"; };
+		F6EBF5572CA441170058F7B2 /* TemplateEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorController.swift; sourceTree = "<group>"; };
+		F6EBF5582CA441170058F7B2 /* TemplateEditorInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorInteractor.swift; sourceTree = "<group>"; };
+		F6EBF5592CA441170058F7B2 /* TemplateEditorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorPresenter.swift; sourceTree = "<group>"; };
+		F6EBF55A2CA441170058F7B2 /* TemplateEditorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorRouter.swift; sourceTree = "<group>"; };
+		F6EBF5622CA446EE0058F7B2 /* Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
+		F6EBF5642CA4470C0058F7B2 /* CanvasResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasResponse.swift; sourceTree = "<group>"; };
+		F6EBF5662CA449380058F7B2 /* TileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCollectionViewCell.swift; sourceTree = "<group>"; };
+		F6EBF5692CA4496F0058F7B2 /* TileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileModel.swift; sourceTree = "<group>"; };
+		F6EBF56B2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorFlowNavigationController.swift; sourceTree = "<group>"; };
+		F6EBF56D2CA4A1120058F7B2 /* CreatorFlowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorFlowModel.swift; sourceTree = "<group>"; };
+		F6EBF56F2CA4A1EA0058F7B2 /* CreationFlowBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationFlowBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +231,7 @@
 			children = (
 				76096A7F2C8731990004BEE0 /* extensions */,
 				76096A1B2C84FA8A0004BEE0 /* app */,
+				F6EBF5612CA446D70058F7B2 /* model */,
 				76096A342C84FBC00004BEE0 /* services */,
 				76096A262C84FAEE0004BEE0 /* base */,
 				76096AF02C88F6860004BEE0 /* common */,
@@ -203,6 +258,7 @@
 		76096A192C84FA650004BEE0 /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				F6EBF5552CA440D00058F7B2 /* CreatorFlow */,
 				76096A182C84F8D50004BEE0 /* Launch */,
 				76096A6D2C861C8E0004BEE0 /* MainScreen */,
 				76096A622C861C7F0004BEE0 /* Profile */,
@@ -269,6 +325,7 @@
 		76096A4B2C861C1F0004BEE0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				F6EBF5682CA449660058F7B2 /* Model */,
 				76A34F962C8B9A98003D3E87 /* View */,
 				76096A412C861C1B0004BEE0 /* HomeController.swift */,
 				76096A422C861C1B0004BEE0 /* HomeInteractor.swift */,
@@ -345,6 +402,7 @@
 			children = (
 				76096A802C8731AD0004BEE0 /* UIFont+Inter.swift */,
 				76096AEE2C88F1900004BEE0 /* UIButton+Configuration.swift */,
+				F6CBD9662CAB328900911DF7 /* UIColor+Hex.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -352,10 +410,14 @@
 		76096AF02C88F6860004BEE0 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				F6B47AC82CB1963600E6DF0A /* IVImage */,
 				76096AF82C8A58840004BEE0 /* ListHeader */,
 				76096AF72C8A587C0004BEE0 /* Search */,
 				76096AFB2C8B11FC0004BEE0 /* InvitesLeftView.swift */,
 				76A34F8E2C8B5035003D3E87 /* TableViewBackgroundView.swift */,
+				F6D3CBB02CA2E34500E29761 /* ResizableView */,
+				F6D3CBA72CA2D2E300E29761 /* TextEditMenu */,
+				F6CBD9612CAB2A9000911DF7 /* TextViewEdit */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -414,8 +476,107 @@
 			isa = PBXGroup;
 			children = (
 				76A34F972C8B9AA9003D3E87 /* CategoriesCollectionView.swift */,
+				F6EBF5662CA449380058F7B2 /* TileCollectionViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		F62D68472CA5ACA90090ADE5 /* Canvas */ = {
+			isa = PBXGroup;
+			children = (
+				F62D68482CA5ACB40090ADE5 /* Canvas.swift */,
+			);
+			path = Canvas;
+			sourceTree = "<group>";
+		};
+		F67F1CCE2CA43E3700F00044 /* FontSlection */ = {
+			isa = PBXGroup;
+			children = (
+				F67F1CCC2CA43E3200F00044 /* FontSelectionView.swift */,
+				F67F1CCF2CA43E9500F00044 /* FontTableViewCell.swift */,
+			);
+			path = FontSlection;
+			sourceTree = "<group>";
+		};
+		F6B47AC82CB1963600E6DF0A /* IVImage */ = {
+			isa = PBXGroup;
+			children = (
+				F6B47AC92CB1965000E6DF0A /* DownloadableImageView.swift */,
+				F6B47ACB2CB1966400E6DF0A /* UserImageLibraryManager.swift */,
+			);
+			path = IVImage;
+			sourceTree = "<group>";
+		};
+		F6CBD9612CAB2A9000911DF7 /* TextViewEdit */ = {
+			isa = PBXGroup;
+			children = (
+				F67F1CCE2CA43E3700F00044 /* FontSlection */,
+				F6CBD9622CAB2AA300911DF7 /* FontSizePickerView.swift */,
+				F6CBD9682CAB384300911DF7 /* TextFormatPickerView.swift */,
+				F6CBD9642CAB2F7100911DF7 /* ColorPickerView.swift */,
+				F6B47ACD2CB45C4F00E6DF0A /* SpacingPickerView.swift */,
+			);
+			path = TextViewEdit;
+			sourceTree = "<group>";
+		};
+		F6D3CBA72CA2D2E300E29761 /* TextEditMenu */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3CBA52CA2D21600E29761 /* TextEditMenu.swift */,
+				F6D3CBA82CA2D2F600E29761 /* TextEditMenuView.swift */,
+				F6D3CBAA2CA2D73400E29761 /* TextEditMenuButton.swift */,
+			);
+			path = TextEditMenu;
+			sourceTree = "<group>";
+		};
+		F6D3CBB02CA2E34500E29761 /* ResizableView */ = {
+			isa = PBXGroup;
+			children = (
+				F6D3CBB12CA2E36C00E29761 /* GripViewBorderView.swift */,
+				F6D3CBB52CA2E76200E29761 /* ResizableView.swift */,
+			);
+			path = ResizableView;
+			sourceTree = "<group>";
+		};
+		F6EBF5552CA440D00058F7B2 /* CreatorFlow */ = {
+			isa = PBXGroup;
+			children = (
+				F6EBF5602CA441300058F7B2 /* TemplateEditor */,
+				F6EBF56B2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift */,
+				F6EBF56D2CA4A1120058F7B2 /* CreatorFlowModel.swift */,
+				F6EBF56F2CA4A1EA0058F7B2 /* CreationFlowBuilder.swift */,
+			);
+			path = CreatorFlow;
+			sourceTree = "<group>";
+		};
+		F6EBF5602CA441300058F7B2 /* TemplateEditor */ = {
+			isa = PBXGroup;
+			children = (
+				F6EBF5562CA441170058F7B2 /* TemplateEditorBuilder.swift */,
+				F6EBF5572CA441170058F7B2 /* TemplateEditorController.swift */,
+				F6EBF5582CA441170058F7B2 /* TemplateEditorInteractor.swift */,
+				F6EBF5592CA441170058F7B2 /* TemplateEditorPresenter.swift */,
+				F6EBF55A2CA441170058F7B2 /* TemplateEditorRouter.swift */,
+			);
+			path = TemplateEditor;
+			sourceTree = "<group>";
+		};
+		F6EBF5612CA446D70058F7B2 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F62D68472CA5ACA90090ADE5 /* Canvas */,
+				F6EBF5622CA446EE0058F7B2 /* Layer.swift */,
+				F6EBF5642CA4470C0058F7B2 /* CanvasResponse.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F6EBF5682CA449660058F7B2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F6EBF5692CA4496F0058F7B2 /* TileModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -504,9 +665,13 @@
 				76096A052C84F8670004BEE0 /* AppDelegate.swift in Sources */,
 				76096AF42C89F9E40004BEE0 /* DynamicSearchBar.swift in Sources */,
 				76096AF22C88F75E0004BEE0 /* MainSearchBarView.swift in Sources */,
+				F6D3CBA62CA2D21600E29761 /* TextEditMenu.swift in Sources */,
+				F6D3CBB22CA2E36C00E29761 /* GripViewBorderView.swift in Sources */,
 				76096AF62C89FAF80004BEE0 /* SearchBar.swift in Sources */,
+				F6EBF5632CA446EE0058F7B2 /* Layer.swift in Sources */,
 				76096A072C84F8670004BEE0 /* SceneDelegate.swift in Sources */,
 				76096A3A2C84FE6E0004BEE0 /* UIApplication+AppDelegate.swift in Sources */,
+				F67F1CCD2CA43E3200F00044 /* FontSelectionView.swift in Sources */,
 				76096A2A2C84FB180004BEE0 /* BaseControll.swift in Sources */,
 				76096A462C861C1B0004BEE0 /* HomeController.swift in Sources */,
 				76096A472C861C1B0004BEE0 /* HomeInteractor.swift in Sources */,
@@ -517,13 +682,19 @@
 				76096A752C861C990004BEE0 /* MainScreenRouter.swift in Sources */,
 				76096A762C861C990004BEE0 /* MainScreenBuilder.swift in Sources */,
 				76096A772C861C990004BEE0 /* MainScreenPresenter.swift in Sources */,
+				F6D3CBAB2CA2D73400E29761 /* TextEditMenuButton.swift in Sources */,
 				76A34F922C8B5D1A003D3E87 /* ContactCardModel.swift in Sources */,
+				F6CBD9652CAB2F7100911DF7 /* ColorPickerView.swift in Sources */,
 				76096A522C861C420004BEE0 /* ContactController.swift in Sources */,
 				76096A532C861C420004BEE0 /* ContactInteractor.swift in Sources */,
 				76096A542C861C420004BEE0 /* ContactRouter.swift in Sources */,
 				76096B042C8B1E580004BEE0 /* BaseTableViewCell.swift in Sources */,
 				76096A552C861C420004BEE0 /* ContactBuilder.swift in Sources */,
+				F6CBD9672CAB328900911DF7 /* UIColor+Hex.swift in Sources */,
+				F6EBF5702CA4A1EA0058F7B2 /* CreationFlowBuilder.swift in Sources */,
+				F6EBF56A2CA4496F0058F7B2 /* TileModel.swift in Sources */,
 				76096A562C861C420004BEE0 /* ContactPresenter.swift in Sources */,
+				F6CBD9692CAB384300911DF7 /* TextFormatPickerView.swift in Sources */,
 				76A34F982C8B9AA9003D3E87 /* CategoriesCollectionView.swift in Sources */,
 				76096A482C861C1B0004BEE0 /* HomeRouter.swift in Sources */,
 				76096A812C8731AD0004BEE0 /* UIFont+Inter.swift in Sources */,
@@ -538,17 +709,30 @@
 				76096A6B2C861C860004BEE0 /* ProfileBuilder.swift in Sources */,
 				76096A6C2C861C860004BEE0 /* ProfilePresenter.swift in Sources */,
 				76096A362C84FBD40004BEE0 /* ServiceProvider.swift in Sources */,
+				F6EBF56C2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift in Sources */,
 				76096B022C8B1E0A0004BEE0 /* EventCardCell.swift in Sources */,
 				76096A2D2C84FB440004BEE0 /* BaseBuilder.swift in Sources */,
 				76096A312C84FB8C0004BEE0 /* BaseRouter.swift in Sources */,
 				76A34F9A2C8B9AF0003D3E87 /* BaseUICollectionViewItem.swift in Sources */,
+				F6EBF56E2CA4A1120058F7B2 /* CreatorFlowModel.swift in Sources */,
+				F6EBF55B2CA441170058F7B2 /* TemplateEditorRouter.swift in Sources */,
+				F62D68492CA5ACB40090ADE5 /* Canvas.swift in Sources */,
+				F6EBF55C2CA441170058F7B2 /* TemplateEditorBuilder.swift in Sources */,
+				F6EBF55D2CA441170058F7B2 /* TemplateEditorInteractor.swift in Sources */,
+				F6EBF55E2CA441170058F7B2 /* TemplateEditorController.swift in Sources */,
+				F6EBF55F2CA441170058F7B2 /* TemplateEditorPresenter.swift in Sources */,
 				76096A222C84FAD60004BEE0 /* LaunchInteractor.swift in Sources */,
+				F6B47ACE2CB45C4F00E6DF0A /* SpacingPickerView.swift in Sources */,
+				F6B47ACC2CB1966400E6DF0A /* UserImageLibraryManager.swift in Sources */,
 				76096A232C84FAD60004BEE0 /* LaunchRouter.swift in Sources */,
 				76096A5D2C861C550004BEE0 /* EventsController.swift in Sources */,
 				76096A5E2C861C550004BEE0 /* EventsInteractor.swift in Sources */,
+				F6EBF5672CA449380058F7B2 /* TileCollectionViewCell.swift in Sources */,
 				76096A5F2C861C550004BEE0 /* EventsRouter.swift in Sources */,
+				F6EBF5652CA4470C0058F7B2 /* CanvasResponse.swift in Sources */,
 				76096B002C8B1BF90004BEE0 /* EventCardModel.swift in Sources */,
 				76096A602C861C550004BEE0 /* EventsBuilder.swift in Sources */,
+				F6B47ACA2CB1965000E6DF0A /* DownloadableImageView.swift in Sources */,
 				76096A612C861C550004BEE0 /* EventsPresenter.swift in Sources */,
 				76096A282C84FB010004BEE0 /* BaseView.swift in Sources */,
 				76096A242C84FAD60004BEE0 /* LaunchBuilder.swift in Sources */,
@@ -556,7 +740,11 @@
 				76096AFC2C8B11FC0004BEE0 /* InvitesLeftView.swift in Sources */,
 				76096A252C84FAD60004BEE0 /* LaunchPresenter.swift in Sources */,
 				76096A332C84FBA90004BEE0 /* BaseInteractor.swift in Sources */,
+				F67F1CD02CA43E9500F00044 /* FontTableViewCell.swift in Sources */,
+				F6CBD9632CAB2AA300911DF7 /* FontSizePickerView.swift in Sources */,
+				F6D3CBA92CA2D2F600E29761 /* TextEditMenuView.swift in Sources */,
 				76096A402C8501950004BEE0 /* UIWindow+SwitchRoot.swift in Sources */,
+				F6D3CBB62CA2E76200E29761 /* ResizableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

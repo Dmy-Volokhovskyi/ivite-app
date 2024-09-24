@@ -15,6 +15,9 @@ final class HomePresenter: BasePresenter {
 }
 
 extension HomePresenter: HomeEventHandler {
+    func didSelectItem(at indexPath: IndexPath) {
+        router.switchToCreatorFlow(serviceProvider: interactor.serviceProvider)
+    }
 }
 
 extension HomePresenter: HomeDataSource {

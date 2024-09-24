@@ -66,7 +66,7 @@
                     "width": 1620,
                     "height": 2160
                 },
-                "editable": false,
+                "editable": true,
                 "type": "text",
                 "text_value": "Year 2024",
                 "font": "Unknown Font",
@@ -124,14 +124,14 @@
                     "width": 1620,
                     "height": 2160
                 },
-                "editable": false,
+                "editable": true,
                 "type": "text",
                 "text_value": "Locki the cat",
                 "font": "Unknown Font",
                 "font_size": 131.4,
                 "text_box_coordinates": {
-                    "x": 99,
-                    "y": 1927,
+                    "x": 86,
+                    "y": 1911,
                     "width": 1464,
                     "height": 187
                 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "TemplateEditorPresenter.didSelectAlignment(for:with:):TemplateEditorPresenter.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "interactor.creationFlowModel.canvas">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
