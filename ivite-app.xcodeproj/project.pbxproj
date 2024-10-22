@@ -112,6 +112,7 @@
 		F6D3CBAB2CA2D73400E29761 /* TextEditMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3CBAA2CA2D73400E29761 /* TextEditMenuButton.swift */; };
 		F6D3CBB22CA2E36C00E29761 /* GripViewBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3CBB12CA2E36C00E29761 /* GripViewBorderView.swift */; };
 		F6D3CBB62CA2E76200E29761 /* ResizableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3CBB52CA2E76200E29761 /* ResizableView.swift */; };
+		F6D5DB582CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D5DB572CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift */; };
 		F6EBF55B2CA441170058F7B2 /* TemplateEditorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF55A2CA441170058F7B2 /* TemplateEditorRouter.swift */; };
 		F6EBF55C2CA441170058F7B2 /* TemplateEditorBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5562CA441170058F7B2 /* TemplateEditorBuilder.swift */; };
 		F6EBF55D2CA441170058F7B2 /* TemplateEditorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5582CA441170058F7B2 /* TemplateEditorInteractor.swift */; };
@@ -125,6 +126,13 @@
 		F6EBF56E2CA4A1120058F7B2 /* CreatorFlowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF56D2CA4A1120058F7B2 /* CreatorFlowModel.swift */; };
 		F6EBF5702CA4A1EA0058F7B2 /* CreationFlowBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF56F2CA4A1EA0058F7B2 /* CreationFlowBuilder.swift */; };
 		F6F4AA352CC6B1CC00071B0B /* EdditCoHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA342CC6B1CC00071B0B /* EdditCoHostView.swift */; };
+		F6F4AA3D2CC8220800071B0B /* CreateAccountRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA3C2CC8220800071B0B /* CreateAccountRouter.swift */; };
+		F6F4AA3E2CC8220800071B0B /* CreateAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA392CC8220800071B0B /* CreateAccountController.swift */; };
+		F6F4AA3F2CC8220800071B0B /* CreateAccountBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA382CC8220800071B0B /* CreateAccountBuilder.swift */; };
+		F6F4AA402CC8220800071B0B /* CreateAccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA3B2CC8220800071B0B /* CreateAccountPresenter.swift */; };
+		F6F4AA412CC8220800071B0B /* CreateAccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA3A2CC8220800071B0B /* CreateAccountInteractor.swift */; };
+		F6F4AA442CC8328300071B0B /* TermsAndServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA432CC8328300071B0B /* TermsAndServicesView.swift */; };
+		F6F4AA482CC83A7C00071B0B /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA472CC83A7C00071B0B /* SignInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -233,6 +241,7 @@
 		F6D3CBAA2CA2D73400E29761 /* TextEditMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditMenuButton.swift; sourceTree = "<group>"; };
 		F6D3CBB12CA2E36C00E29761 /* GripViewBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripViewBorderView.swift; sourceTree = "<group>"; };
 		F6D3CBB52CA2E76200E29761 /* ResizableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableView.swift; sourceTree = "<group>"; };
+		F6D5DB572CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITapGestureRecognizer+Tap.swift"; sourceTree = "<group>"; };
 		F6EBF5562CA441170058F7B2 /* TemplateEditorBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorBuilder.swift; sourceTree = "<group>"; };
 		F6EBF5572CA441170058F7B2 /* TemplateEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorController.swift; sourceTree = "<group>"; };
 		F6EBF5582CA441170058F7B2 /* TemplateEditorInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorInteractor.swift; sourceTree = "<group>"; };
@@ -246,6 +255,13 @@
 		F6EBF56D2CA4A1120058F7B2 /* CreatorFlowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorFlowModel.swift; sourceTree = "<group>"; };
 		F6EBF56F2CA4A1EA0058F7B2 /* CreationFlowBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationFlowBuilder.swift; sourceTree = "<group>"; };
 		F6F4AA342CC6B1CC00071B0B /* EdditCoHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdditCoHostView.swift; sourceTree = "<group>"; };
+		F6F4AA382CC8220800071B0B /* CreateAccountBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountBuilder.swift; sourceTree = "<group>"; };
+		F6F4AA392CC8220800071B0B /* CreateAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountController.swift; sourceTree = "<group>"; };
+		F6F4AA3A2CC8220800071B0B /* CreateAccountInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountInteractor.swift; sourceTree = "<group>"; };
+		F6F4AA3B2CC8220800071B0B /* CreateAccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountPresenter.swift; sourceTree = "<group>"; };
+		F6F4AA3C2CC8220800071B0B /* CreateAccountRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountRouter.swift; sourceTree = "<group>"; };
+		F6F4AA432CC8328300071B0B /* TermsAndServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndServicesView.swift; sourceTree = "<group>"; };
+		F6F4AA472CC83A7C00071B0B /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +326,7 @@
 		76096A192C84FA650004BEE0 /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				F6F4AA362CC821D700071B0B /* LogInFlow */,
 				F6EBF5552CA440D00058F7B2 /* CreatorFlow */,
 				76096A182C84F8D50004BEE0 /* Launch */,
 				76096A6D2C861C8E0004BEE0 /* MainScreen */,
@@ -455,6 +472,7 @@
 			children = (
 				76096A802C8731AD0004BEE0 /* UIFont+Inter.swift */,
 				76096AEE2C88F1900004BEE0 /* UIButton+Configuration.swift */,
+				F6D5DB572CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift */,
 				F6CBD9662CAB328900911DF7 /* UIColor+Hex.swift */,
 			);
 			path = extensions;
@@ -697,6 +715,36 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		F6F4AA362CC821D700071B0B /* LogInFlow */ = {
+			isa = PBXGroup;
+			children = (
+				F6F4AA372CC821E800071B0B /* CreateAccount */,
+			);
+			path = LogInFlow;
+			sourceTree = "<group>";
+		};
+		F6F4AA372CC821E800071B0B /* CreateAccount */ = {
+			isa = PBXGroup;
+			children = (
+				F6F4AA422CC8326F00071B0B /* View */,
+				F6F4AA382CC8220800071B0B /* CreateAccountBuilder.swift */,
+				F6F4AA392CC8220800071B0B /* CreateAccountController.swift */,
+				F6F4AA3A2CC8220800071B0B /* CreateAccountInteractor.swift */,
+				F6F4AA3B2CC8220800071B0B /* CreateAccountPresenter.swift */,
+				F6F4AA3C2CC8220800071B0B /* CreateAccountRouter.swift */,
+			);
+			path = CreateAccount;
+			sourceTree = "<group>";
+		};
+		F6F4AA422CC8326F00071B0B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F6F4AA432CC8328300071B0B /* TermsAndServicesView.swift */,
+				F6F4AA472CC83A7C00071B0B /* SignInView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -778,6 +826,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6F4AA482CC83A7C00071B0B /* SignInView.swift in Sources */,
 				76096A792C8620FF0004BEE0 /* BaseTabBarController.swift in Sources */,
 				76096A2F2C84FB6A0004BEE0 /* BasePresenter.swift in Sources */,
 				76096A052C84F8670004BEE0 /* AppDelegate.swift in Sources */,
@@ -805,6 +854,7 @@
 				76A34F952C8B5E61003D3E87 /* ContactCardCell.swift in Sources */,
 				F6936A2B2CB9621F00764197 /* EntryWithTitle.swift in Sources */,
 				76096A752C861C990004BEE0 /* MainScreenRouter.swift in Sources */,
+				F6F4AA442CC8328300071B0B /* TermsAndServicesView.swift in Sources */,
 				76096A762C861C990004BEE0 /* MainScreenBuilder.swift in Sources */,
 				76096A772C861C990004BEE0 /* MainScreenPresenter.swift in Sources */,
 				F6936A212CB9608200764197 /* EventDetailsBuilder.swift in Sources */,
@@ -850,6 +900,7 @@
 				F66EC28D2CC6A3C300AE76B2 /* ActionsViewController.swift in Sources */,
 				F6EBF56C2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift in Sources */,
 				76096B022C8B1E0A0004BEE0 /* EventCardCell.swift in Sources */,
+				F6D5DB582CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift in Sources */,
 				76096A2D2C84FB440004BEE0 /* BaseBuilder.swift in Sources */,
 				F68EA74F2CBEEC0400F935FA /* TextFieldValidationType.swift in Sources */,
 				F651E6F12CBDAF41007D195D /* AddCoHostViewController.swift in Sources */,
@@ -878,6 +929,11 @@
 				76096A602C861C550004BEE0 /* EventsBuilder.swift in Sources */,
 				F6B47ACA2CB1965000E6DF0A /* DownloadableImageView.swift in Sources */,
 				76096A612C861C550004BEE0 /* EventsPresenter.swift in Sources */,
+				F6F4AA3D2CC8220800071B0B /* CreateAccountRouter.swift in Sources */,
+				F6F4AA3E2CC8220800071B0B /* CreateAccountController.swift in Sources */,
+				F6F4AA3F2CC8220800071B0B /* CreateAccountBuilder.swift in Sources */,
+				F6F4AA402CC8220800071B0B /* CreateAccountPresenter.swift in Sources */,
+				F6F4AA412CC8220800071B0B /* CreateAccountInteractor.swift in Sources */,
 				76096A282C84FB010004BEE0 /* BaseView.swift in Sources */,
 				76096A242C84FAD60004BEE0 /* LaunchBuilder.swift in Sources */,
 				76096A382C84FC2B0004BEE0 /* BaseViewController.swift in Sources */,

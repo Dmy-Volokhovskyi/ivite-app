@@ -8,22 +8,43 @@
 import UIKit
 import PureLayout
 final class IVTextField: BaseControll, UITextFieldDelegate {
+    private let contentStackView = UIStackView()
+    private var leadingImageView = UIImageView()
     private var placeholder: String = ""
     private let textField = UITextField()
+    private var trailingImageView = UIImageView(image: .eyeOpen)
+    
     private var validationType: TextFieldValidationType = .none
-
+    var isSecureTextEntry: Bool = false {
+        didSet {
+            textField.isSecureTextEntry = isSecureTextEntry
+            trailingImageView.isHidden = !isSecureTextEntry
+        }
+    }
+    
     var text: String? {
         get { textField.text }
         set { textField.text = newValue }
     }
     
     // Initializer
-    init(text: String? = "", placeholder: String = "", validationType: TextFieldValidationType = .none) {
+    init(text: String? = "",
+         placeholder: String = "",
+         leadingImage: UIImage? = nil,
+         trailingImage: UIImage? = nil,
+         validationType: TextFieldValidationType = .none) {
         self.placeholder = placeholder
         self.validationType = validationType
-        textField.text = text
+      
         super.init(frame: .zero)
         
+        leadingImageView.image = leadingImage
+        leadingImageView.isHidden = leadingImage == nil
+        
+        trailingImageView.image = trailingImage
+        trailingImageView.isHidden = trailingImage == nil
+        
+        textField.text = text
         textField.isUserInteractionEnabled = true
         textField.delegate = self
         textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -41,18 +62,32 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
         self.isUserInteractionEnabled = true
         self.addTarget(self, action: #selector(didTouchUpInside), for: .touchUpInside)
         
+        contentStackView.axis = .horizontal
+        contentStackView.spacing = 12
+        
         textField.placeholder = placeholder
         textField.borderStyle = .none
     }
     
     override func addSubviews() {
         super.addSubviews()
-        addSubview(textField)
+        
+        [
+            leadingImageView,
+            textField,
+            trailingImageView
+        ].forEach({ contentStackView.addArrangedSubview($0) })
+        
+        addSubview(contentStackView)
     }
     
     override func constrainSubviews() {
         super.constrainSubviews()
-        textField.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20))
+        
+        contentStackView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20))
+        
+        leadingImageView.autoSetDimensions(to: CGSize(width: 20, height: 20))
+        trailingImageView.autoSetDimensions(to: CGSize(width: 20, height: 20))
     }
     
     @objc private func didTouchUpInside() {
@@ -103,9 +138,10 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
 
     @objc private func textFieldDidChange() {
         if validationType == .email, !validationType.isValid(textField.text) {
-            textField.textColor = .red // Invalid email input
+            textField.layer.borderWidth = 1
+            textField.layer.borderColor = UIColor.red.cgColor
         } else {
-            textField.textColor = .black // Valid input or no validation
+            textField.layer.borderWidth = 0
         }
     }
 }
