@@ -73,6 +73,11 @@
 		76A34F982C8B9AA9003D3E87 /* CategoriesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A34F972C8B9AA9003D3E87 /* CategoriesCollectionView.swift */; };
 		76A34F9A2C8B9AF0003D3E87 /* BaseUICollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A34F992C8B9AF0003D3E87 /* BaseUICollectionViewItem.swift */; };
 		F62D68492CA5ACB40090ADE5 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62D68482CA5ACB40090ADE5 /* Canvas.swift */; };
+		F643D96D2CC928FF009A18F0 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9692CC928FF009A18F0 /* SignInController.swift */; };
+		F643D96E2CC928FF009A18F0 /* SignInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D96C2CC928FF009A18F0 /* SignInRouter.swift */; };
+		F643D96F2CC928FF009A18F0 /* SignInBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9682CC928FF009A18F0 /* SignInBuilder.swift */; };
+		F643D9702CC928FF009A18F0 /* SignInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D96A2CC928FF009A18F0 /* SignInInteractor.swift */; };
+		F643D9712CC928FF009A18F0 /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D96B2CC928FF009A18F0 /* SignInPresenter.swift */; };
 		F651E6EE2CBDAE9B007D195D /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F651E6ED2CBDAE9B007D195D /* AlertViewController.swift */; };
 		F651E6F12CBDAF41007D195D /* AddCoHostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F651E6F02CBDAF41007D195D /* AddCoHostViewController.swift */; };
 		F66EC28D2CC6A3C300AE76B2 /* ActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66EC28C2CC6A3C300AE76B2 /* ActionsViewController.swift */; };
@@ -202,6 +207,11 @@
 		76A34F972C8B9AA9003D3E87 /* CategoriesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionView.swift; sourceTree = "<group>"; };
 		76A34F992C8B9AF0003D3E87 /* BaseUICollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUICollectionViewItem.swift; sourceTree = "<group>"; };
 		F62D68482CA5ACB40090ADE5 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		F643D9682CC928FF009A18F0 /* SignInBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInBuilder.swift; sourceTree = "<group>"; };
+		F643D9692CC928FF009A18F0 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
+		F643D96A2CC928FF009A18F0 /* SignInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInInteractor.swift; sourceTree = "<group>"; };
+		F643D96B2CC928FF009A18F0 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
+		F643D96C2CC928FF009A18F0 /* SignInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRouter.swift; sourceTree = "<group>"; };
 		F651E6ED2CBDAE9B007D195D /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		F651E6F02CBDAF41007D195D /* AddCoHostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoHostViewController.swift; sourceTree = "<group>"; };
 		F66EC28C2CC6A3C300AE76B2 /* ActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsViewController.swift; sourceTree = "<group>"; };
@@ -566,6 +576,18 @@
 			path = Canvas;
 			sourceTree = "<group>";
 		};
+		F643D9722CC92907009A18F0 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				F643D9682CC928FF009A18F0 /* SignInBuilder.swift */,
+				F643D9692CC928FF009A18F0 /* SignInController.swift */,
+				F643D96A2CC928FF009A18F0 /* SignInInteractor.swift */,
+				F643D96B2CC928FF009A18F0 /* SignInPresenter.swift */,
+				F643D96C2CC928FF009A18F0 /* SignInRouter.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
 		F651E6EC2CBDAE81007D195D /* IVAlert */ = {
 			isa = PBXGroup;
 			children = (
@@ -719,6 +741,7 @@
 			isa = PBXGroup;
 			children = (
 				F6F4AA372CC821E800071B0B /* CreateAccount */,
+				F643D9722CC92907009A18F0 /* SignIn */,
 			);
 			path = LogInFlow;
 			sourceTree = "<group>";
@@ -926,6 +949,11 @@
 				76096A5F2C861C550004BEE0 /* EventsRouter.swift in Sources */,
 				F6EBF5652CA4470C0058F7B2 /* CanvasResponse.swift in Sources */,
 				76096B002C8B1BF90004BEE0 /* EventCardModel.swift in Sources */,
+				F643D96D2CC928FF009A18F0 /* SignInController.swift in Sources */,
+				F643D96E2CC928FF009A18F0 /* SignInRouter.swift in Sources */,
+				F643D96F2CC928FF009A18F0 /* SignInBuilder.swift in Sources */,
+				F643D9702CC928FF009A18F0 /* SignInInteractor.swift in Sources */,
+				F643D9712CC928FF009A18F0 /* SignInPresenter.swift in Sources */,
 				76096A602C861C550004BEE0 /* EventsBuilder.swift in Sources */,
 				F6B47ACA2CB1965000E6DF0A /* DownloadableImageView.swift in Sources */,
 				76096A612C861C550004BEE0 /* EventsPresenter.swift in Sources */,

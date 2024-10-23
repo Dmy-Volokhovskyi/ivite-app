@@ -7,34 +7,41 @@
 
 import UIKit
 
-protocol SignInViewDelegate: AnyObject {
-    func didTapSignIn()
+protocol ClickableTextViewDelegate: AnyObject {
+    func didTapClickableText()
 }
 
-final class SignInView: BaseView {
-    
+final class ClickableTextView: BaseView {
     private let label = UILabel()
-    weak var delegate: SignInViewDelegate?
+    private var clickableText: String
+    private var fullText: String
+    weak var delegate: ClickableTextViewDelegate?
+    
+    init(fullText: String, clickableText: String) {
+        self.fullText = fullText
+        self.clickableText = clickableText
+        super.init(frame: .zero)
+        setupView()
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func setupView() {
         super.setupView()
         
-        // Setup the attributed text
-        let fullText = "Already have an account? Sign in"
-        let regularText = "Already have an account?"
-        let signInText = "Sign in"
-        
         let attributedString = NSMutableAttributedString(string: fullText)
         
-        // Set attributes for "Already have an account?"
-        let regularRange = (fullText as NSString).range(of: regularText)
+        // Set attributes for regular text
+        let regularRange = (fullText as NSString).range(of: fullText)
         attributedString.addAttribute(.font, value: UIFont.interFont(ofSize: 14), range: regularRange)
         attributedString.addAttribute(.foregroundColor, value: UIColor.secondary1, range: regularRange) // Regular text color
         
-        // Set attributes for "Sign in"
-        let signInRange = (fullText as NSString).range(of: signInText)
-        attributedString.addAttribute(.font, value: UIFont.interFont(ofSize: 14, weight: .bold), range: signInRange)
-        attributedString.addAttribute(.foregroundColor, value: UIColor.accent, range: signInRange) // Bold text color
+        // Set attributes for clickable text
+        let clickableRange = (fullText as NSString).range(of: clickableText)
+        attributedString.addAttribute(.font, value: UIFont.interFont(ofSize: 14, weight: .bold), range: clickableRange)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.accent, range: clickableRange) // Clickable text color
         
         label.attributedText = attributedString
         label.textAlignment = .center
@@ -57,11 +64,10 @@ final class SignInView: BaseView {
     
     @objc private func didTapLabel(_ gesture: UITapGestureRecognizer) {
         let fullText = label.attributedText?.string ?? ""
-        let signInText = "Sign in"
-        let signInRange = (fullText as NSString).range(of: signInText)
+        let clickableRange = (fullText as NSString).range(of: clickableText)
         
-        if gesture.didTapAttributedTextInLabel(label: label, inRange: signInRange) {
-            delegate?.didTapSignIn()
+        if gesture.didTapAttributedTextInLabel(label: label, inRange: clickableRange) {
+            delegate?.didTapClickableText()
         }
     }
 }

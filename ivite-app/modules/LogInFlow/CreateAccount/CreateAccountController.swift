@@ -22,7 +22,7 @@ final class CreateAccountController: BaseViewController {
     private let passwordTextField = IVTextField(placeholder: "Password", leadingImage: .password)
     private let termsAndConditionsView = TermsOfServiceView()
     private let signUpButton = UIButton(configuration: .primary(title: "Sign up"))
-    private let allreadyHaveAnAccountView = SignInView()
+    private let allreadyHaveAnAccountView = ClickableTextView(fullText: "Already have an account? Sign in", clickableText: "Sign in")
 
     init(eventHandler: CreateAccountEventHandler, dataSource: CreateAccountDataSource) {
         self.eventHandler = eventHandler
@@ -46,12 +46,15 @@ final class CreateAccountController: BaseViewController {
        createAccountLabel.textAlignment = .center
        
        orLabel.text = "or"
+       orLabel.textColor = .dark30
+       orLabel.font = .interFont(ofSize: 14)
        orLabelContainerView.backgroundColor = .white
        
        credentialsStackView.axis = .vertical
        credentialsStackView.spacing = 12
        
        termsAndConditionsView.delegate = self
+       allreadyHaveAnAccountView.delegate = self
    }
     
     override func addSubviews() {
@@ -124,5 +127,11 @@ extension CreateAccountController: TermsOfServiceViewDelegate {
     
     func didTapTermsOfService() {
         print("Did tap")
+    }
+}
+
+extension CreateAccountController: ClickableTextViewDelegate {
+    func didTapClickableText() {
+        print("Did Tap Clickable Text")
     }
 }
