@@ -78,6 +78,11 @@
 		F643D96F2CC928FF009A18F0 /* SignInBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9682CC928FF009A18F0 /* SignInBuilder.swift */; };
 		F643D9702CC928FF009A18F0 /* SignInInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D96A2CC928FF009A18F0 /* SignInInteractor.swift */; };
 		F643D9712CC928FF009A18F0 /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D96B2CC928FF009A18F0 /* SignInPresenter.swift */; };
+		F643D9792CC93634009A18F0 /* ForgotPasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9762CC93634009A18F0 /* ForgotPasswordInteractor.swift */; };
+		F643D97A2CC93634009A18F0 /* ForgotPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9772CC93634009A18F0 /* ForgotPasswordPresenter.swift */; };
+		F643D97B2CC93634009A18F0 /* ForgotPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9782CC93634009A18F0 /* ForgotPasswordRouter.swift */; };
+		F643D97C2CC93634009A18F0 /* ForgotPasswordBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9742CC93634009A18F0 /* ForgotPasswordBuilder.swift */; };
+		F643D97D2CC93634009A18F0 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9752CC93634009A18F0 /* ForgotPasswordController.swift */; };
 		F651E6EE2CBDAE9B007D195D /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F651E6ED2CBDAE9B007D195D /* AlertViewController.swift */; };
 		F651E6F12CBDAF41007D195D /* AddCoHostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F651E6F02CBDAF41007D195D /* AddCoHostViewController.swift */; };
 		F66EC28D2CC6A3C300AE76B2 /* ActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66EC28C2CC6A3C300AE76B2 /* ActionsViewController.swift */; };
@@ -130,6 +135,11 @@
 		F6EBF56C2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF56B2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift */; };
 		F6EBF56E2CA4A1120058F7B2 /* CreatorFlowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF56D2CA4A1120058F7B2 /* CreatorFlowModel.swift */; };
 		F6EBF5702CA4A1EA0058F7B2 /* CreationFlowBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF56F2CA4A1EA0058F7B2 /* CreationFlowBuilder.swift */; };
+		F6F3C7232CC94FCF00ED966A /* CheckEmailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C7222CC94FCF00ED966A /* CheckEmailRouter.swift */; };
+		F6F3C7242CC94FCF00ED966A /* CheckEmailBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C71E2CC94FCF00ED966A /* CheckEmailBuilder.swift */; };
+		F6F3C7252CC94FCF00ED966A /* CheckEmailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C7202CC94FCF00ED966A /* CheckEmailInteractor.swift */; };
+		F6F3C7262CC94FCF00ED966A /* CheckEmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C71F2CC94FCF00ED966A /* CheckEmailController.swift */; };
+		F6F3C7272CC94FCF00ED966A /* CheckEmailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C7212CC94FCF00ED966A /* CheckEmailPresenter.swift */; };
 		F6F4AA352CC6B1CC00071B0B /* EdditCoHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA342CC6B1CC00071B0B /* EdditCoHostView.swift */; };
 		F6F4AA3D2CC8220800071B0B /* CreateAccountRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA3C2CC8220800071B0B /* CreateAccountRouter.swift */; };
 		F6F4AA3E2CC8220800071B0B /* CreateAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA392CC8220800071B0B /* CreateAccountController.swift */; };
@@ -212,6 +222,11 @@
 		F643D96A2CC928FF009A18F0 /* SignInInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInInteractor.swift; sourceTree = "<group>"; };
 		F643D96B2CC928FF009A18F0 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
 		F643D96C2CC928FF009A18F0 /* SignInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRouter.swift; sourceTree = "<group>"; };
+		F643D9742CC93634009A18F0 /* ForgotPasswordBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordBuilder.swift; sourceTree = "<group>"; };
+		F643D9752CC93634009A18F0 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
+		F643D9762CC93634009A18F0 /* ForgotPasswordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordInteractor.swift; sourceTree = "<group>"; };
+		F643D9772CC93634009A18F0 /* ForgotPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPresenter.swift; sourceTree = "<group>"; };
+		F643D9782CC93634009A18F0 /* ForgotPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRouter.swift; sourceTree = "<group>"; };
 		F651E6ED2CBDAE9B007D195D /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		F651E6F02CBDAF41007D195D /* AddCoHostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoHostViewController.swift; sourceTree = "<group>"; };
 		F66EC28C2CC6A3C300AE76B2 /* ActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +279,11 @@
 		F6EBF56B2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorFlowNavigationController.swift; sourceTree = "<group>"; };
 		F6EBF56D2CA4A1120058F7B2 /* CreatorFlowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorFlowModel.swift; sourceTree = "<group>"; };
 		F6EBF56F2CA4A1EA0058F7B2 /* CreationFlowBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationFlowBuilder.swift; sourceTree = "<group>"; };
+		F6F3C71E2CC94FCF00ED966A /* CheckEmailBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailBuilder.swift; sourceTree = "<group>"; };
+		F6F3C71F2CC94FCF00ED966A /* CheckEmailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailController.swift; sourceTree = "<group>"; };
+		F6F3C7202CC94FCF00ED966A /* CheckEmailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailInteractor.swift; sourceTree = "<group>"; };
+		F6F3C7212CC94FCF00ED966A /* CheckEmailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailPresenter.swift; sourceTree = "<group>"; };
+		F6F3C7222CC94FCF00ED966A /* CheckEmailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailRouter.swift; sourceTree = "<group>"; };
 		F6F4AA342CC6B1CC00071B0B /* EdditCoHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdditCoHostView.swift; sourceTree = "<group>"; };
 		F6F4AA382CC8220800071B0B /* CreateAccountBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountBuilder.swift; sourceTree = "<group>"; };
 		F6F4AA392CC8220800071B0B /* CreateAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountController.swift; sourceTree = "<group>"; };
@@ -336,6 +356,7 @@
 		76096A192C84FA650004BEE0 /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				F643D9732CC9361F009A18F0 /* ForgotPasswordFlow */,
 				F6F4AA362CC821D700071B0B /* LogInFlow */,
 				F6EBF5552CA440D00058F7B2 /* CreatorFlow */,
 				76096A182C84F8D50004BEE0 /* Launch */,
@@ -588,6 +609,27 @@
 			path = SignIn;
 			sourceTree = "<group>";
 		};
+		F643D9732CC9361F009A18F0 /* ForgotPasswordFlow */ = {
+			isa = PBXGroup;
+			children = (
+				F643D97E2CC93639009A18F0 /* ForgotPassword */,
+			);
+			path = ForgotPasswordFlow;
+			sourceTree = "<group>";
+		};
+		F643D97E2CC93639009A18F0 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				F643D9742CC93634009A18F0 /* ForgotPasswordBuilder.swift */,
+				F643D9752CC93634009A18F0 /* ForgotPasswordController.swift */,
+				F643D9762CC93634009A18F0 /* ForgotPasswordInteractor.swift */,
+				F643D9772CC93634009A18F0 /* ForgotPasswordPresenter.swift */,
+				F643D9782CC93634009A18F0 /* ForgotPasswordRouter.swift */,
+				F6F3C7282CC94FD500ED966A /* CheckEmail */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
 		F651E6EC2CBDAE81007D195D /* IVAlert */ = {
 			isa = PBXGroup;
 			children = (
@@ -735,6 +777,18 @@
 				F6EBF5692CA4496F0058F7B2 /* TileModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F6F3C7282CC94FD500ED966A /* CheckEmail */ = {
+			isa = PBXGroup;
+			children = (
+				F6F3C71E2CC94FCF00ED966A /* CheckEmailBuilder.swift */,
+				F6F3C71F2CC94FCF00ED966A /* CheckEmailController.swift */,
+				F6F3C7202CC94FCF00ED966A /* CheckEmailInteractor.swift */,
+				F6F3C7212CC94FCF00ED966A /* CheckEmailPresenter.swift */,
+				F6F3C7222CC94FCF00ED966A /* CheckEmailRouter.swift */,
+			);
+			path = CheckEmail;
 			sourceTree = "<group>";
 		};
 		F6F4AA362CC821D700071B0B /* LogInFlow */ = {
@@ -888,6 +942,11 @@
 				F6D3CBAB2CA2D73400E29761 /* TextEditMenuButton.swift in Sources */,
 				76A34F922C8B5D1A003D3E87 /* ContactCardModel.swift in Sources */,
 				F6CBD9652CAB2F7100911DF7 /* ColorPickerView.swift in Sources */,
+				F643D9792CC93634009A18F0 /* ForgotPasswordInteractor.swift in Sources */,
+				F643D97A2CC93634009A18F0 /* ForgotPasswordPresenter.swift in Sources */,
+				F643D97B2CC93634009A18F0 /* ForgotPasswordRouter.swift in Sources */,
+				F643D97C2CC93634009A18F0 /* ForgotPasswordBuilder.swift in Sources */,
+				F643D97D2CC93634009A18F0 /* ForgotPasswordController.swift in Sources */,
 				76096A522C861C420004BEE0 /* ContactController.swift in Sources */,
 				76096A532C861C420004BEE0 /* ContactInteractor.swift in Sources */,
 				76096A542C861C420004BEE0 /* ContactRouter.swift in Sources */,
@@ -898,6 +957,11 @@
 				F6EBF5702CA4A1EA0058F7B2 /* CreationFlowBuilder.swift in Sources */,
 				F6EBF56A2CA4496F0058F7B2 /* TileModel.swift in Sources */,
 				76096A562C861C420004BEE0 /* ContactPresenter.swift in Sources */,
+				F6F3C7232CC94FCF00ED966A /* CheckEmailRouter.swift in Sources */,
+				F6F3C7242CC94FCF00ED966A /* CheckEmailBuilder.swift in Sources */,
+				F6F3C7252CC94FCF00ED966A /* CheckEmailInteractor.swift in Sources */,
+				F6F3C7262CC94FCF00ED966A /* CheckEmailController.swift in Sources */,
+				F6F3C7272CC94FCF00ED966A /* CheckEmailPresenter.swift in Sources */,
 				F6CBD9692CAB384300911DF7 /* TextFormatPickerView.swift in Sources */,
 				76A34F982C8B9AA9003D3E87 /* CategoriesCollectionView.swift in Sources */,
 				F68CAA852CBD4F5C00533757 /* BringListDetailView.swift in Sources */,

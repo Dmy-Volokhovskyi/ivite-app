@@ -116,4 +116,20 @@ extension UIButton.Configuration {
         
         return config
     }
+    
+    static func disabledPrimary(title: String) -> UIButton.Configuration {
+        var config = UIButton.Configuration.filled()
+        config.title = title
+        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
+        config.baseBackgroundColor = UIColor.primaryLight30 // Gray background when disabled
+        config.baseForegroundColor = UIColor.white // Light gray text when disabled
+        config.cornerStyle = .capsule
+        
+        var attributedTitle = AttributedString(title)
+        attributedTitle.font = .interFont(ofSize: 14, weight: .semiBold)
+        attributedTitle.foregroundColor = UIColor.white
+        config.attributedTitle = attributedTitle
+        
+        return config
+    }
 }

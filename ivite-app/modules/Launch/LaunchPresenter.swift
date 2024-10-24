@@ -20,7 +20,7 @@ extension LaunchPresenter: LaunchEventHandler {
 //        let mainScreenController = MainScreenBuilder(serviceProvider: interactor.serviceProvider).make()
 //        let mainScreenController = ConfigurationWizardBuilder(serviceProvider: interactor.serviceProvider).make()
         
-        let mainScreenController = SignInBuilder(serviceProvider: interactor.serviceProvider).make()
+        let mainScreenController = ForgotPasswordBuilder(serviceProvider: interactor.serviceProvider).make()
         router.changeRoot(to: mainScreenController)
     }
 }
