@@ -13,8 +13,8 @@ class BaseTabBarController: UITabBarController {
     init() {
         super.init(nibName: nil, bundle: nil)
         setupTabBar()
-        addViewControllers()
-        configureTabBarItems()
+//        addViewControllers()
+//        configureTabBarItems()
     }
     
     // Required initializer for using with storyboards or nibs
@@ -30,10 +30,10 @@ class BaseTabBarController: UITabBarController {
         setupTabBar()
         
         // Add view controllers to the tab bar
-        addViewControllers()
+//        addViewControllers()
         
         // Configure tab bar items (e.g., icons, titles)
-        configureTabBarItems()
+//        configureTabBarItems()
     }
     
     // Method to setup the tab bar appearance
@@ -49,26 +49,22 @@ class BaseTabBarController: UITabBarController {
 //        tabBar.unselectedItemTintColor = .white.withAlphaComponent(0.2)
 //        tabBar.barStyle = .default
     }
-    
+
     // Method to add child view controllers to the tab bar
-    func addViewControllers() {
-        let serviceProvider = ServiceProvider()
-        let homeController = HomeBuilder(serviceProvider: serviceProvider).make()
-        let eventController = EventsBuilder(serviceProvider: serviceProvider).make()
-        let contactsController = ContactBuilder(serviceProvider: serviceProvider).make()
-        let profileController = ProfileBuilder(serviceProvider: serviceProvider).make()
+    func addViewControllers(controllers: [UIViewController]) {
+ 
         
-        setViewControllers([homeController, eventController, contactsController, profileController], animated: false)
+        setViewControllers(controllers, animated: false)
     }
     
     // Method to configure the tab bar items for each view controller
-    func configureTabBarItems() {
-        // Override this method to customize tab bar items
-        // Example:
-        
-        viewControllers?[0].tabBarItem = UITabBarItem(title: "Home", image: .home, selectedImage: .homeActive)
-        viewControllers?[1].tabBarItem = UITabBarItem(title: "Events", image: .events, selectedImage: .eventsActive)
-        viewControllers?[2].tabBarItem = UITabBarItem(title: "Contacts", image: .contacts, selectedImage: .contactsActive)
-        viewControllers?[3].tabBarItem = UITabBarItem(title: "Profile", image: .profile, selectedImage: .profileActive)
-    }
+//    func configureTabBarItems() {
+//        // Override this method to customize tab bar items
+//        // Example:
+//        
+//        viewControllers?[0].tabBarItem = UITabBarItem(title: "Home", image: .home, selectedImage: .homeActive)
+//        viewControllers?[1].tabBarItem = UITabBarItem(title: "Events", image: .events, selectedImage: .eventsActive)
+//        viewControllers?[2].tabBarItem = UITabBarItem(title: "Contacts", image: .contacts, selectedImage: .contactsActive)
+//        viewControllers?[3].tabBarItem = UITabBarItem(title: "Profile", image: .profile, selectedImage: .profileActive)
+//    }
 }

@@ -1,6 +1,7 @@
 import Foundation
 
 protocol HomeViewInterface: AnyObject {
+    func didSignIn()
 }
 
 final class HomePresenter: BasePresenter {
@@ -15,6 +16,10 @@ final class HomePresenter: BasePresenter {
 }
 
 extension HomePresenter: HomeEventHandler {
+    func didTapLogInButton() {
+        router.showSignIn(signInDelegate: self, serviceProvider: interactor.serviceProvider)
+    }
+    
     func didSelectItem(at indexPath: IndexPath) {
         router.switchToCreatorFlow(serviceProvider: interactor.serviceProvider)
     }
@@ -24,4 +29,11 @@ extension HomePresenter: HomeDataSource {
 }
 
 extension HomePresenter: HomeInteractorDelegate {
+}
+
+extension HomePresenter: SignInDelegate {
+    func didSignIn() {
+        viewInterface?.didSignIn()
+        print("SIGN IN!!")
+    }
 }

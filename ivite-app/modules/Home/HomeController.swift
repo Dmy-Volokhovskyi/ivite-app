@@ -2,6 +2,7 @@ import UIKit
 
 protocol HomeEventHandler: AnyObject {
     func didSelectItem(at indexPath: IndexPath)
+    func didTapLogInButton()
 }
 
 protocol HomeDataSource: AnyObject {
@@ -52,6 +53,7 @@ final class HomeController: BaseViewController {
         tilesCollectionView.register(TileCollectionViewCell.self, forCellWithReuseIdentifier: TileCollectionViewCell.identifier)
         tilesCollectionView.backgroundColor = .white
         
+        searchBarView.delegate = self
         view.backgroundColor = .white
     }
     
@@ -74,6 +76,12 @@ final class HomeController: BaseViewController {
         
         tilesCollectionView.autoPinEdge(.top, to: .bottom, of: categoriesCollectionView, withOffset: 16)
         tilesCollectionView.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16), excludingEdge: .top)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 }
 
@@ -104,5 +112,16 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         eventHandler.didSelectItem(at: indexPath)
+    }
+}
+
+extension HomeController: MainSearchBarViewDelegate {
+    func didTapLogInButton() {
+        eventHandler.didTapLogInButton()
+    }
+    
+    func didSignIn() {
+        searchBarView.isLoggedIn = true
+        (tabBarController as? MainScreenController)?.setUpTabBarVisibility()
     }
 }

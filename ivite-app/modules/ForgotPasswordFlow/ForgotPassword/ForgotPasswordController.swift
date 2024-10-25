@@ -2,6 +2,7 @@ import UIKit
 
 protocol ForgotPasswordEventHandler: AnyObject {
     func didPressSend()
+    func didTapCloseButton()
 }
 
 protocol ForgotPasswordDataSource: AnyObject {
@@ -11,7 +12,15 @@ final class ForgotPasswordController: BaseViewController {
     private let eventHandler: ForgotPasswordEventHandler
     private let dataSource: ForgotPasswordDataSource
     
-    private let closeButton = UIButton()
+    private lazy var closeButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "xmark"),
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(didTapCloseButton))
+        button.tintColor = .dark30 // Set the color of the button
+        return button
+    }()
+
     private let forgotPasswordLabel = UILabel()
     private let hintLabel = UILabel()
     private let buttonStackView = UIStackView()
@@ -35,6 +44,9 @@ final class ForgotPasswordController: BaseViewController {
        
        view.backgroundColor = .white
        
+       navigationItem.rightBarButtonItem = closeButton
+       navigationItem.hidesBackButton = true
+       
        forgotPasswordLabel.text = "Forgot Password?"
        forgotPasswordLabel.textColor = .secondary1
        forgotPasswordLabel.font = .interFont(ofSize: 32, weight: .bold)
@@ -56,7 +68,6 @@ final class ForgotPasswordController: BaseViewController {
         super.addSubviews()
         
         [
-            closeButton,
             forgotPasswordLabel,
             hintLabel,
             emailTextField,
@@ -72,7 +83,7 @@ final class ForgotPasswordController: BaseViewController {
    override func constrainSubviews() {
        super.constrainSubviews()
        
-       forgotPasswordLabel.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 68, left: 16, bottom: .zero, right: 16), excludingEdge: .bottom)
+       forgotPasswordLabel.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 68, left: 16, bottom: .zero, right: 16), excludingEdge: .bottom)
        
        hintLabel.autoPinEdge(.top, to: .bottom, of: forgotPasswordLabel, withOffset: 12)
        hintLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
@@ -90,6 +101,10 @@ final class ForgotPasswordController: BaseViewController {
     
     @objc private func didTouchSendButton(_ sender: UIButton) {
         eventHandler.didPressSend()
+    }
+    
+    @objc private func didTapCloseButton(_ sender: UIButton) {
+        eventHandler.didTapCloseButton()
     }
 }
 

@@ -38,7 +38,7 @@ final class CreatorFlowNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //        setupNavBar(for: .templateEditor)
-        pushNextStep(for: .templateEditor)
+        pushNextStep(for: nil)
         navigationBar.isHidden = false
     }
 }
@@ -146,12 +146,8 @@ private extension CreatorFlowNavigationController {
 }
 
 extension CreatorFlowNavigationController: TemplateEditorDelegate {
-    func didStartCreator() {
+    func didEndTemplateEdition() {
         pushNextStep(for: .templateEditor)
-    }
-    
-    func didCancelCreator() {
-        configurationWizardDelegate?.didCompleteCreatorFlow()
     }
 }
 

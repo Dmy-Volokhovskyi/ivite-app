@@ -15,6 +15,10 @@ final class ForgotPasswordPresenter: BasePresenter {
 }
 
 extension ForgotPasswordPresenter: ForgotPasswordEventHandler {
+    func didTapCloseButton() {
+        router.popVC()
+    }
+    
     func didPressSend() {
         router.showCheckEmail(serviceProvider: interactor.serviceProvider)
     }

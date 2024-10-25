@@ -1,7 +1,6 @@
 import Foundation
 protocol TemplateEditorDelegate: AnyObject {
-    func didStartCreator()
-    func didCancelCreator()
+    func didEndTemplateEdition()
 }
 
 protocol TemplateEditorInteractorDelegate: AnyObject {

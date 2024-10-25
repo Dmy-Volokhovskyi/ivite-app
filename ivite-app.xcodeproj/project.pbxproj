@@ -140,6 +140,7 @@
 		F6F3C7252CC94FCF00ED966A /* CheckEmailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C7202CC94FCF00ED966A /* CheckEmailInteractor.swift */; };
 		F6F3C7262CC94FCF00ED966A /* CheckEmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C71F2CC94FCF00ED966A /* CheckEmailController.swift */; };
 		F6F3C7272CC94FCF00ED966A /* CheckEmailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C7212CC94FCF00ED966A /* CheckEmailPresenter.swift */; };
+		F6F3C72A2CCA85DF00ED966A /* AuthentificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F3C7292CCA85DF00ED966A /* AuthentificationService.swift */; };
 		F6F4AA352CC6B1CC00071B0B /* EdditCoHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA342CC6B1CC00071B0B /* EdditCoHostView.swift */; };
 		F6F4AA3D2CC8220800071B0B /* CreateAccountRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA3C2CC8220800071B0B /* CreateAccountRouter.swift */; };
 		F6F4AA3E2CC8220800071B0B /* CreateAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AA392CC8220800071B0B /* CreateAccountController.swift */; };
@@ -284,6 +285,7 @@
 		F6F3C7202CC94FCF00ED966A /* CheckEmailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailInteractor.swift; sourceTree = "<group>"; };
 		F6F3C7212CC94FCF00ED966A /* CheckEmailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailPresenter.swift; sourceTree = "<group>"; };
 		F6F3C7222CC94FCF00ED966A /* CheckEmailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailRouter.swift; sourceTree = "<group>"; };
+		F6F3C7292CCA85DF00ED966A /* AuthentificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationService.swift; sourceTree = "<group>"; };
 		F6F4AA342CC6B1CC00071B0B /* EdditCoHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdditCoHostView.swift; sourceTree = "<group>"; };
 		F6F4AA382CC8220800071B0B /* CreateAccountBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountBuilder.swift; sourceTree = "<group>"; };
 		F6F4AA392CC8220800071B0B /* CreateAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountController.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 			isa = PBXGroup;
 			children = (
 				76096A352C84FBD40004BEE0 /* ServiceProvider.swift */,
+				F6F3C7292CCA85DF00ED966A /* AuthentificationService.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -971,6 +974,7 @@
 				F6936A3F2CBA903000764197 /* IVTextView.swift in Sources */,
 				76A34F8F2C8B5035003D3E87 /* TableViewBackgroundView.swift in Sources */,
 				76096A4A2C861C1B0004BEE0 /* HomePresenter.swift in Sources */,
+				F6F3C72A2CCA85DF00ED966A /* AuthentificationService.swift in Sources */,
 				F6936A292CB960B100764197 /* IVHeaderLabel.swift in Sources */,
 				F68EA7512CBEEE0D00F935FA /* DatePickerViewController.swift in Sources */,
 				76096A212C84FAD60004BEE0 /* LaunchController.swift in Sources */,

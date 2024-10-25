@@ -16,6 +16,7 @@ protocol EventDetailsEventHandler: AnyObject {
     func didTapAddCoHostButton()
     func didTapPickDateButton()
     func didTouchMenu(for coHost: CoHost)
+    func didTouchBackButton()
 }
 
 protocol EventDetailsDataSource: AnyObject {
@@ -61,6 +62,7 @@ final class EventDetailsController: BaseScrollViewController {
         hostDetailsView.delegate = self
         eventDetailsView.delegate = self
         
+        backButton.addTarget(self, action: #selector(didTouchBackButton), for: .touchUpInside)
         view.backgroundColor = .white
     }
     
@@ -137,6 +139,10 @@ final class EventDetailsController: BaseScrollViewController {
         super.viewDidAppear(animated)
         
         setBottomInset(inset: bottomBarView.frame.height)
+    }
+    
+    @objc private func didTouchBackButton(_ sender: UIButton) {
+        eventHandler.didTouchBackButton()
     }
 }
 

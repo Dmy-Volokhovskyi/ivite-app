@@ -17,6 +17,10 @@ final class EventDetailsPresenter: BasePresenter {
 }
 
 extension EventDetailsPresenter: EventDetailsEventHandler {
+    func didTouchBackButton() {
+        router.popVC()
+    }
+    
     func didTouchMenu(for coHost: CoHost) {
         guard let controller = viewInterface else { return }
         router.presentActionAlertController(from: controller)

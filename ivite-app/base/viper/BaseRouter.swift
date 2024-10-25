@@ -14,6 +14,16 @@ class BaseRouter {
         controller?.dismiss(animated: true, completion: completion)
     }
     
+    func popVC(animated: Bool = true) {
+           if let navigationController = controller?.navigationController {
+               // Pop view controller from navigation stack
+               navigationController.popViewController(animated: animated)
+           } else {
+               // Fallback to dismiss if the controller is presented modally
+               controller?.dismiss(animated: animated, completion: nil)
+           }
+       }
+    
     func changeRoot(to viewController: UIViewController) {
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let window = windowScene.windows.first {

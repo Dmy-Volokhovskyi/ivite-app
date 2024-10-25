@@ -18,6 +18,10 @@ final class TemplateEditorPresenter: BasePresenter {
 }
 
 extension TemplateEditorPresenter: TemplateEditorEventHandler {
+    func nextButtonTapped() {
+        interactor.editorDelegate?.didEndTemplateEdition()
+    }
+    
     func didUpdatePositionAndSize(for id: String, with coordinates: Coordinates, and size: Size) {
         guard let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
 

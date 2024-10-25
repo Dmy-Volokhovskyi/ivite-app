@@ -18,6 +18,9 @@ extension MainScreenPresenter: MainScreenEventHandler {
 }
 
 extension MainScreenPresenter: MainScreenDataSource {
+    var serviceProvider: ServiceProvider {
+        interactor.serviceProvider
+    }
 }
 
 extension MainScreenPresenter: MainScreenInteractorDelegate {

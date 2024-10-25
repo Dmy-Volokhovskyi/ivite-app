@@ -11,10 +11,7 @@ final class ConfigurationWizardBuilder: BaseBuilder {
     override func make() -> CreatorFlowNavigationController {
         let navigationController = CreatorFlowNavigationController(serviceProvider: serviceProvider)
         
-        #warning("Change back")
-        let controller = EventDetailsBuilder(serviceProvider: serviceProvider)
-            .make(eventDetailsViewModel: EventDetailsViewModel())
-//        let controller = TemplateEditorBuilder(serviceProvider: serviceProvider).make(templateEditorDelegate: navigationController)
+        let controller = TemplateEditorBuilder(serviceProvider: serviceProvider).make(templateEditorDelegate: navigationController)
         
         navigationController.viewControllers = [controller]
         

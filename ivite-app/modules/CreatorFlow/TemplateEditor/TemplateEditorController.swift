@@ -26,6 +26,7 @@ protocol TemplateEditorEventHandler: AnyObject {
     func resetLetterSpacing(for id: String)
     
     func didUpdatePositionAndSize(for id: String, with coordinates: Coordinates, and size: Size)
+    func nextButtonTapped()
 }
 
 protocol TemplateEditorDataSource: AnyObject {
@@ -184,8 +185,7 @@ final class TemplateEditorController: BaseViewController {
 
     
     @objc func nextButtonTapped() {
-        //        loadCanvasData()
-        
+        eventHandler.nextButtonTapped()
     }
     
     @objc func cancelSelection(_ sender: UITapGestureRecognizer) {

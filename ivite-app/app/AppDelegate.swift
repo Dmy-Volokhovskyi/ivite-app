@@ -14,7 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var serviceProvider: ServiceProvider?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        serviceProvider = ServiceProvider()
+        let authentificationService = AuthentificationService()
+        serviceProvider = ServiceProvider(authentificationService: authentificationService)
         setupTabBarAppearance()
         return true
     }
