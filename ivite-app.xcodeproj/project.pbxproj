@@ -123,6 +123,11 @@
 		F6D3CBB22CA2E36C00E29761 /* GripViewBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3CBB12CA2E36C00E29761 /* GripViewBorderView.swift */; };
 		F6D3CBB62CA2E76200E29761 /* ResizableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3CBB52CA2E76200E29761 /* ResizableView.swift */; };
 		F6D5DB582CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D5DB572CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift */; };
+		F6E32BEE2CCFCEE400D62C37 /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32BED2CCFCEE400D62C37 /* ProfileDetailView.swift */; };
+		F6E32BF32CCFD08700D62C37 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32BF22CCFD08700D62C37 /* User.swift */; };
+		F6E32BF52CCFD76900D62C37 /* ProfileMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32BF42CCFD76900D62C37 /* ProfileMenuItem.swift */; };
+		F6E32BF72CCFD8D300D62C37 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32BF62CCFD8D300D62C37 /* MenuItemView.swift */; };
+		F6E32BF92CCFDA0D00D62C37 /* ProfileMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32BF82CCFDA0D00D62C37 /* ProfileMenuView.swift */; };
 		F6EBF55B2CA441170058F7B2 /* TemplateEditorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF55A2CA441170058F7B2 /* TemplateEditorRouter.swift */; };
 		F6EBF55C2CA441170058F7B2 /* TemplateEditorBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5562CA441170058F7B2 /* TemplateEditorBuilder.swift */; };
 		F6EBF55D2CA441170058F7B2 /* TemplateEditorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5582CA441170058F7B2 /* TemplateEditorInteractor.swift */; };
@@ -268,6 +273,11 @@
 		F6D3CBB12CA2E36C00E29761 /* GripViewBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GripViewBorderView.swift; sourceTree = "<group>"; };
 		F6D3CBB52CA2E76200E29761 /* ResizableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableView.swift; sourceTree = "<group>"; };
 		F6D5DB572CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITapGestureRecognizer+Tap.swift"; sourceTree = "<group>"; };
+		F6E32BED2CCFCEE400D62C37 /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
+		F6E32BF22CCFD08700D62C37 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F6E32BF42CCFD76900D62C37 /* ProfileMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuItem.swift; sourceTree = "<group>"; };
+		F6E32BF62CCFD8D300D62C37 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
+		F6E32BF82CCFDA0D00D62C37 /* ProfileMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuView.swift; sourceTree = "<group>"; };
 		F6EBF5562CA441170058F7B2 /* TemplateEditorBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorBuilder.swift; sourceTree = "<group>"; };
 		F6EBF5572CA441170058F7B2 /* TemplateEditorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorController.swift; sourceTree = "<group>"; };
 		F6EBF5582CA441170058F7B2 /* TemplateEditorInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorInteractor.swift; sourceTree = "<group>"; };
@@ -309,6 +319,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3578D1582CD11F690079CBBA /* ProfileDetails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ProfileDetails;
+			sourceTree = "<group>";
+		};
 		760969F82C84F8670004BEE0 = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +375,7 @@
 		76096A192C84FA650004BEE0 /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				3578D1582CD11F690079CBBA /* ProfileDetails */,
 				F643D9732CC9361F009A18F0 /* ForgotPasswordFlow */,
 				F6F4AA362CC821D700071B0B /* LogInFlow */,
 				F6EBF5552CA440D00058F7B2 /* CreatorFlow */,
@@ -471,11 +489,13 @@
 		76096A622C861C7F0004BEE0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F6E32BEC2CCFCED600D62C37 /* View */,
 				76096A632C861C860004BEE0 /* ProfileController.swift */,
 				76096A642C861C860004BEE0 /* ProfileInteractor.swift */,
 				76096A652C861C860004BEE0 /* ProfileRouter.swift */,
 				76096A662C861C860004BEE0 /* ProfileBuilder.swift */,
 				76096A672C861C860004BEE0 /* ProfilePresenter.swift */,
+				F6E32BF42CCFD76900D62C37 /* ProfileMenuItem.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -740,6 +760,24 @@
 			path = ResizableView;
 			sourceTree = "<group>";
 		};
+		F6E32BEC2CCFCED600D62C37 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F6E32BF62CCFD8D300D62C37 /* MenuItemView.swift */,
+				F6E32BED2CCFCEE400D62C37 /* ProfileDetailView.swift */,
+				F6E32BF82CCFDA0D00D62C37 /* ProfileMenuView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F6E32BF12CCFD08000D62C37 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				F6E32BF22CCFD08700D62C37 /* User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		F6EBF5552CA440D00058F7B2 /* CreatorFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -767,6 +805,7 @@
 		F6EBF5612CA446D70058F7B2 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				F6E32BF12CCFD08000D62C37 /* User */,
 				F62D68472CA5ACA90090ADE5 /* Canvas */,
 				F6EBF5622CA446EE0058F7B2 /* Layer.swift */,
 				F6EBF5642CA4470C0058F7B2 /* CanvasResponse.swift */,
@@ -912,6 +951,7 @@
 				76096A052C84F8670004BEE0 /* AppDelegate.swift in Sources */,
 				F6936A3D2CBA8E3D00764197 /* LocationsView.swift in Sources */,
 				76096AF42C89F9E40004BEE0 /* DynamicSearchBar.swift in Sources */,
+				F6E32BF52CCFD76900D62C37 /* ProfileMenuItem.swift in Sources */,
 				F6936A352CB97DBB00764197 /* IVControl.swift in Sources */,
 				76096AF22C88F75E0004BEE0 /* MainSearchBarView.swift in Sources */,
 				F6D3CBA62CA2D21600E29761 /* TextEditMenu.swift in Sources */,
@@ -978,6 +1018,7 @@
 				F6936A292CB960B100764197 /* IVHeaderLabel.swift in Sources */,
 				F68EA7512CBEEE0D00F935FA /* DatePickerViewController.swift in Sources */,
 				76096A212C84FAD60004BEE0 /* LaunchController.swift in Sources */,
+				F6E32BF92CCFDA0D00D62C37 /* ProfileMenuView.swift in Sources */,
 				76096A682C861C860004BEE0 /* ProfileController.swift in Sources */,
 				F6F4AA352CC6B1CC00071B0B /* EdditCoHostView.swift in Sources */,
 				F6936A3B2CBA84AD00764197 /* CoHostView.swift in Sources */,
@@ -987,6 +1028,7 @@
 				76096A6A2C861C860004BEE0 /* ProfileRouter.swift in Sources */,
 				76096A6B2C861C860004BEE0 /* ProfileBuilder.swift in Sources */,
 				76096A6C2C861C860004BEE0 /* ProfilePresenter.swift in Sources */,
+				F6E32BF72CCFD8D300D62C37 /* MenuItemView.swift in Sources */,
 				76096A362C84FBD40004BEE0 /* ServiceProvider.swift in Sources */,
 				F66EC28D2CC6A3C300AE76B2 /* ActionsViewController.swift in Sources */,
 				F6EBF56C2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift in Sources */,
@@ -1035,6 +1077,8 @@
 				76096A382C84FC2B0004BEE0 /* BaseViewController.swift in Sources */,
 				76096AFC2C8B11FC0004BEE0 /* InvitesLeftView.swift in Sources */,
 				76096A252C84FAD60004BEE0 /* LaunchPresenter.swift in Sources */,
+				F6E32BEE2CCFCEE400D62C37 /* ProfileDetailView.swift in Sources */,
+				F6E32BF32CCFD08700D62C37 /* User.swift in Sources */,
 				76096A332C84FBA90004BEE0 /* BaseInteractor.swift in Sources */,
 				F67F1CD02CA43E9500F00044 /* FontTableViewCell.swift in Sources */,
 				F6CBD9632CAB2AA300911DF7 /* FontSizePickerView.swift in Sources */,

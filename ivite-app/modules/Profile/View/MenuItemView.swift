@@ -1,0 +1,77 @@
+//
+//  MenuItemView.swift
+//  ivite-app
+//
+//  Created by Max Volokhovskyi on 28/10/2024.
+//
+
+
+import UIKit
+
+final class MenuItemView: BaseControll {
+    private let iconImageView = UIImageView()
+    private let titleLabel = UILabel()
+    private let chevronRightImageView = UIImageView(image: .chevroneRight)
+    private var menuItem: ProfileMenuItem
+
+    // Initializer
+    init(menuItem: ProfileMenuItem) {
+        self.menuItem = menuItem
+        super.init(frame: .zero)
+        
+        titleLabel.text = menuItem.title
+        iconImageView.image = menuItem.icon
+    }
+    
+    @MainActor required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // Setup view with specified styles
+    override func setupView() {
+        super.setupView()
+        
+        // Customize icon image view
+        iconImageView.contentMode = .scaleAspectFit
+        iconImageView.tintColor = .secondary1
+        
+        // Customize title label
+        titleLabel.textColor = .secondary1
+        titleLabel.font = .interFont(ofSize: 16)
+        
+        // Customize background
+        backgroundColor = .white
+    }
+    
+    override func addSubviews() {
+        super.addSubviews()
+        
+        [
+            iconImageView,
+            titleLabel,
+            chevronRightImageView
+        ].forEach(addSubview)
+    }
+    
+    override func constrainSubviews() {
+        super.constrainSubviews()
+
+        iconImageView.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
+        iconImageView.autoAlignAxis(toSuperviewAxis: .horizontal)
+        iconImageView.autoSetDimensions(to: CGSize(width: 24, height: 24))
+
+        titleLabel.autoPinEdge(.leading, to: .trailing, of: iconImageView, withOffset: 16)
+        titleLabel.autoPinEdge(toSuperviewEdge: .top, withInset: 12)
+        titleLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 12)
+        titleLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        titleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+
+        chevronRightImageView.autoPinEdge(.leading, to: .trailing, of: titleLabel, withOffset: 8)
+        chevronRightImageView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
+        chevronRightImageView.autoAlignAxis(toSuperviewAxis: .horizontal)
+        chevronRightImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        chevronRightImageView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        
+//        self.autoSetDimension(.height, toSize: 60)
+    }
+}

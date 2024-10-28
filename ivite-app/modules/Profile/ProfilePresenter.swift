@@ -15,6 +15,9 @@ final class ProfilePresenter: BasePresenter {
 }
 
 extension ProfilePresenter: ProfileEventHandler {
+    func didTouchShowProfile() {
+         
+    }
 }
 
 extension ProfilePresenter: ProfileDataSource {
