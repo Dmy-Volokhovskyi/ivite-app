@@ -18,12 +18,12 @@ final class ProfileDetailView: BaseControll {
     private let firstNamelabel = UILabel()
     private let showProfilLabel = UILabel()
     private let chevroneRightImageView = UIImageView(image: .chevroneRight)
-    private var user: User
+    private var user: IVUser
     
     weak var delegate: ProfileViewDelegate?
     
     // Initializer
-    init(user: User) {
+    init(user: IVUser) {
         self.user = user
         super.init(frame: .zero)
         firstNamelabel.text = user.firstName

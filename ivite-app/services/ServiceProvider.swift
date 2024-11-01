@@ -8,9 +8,9 @@
 import Foundation
 
 class ServiceProvider {
-    var authentificationService: AuthentificationService
+    var authentificationService: AuthenticationService
     
-    init(authentificationService: AuthentificationService) {
+    init(authentificationService: AuthenticationService) {
         self.authentificationService = authentificationService
     }
 }

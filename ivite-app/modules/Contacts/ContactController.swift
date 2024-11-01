@@ -144,3 +144,4 @@ extension ContactController: ContactCardCellDelegate {
         eventHandler.didTouchMenu(for: tableView.indexPath(for: cell))
     }
 }
+

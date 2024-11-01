@@ -8,27 +8,21 @@
 
 import UIKit
 
-final class ProfileMenuView: BaseControll {
+protocol ProfileMenuViewDelegate: AnyObject {
+    func profileMenuView(_ profileMenuView: ProfileMenuView, didSelectMenuItem menuItem: ProfileMenuItem)
+}
+
+final class ProfileMenuView: BaseView {
     private let menuStackView = UIStackView()
 
-//    override init() {
-//        super.init(frame: .zero)
-//        
-//        addMenuItems()
-//    }
-//
-//    @MainActor required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    // Define a delegate to notify when a menu item is selected
+    weak var delegate: ProfileMenuViewDelegate?
 
     override func setupView() {
         super.setupView()
 
         menuStackView.axis = .vertical
         menuStackView.spacing = 16
-//        menuStackView.alignment = .fill
-//        menuStackView.distribution = .fill
-
         backgroundColor = .white
         layer.cornerRadius = 8
         layer.masksToBounds = true
@@ -37,21 +31,25 @@ final class ProfileMenuView: BaseControll {
     
     override func addSubviews() {
         super.addSubviews()
-         
+        
         addSubview(menuStackView)
-
     }
     
     override func constrainSubviews() {
         super.constrainSubviews()
-
+        
         menuStackView.autoPinEdgesToSuperviewEdges()
     }
 
     private func addMenuItems() {
         ProfileMenuItem.allCases.forEach { menuItem in
             let menuItemView = MenuItemView(menuItem: menuItem)
+            menuItemView.didTapItem = { [weak self] item in
+                guard let self = self else { return }
+                self.delegate?.profileMenuView(self, didSelectMenuItem: item)
+            }
             menuStackView.addArrangedSubview(menuItemView)
         }
     }
 }
+

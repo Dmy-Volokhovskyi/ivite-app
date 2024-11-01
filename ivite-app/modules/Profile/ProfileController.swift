@@ -2,6 +2,7 @@ import UIKit
 
 protocol ProfileEventHandler: AnyObject {
     func didTouchShowProfile()
+    func didSelectMenuItem(menuItem: ProfileMenuItem)
 }
 
 protocol ProfileDataSource: AnyObject {
@@ -12,7 +13,7 @@ final class ProfileController: BaseScrollViewController {
     private let dataSource: ProfileDataSource
     
     private let accountSettingsLabel = UILabel()
-    private let profileDetailView = ProfileDetailView(user: User(firstName: "Jack"))
+    private let profileDetailView = ProfileDetailView(user: IVUser(firstName: "Jack"))
     private let dividerView = DividerView(topSpace: 24, bottomSpace: 24)
     private let proVersionBanner = UIView()
     private let profileMenuView = ProfileMenuView()
@@ -34,6 +35,9 @@ final class ProfileController: BaseScrollViewController {
         accountSettingsLabel.text = "Account Settings"
         accountSettingsLabel.textColor = .secondary1
         accountSettingsLabel.font = .interFont(ofSize: 24, weight: .bold)
+        
+        profileDetailView.delegate = self
+        profileMenuView.delegate = self
     }
     
     override func addSubviews() {
@@ -43,7 +47,6 @@ final class ProfileController: BaseScrollViewController {
             accountSettingsLabel,
             profileDetailView,
             dividerView,
-//            invitesLeftView,
             proVersionBanner,
             profileMenuView
         ].forEach({ contentView.addSubview($0) })
@@ -69,7 +72,7 @@ final class ProfileController: BaseScrollViewController {
         profileMenuView.autoPinEdge(.top, to: .bottom, of: proVersionBanner)
         profileMenuView.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
         profileMenuView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
-        
+        profileMenuView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 16)
     }
 }
 
@@ -79,5 +82,11 @@ extension ProfileController: ProfileViewInterface {
 extension ProfileController: ProfileViewDelegate {
     func didTouchShowProfile() {
         eventHandler.didTouchShowProfile()
+    }
+}
+
+extension ProfileController: ProfileMenuViewDelegate {
+    func profileMenuView(_ profileMenuView: ProfileMenuView, didSelectMenuItem menuItem: ProfileMenuItem) {
+        eventHandler.didSelectMenuItem(menuItem: menuItem)
     }
 }

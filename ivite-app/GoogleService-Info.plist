@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1092127980210-q13hcvn12mndok4ok6e2isbvhd09lmof.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1092127980210-q13hcvn12mndok4ok6e2isbvhd09lmof</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD4nP5d1XTELBJNIwbvK3RW-bdeO7gMWBA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1092127980210</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>d.volokhovskyi.ivite-app.ivite-app</string>
+	<key>PROJECT_ID</key>
+	<string>iviteapp-1434e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>iviteapp-1434e.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1092127980210:ios:21fe8f0f66ff3f427467ab</string>
+</dict>
+</plist>

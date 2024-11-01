@@ -1,9 +1,5 @@
 import Foundation
 
-protocol SignInDelegate: AnyObject {
-    func didSignIn()
-}
-
 protocol SignInViewInterface: AnyObject {
 }
 
@@ -11,7 +7,6 @@ final class SignInPresenter: BasePresenter {
     private let interactor: SignInInteractor
     let router: SignInRouter
     weak var viewInterface: SignInController?
-    weak var singInDelegate: SignInDelegate?
     
     init(router: SignInRouter, interactor: SignInInteractor) {
         self.router = router
@@ -20,9 +15,15 @@ final class SignInPresenter: BasePresenter {
 }
 
 extension SignInPresenter: SignInEventHandler {
+    func didTouchSignInWithGoogle() {
+        guard let controller = viewInterface else { return }
+        interactor.serviceProvider.authentificationService.signInWithGoogle(presentingViewController: controller, completion: {_ in 
+            print("sucess")
+        })
+    }
+    
     func didTouchSignIn() {
         if interactor.signIn() {
-            singInDelegate?.didSignIn()
             router.popVC()
         }
     }

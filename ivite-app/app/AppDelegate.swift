@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,8 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var serviceProvider: ServiceProvider?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let authentificationService = AuthentificationService()
+        
+        FirebaseApp.configure()
+        let authentificationService = AuthenticationService()
+        authentificationService.registerAuthStateHandler()
         serviceProvider = ServiceProvider(authentificationService: authentificationService)
+        
         setupTabBarAppearance()
         return true
     }

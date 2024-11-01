@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		356461B52CD4E1CF003350C5 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B42CD4E1CF003350C5 /* FirebaseCore */; };
+		356461B72CD4E1D3003350C5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B62CD4E1D3003350C5 /* FirebaseAuth */; };
+		356461B92CD4E1D8003350C5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B82CD4E1D8003350C5 /* FirebaseFirestore */; };
+		356461BB2CD4E1E2003350C5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 356461BA2CD4E1E2003350C5 /* FirebaseStorage */; };
+		356461BF2CD4E449003350C5 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 356461BE2CD4E449003350C5 /* GoogleSignIn */; };
+		356461C12CD4E449003350C5 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 356461C02CD4E449003350C5 /* GoogleSignInSwift */; };
+		356461C42CD4EA14003350C5 /* GoogleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461C32CD4EA14003350C5 /* GoogleSignInButton.swift */; };
+		356461C52CD4EC30003350C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356461BC2CD4E2E5003350C5 /* GoogleService-Info.plist */; };
 		76096A052C84F8670004BEE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A042C84F8670004BEE0 /* AppDelegate.swift */; };
 		76096A072C84F8670004BEE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A062C84F8670004BEE0 /* SceneDelegate.swift */; };
 		76096A0E2C84F8680004BEE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76096A0D2C84F8680004BEE0 /* Assets.xcassets */; };
@@ -124,7 +132,7 @@
 		F6D3CBB62CA2E76200E29761 /* ResizableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D3CBB52CA2E76200E29761 /* ResizableView.swift */; };
 		F6D5DB582CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D5DB572CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift */; };
 		F6E32BEE2CCFCEE400D62C37 /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32BED2CCFCEE400D62C37 /* ProfileDetailView.swift */; };
-		F6E32BF32CCFD08700D62C37 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32BF22CCFD08700D62C37 /* User.swift */; };
+		F6E32BF32CCFD08700D62C37 /* IVUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32BF22CCFD08700D62C37 /* IVUser.swift */; };
 		F6E32BF52CCFD76900D62C37 /* ProfileMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32BF42CCFD76900D62C37 /* ProfileMenuItem.swift */; };
 		F6E32BF72CCFD8D300D62C37 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32BF62CCFD8D300D62C37 /* MenuItemView.swift */; };
 		F6E32BF92CCFDA0D00D62C37 /* ProfileMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E32BF82CCFDA0D00D62C37 /* ProfileMenuView.swift */; };
@@ -157,6 +165,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		356461BC2CD4E2E5003350C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		356461C32CD4EA14003350C5 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		76096A012C84F8670004BEE0 /* ivite-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ivite-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76096A042C84F8670004BEE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76096A062C84F8670004BEE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -274,7 +284,7 @@
 		F6D3CBB52CA2E76200E29761 /* ResizableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableView.swift; sourceTree = "<group>"; };
 		F6D5DB572CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITapGestureRecognizer+Tap.swift"; sourceTree = "<group>"; };
 		F6E32BED2CCFCEE400D62C37 /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
-		F6E32BF22CCFD08700D62C37 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F6E32BF22CCFD08700D62C37 /* IVUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVUser.swift; sourceTree = "<group>"; };
 		F6E32BF42CCFD76900D62C37 /* ProfileMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuItem.swift; sourceTree = "<group>"; };
 		F6E32BF62CCFD8D300D62C37 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		F6E32BF82CCFDA0D00D62C37 /* ProfileMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuView.swift; sourceTree = "<group>"; };
@@ -312,13 +322,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				76096A3E2C8500680004BEE0 /* PureLayout in Frameworks */,
+				356461B52CD4E1CF003350C5 /* FirebaseCore in Frameworks */,
 				76096B072C8B1E910004BEE0 /* Reusable in Frameworks */,
+				356461C12CD4E449003350C5 /* GoogleSignInSwift in Frameworks */,
+				356461B92CD4E1D8003350C5 /* FirebaseFirestore in Frameworks */,
+				356461B72CD4E1D3003350C5 /* FirebaseAuth in Frameworks */,
+				356461BB2CD4E1E2003350C5 /* FirebaseStorage in Frameworks */,
+				356461BF2CD4E449003350C5 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		356461B32CD4E1CF003350C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		356461C22CD4EA06003350C5 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				356461C32CD4EA14003350C5 /* GoogleSignInButton.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
 		3578D1582CD11F690079CBBA /* ProfileDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +362,7 @@
 			children = (
 				766AB7512C933010004FC6EE /* canvasData.json */,
 				76096A032C84F8670004BEE0 /* ivite-app */,
+				356461B32CD4E1CF003350C5 /* Frameworks */,
 				76096A022C84F8670004BEE0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -354,6 +386,7 @@
 				76096AF02C88F6860004BEE0 /* common */,
 				76096A192C84FA650004BEE0 /* modules */,
 				76096A122C84F8680004BEE0 /* Info.plist */,
+				356461BC2CD4E2E5003350C5 /* GoogleService-Info.plist */,
 				76096A1A2C84FA710004BEE0 /* Resources */,
 			);
 			path = "ivite-app";
@@ -535,6 +568,7 @@
 		76096AF02C88F6860004BEE0 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				356461C22CD4EA06003350C5 /* SignIn */,
 				F651E6EC2CBDAE81007D195D /* IVAlert */,
 				F6B47AC82CB1963600E6DF0A /* IVImage */,
 				76096AF82C8A58840004BEE0 /* ListHeader */,
@@ -763,8 +797,8 @@
 		F6E32BEC2CCFCED600D62C37 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F6E32BF62CCFD8D300D62C37 /* MenuItemView.swift */,
 				F6E32BED2CCFCEE400D62C37 /* ProfileDetailView.swift */,
+				F6E32BF62CCFD8D300D62C37 /* MenuItemView.swift */,
 				F6E32BF82CCFDA0D00D62C37 /* ProfileMenuView.swift */,
 			);
 			path = View;
@@ -773,7 +807,7 @@
 		F6E32BF12CCFD08000D62C37 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				F6E32BF22CCFD08700D62C37 /* User.swift */,
+				F6E32BF22CCFD08700D62C37 /* IVUser.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -883,6 +917,12 @@
 			packageProductDependencies = (
 				76096A3D2C8500680004BEE0 /* PureLayout */,
 				76096B062C8B1E910004BEE0 /* Reusable */,
+				356461B42CD4E1CF003350C5 /* FirebaseCore */,
+				356461B62CD4E1D3003350C5 /* FirebaseAuth */,
+				356461B82CD4E1D8003350C5 /* FirebaseFirestore */,
+				356461BA2CD4E1E2003350C5 /* FirebaseStorage */,
+				356461BE2CD4E449003350C5 /* GoogleSignIn */,
+				356461C02CD4E449003350C5 /* GoogleSignInSwift */,
 			);
 			productName = "ivite-app";
 			productReference = 76096A012C84F8670004BEE0 /* ivite-app.app */;
@@ -915,6 +955,8 @@
 			packageReferences = (
 				76096A3C2C8500680004BEE0 /* XCRemoteSwiftPackageReference "PureLayout" */,
 				76096B052C8B1E910004BEE0 /* XCRemoteSwiftPackageReference "Reusable" */,
+				356461B22CD4E194003350C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				356461BD2CD4E449003350C5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 76096A022C84F8670004BEE0 /* Products */;
 			projectDirPath = "";
@@ -935,6 +977,7 @@
 				76096A7D2C8730E30004BEE0 /* Inter-VariableFont_opsz,wght.ttf in Resources */,
 				76096A112C84F8680004BEE0 /* Base in Resources */,
 				76096A7E2C8730E30004BEE0 /* Inter-Italic-VariableFont_opsz,wght.ttf in Resources */,
+				356461C52CD4EC30003350C5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,6 +1043,7 @@
 				F6EBF5702CA4A1EA0058F7B2 /* CreationFlowBuilder.swift in Sources */,
 				F6EBF56A2CA4496F0058F7B2 /* TileModel.swift in Sources */,
 				76096A562C861C420004BEE0 /* ContactPresenter.swift in Sources */,
+				356461C42CD4EA14003350C5 /* GoogleSignInButton.swift in Sources */,
 				F6F3C7232CC94FCF00ED966A /* CheckEmailRouter.swift in Sources */,
 				F6F3C7242CC94FCF00ED966A /* CheckEmailBuilder.swift in Sources */,
 				F6F3C7252CC94FCF00ED966A /* CheckEmailInteractor.swift in Sources */,
@@ -1078,7 +1122,7 @@
 				76096AFC2C8B11FC0004BEE0 /* InvitesLeftView.swift in Sources */,
 				76096A252C84FAD60004BEE0 /* LaunchPresenter.swift in Sources */,
 				F6E32BEE2CCFCEE400D62C37 /* ProfileDetailView.swift in Sources */,
-				F6E32BF32CCFD08700D62C37 /* User.swift in Sources */,
+				F6E32BF32CCFD08700D62C37 /* IVUser.swift in Sources */,
 				76096A332C84FBA90004BEE0 /* BaseInteractor.swift in Sources */,
 				F67F1CD02CA43E9500F00044 /* FontTableViewCell.swift in Sources */,
 				F6CBD9632CAB2AA300911DF7 /* FontSizePickerView.swift in Sources */,
@@ -1228,7 +1272,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WR3T8QTQEW;
+				DEVELOPMENT_TEAM = SH8B934J9Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ivite-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1260,7 +1304,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WR3T8QTQEW;
+				DEVELOPMENT_TEAM = SH8B934J9Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "ivite-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1309,6 +1353,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		356461B22CD4E194003350C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.4.0;
+			};
+		};
+		356461BD2CD4E449003350C5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 		76096A3C2C8500680004BEE0 /* XCRemoteSwiftPackageReference "PureLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/PureLayout/PureLayout.git";
@@ -1328,6 +1388,36 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		356461B42CD4E1CF003350C5 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 356461B22CD4E194003350C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		356461B62CD4E1D3003350C5 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 356461B22CD4E194003350C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		356461B82CD4E1D8003350C5 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 356461B22CD4E194003350C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		356461BA2CD4E1E2003350C5 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 356461B22CD4E194003350C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		356461BE2CD4E449003350C5 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 356461BD2CD4E449003350C5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		356461C02CD4E449003350C5 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 356461BD2CD4E449003350C5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		76096A3D2C8500680004BEE0 /* PureLayout */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 76096A3C2C8500680004BEE0 /* XCRemoteSwiftPackageReference "PureLayout" */;

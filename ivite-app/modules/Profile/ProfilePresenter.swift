@@ -15,8 +15,22 @@ final class ProfilePresenter: BasePresenter {
 }
 
 extension ProfilePresenter: ProfileEventHandler {
+    func didSelectMenuItem(menuItem: ProfileMenuItem) {
+      
+        switch menuItem {
+        case .dataPrivacy:
+            print(menuItem)
+        case .orderHistory:
+            print(menuItem)
+        case .recentPaymentMethod:
+            print(menuItem)
+        case .logOut:
+            interactor.serviceProvider.authentificationService.signOut()
+        }
+    }
+    
     func didTouchShowProfile() {
-         
+        print("touch profile")
     }
 }
 

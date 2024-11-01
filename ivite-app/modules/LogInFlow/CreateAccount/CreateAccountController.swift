@@ -12,7 +12,7 @@ final class CreateAccountController: BaseViewController {
     
     private let closeButton = UIButton()
     private let createAccountLabel = UILabel()
-    private let signInWithGooglebutton = UIButton()
+    private let signInWithGooglebutton = GoogleSignInButton(text: "Sign up with Google")
     private let dividerView = DividerView()
     private let orLabelContainerView = UIView()
     private let orLabel = UILabel()

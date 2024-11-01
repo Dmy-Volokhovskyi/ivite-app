@@ -17,7 +17,7 @@ final class HomePresenter: BasePresenter {
 
 extension HomePresenter: HomeEventHandler {
     func didTapLogInButton() {
-        router.showSignIn(signInDelegate: self, serviceProvider: interactor.serviceProvider)
+        router.showSignIn(serviceProvider: interactor.serviceProvider)
     }
     
     func didSelectItem(at indexPath: IndexPath) {
@@ -29,11 +29,4 @@ extension HomePresenter: HomeDataSource {
 }
 
 extension HomePresenter: HomeInteractorDelegate {
-}
-
-extension HomePresenter: SignInDelegate {
-    func didSignIn() {
-        viewInterface?.didSignIn()
-        print("SIGN IN!!")
-    }
 }

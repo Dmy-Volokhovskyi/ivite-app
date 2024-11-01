@@ -33,6 +33,11 @@ final class MainSearchBarView: BaseView {
         
         logInButton.isHidden = isLoggedIn
         profileImage.isHidden = !isLoggedIn
+        
+        NotificationCenter.default.addObserver(self,
+                                                 selector: #selector(handleAuthStateChange),
+                                                 name: .authStateDidChange,
+                                                 object: nil)
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -75,4 +80,18 @@ final class MainSearchBarView: BaseView {
     @objc private func didTouchLogInButton(_ sender: UIButton) {
         delegate?.didTapLogInButton()
     }
+    
+    @objc private func handleAuthStateChange(_ notification: Notification) {
+           // Access authState directly from userInfo
+           if let authState = notification.userInfo?["authState"] as? AuthenticationState {
+               switch authState {
+               case .authenticated:
+                   isLoggedIn = true
+               case .unauthenticated:
+                   isLoggedIn = false
+               default:
+                   break
+               }
+           }
+       }
 }

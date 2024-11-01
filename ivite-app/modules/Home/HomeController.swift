@@ -119,9 +119,4 @@ extension HomeController: MainSearchBarViewDelegate {
     func didTapLogInButton() {
         eventHandler.didTapLogInButton()
     }
-    
-    func didSignIn() {
-        searchBarView.isLoggedIn = true
-        (tabBarController as? MainScreenController)?.setUpTabBarVisibility()
-    }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct User {
+struct IVUser {
     var firstName: String
     var prifileImage: UIImage? = .test
 }

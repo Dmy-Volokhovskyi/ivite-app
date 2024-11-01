@@ -13,44 +13,45 @@ final class MenuItemView: BaseControll {
     private let titleLabel = UILabel()
     private let chevronRightImageView = UIImageView(image: .chevroneRight)
     private var menuItem: ProfileMenuItem
+    
+    // Define a closure to handle item selection
+    var didTapItem: ((ProfileMenuItem) -> Void)?
 
-    // Initializer
     init(menuItem: ProfileMenuItem) {
         self.menuItem = menuItem
         super.init(frame: .zero)
         
         titleLabel.text = menuItem.title
         iconImageView.image = menuItem.icon
+        
+        // Add tap gesture
+        self.addTarget(self, action: #selector(handleTap), for: .touchUpInside)
+        self.isUserInteractionEnabled = true
     }
-    
+
+    @objc private func handleTap() {
+        // Trigger the closure when tapped
+        didTapItem?(menuItem)
+    }
+
     @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // Setup view with specified styles
     override func setupView() {
         super.setupView()
         
-        // Customize icon image view
         iconImageView.contentMode = .scaleAspectFit
         iconImageView.tintColor = .secondary1
-        
-        // Customize title label
         titleLabel.textColor = .secondary1
         titleLabel.font = .interFont(ofSize: 16)
-        
-        // Customize background
         backgroundColor = .white
     }
     
     override func addSubviews() {
         super.addSubviews()
         
-        [
-            iconImageView,
-            titleLabel,
-            chevronRightImageView
-        ].forEach(addSubview)
+        [iconImageView, titleLabel, chevronRightImageView].forEach(addSubview)
     }
     
     override func constrainSubviews() {
@@ -72,6 +73,7 @@ final class MenuItemView: BaseControll {
         chevronRightImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         chevronRightImageView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         
-//        self.autoSetDimension(.height, toSize: 60)
+        autoSetDimension(.height, toSize: 60)
     }
 }
+

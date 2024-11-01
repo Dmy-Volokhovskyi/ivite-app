@@ -4,6 +4,7 @@ protocol SignInEventHandler: AnyObject {
     func didTouchForgotPassword()
     func didTapCloseButton()
     func didTouchSignIn()
+    func didTouchSignInWithGoogle()
 }
 
 protocol SignInDataSource: AnyObject {
@@ -22,7 +23,7 @@ final class SignInController: BaseViewController {
         return button
     }()
     private let welcomeBackLabel = UILabel()
-    private let signInWithGooglebutton = UIButton()
+    private let signInWithGoogleButton = GoogleSignInButton(text: "Sign in with Google")
     private let dividerView = DividerView()
     private let orLabelContainerView = UIView()
     private let orLabel = UILabel()
@@ -65,6 +66,7 @@ final class SignInController: BaseViewController {
         credentialsStackView.axis = .vertical
         credentialsStackView.spacing = 12
         
+        signInWithGoogleButton.addTarget(self, action: #selector(didTouchSignInWithGoogle), for: .touchUpInside)
         signInButton.addTarget(self, action: #selector(didTouchSignIn), for: .touchUpInside)
         forgotPasswordButton.addTarget(self, action: #selector(didTouchForgotPassword), for: .touchUpInside)
         
@@ -76,7 +78,7 @@ final class SignInController: BaseViewController {
         
         [
             welcomeBackLabel,
-            signInWithGooglebutton,
+            signInWithGoogleButton,
             dividerView,
             orLabelContainerView,
             credentialsStackView,
@@ -97,11 +99,11 @@ final class SignInController: BaseViewController {
         
         welcomeBackLabel.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 68, left: 16, bottom: .zero, right: 16), excludingEdge: .bottom)
         
-        signInWithGooglebutton.autoPinEdge(.top, to: .bottom, of: welcomeBackLabel, withOffset: 24)
-        signInWithGooglebutton.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
-        signInWithGooglebutton.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
+        signInWithGoogleButton.autoPinEdge(.top, to: .bottom, of: welcomeBackLabel, withOffset: 24)
+        signInWithGoogleButton.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
+        signInWithGoogleButton.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
         
-        orLabelContainerView.autoPinEdge(.top, to: .bottom, of: signInWithGooglebutton)
+        orLabelContainerView.autoPinEdge(.top, to: .bottom, of: signInWithGoogleButton, withOffset: 16)
         orLabelContainerView.autoAlignAxis(toSuperviewAxis: .vertical)
         
         dividerView.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
@@ -132,6 +134,10 @@ final class SignInController: BaseViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    @objc private func didTouchSignInWithGoogle(_ sender: UIButton) {
+        eventHandler.didTouchSignInWithGoogle()
     }
     
     @objc private func didTouchForgotPassword(_ sender: UIButton) {
