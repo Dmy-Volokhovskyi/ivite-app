@@ -30,13 +30,22 @@ enum ProfileMenuItem: CaseIterable {
     var icon: UIImage? {
         switch self {
         case .dataPrivacy:
-            return UIImage(systemName: "shield")
+            return UIImage(resource: .shieldWarning)
         case .orderHistory:
-            return UIImage(systemName: "doc.text")
+            return UIImage(resource: .fileDocument)
         case .recentPaymentMethod:
-            return UIImage(systemName: "creditcard")
+            return UIImage(resource: .creditCard01)
         case .logOut:
-            return UIImage(systemName: "arrowshape.turn.up.left")
+            return UIImage(resource: .logOut)
+        }
+    }
+    
+    var hasChevron: Bool {
+        switch self {
+        case .dataPrivacy, .orderHistory, .recentPaymentMethod:
+            return true
+        case .logOut:
+            return false
         }
     }
 }

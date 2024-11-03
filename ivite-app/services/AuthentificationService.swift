@@ -28,6 +28,7 @@ class AuthenticationService {
     var password: String = ""
     var confirmPassword: String = ""
     
+    
     var flow: AuthenticationFlow = .login {
         didSet {
             validateFields()
@@ -138,6 +139,30 @@ class AuthenticationService {
             }
         }
     }
+    
+    func getCurrentUser() -> IVUser? {
+        // Use Auth.auth().currentUser to get the current authenticated user
+        guard let user = Auth.auth().currentUser else {
+            return nil
+        }
+        
+        // Retrieve basic information from the Firebase `User` object
+        let firstName = user.displayName ?? "Unknown"
+        let email = user.email
+        let userId = user.uid
+        let profileImageURL = user.photoURL // URL to use with SDWebImage
+        
+        // Construct and return `IVUser` with all available data
+        return IVUser(
+            firstName: firstName,
+            profileImageURL: profileImageURL,
+            email: email,
+            lastName: nil, // Firebase User doesn't include last name by default
+            userId: userId
+        )
+    }
+
+
 }
 
 // Define custom notifications

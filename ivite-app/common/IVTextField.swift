@@ -58,7 +58,7 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
         super.setupView()
         
         layer.cornerRadius = 22
-        backgroundColor = .dark10
+        backgroundColor = .dark20
         self.isUserInteractionEnabled = true
         self.addTarget(self, action: #selector(didTouchUpInside), for: .touchUpInside)
         

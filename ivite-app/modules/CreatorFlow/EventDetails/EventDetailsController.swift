@@ -96,7 +96,7 @@ final class EventDetailsController: BaseScrollViewController {
                                                                      bottom: 16,
                                                                      right: 16))
         
-        bottomBarView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: .zero, left: 16, bottom: .zero, right: 16), excludingEdge: .top)
+        bottomBarView.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: .zero, left: 16, bottom: .zero, right: 16), excludingEdge: .top)
         setUpBottomViewConstraints()
     }
     

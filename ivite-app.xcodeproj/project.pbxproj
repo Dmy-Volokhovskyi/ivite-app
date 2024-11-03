@@ -15,6 +15,15 @@
 		356461C12CD4E449003350C5 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 356461C02CD4E449003350C5 /* GoogleSignInSwift */; };
 		356461C42CD4EA14003350C5 /* GoogleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461C32CD4EA14003350C5 /* GoogleSignInButton.swift */; };
 		356461C52CD4EC30003350C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 356461BC2CD4E2E5003350C5 /* GoogleService-Info.plist */; };
+		356461CD2CD507EC003350C5 /* ProfileDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461C92CD507EC003350C5 /* ProfileDetailsController.swift */; };
+		356461CE2CD507EC003350C5 /* ProfileDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461CB2CD507EC003350C5 /* ProfileDetailsPresenter.swift */; };
+		356461CF2CD507EC003350C5 /* ProfileDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461CC2CD507EC003350C5 /* ProfileDetailsRouter.swift */; };
+		356461D02CD507EC003350C5 /* ProfileDetailsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461C82CD507EC003350C5 /* ProfileDetailsBuilder.swift */; };
+		356461D12CD507EC003350C5 /* ProfileDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461CA2CD507EC003350C5 /* ProfileDetailsInteractor.swift */; };
+		35F43D5E2CD51DD6000CE237 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F43D5D2CD51DD6000CE237 /* ChangePasswordView.swift */; };
+		35F43D602CD520E5000CE237 /* ChangeEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F43D5F2CD520E5000CE237 /* ChangeEmailView.swift */; };
+		35F43D632CD534FE000CE237 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 35F43D622CD534FE000CE237 /* SDWebImage */; };
+		35F43D652CD534FE000CE237 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 35F43D642CD534FE000CE237 /* SDWebImageMapKit */; };
 		76096A052C84F8670004BEE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A042C84F8670004BEE0 /* AppDelegate.swift */; };
 		76096A072C84F8670004BEE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76096A062C84F8670004BEE0 /* SceneDelegate.swift */; };
 		76096A0E2C84F8680004BEE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76096A0D2C84F8680004BEE0 /* Assets.xcassets */; };
@@ -167,6 +176,13 @@
 /* Begin PBXFileReference section */
 		356461BC2CD4E2E5003350C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		356461C32CD4EA14003350C5 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
+		356461C82CD507EC003350C5 /* ProfileDetailsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsBuilder.swift; sourceTree = "<group>"; };
+		356461C92CD507EC003350C5 /* ProfileDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsController.swift; sourceTree = "<group>"; };
+		356461CA2CD507EC003350C5 /* ProfileDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsInteractor.swift; sourceTree = "<group>"; };
+		356461CB2CD507EC003350C5 /* ProfileDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsPresenter.swift; sourceTree = "<group>"; };
+		356461CC2CD507EC003350C5 /* ProfileDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsRouter.swift; sourceTree = "<group>"; };
+		35F43D5D2CD51DD6000CE237 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		35F43D5F2CD520E5000CE237 /* ChangeEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailView.swift; sourceTree = "<group>"; };
 		76096A012C84F8670004BEE0 /* ivite-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ivite-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76096A042C84F8670004BEE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76096A062C84F8670004BEE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -327,6 +343,8 @@
 				356461C12CD4E449003350C5 /* GoogleSignInSwift in Frameworks */,
 				356461B92CD4E1D8003350C5 /* FirebaseFirestore in Frameworks */,
 				356461B72CD4E1D3003350C5 /* FirebaseAuth in Frameworks */,
+				35F43D652CD534FE000CE237 /* SDWebImageMapKit in Frameworks */,
+				35F43D632CD534FE000CE237 /* SDWebImage in Frameworks */,
 				356461BB2CD4E1E2003350C5 /* FirebaseStorage in Frameworks */,
 				356461BF2CD4E449003350C5 /* GoogleSignIn in Frameworks */,
 			);
@@ -353,8 +371,23 @@
 		3578D1582CD11F690079CBBA /* ProfileDetails */ = {
 			isa = PBXGroup;
 			children = (
+				35F43D5C2CD51DC9000CE237 /* View */,
+				356461C82CD507EC003350C5 /* ProfileDetailsBuilder.swift */,
+				356461C92CD507EC003350C5 /* ProfileDetailsController.swift */,
+				356461CA2CD507EC003350C5 /* ProfileDetailsInteractor.swift */,
+				356461CB2CD507EC003350C5 /* ProfileDetailsPresenter.swift */,
+				356461CC2CD507EC003350C5 /* ProfileDetailsRouter.swift */,
 			);
 			path = ProfileDetails;
+			sourceTree = "<group>";
+		};
+		35F43D5C2CD51DC9000CE237 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35F43D5D2CD51DD6000CE237 /* ChangePasswordView.swift */,
+				35F43D5F2CD520E5000CE237 /* ChangeEmailView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		760969F82C84F8670004BEE0 = {
@@ -923,6 +956,8 @@
 				356461BA2CD4E1E2003350C5 /* FirebaseStorage */,
 				356461BE2CD4E449003350C5 /* GoogleSignIn */,
 				356461C02CD4E449003350C5 /* GoogleSignInSwift */,
+				35F43D622CD534FE000CE237 /* SDWebImage */,
+				35F43D642CD534FE000CE237 /* SDWebImageMapKit */,
 			);
 			productName = "ivite-app";
 			productReference = 76096A012C84F8670004BEE0 /* ivite-app.app */;
@@ -957,6 +992,7 @@
 				76096B052C8B1E910004BEE0 /* XCRemoteSwiftPackageReference "Reusable" */,
 				356461B22CD4E194003350C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				356461BD2CD4E449003350C5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				35F43D612CD534FE000CE237 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 76096A022C84F8670004BEE0 /* Products */;
 			projectDirPath = "";
@@ -1025,7 +1061,13 @@
 				F6936A232CB9608200764197 /* EventDetailsController.swift in Sources */,
 				F6936A242CB9608200764197 /* EventDetailsInteractor.swift in Sources */,
 				F6936A252CB9608200764197 /* EventDetailsRouter.swift in Sources */,
+				356461CD2CD507EC003350C5 /* ProfileDetailsController.swift in Sources */,
+				356461CE2CD507EC003350C5 /* ProfileDetailsPresenter.swift in Sources */,
+				356461CF2CD507EC003350C5 /* ProfileDetailsRouter.swift in Sources */,
+				356461D02CD507EC003350C5 /* ProfileDetailsBuilder.swift in Sources */,
+				356461D12CD507EC003350C5 /* ProfileDetailsInteractor.swift in Sources */,
 				F6D3CBAB2CA2D73400E29761 /* TextEditMenuButton.swift in Sources */,
+				35F43D5E2CD51DD6000CE237 /* ChangePasswordView.swift in Sources */,
 				76A34F922C8B5D1A003D3E87 /* ContactCardModel.swift in Sources */,
 				F6CBD9652CAB2F7100911DF7 /* ColorPickerView.swift in Sources */,
 				F643D9792CC93634009A18F0 /* ForgotPasswordInteractor.swift in Sources */,
@@ -1091,6 +1133,7 @@
 				F6EBF55D2CA441170058F7B2 /* TemplateEditorInteractor.swift in Sources */,
 				F6EBF55E2CA441170058F7B2 /* TemplateEditorController.swift in Sources */,
 				F6EBF55F2CA441170058F7B2 /* TemplateEditorPresenter.swift in Sources */,
+				35F43D602CD520E5000CE237 /* ChangeEmailView.swift in Sources */,
 				F6936A372CB9802300764197 /* DividerView.swift in Sources */,
 				76096A222C84FAD60004BEE0 /* LaunchInteractor.swift in Sources */,
 				F6B47ACE2CB45C4F00E6DF0A /* SpacingPickerView.swift in Sources */,
@@ -1369,6 +1412,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		35F43D612CD534FE000CE237 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.20.0;
+			};
+		};
 		76096A3C2C8500680004BEE0 /* XCRemoteSwiftPackageReference "PureLayout" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/PureLayout/PureLayout.git";
@@ -1417,6 +1468,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 356461BD2CD4E449003350C5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		35F43D622CD534FE000CE237 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35F43D612CD534FE000CE237 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		35F43D642CD534FE000CE237 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35F43D612CD534FE000CE237 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
 		};
 		76096A3D2C8500680004BEE0 /* PureLayout */ = {
 			isa = XCSwiftPackageProductDependency;

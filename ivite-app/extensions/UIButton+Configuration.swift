@@ -30,15 +30,15 @@ extension UIButton.Configuration {
     static func secondary(title: String, image: UIImage? = nil) -> UIButton.Configuration {
         var config = UIButton.Configuration.filled()
         config.title = title
-        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
-        config.baseBackgroundColor = .primaryLight10
+        config.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20)
+        config.baseBackgroundColor = .primaryLight20
         config.baseForegroundColor = .accent
         config.cornerStyle = .capsule
         config.image = image
         config.imagePadding = 10
         
         var attributedTitle = AttributedString(title)
-        attributedTitle.font = .interFont(ofSize: 14, weight: .semiBold)
+        attributedTitle.font = .interFont(ofSize: 16, weight: .bold)
         attributedTitle.foregroundColor = UIColor.accent
         config.imagePlacement = .trailing
         config.attributedTitle = attributedTitle

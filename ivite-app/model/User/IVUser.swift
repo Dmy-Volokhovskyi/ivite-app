@@ -9,5 +9,8 @@ import UIKit
 
 struct IVUser {
     var firstName: String
-    var prifileImage: UIImage? = .test
+    var profileImageURL: URL?
+    var email: String?
+    var lastName: String?
+    var userId: String?
 }

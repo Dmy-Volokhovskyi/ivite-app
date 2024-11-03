@@ -46,14 +46,14 @@ final class MainScreenController: BaseTabBarController {
         let eventController = EventsBuilder(serviceProvider: dataSource.serviceProvider).make()
         let contactsController = ContactBuilder(serviceProvider: dataSource.serviceProvider).make()
         let profileController = ProfileBuilder(serviceProvider: dataSource.serviceProvider).make()
-        
+        let profileNavController = UINavigationController(rootViewController: profileController)
         // Assign titles and icons for the tab bar items
         homeNavController.tabBarItem = UITabBarItem(title: "Home", image: .home, tag: 0)
         eventController.tabBarItem = UITabBarItem(title: "Events", image: .events, tag: 1)
         contactsController.tabBarItem = UITabBarItem(title: "Contacts", image: .contacts, tag: 2)
         profileController.tabBarItem = UITabBarItem(title: "Profile", image: .profile, tag: 3)  // Updated the tag here
         
-        self.viewControllers = [homeNavController, eventController, contactsController, profileController]
+        self.viewControllers = [homeNavController, eventController, contactsController, profileNavController]
         setUpTabBarVisibility()
     }
     

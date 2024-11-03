@@ -23,6 +23,7 @@ final class MenuItemView: BaseControll {
         
         titleLabel.text = menuItem.title
         iconImageView.image = menuItem.icon
+        chevronRightImageView.isHidden = !menuItem.hasChevron
         
         // Add tap gesture
         self.addTarget(self, action: #selector(handleTap), for: .touchUpInside)
@@ -72,8 +73,6 @@ final class MenuItemView: BaseControll {
         chevronRightImageView.autoAlignAxis(toSuperviewAxis: .horizontal)
         chevronRightImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         chevronRightImageView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-        
-        autoSetDimension(.height, toSize: 60)
     }
 }
 

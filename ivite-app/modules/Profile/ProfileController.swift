@@ -6,6 +6,7 @@ protocol ProfileEventHandler: AnyObject {
 }
 
 protocol ProfileDataSource: AnyObject {
+    var user: IVUser? { get }
 }
 
 final class ProfileController: BaseScrollViewController {
@@ -13,7 +14,7 @@ final class ProfileController: BaseScrollViewController {
     private let dataSource: ProfileDataSource
     
     private let accountSettingsLabel = UILabel()
-    private let profileDetailView = ProfileDetailView(user: IVUser(firstName: "Jack"))
+    private let profileDetailView: ProfileDetailView
     private let dividerView = DividerView(topSpace: 24, bottomSpace: 24)
     private let proVersionBanner = UIView()
     private let profileMenuView = ProfileMenuView()
@@ -21,6 +22,7 @@ final class ProfileController: BaseScrollViewController {
     init(eventHandler: ProfileEventHandler, dataSource: ProfileDataSource) {
         self.eventHandler = eventHandler
         self.dataSource = dataSource
+        self.profileDetailView = ProfileDetailView(user: dataSource.user)
         super.init()
     }
     
@@ -31,6 +33,8 @@ final class ProfileController: BaseScrollViewController {
     
     override func setupView() {
         super.setupView()
+        
+        view.backgroundColor = .white
         
         accountSettingsLabel.text = "Account Settings"
         accountSettingsLabel.textColor = .secondary1

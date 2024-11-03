@@ -7,6 +7,7 @@
 
 import UIKit
 import PureLayout
+import SDWebImage
 
 protocol ProfileViewDelegate: AnyObject {
     func didTouchShowProfile()
@@ -18,16 +19,18 @@ final class ProfileDetailView: BaseControll {
     private let firstNamelabel = UILabel()
     private let showProfilLabel = UILabel()
     private let chevroneRightImageView = UIImageView(image: .chevroneRight)
-    private var user: IVUser
+    private var user: IVUser?
     
     weak var delegate: ProfileViewDelegate?
     
     // Initializer
-    init(user: IVUser) {
+    init(user: IVUser?) {
         self.user = user
         super.init(frame: .zero)
+        
+        guard let user else { return }
         firstNamelabel.text = user.firstName
-        profileImageView.image = user.prifileImage
+        profileImageView.sd_setImage(with: user.profileImageURL, placeholderImage: UIImage(named: "placeholder"))
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -43,14 +46,20 @@ final class ProfileDetailView: BaseControll {
         profileImageView.layer.cornerRadius = 33.5
         profileImageView.clipsToBounds = true
         
+        labelsStackView.isUserInteractionEnabled = false
+        
         firstNamelabel.textColor = .secondary1
         firstNamelabel.font = .interFont(ofSize: 14)
+        firstNamelabel.isUserInteractionEnabled = false
         
         showProfilLabel.text = "Show profile"
         showProfilLabel.textColor = .dark30
         showProfilLabel.font = .interFont(ofSize: 16)
+        showProfilLabel.isUserInteractionEnabled = false
         
         backgroundColor = .white
+        
+        self.addTarget(self, action: #selector(didTouchShowProfile), for: .touchUpInside)
     }
     
     override func addSubviews() {
@@ -88,6 +97,10 @@ final class ProfileDetailView: BaseControll {
         chevroneRightImageView.autoAlignAxis(toSuperviewAxis: .horizontal)
         chevroneRightImageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         chevroneRightImageView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+    }
+    
+    public func setUpProfile() {
+        
     }
     
     @objc private func didTouchShowProfile(_ sender: UIControl) {

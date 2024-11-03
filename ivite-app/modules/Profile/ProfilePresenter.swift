@@ -30,11 +30,16 @@ extension ProfilePresenter: ProfileEventHandler {
     }
     
     func didTouchShowProfile() {
+        router.showProfileDetails(serviceProvider: interactor.serviceProvider)
         print("touch profile")
     }
 }
 
 extension ProfilePresenter: ProfileDataSource {
+    var user: IVUser? {
+        interactor.serviceProvider.authentificationService.getCurrentUser()
+    }
+    
 }
 
 extension ProfilePresenter: ProfileInteractorDelegate {
