@@ -17,6 +17,10 @@ final class EventDetailsPresenter: BasePresenter {
 }
 
 extension EventDetailsPresenter: EventDetailsEventHandler {
+    func didTouchNextButton() {
+        interactor.eventDetailsDelegate?.didEndEventDetails()
+    }
+    
     func didTouchBackButton() {
         router.popVC()
     }

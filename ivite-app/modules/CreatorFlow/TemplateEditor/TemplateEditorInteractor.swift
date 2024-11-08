@@ -1,4 +1,5 @@
 import Foundation
+
 protocol TemplateEditorDelegate: AnyObject {
     func didEndTemplateEdition()
 }

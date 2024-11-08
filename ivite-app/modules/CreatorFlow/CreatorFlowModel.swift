@@ -11,4 +11,5 @@ struct CreatorFlowModel {
     var originalCanvas: Canvas?
     var canvas: Canvas?
     var eventDetailsViewModel = EventDetailsViewModel()
+    var giftDetailsViewModel = GiftDetailsViewModel()
 }

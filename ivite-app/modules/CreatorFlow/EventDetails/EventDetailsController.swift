@@ -17,6 +17,7 @@ protocol EventDetailsEventHandler: AnyObject {
     func didTapPickDateButton()
     func didTouchMenu(for coHost: CoHost)
     func didTouchBackButton()
+    func didTouchNextButton()
 }
 
 protocol EventDetailsDataSource: AnyObject {
@@ -63,6 +64,7 @@ final class EventDetailsController: BaseScrollViewController {
         eventDetailsView.delegate = self
         
         backButton.addTarget(self, action: #selector(didTouchBackButton), for: .touchUpInside)
+        nextButton.addTarget(self, action: #selector(didTouchNextButton), for: .touchUpInside)
         view.backgroundColor = .white
     }
     
@@ -96,7 +98,7 @@ final class EventDetailsController: BaseScrollViewController {
                                                                      bottom: 16,
                                                                      right: 16))
         
-        bottomBarView.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: .zero, left: 16, bottom: .zero, right: 16), excludingEdge: .top)
+        bottomBarView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: .zero, left: 16, bottom: .zero, right: 16), excludingEdge: .top)
         setUpBottomViewConstraints()
     }
     
@@ -121,15 +123,13 @@ final class EventDetailsController: BaseScrollViewController {
         
         backButton.autoPinEdge(toSuperviewEdge: .leading)
         backButton.autoPinEdge(.trailing, to: .leading, of: nextButton, withOffset: -12)
-        backButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: 8)
-//        backButton.autoAlignAxis(.horizontal, toSameAxisOf: nextButton)
+        backButton.autoPinEdge(toSuperviewSafeArea: .bottom, withInset: 8)
         backButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         backButton.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         
-//        nextButton.autoPinEdge(.leading, to: .trailing, of: backButton, withOffset: 12)
         nextButton.autoPinEdge(.top, to: .bottom, of: bottomDividerView, withOffset: 24)
         nextButton.autoPinEdge(toSuperviewEdge: .trailing)
-        nextButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: 8)
+        nextButton.autoPinEdge(toSuperviewSafeArea: .bottom, withInset: 8)
         
         nextButton.setContentHuggingPriority(.init(1), for: .horizontal)
         nextButton.setContentCompressionResistancePriority(.init(1), for: .horizontal)
@@ -143,6 +143,10 @@ final class EventDetailsController: BaseScrollViewController {
     
     @objc private func didTouchBackButton(_ sender: UIButton) {
         eventHandler.didTouchBackButton()
+    }
+    
+    @objc private func didTouchNextButton(_ sender: UIButton) {
+        eventHandler.didTouchNextButton()
     }
 }
 

@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3519A7522CD7D00900A16715 /* GiftingOptionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7512CD7D00900A16715 /* GiftingOptionsRouter.swift */; };
+		3519A7532CD7D00900A16715 /* GiftingOptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7502CD7D00900A16715 /* GiftingOptionsPresenter.swift */; };
+		3519A7542CD7D00900A16715 /* GiftingOptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A74E2CD7D00900A16715 /* GiftingOptionsController.swift */; };
+		3519A7552CD7D00900A16715 /* GiftingOptionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A74D2CD7D00900A16715 /* GiftingOptionsBuilder.swift */; };
+		3519A7562CD7D00900A16715 /* GiftingOptionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A74F2CD7D00900A16715 /* GiftingOptionsInteractor.swift */; };
+		3519A7592CD7E20200A16715 /* GiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7582CD7E20200A16715 /* GiftView.swift */; };
+		3519A75B2CD7F11800A16715 /* PhotoLibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A75A2CD7F11800A16715 /* PhotoLibraryManager.swift */; };
+		3519A75D2CD7F15100A16715 /* GiftRegistryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A75C2CD7F15100A16715 /* GiftRegistryView.swift */; };
+		3519A7A62CD9191800A16715 /* GiftListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7A52CD9191800A16715 /* GiftListView.swift */; };
+		3519A7A92CD9198100A16715 /* GiftDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7A82CD9198100A16715 /* GiftDetailsViewModel.swift */; };
+		3519A7AB2CD9267400A16715 /* GiftPlaceholderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7AA2CD9267400A16715 /* GiftPlaceholderImage.swift */; };
+		3519A7AD2CD92AEA00A16715 /* AddGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7AC2CD92AEA00A16715 /* AddGiftView.swift */; };
+		3519A8012CDE60F200A16715 /* EditGiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8002CDE60F200A16715 /* EditGiftViewController.swift */; };
 		356461B52CD4E1CF003350C5 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B42CD4E1CF003350C5 /* FirebaseCore */; };
 		356461B72CD4E1D3003350C5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B62CD4E1D3003350C5 /* FirebaseAuth */; };
 		356461B92CD4E1D8003350C5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B82CD4E1D8003350C5 /* FirebaseFirestore */; };
@@ -174,6 +187,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3519A74D2CD7D00900A16715 /* GiftingOptionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsBuilder.swift; sourceTree = "<group>"; };
+		3519A74E2CD7D00900A16715 /* GiftingOptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsController.swift; sourceTree = "<group>"; };
+		3519A74F2CD7D00900A16715 /* GiftingOptionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsInteractor.swift; sourceTree = "<group>"; };
+		3519A7502CD7D00900A16715 /* GiftingOptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsPresenter.swift; sourceTree = "<group>"; };
+		3519A7512CD7D00900A16715 /* GiftingOptionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsRouter.swift; sourceTree = "<group>"; };
+		3519A7582CD7E20200A16715 /* GiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftView.swift; sourceTree = "<group>"; };
+		3519A75A2CD7F11800A16715 /* PhotoLibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLibraryManager.swift; sourceTree = "<group>"; };
+		3519A75C2CD7F15100A16715 /* GiftRegistryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftRegistryView.swift; sourceTree = "<group>"; };
+		3519A7A52CD9191800A16715 /* GiftListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftListView.swift; sourceTree = "<group>"; };
+		3519A7A82CD9198100A16715 /* GiftDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftDetailsViewModel.swift; sourceTree = "<group>"; };
+		3519A7AA2CD9267400A16715 /* GiftPlaceholderImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftPlaceholderImage.swift; sourceTree = "<group>"; };
+		3519A7AC2CD92AEA00A16715 /* AddGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGiftView.swift; sourceTree = "<group>"; };
+		3519A8002CDE60F200A16715 /* EditGiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGiftViewController.swift; sourceTree = "<group>"; };
 		356461BC2CD4E2E5003350C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		356461C32CD4EA14003350C5 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		356461C82CD507EC003350C5 /* ProfileDetailsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsBuilder.swift; sourceTree = "<group>"; };
@@ -353,6 +379,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3519A74C2CD7CFF500A16715 /* GiftingOptions */ = {
+			isa = PBXGroup;
+			children = (
+				3519A7FF2CDE609D00A16715 /* EditGiftViewController */,
+				3519A7A72CD9197C00A16715 /* Model */,
+				3519A7572CD7E1F000A16715 /* Views */,
+				3519A74D2CD7D00900A16715 /* GiftingOptionsBuilder.swift */,
+				3519A74E2CD7D00900A16715 /* GiftingOptionsController.swift */,
+				3519A74F2CD7D00900A16715 /* GiftingOptionsInteractor.swift */,
+				3519A7502CD7D00900A16715 /* GiftingOptionsPresenter.swift */,
+				3519A7512CD7D00900A16715 /* GiftingOptionsRouter.swift */,
+			);
+			path = GiftingOptions;
+			sourceTree = "<group>";
+		};
+		3519A7572CD7E1F000A16715 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3519A7582CD7E20200A16715 /* GiftView.swift */,
+				3519A7AA2CD9267400A16715 /* GiftPlaceholderImage.swift */,
+				3519A7A52CD9191800A16715 /* GiftListView.swift */,
+				3519A75C2CD7F15100A16715 /* GiftRegistryView.swift */,
+				3519A7AC2CD92AEA00A16715 /* AddGiftView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3519A7A72CD9197C00A16715 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3519A7A82CD9198100A16715 /* GiftDetailsViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3519A7FF2CDE609D00A16715 /* EditGiftViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3519A8002CDE60F200A16715 /* EditGiftViewController.swift */,
+			);
+			path = EditGiftViewController;
+			sourceTree = "<group>";
+		};
 		356461B32CD4E1CF003350C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,6 +670,7 @@
 		76096AF02C88F6860004BEE0 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				3519A75A2CD7F11800A16715 /* PhotoLibraryManager.swift */,
 				356461C22CD4EA06003350C5 /* SignIn */,
 				F651E6EC2CBDAE81007D195D /* IVAlert */,
 				F6B47AC82CB1963600E6DF0A /* IVImage */,
@@ -848,6 +918,7 @@
 		F6EBF5552CA440D00058F7B2 /* CreatorFlow */ = {
 			isa = PBXGroup;
 			children = (
+				3519A74C2CD7CFF500A16715 /* GiftingOptions */,
 				F6936A1B2CB9607000764197 /* EventDetails */,
 				F6EBF5602CA441300058F7B2 /* TemplateEditor */,
 				F6EBF56B2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift */,
@@ -1047,9 +1118,11 @@
 				76096A2A2C84FB180004BEE0 /* BaseControll.swift in Sources */,
 				76096A462C861C1B0004BEE0 /* HomeController.swift in Sources */,
 				76096A472C861C1B0004BEE0 /* HomeInteractor.swift in Sources */,
+				3519A7A92CD9198100A16715 /* GiftDetailsViewModel.swift in Sources */,
 				76096A732C861C990004BEE0 /* MainScreenController.swift in Sources */,
 				76096AEF2C88F1900004BEE0 /* UIButton+Configuration.swift in Sources */,
 				76096A742C861C990004BEE0 /* MainScreenInteractor.swift in Sources */,
+				3519A75D2CD7F15100A16715 /* GiftRegistryView.swift in Sources */,
 				76A34F952C8B5E61003D3E87 /* ContactCardCell.swift in Sources */,
 				F6936A2B2CB9621F00764197 /* EntryWithTitle.swift in Sources */,
 				76096A752C861C990004BEE0 /* MainScreenRouter.swift in Sources */,
@@ -1117,6 +1190,7 @@
 				F6E32BF72CCFD8D300D62C37 /* MenuItemView.swift in Sources */,
 				76096A362C84FBD40004BEE0 /* ServiceProvider.swift in Sources */,
 				F66EC28D2CC6A3C300AE76B2 /* ActionsViewController.swift in Sources */,
+				3519A75B2CD7F11800A16715 /* PhotoLibraryManager.swift in Sources */,
 				F6EBF56C2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift in Sources */,
 				76096B022C8B1E0A0004BEE0 /* EventCardCell.swift in Sources */,
 				F6D5DB582CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift in Sources */,
@@ -1130,7 +1204,13 @@
 				F6936A392CBA7F8E00764197 /* HostView.swift in Sources */,
 				F62D68492CA5ACB40090ADE5 /* Canvas.swift in Sources */,
 				F6EBF55C2CA441170058F7B2 /* TemplateEditorBuilder.swift in Sources */,
+				3519A7522CD7D00900A16715 /* GiftingOptionsRouter.swift in Sources */,
+				3519A7532CD7D00900A16715 /* GiftingOptionsPresenter.swift in Sources */,
+				3519A7542CD7D00900A16715 /* GiftingOptionsController.swift in Sources */,
+				3519A7552CD7D00900A16715 /* GiftingOptionsBuilder.swift in Sources */,
+				3519A7562CD7D00900A16715 /* GiftingOptionsInteractor.swift in Sources */,
 				F6EBF55D2CA441170058F7B2 /* TemplateEditorInteractor.swift in Sources */,
+				3519A7AB2CD9267400A16715 /* GiftPlaceholderImage.swift in Sources */,
 				F6EBF55E2CA441170058F7B2 /* TemplateEditorController.swift in Sources */,
 				F6EBF55F2CA441170058F7B2 /* TemplateEditorPresenter.swift in Sources */,
 				35F43D602CD520E5000CE237 /* ChangeEmailView.swift in Sources */,
@@ -1143,18 +1223,21 @@
 				76096A5D2C861C550004BEE0 /* EventsController.swift in Sources */,
 				76096A5E2C861C550004BEE0 /* EventsInteractor.swift in Sources */,
 				F6EBF5672CA449380058F7B2 /* TileCollectionViewCell.swift in Sources */,
+				3519A7592CD7E20200A16715 /* GiftView.swift in Sources */,
 				76096A5F2C861C550004BEE0 /* EventsRouter.swift in Sources */,
 				F6EBF5652CA4470C0058F7B2 /* CanvasResponse.swift in Sources */,
 				76096B002C8B1BF90004BEE0 /* EventCardModel.swift in Sources */,
 				F643D96D2CC928FF009A18F0 /* SignInController.swift in Sources */,
 				F643D96E2CC928FF009A18F0 /* SignInRouter.swift in Sources */,
 				F643D96F2CC928FF009A18F0 /* SignInBuilder.swift in Sources */,
+				3519A8012CDE60F200A16715 /* EditGiftViewController.swift in Sources */,
 				F643D9702CC928FF009A18F0 /* SignInInteractor.swift in Sources */,
 				F643D9712CC928FF009A18F0 /* SignInPresenter.swift in Sources */,
 				76096A602C861C550004BEE0 /* EventsBuilder.swift in Sources */,
 				F6B47ACA2CB1965000E6DF0A /* DownloadableImageView.swift in Sources */,
 				76096A612C861C550004BEE0 /* EventsPresenter.swift in Sources */,
 				F6F4AA3D2CC8220800071B0B /* CreateAccountRouter.swift in Sources */,
+				3519A7A62CD9191800A16715 /* GiftListView.swift in Sources */,
 				F6F4AA3E2CC8220800071B0B /* CreateAccountController.swift in Sources */,
 				F6F4AA3F2CC8220800071B0B /* CreateAccountBuilder.swift in Sources */,
 				F6F4AA402CC8220800071B0B /* CreateAccountPresenter.swift in Sources */,
@@ -1167,6 +1250,7 @@
 				F6E32BEE2CCFCEE400D62C37 /* ProfileDetailView.swift in Sources */,
 				F6E32BF32CCFD08700D62C37 /* IVUser.swift in Sources */,
 				76096A332C84FBA90004BEE0 /* BaseInteractor.swift in Sources */,
+				3519A7AD2CD92AEA00A16715 /* AddGiftView.swift in Sources */,
 				F67F1CD02CA43E9500F00044 /* FontTableViewCell.swift in Sources */,
 				F6CBD9632CAB2AA300911DF7 /* FontSizePickerView.swift in Sources */,
 				F6D3CBA92CA2D2F600E29761 /* TextEditMenuView.swift in Sources */,
