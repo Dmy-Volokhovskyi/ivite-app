@@ -20,6 +20,16 @@
 		3519A7AB2CD9267400A16715 /* GiftPlaceholderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7AA2CD9267400A16715 /* GiftPlaceholderImage.swift */; };
 		3519A7AD2CD92AEA00A16715 /* AddGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7AC2CD92AEA00A16715 /* AddGiftView.swift */; };
 		3519A8012CDE60F200A16715 /* EditGiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8002CDE60F200A16715 /* EditGiftViewController.swift */; };
+		3519A8082CDE676D00A16715 /* AddGuestsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8042CDE676D00A16715 /* AddGuestsController.swift */; };
+		3519A8092CDE676D00A16715 /* AddGuestsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8032CDE676D00A16715 /* AddGuestsBuilder.swift */; };
+		3519A80A2CDE676D00A16715 /* AddGuestsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8062CDE676D00A16715 /* AddGuestsPresenter.swift */; };
+		3519A80B2CDE676D00A16715 /* AddGuestsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8052CDE676D00A16715 /* AddGuestsInteractor.swift */; };
+		3519A80C2CDE676D00A16715 /* AddGuestsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8072CDE676D00A16715 /* AddGuestsRouter.swift */; };
+		3519A80F2CDE685700A16715 /* AddGuestMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A80E2CDE685700A16715 /* AddGuestMenuView.swift */; };
+		3519A8112CDE686E00A16715 /* AddGuestsmenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8102CDE686E00A16715 /* AddGuestsmenuItem.swift */; };
+		3519A8132CDE77D500A16715 /* SearchFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8122CDE77D500A16715 /* SearchFilterView.swift */; };
+		3519A8152CE0C9E000A16715 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8142CE0C9E000A16715 /* Guest.swift */; };
+		3519A8172CE0CB4700A16715 /* GuestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8162CE0CB4700A16715 /* GuestCell.swift */; };
 		356461B52CD4E1CF003350C5 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B42CD4E1CF003350C5 /* FirebaseCore */; };
 		356461B72CD4E1D3003350C5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B62CD4E1D3003350C5 /* FirebaseAuth */; };
 		356461B92CD4E1D8003350C5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B82CD4E1D8003350C5 /* FirebaseFirestore */; };
@@ -200,6 +210,16 @@
 		3519A7AA2CD9267400A16715 /* GiftPlaceholderImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftPlaceholderImage.swift; sourceTree = "<group>"; };
 		3519A7AC2CD92AEA00A16715 /* AddGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGiftView.swift; sourceTree = "<group>"; };
 		3519A8002CDE60F200A16715 /* EditGiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGiftViewController.swift; sourceTree = "<group>"; };
+		3519A8032CDE676D00A16715 /* AddGuestsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsBuilder.swift; sourceTree = "<group>"; };
+		3519A8042CDE676D00A16715 /* AddGuestsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsController.swift; sourceTree = "<group>"; };
+		3519A8052CDE676D00A16715 /* AddGuestsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsInteractor.swift; sourceTree = "<group>"; };
+		3519A8062CDE676D00A16715 /* AddGuestsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsPresenter.swift; sourceTree = "<group>"; };
+		3519A8072CDE676D00A16715 /* AddGuestsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsRouter.swift; sourceTree = "<group>"; };
+		3519A80E2CDE685700A16715 /* AddGuestMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestMenuView.swift; sourceTree = "<group>"; };
+		3519A8102CDE686E00A16715 /* AddGuestsmenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsmenuItem.swift; sourceTree = "<group>"; };
+		3519A8122CDE77D500A16715 /* SearchFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterView.swift; sourceTree = "<group>"; };
+		3519A8142CE0C9E000A16715 /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
+		3519A8162CE0CB4700A16715 /* GuestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCell.swift; sourceTree = "<group>"; };
 		356461BC2CD4E2E5003350C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		356461C32CD4EA14003350C5 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		356461C82CD507EC003350C5 /* ProfileDetailsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsBuilder.swift; sourceTree = "<group>"; };
@@ -420,6 +440,30 @@
 				3519A8002CDE60F200A16715 /* EditGiftViewController.swift */,
 			);
 			path = EditGiftViewController;
+			sourceTree = "<group>";
+		};
+		3519A8022CDE676000A16715 /* AddGuests */ = {
+			isa = PBXGroup;
+			children = (
+				3519A80D2CDE684E00A16715 /* View */,
+				3519A8032CDE676D00A16715 /* AddGuestsBuilder.swift */,
+				3519A8042CDE676D00A16715 /* AddGuestsController.swift */,
+				3519A8052CDE676D00A16715 /* AddGuestsInteractor.swift */,
+				3519A8062CDE676D00A16715 /* AddGuestsPresenter.swift */,
+				3519A8072CDE676D00A16715 /* AddGuestsRouter.swift */,
+			);
+			path = AddGuests;
+			sourceTree = "<group>";
+		};
+		3519A80D2CDE684E00A16715 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3519A80E2CDE685700A16715 /* AddGuestMenuView.swift */,
+				3519A8102CDE686E00A16715 /* AddGuestsmenuItem.swift */,
+				3519A8122CDE77D500A16715 /* SearchFilterView.swift */,
+				3519A8162CE0CB4700A16715 /* GuestCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		356461B32CD4E1CF003350C5 /* Frameworks */ = {
@@ -918,6 +962,7 @@
 		F6EBF5552CA440D00058F7B2 /* CreatorFlow */ = {
 			isa = PBXGroup;
 			children = (
+				3519A8022CDE676000A16715 /* AddGuests */,
 				3519A74C2CD7CFF500A16715 /* GiftingOptions */,
 				F6936A1B2CB9607000764197 /* EventDetails */,
 				F6EBF5602CA441300058F7B2 /* TemplateEditor */,
@@ -947,6 +992,7 @@
 				F62D68472CA5ACA90090ADE5 /* Canvas */,
 				F6EBF5622CA446EE0058F7B2 /* Layer.swift */,
 				F6EBF5642CA4470C0058F7B2 /* CanvasResponse.swift */,
+				3519A8142CE0C9E000A16715 /* Guest.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1106,6 +1152,7 @@
 				76096AF22C88F75E0004BEE0 /* MainSearchBarView.swift in Sources */,
 				F6D3CBA62CA2D21600E29761 /* TextEditMenu.swift in Sources */,
 				F6D3CBB22CA2E36C00E29761 /* GripViewBorderView.swift in Sources */,
+				3519A8132CDE77D500A16715 /* SearchFilterView.swift in Sources */,
 				F651E6EE2CBDAE9B007D195D /* AlertViewController.swift in Sources */,
 				76096AF62C89FAF80004BEE0 /* SearchBar.swift in Sources */,
 				F6EBF5632CA446EE0058F7B2 /* Layer.swift in Sources */,
@@ -1122,6 +1169,11 @@
 				76096A732C861C990004BEE0 /* MainScreenController.swift in Sources */,
 				76096AEF2C88F1900004BEE0 /* UIButton+Configuration.swift in Sources */,
 				76096A742C861C990004BEE0 /* MainScreenInteractor.swift in Sources */,
+				3519A8082CDE676D00A16715 /* AddGuestsController.swift in Sources */,
+				3519A8092CDE676D00A16715 /* AddGuestsBuilder.swift in Sources */,
+				3519A80A2CDE676D00A16715 /* AddGuestsPresenter.swift in Sources */,
+				3519A80B2CDE676D00A16715 /* AddGuestsInteractor.swift in Sources */,
+				3519A80C2CDE676D00A16715 /* AddGuestsRouter.swift in Sources */,
 				3519A75D2CD7F15100A16715 /* GiftRegistryView.swift in Sources */,
 				76A34F952C8B5E61003D3E87 /* ContactCardCell.swift in Sources */,
 				F6936A2B2CB9621F00764197 /* EntryWithTitle.swift in Sources */,
@@ -1209,6 +1261,7 @@
 				3519A7542CD7D00900A16715 /* GiftingOptionsController.swift in Sources */,
 				3519A7552CD7D00900A16715 /* GiftingOptionsBuilder.swift in Sources */,
 				3519A7562CD7D00900A16715 /* GiftingOptionsInteractor.swift in Sources */,
+				3519A8152CE0C9E000A16715 /* Guest.swift in Sources */,
 				F6EBF55D2CA441170058F7B2 /* TemplateEditorInteractor.swift in Sources */,
 				3519A7AB2CD9267400A16715 /* GiftPlaceholderImage.swift in Sources */,
 				F6EBF55E2CA441170058F7B2 /* TemplateEditorController.swift in Sources */,
@@ -1220,6 +1273,7 @@
 				F6B47ACC2CB1966400E6DF0A /* UserImageLibraryManager.swift in Sources */,
 				F6936A332CB973CE00764197 /* IVTextField.swift in Sources */,
 				76096A232C84FAD60004BEE0 /* LaunchRouter.swift in Sources */,
+				3519A8112CDE686E00A16715 /* AddGuestsmenuItem.swift in Sources */,
 				76096A5D2C861C550004BEE0 /* EventsController.swift in Sources */,
 				76096A5E2C861C550004BEE0 /* EventsInteractor.swift in Sources */,
 				F6EBF5672CA449380058F7B2 /* TileCollectionViewCell.swift in Sources */,
@@ -1254,8 +1308,10 @@
 				F67F1CD02CA43E9500F00044 /* FontTableViewCell.swift in Sources */,
 				F6CBD9632CAB2AA300911DF7 /* FontSizePickerView.swift in Sources */,
 				F6D3CBA92CA2D2F600E29761 /* TextEditMenuView.swift in Sources */,
+				3519A8172CE0CB4700A16715 /* GuestCell.swift in Sources */,
 				76096A402C8501950004BEE0 /* UIWindow+SwitchRoot.swift in Sources */,
 				F6D3CBB62CA2E76200E29761 /* ResizableView.swift in Sources */,
+				3519A80F2CDE685700A16715 /* AddGuestMenuView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

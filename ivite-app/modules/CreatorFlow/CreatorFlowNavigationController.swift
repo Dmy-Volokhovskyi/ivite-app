@@ -71,9 +71,10 @@ private extension CreatorFlowNavigationController {
                 .make(eventDetailsDelegate: self,
                       eventDetailsViewModel: creatorFlowModel.eventDetailsViewModel)
         case .giftingOptions:
-            controller = GiftingOptionsBuilder(serviceProvider: serviceProvider).make(gifts: creatorFlowModel.giftDetailsViewModel.gifts, giftingOptionsDelegate: self)
+            controller = GiftingOptionsBuilder(serviceProvider: serviceProvider)
+                .make(gifts: creatorFlowModel.giftDetailsViewModel.gifts, giftingOptionsDelegate: self)
         case .addGuests:
-            controller = UIViewController() // Replace with your AddGuests controller
+            controller = AddGuestsBuilder(serviceProvider: serviceProvider).make(addGuestDelegate: self, serviceProvider: serviceProvider)
         case .review:
             controller = UIViewController() // Replace with your Review controller
         }
@@ -161,6 +162,11 @@ extension CreatorFlowNavigationController: EventDetailsDelegate {
 extension CreatorFlowNavigationController: GiftingOptionsDelegate {
     func didEndGiftingOptions() {
         pushNextStep(for: .giftingOptions)
+    }
+}
+extension CreatorFlowNavigationController: AddGuestsDelegate {
+    func didFinishAddGuests() {
+        pushNextStep(for: .addGuests)
     }
 }
 //extension ConfigurationWizardNavigationController: ProvincesDelegate {
