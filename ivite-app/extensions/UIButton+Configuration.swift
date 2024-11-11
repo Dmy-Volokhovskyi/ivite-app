@@ -8,10 +8,10 @@
 import UIKit
 
 extension UIButton.Configuration {
-    static func primary(title: String, image: UIImage? = nil) -> UIButton.Configuration {
+    static func primary(title: String, image: UIImage? = nil, insets: NSDirectionalEdgeInsets? = nil) -> UIButton.Configuration {
         var config = UIButton.Configuration.filled()
         config.title = title
-        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
+        config.contentInsets = insets ?? NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
         config.baseBackgroundColor = .accent
         config.baseForegroundColor = .primaryLight10
         config.cornerStyle = .capsule
@@ -128,6 +128,25 @@ extension UIButton.Configuration {
         var attributedTitle = AttributedString(title)
         attributedTitle.font = .interFont(ofSize: 14, weight: .semiBold)
         attributedTitle.foregroundColor = UIColor.white
+        config.attributedTitle = attributedTitle
+        
+        return config
+    }
+    
+    static func transparent(title: String, image: UIImage? = nil) -> UIButton.Configuration {
+        var config = UIButton.Configuration.filled()
+        config.title = title
+        config.contentInsets = .zero
+        config.baseBackgroundColor = .clear
+        config.baseForegroundColor = .secondary70
+        config.cornerStyle = .capsule
+        config.image = image
+        config.imagePadding = 8
+        
+        var attributedTitle = AttributedString(title)
+        attributedTitle.font = .interFont(ofSize: 12, weight: .regular)
+        attributedTitle.foregroundColor = UIColor.secondary70
+        config.imagePlacement = .leading
         config.attributedTitle = attributedTitle
         
         return config

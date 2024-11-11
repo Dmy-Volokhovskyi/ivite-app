@@ -8,6 +8,7 @@
 import Foundation
 
 struct EventDetailsViewModel {
+    var eventTitle: String?
     var date: Date?
     // Host
     var hostName: String?

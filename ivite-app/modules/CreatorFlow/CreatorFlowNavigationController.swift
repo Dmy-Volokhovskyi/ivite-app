@@ -76,7 +76,7 @@ private extension CreatorFlowNavigationController {
         case .addGuests:
             controller = AddGuestsBuilder(serviceProvider: serviceProvider).make(addGuestDelegate: self, serviceProvider: serviceProvider)
         case .review:
-            controller = UIViewController() // Replace with your Review controller
+            controller = ReviewBuilder(serviceProvider: serviceProvider).make()
         }
         self.setupNavBar(for: nextStep, in: controller)
         // Push the view controller

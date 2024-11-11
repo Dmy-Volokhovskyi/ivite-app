@@ -33,3 +33,20 @@ class BaseView: UIView {
     func addSubviews() { }
     func constrainSubviews() { }
 }
+
+//final class ReviewMainDetailView: BaseView {
+//   override func setupView() {
+//       super.setupView()
+//       
+//   }
+//    
+//   override func addSubviews() {
+//       super.addSubviews()
+//       
+//   }
+//    
+//   override func constrainSubviews() {
+//       super.constrainSubviews()
+//       
+//   }
+//}

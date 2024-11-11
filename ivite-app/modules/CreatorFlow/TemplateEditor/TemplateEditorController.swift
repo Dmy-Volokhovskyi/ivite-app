@@ -55,7 +55,6 @@ final class TemplateEditorController: BaseViewController {
     private let bottomMenu = TextEditMenuView()
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-    private let nextButton = UIButton(configuration: .primary(title: "Next Step"))
     private let fontSelectionView = FontSelectionView(seletedFont: nil)
     private let fontSizePicker = FontSizePickerView()
     private let colorPickerView = ColorPickerView()
@@ -64,6 +63,11 @@ final class TemplateEditorController: BaseViewController {
     // Constraints to store
     private var contentViewWidthConstraint: NSLayoutConstraint!
     private var contentViewHeightConstraint: NSLayoutConstraint!
+    
+    private let bottomBarView = UIView()
+    private let bottomDividerView = DividerView()
+    private let nextButton = UIButton(configuration: .primary(title: "Next",
+                                                              insets: NSDirectionalEdgeInsets(top: 13, leading: 24, bottom: 13, trailing: 24)))
     
     init(eventHandler: TemplateEditorEventHandler, dataSource: TemplateEditorDataSource) {
         self.eventHandler = eventHandler
@@ -79,9 +83,13 @@ final class TemplateEditorController: BaseViewController {
     override func addSubviews() {
         super.addSubviews()
         
+        view.addSubview(bottomBarView)
+        
+        bottomBarView.addSubview(bottomDividerView)
+        bottomBarView.addSubview(nextButton)
+        
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        view.addSubview(nextButton)
         view.addSubview(bottomMenu)
         view.addSubview(fontSelectionView)
         view.addSubview(fontSizePicker)
@@ -111,8 +119,8 @@ final class TemplateEditorController: BaseViewController {
         contentView.autoSetDimension(.height, toSize: 1000, relation: .greaterThanOrEqual)
 
         // Constrain other subviews as needed
-        nextButton.autoPinEdge(.top, to: .bottom, of: scrollView, withOffset: 16)
-        nextButton.autoPinEdgesToSuperviewSafeArea(with: .init(top: 16, left: 16, bottom: 16, right: 16), excludingEdge: .top)
+        bottomBarView.autoPinEdge(.top, to: .bottom, of: scrollView, withOffset: 16)
+        bottomBarView.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .top)
         
         bottomMenu.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), excludingEdge: .top)
         fontSelectionView.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .top)
@@ -129,11 +137,16 @@ final class TemplateEditorController: BaseViewController {
         
         spacingPickerView.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .top)
         spacingPickerView.autoSetDimension(.height, toSize: 200)
+        
+        setUpBottomViewConstraints()
     }
 
     
     override func setupView() {
         super.setupView()
+        
+        bottomBarView.backgroundColor = .white
+        view.backgroundColor = .dark10
         
         scrollView.delegate = self
         scrollView.minimumZoomScale = 1.0
@@ -170,6 +183,7 @@ final class TemplateEditorController: BaseViewController {
 
         eventHandler.viewDidLoad()
 
+        bottomMenu.isHidden = true
         // Register for keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -182,9 +196,20 @@ final class TemplateEditorController: BaseViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
     
-    @objc func nextButtonTapped() {
+    private func setUpBottomViewConstraints() {
+        bottomDividerView.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .bottom)
+        
+        nextButton.autoPinEdge(.top, to: .bottom, of: bottomDividerView, withOffset: 24)
+            nextButton.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
+            nextButton.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
+        nextButton.autoPinEdge(toSuperviewSafeArea: .bottom, withInset: 8)
+        
+            nextButton.setContentHuggingPriority(.init(999), for: .vertical)
+            nextButton.setContentCompressionResistancePriority(.init(999), for: .vertical)
+    }
+    
+    @objc func nextButtonTapped(_ sender: UIButton) {
         eventHandler.nextButtonTapped()
     }
     

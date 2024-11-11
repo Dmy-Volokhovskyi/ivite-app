@@ -30,6 +30,18 @@
 		3519A8132CDE77D500A16715 /* SearchFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8122CDE77D500A16715 /* SearchFilterView.swift */; };
 		3519A8152CE0C9E000A16715 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8142CE0C9E000A16715 /* Guest.swift */; };
 		3519A8172CE0CB4700A16715 /* GuestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8162CE0CB4700A16715 /* GuestCell.swift */; };
+		3519A81E2CE0DB5400A16715 /* ReviewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8192CE0DB5400A16715 /* ReviewBuilder.swift */; };
+		3519A81F2CE0DB5400A16715 /* ReviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A81A2CE0DB5400A16715 /* ReviewController.swift */; };
+		3519A8202CE0DB5400A16715 /* ReviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A81D2CE0DB5400A16715 /* ReviewRouter.swift */; };
+		3519A8212CE0DB5400A16715 /* ReviewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A81B2CE0DB5400A16715 /* ReviewInteractor.swift */; };
+		3519A8222CE0DB5400A16715 /* ReviewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A81C2CE0DB5400A16715 /* ReviewPresenter.swift */; };
+		3519A8252CE0DC3000A16715 /* ReviewMainDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8242CE0DC3000A16715 /* ReviewMainDetailView.swift */; };
+		3519A8292CE0DF4D00A16715 /* ReviewTitledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8282CE0DF4D00A16715 /* ReviewTitledView.swift */; };
+		3519A82B2CE2487E00A16715 /* ReviewLocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A82A2CE2487E00A16715 /* ReviewLocationDetailView.swift */; };
+		3519A82D2CE24D8B00A16715 /* ReviewGiftsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A82C2CE24D8B00A16715 /* ReviewGiftsDetailView.swift */; };
+		3519A82F2CE24E2E00A16715 /* ReviewGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A82E2CE24E2E00A16715 /* ReviewGiftView.swift */; };
+		3519A8312CE259C800A16715 /* ReviewGuestsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8302CE259C800A16715 /* ReviewGuestsDetailView.swift */; };
+		3519A8332CE25C6800A16715 /* ReviewGuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8322CE25C6800A16715 /* ReviewGuestView.swift */; };
 		356461B52CD4E1CF003350C5 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B42CD4E1CF003350C5 /* FirebaseCore */; };
 		356461B72CD4E1D3003350C5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B62CD4E1D3003350C5 /* FirebaseAuth */; };
 		356461B92CD4E1D8003350C5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B82CD4E1D8003350C5 /* FirebaseFirestore */; };
@@ -220,6 +232,18 @@
 		3519A8122CDE77D500A16715 /* SearchFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterView.swift; sourceTree = "<group>"; };
 		3519A8142CE0C9E000A16715 /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		3519A8162CE0CB4700A16715 /* GuestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCell.swift; sourceTree = "<group>"; };
+		3519A8192CE0DB5400A16715 /* ReviewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewBuilder.swift; sourceTree = "<group>"; };
+		3519A81A2CE0DB5400A16715 /* ReviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewController.swift; sourceTree = "<group>"; };
+		3519A81B2CE0DB5400A16715 /* ReviewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewInteractor.swift; sourceTree = "<group>"; };
+		3519A81C2CE0DB5400A16715 /* ReviewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPresenter.swift; sourceTree = "<group>"; };
+		3519A81D2CE0DB5400A16715 /* ReviewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRouter.swift; sourceTree = "<group>"; };
+		3519A8242CE0DC3000A16715 /* ReviewMainDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewMainDetailView.swift; sourceTree = "<group>"; };
+		3519A8282CE0DF4D00A16715 /* ReviewTitledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTitledView.swift; sourceTree = "<group>"; };
+		3519A82A2CE2487E00A16715 /* ReviewLocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewLocationDetailView.swift; sourceTree = "<group>"; };
+		3519A82C2CE24D8B00A16715 /* ReviewGiftsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewGiftsDetailView.swift; sourceTree = "<group>"; };
+		3519A82E2CE24E2E00A16715 /* ReviewGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewGiftView.swift; sourceTree = "<group>"; };
+		3519A8302CE259C800A16715 /* ReviewGuestsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewGuestsDetailView.swift; sourceTree = "<group>"; };
+		3519A8322CE25C6800A16715 /* ReviewGuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewGuestView.swift; sourceTree = "<group>"; };
 		356461BC2CD4E2E5003350C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		356461C32CD4EA14003350C5 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		356461C82CD507EC003350C5 /* ProfileDetailsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsBuilder.swift; sourceTree = "<group>"; };
@@ -462,6 +486,33 @@
 				3519A8102CDE686E00A16715 /* AddGuestsmenuItem.swift */,
 				3519A8122CDE77D500A16715 /* SearchFilterView.swift */,
 				3519A8162CE0CB4700A16715 /* GuestCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3519A8182CE0DB4500A16715 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				3519A8232CE0DC0F00A16715 /* View */,
+				3519A8192CE0DB5400A16715 /* ReviewBuilder.swift */,
+				3519A81A2CE0DB5400A16715 /* ReviewController.swift */,
+				3519A81B2CE0DB5400A16715 /* ReviewInteractor.swift */,
+				3519A81C2CE0DB5400A16715 /* ReviewPresenter.swift */,
+				3519A81D2CE0DB5400A16715 /* ReviewRouter.swift */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		3519A8232CE0DC0F00A16715 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3519A8242CE0DC3000A16715 /* ReviewMainDetailView.swift */,
+				3519A82A2CE2487E00A16715 /* ReviewLocationDetailView.swift */,
+				3519A8282CE0DF4D00A16715 /* ReviewTitledView.swift */,
+				3519A82C2CE24D8B00A16715 /* ReviewGiftsDetailView.swift */,
+				3519A82E2CE24E2E00A16715 /* ReviewGiftView.swift */,
+				3519A8302CE259C800A16715 /* ReviewGuestsDetailView.swift */,
+				3519A8322CE25C6800A16715 /* ReviewGuestView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -962,6 +1013,7 @@
 		F6EBF5552CA440D00058F7B2 /* CreatorFlow */ = {
 			isa = PBXGroup;
 			children = (
+				3519A8182CE0DB4500A16715 /* Review */,
 				3519A8022CDE676000A16715 /* AddGuests */,
 				3519A74C2CD7CFF500A16715 /* GiftingOptions */,
 				F6936A1B2CB9607000764197 /* EventDetails */,
@@ -1181,6 +1233,7 @@
 				F6F4AA442CC8328300071B0B /* TermsAndServicesView.swift in Sources */,
 				76096A762C861C990004BEE0 /* MainScreenBuilder.swift in Sources */,
 				76096A772C861C990004BEE0 /* MainScreenPresenter.swift in Sources */,
+				3519A8332CE25C6800A16715 /* ReviewGuestView.swift in Sources */,
 				F6936A212CB9608200764197 /* EventDetailsBuilder.swift in Sources */,
 				F6936A222CB9608200764197 /* EventDetailsPresenter.swift in Sources */,
 				F6936A232CB9608200764197 /* EventDetailsController.swift in Sources */,
@@ -1232,6 +1285,7 @@
 				F6E32BF92CCFDA0D00D62C37 /* ProfileMenuView.swift in Sources */,
 				76096A682C861C860004BEE0 /* ProfileController.swift in Sources */,
 				F6F4AA352CC6B1CC00071B0B /* EdditCoHostView.swift in Sources */,
+				3519A82F2CE24E2E00A16715 /* ReviewGiftView.swift in Sources */,
 				F6936A3B2CBA84AD00764197 /* CoHostView.swift in Sources */,
 				F68CAA872CBD50A400533757 /* BringListItemView.swift in Sources */,
 				76096AFA2C8A58A40004BEE0 /* ListHeaderView.swift in Sources */,
@@ -1243,7 +1297,9 @@
 				76096A362C84FBD40004BEE0 /* ServiceProvider.swift in Sources */,
 				F66EC28D2CC6A3C300AE76B2 /* ActionsViewController.swift in Sources */,
 				3519A75B2CD7F11800A16715 /* PhotoLibraryManager.swift in Sources */,
+				3519A8312CE259C800A16715 /* ReviewGuestsDetailView.swift in Sources */,
 				F6EBF56C2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift in Sources */,
+				3519A8252CE0DC3000A16715 /* ReviewMainDetailView.swift in Sources */,
 				76096B022C8B1E0A0004BEE0 /* EventCardCell.swift in Sources */,
 				F6D5DB582CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift in Sources */,
 				76096A2D2C84FB440004BEE0 /* BaseBuilder.swift in Sources */,
@@ -1257,6 +1313,7 @@
 				F62D68492CA5ACB40090ADE5 /* Canvas.swift in Sources */,
 				F6EBF55C2CA441170058F7B2 /* TemplateEditorBuilder.swift in Sources */,
 				3519A7522CD7D00900A16715 /* GiftingOptionsRouter.swift in Sources */,
+				3519A8292CE0DF4D00A16715 /* ReviewTitledView.swift in Sources */,
 				3519A7532CD7D00900A16715 /* GiftingOptionsPresenter.swift in Sources */,
 				3519A7542CD7D00900A16715 /* GiftingOptionsController.swift in Sources */,
 				3519A7552CD7D00900A16715 /* GiftingOptionsBuilder.swift in Sources */,
@@ -1275,6 +1332,11 @@
 				76096A232C84FAD60004BEE0 /* LaunchRouter.swift in Sources */,
 				3519A8112CDE686E00A16715 /* AddGuestsmenuItem.swift in Sources */,
 				76096A5D2C861C550004BEE0 /* EventsController.swift in Sources */,
+				3519A81E2CE0DB5400A16715 /* ReviewBuilder.swift in Sources */,
+				3519A81F2CE0DB5400A16715 /* ReviewController.swift in Sources */,
+				3519A8202CE0DB5400A16715 /* ReviewRouter.swift in Sources */,
+				3519A8212CE0DB5400A16715 /* ReviewInteractor.swift in Sources */,
+				3519A8222CE0DB5400A16715 /* ReviewPresenter.swift in Sources */,
 				76096A5E2C861C550004BEE0 /* EventsInteractor.swift in Sources */,
 				F6EBF5672CA449380058F7B2 /* TileCollectionViewCell.swift in Sources */,
 				3519A7592CD7E20200A16715 /* GiftView.swift in Sources */,
@@ -1293,6 +1355,7 @@
 				F6F4AA3D2CC8220800071B0B /* CreateAccountRouter.swift in Sources */,
 				3519A7A62CD9191800A16715 /* GiftListView.swift in Sources */,
 				F6F4AA3E2CC8220800071B0B /* CreateAccountController.swift in Sources */,
+				3519A82D2CE24D8B00A16715 /* ReviewGiftsDetailView.swift in Sources */,
 				F6F4AA3F2CC8220800071B0B /* CreateAccountBuilder.swift in Sources */,
 				F6F4AA402CC8220800071B0B /* CreateAccountPresenter.swift in Sources */,
 				F6F4AA412CC8220800071B0B /* CreateAccountInteractor.swift in Sources */,
@@ -1309,6 +1372,7 @@
 				F6CBD9632CAB2AA300911DF7 /* FontSizePickerView.swift in Sources */,
 				F6D3CBA92CA2D2F600E29761 /* TextEditMenuView.swift in Sources */,
 				3519A8172CE0CB4700A16715 /* GuestCell.swift in Sources */,
+				3519A82B2CE2487E00A16715 /* ReviewLocationDetailView.swift in Sources */,
 				76096A402C8501950004BEE0 /* UIWindow+SwitchRoot.swift in Sources */,
 				F6D3CBB62CA2E76200E29761 /* ResizableView.swift in Sources */,
 				3519A80F2CDE685700A16715 /* AddGuestMenuView.swift in Sources */,

@@ -36,6 +36,7 @@ final class EventDetailsController: BaseScrollViewController {
     var locationsViewDetail = LocationsView(model: EventDetailsViewModel( coHosts: [CoHost(name: "Anna Smith", email: "")]))
     var noteFromHostView = NoteFromHostView(model: EventDetailsViewModel( coHosts: [CoHost(name: "Anna Smith", email: "")]))
     var bringListDetailView: BringListDetailView
+    
     private let bottomBarView = UIView()
     private let bottomDividerView = DividerView()
     private let backButton = UIButton(configuration: .image(image: .chewroneBack))
@@ -100,20 +101,6 @@ final class EventDetailsController: BaseScrollViewController {
         
         bottomBarView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: .zero, left: 16, bottom: .zero, right: 16), excludingEdge: .top)
         setUpBottomViewConstraints()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // Ensure the navigation bar is visible
-//        navigationController?.setNavigationBarHidden(false, animated: animated)
-//        self.title = "My Custom Title1"
-//           
-//           // Or, if you need a custom label
-//           let titleLabel = UILabel()
-//           titleLabel.text = "My Custom Title"
-//           titleLabel.sizeToFit()
-//           titleLabel.textAlignment = .center
-//           navigationItem.titleView = titleLabel
     }
     
     private func setUpBottomViewConstraints() {

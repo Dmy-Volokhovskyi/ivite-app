@@ -1,12 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "Слой 6_6.png",
+      "filename" : "Icon-5.svg",
       "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "template-rendering-intent" : "original"
   }
 }
