@@ -42,6 +42,14 @@
 		3519A82F2CE24E2E00A16715 /* ReviewGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A82E2CE24E2E00A16715 /* ReviewGiftView.swift */; };
 		3519A8312CE259C800A16715 /* ReviewGuestsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8302CE259C800A16715 /* ReviewGuestsDetailView.swift */; };
 		3519A8332CE25C6800A16715 /* ReviewGuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8322CE25C6800A16715 /* ReviewGuestView.swift */; };
+		3519A83A2CE2666200A16715 /* PaymentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8352CE2666200A16715 /* PaymentBuilder.swift */; };
+		3519A83B2CE2666200A16715 /* PaymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8362CE2666200A16715 /* PaymentController.swift */; };
+		3519A83C2CE2666200A16715 /* PaymentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8372CE2666200A16715 /* PaymentInteractor.swift */; };
+		3519A83D2CE2666200A16715 /* PaymentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8392CE2666200A16715 /* PaymentRouter.swift */; };
+		3519A83E2CE2666200A16715 /* PaymentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8382CE2666200A16715 /* PaymentPresenter.swift */; };
+		3519A8412CE26DCF00A16715 /* PaymentOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8402CE26DCF00A16715 /* PaymentOptionCell.swift */; };
+		3519A8432CE26DDA00A16715 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8422CE26DDA00A16715 /* RadioButton.swift */; };
+		3519A8452CE26E7F00A16715 /* PaymentOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8442CE26E7F00A16715 /* PaymentOption.swift */; };
 		356461B52CD4E1CF003350C5 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B42CD4E1CF003350C5 /* FirebaseCore */; };
 		356461B72CD4E1D3003350C5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B62CD4E1D3003350C5 /* FirebaseAuth */; };
 		356461B92CD4E1D8003350C5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B82CD4E1D8003350C5 /* FirebaseFirestore */; };
@@ -244,6 +252,14 @@
 		3519A82E2CE24E2E00A16715 /* ReviewGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewGiftView.swift; sourceTree = "<group>"; };
 		3519A8302CE259C800A16715 /* ReviewGuestsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewGuestsDetailView.swift; sourceTree = "<group>"; };
 		3519A8322CE25C6800A16715 /* ReviewGuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewGuestView.swift; sourceTree = "<group>"; };
+		3519A8352CE2666200A16715 /* PaymentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentBuilder.swift; sourceTree = "<group>"; };
+		3519A8362CE2666200A16715 /* PaymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentController.swift; sourceTree = "<group>"; };
+		3519A8372CE2666200A16715 /* PaymentInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentInteractor.swift; sourceTree = "<group>"; };
+		3519A8382CE2666200A16715 /* PaymentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentPresenter.swift; sourceTree = "<group>"; };
+		3519A8392CE2666200A16715 /* PaymentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentRouter.swift; sourceTree = "<group>"; };
+		3519A8402CE26DCF00A16715 /* PaymentOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentOptionCell.swift; sourceTree = "<group>"; };
+		3519A8422CE26DDA00A16715 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		3519A8442CE26E7F00A16715 /* PaymentOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentOption.swift; sourceTree = "<group>"; };
 		356461BC2CD4E2E5003350C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		356461C32CD4EA14003350C5 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		356461C82CD507EC003350C5 /* ProfileDetailsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsBuilder.swift; sourceTree = "<group>"; };
@@ -513,6 +529,28 @@
 				3519A82E2CE24E2E00A16715 /* ReviewGiftView.swift */,
 				3519A8302CE259C800A16715 /* ReviewGuestsDetailView.swift */,
 				3519A8322CE25C6800A16715 /* ReviewGuestView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3519A8342CE2665600A16715 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				3519A83F2CE26DC400A16715 /* View */,
+				3519A8352CE2666200A16715 /* PaymentBuilder.swift */,
+				3519A8362CE2666200A16715 /* PaymentController.swift */,
+				3519A8372CE2666200A16715 /* PaymentInteractor.swift */,
+				3519A8382CE2666200A16715 /* PaymentPresenter.swift */,
+				3519A8392CE2666200A16715 /* PaymentRouter.swift */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		3519A83F2CE26DC400A16715 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3519A8422CE26DDA00A16715 /* RadioButton.swift */,
+				3519A8402CE26DCF00A16715 /* PaymentOptionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1013,6 +1051,7 @@
 		F6EBF5552CA440D00058F7B2 /* CreatorFlow */ = {
 			isa = PBXGroup;
 			children = (
+				3519A8342CE2665600A16715 /* Payment */,
 				3519A8182CE0DB4500A16715 /* Review */,
 				3519A8022CDE676000A16715 /* AddGuests */,
 				3519A74C2CD7CFF500A16715 /* GiftingOptions */,
@@ -1040,6 +1079,7 @@
 		F6EBF5612CA446D70058F7B2 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				3519A8442CE26E7F00A16715 /* PaymentOption.swift */,
 				F6E32BF12CCFD08000D62C37 /* User */,
 				F62D68472CA5ACA90090ADE5 /* Canvas */,
 				F6EBF5622CA446EE0058F7B2 /* Layer.swift */,
@@ -1226,6 +1266,7 @@
 				3519A80A2CDE676D00A16715 /* AddGuestsPresenter.swift in Sources */,
 				3519A80B2CDE676D00A16715 /* AddGuestsInteractor.swift in Sources */,
 				3519A80C2CDE676D00A16715 /* AddGuestsRouter.swift in Sources */,
+				3519A8412CE26DCF00A16715 /* PaymentOptionCell.swift in Sources */,
 				3519A75D2CD7F15100A16715 /* GiftRegistryView.swift in Sources */,
 				76A34F952C8B5E61003D3E87 /* ContactCardCell.swift in Sources */,
 				F6936A2B2CB9621F00764197 /* EntryWithTitle.swift in Sources */,
@@ -1256,6 +1297,11 @@
 				76096A522C861C420004BEE0 /* ContactController.swift in Sources */,
 				76096A532C861C420004BEE0 /* ContactInteractor.swift in Sources */,
 				76096A542C861C420004BEE0 /* ContactRouter.swift in Sources */,
+				3519A83A2CE2666200A16715 /* PaymentBuilder.swift in Sources */,
+				3519A83B2CE2666200A16715 /* PaymentController.swift in Sources */,
+				3519A83C2CE2666200A16715 /* PaymentInteractor.swift in Sources */,
+				3519A83D2CE2666200A16715 /* PaymentRouter.swift in Sources */,
+				3519A83E2CE2666200A16715 /* PaymentPresenter.swift in Sources */,
 				76096B042C8B1E580004BEE0 /* BaseTableViewCell.swift in Sources */,
 				76096A552C861C420004BEE0 /* ContactBuilder.swift in Sources */,
 				F6CBD9672CAB328900911DF7 /* UIColor+Hex.swift in Sources */,
@@ -1298,6 +1344,7 @@
 				F66EC28D2CC6A3C300AE76B2 /* ActionsViewController.swift in Sources */,
 				3519A75B2CD7F11800A16715 /* PhotoLibraryManager.swift in Sources */,
 				3519A8312CE259C800A16715 /* ReviewGuestsDetailView.swift in Sources */,
+				3519A8452CE26E7F00A16715 /* PaymentOption.swift in Sources */,
 				F6EBF56C2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift in Sources */,
 				3519A8252CE0DC3000A16715 /* ReviewMainDetailView.swift in Sources */,
 				76096B022C8B1E0A0004BEE0 /* EventCardCell.swift in Sources */,
@@ -1344,6 +1391,7 @@
 				F6EBF5652CA4470C0058F7B2 /* CanvasResponse.swift in Sources */,
 				76096B002C8B1BF90004BEE0 /* EventCardModel.swift in Sources */,
 				F643D96D2CC928FF009A18F0 /* SignInController.swift in Sources */,
+				3519A8432CE26DDA00A16715 /* RadioButton.swift in Sources */,
 				F643D96E2CC928FF009A18F0 /* SignInRouter.swift in Sources */,
 				F643D96F2CC928FF009A18F0 /* SignInBuilder.swift in Sources */,
 				3519A8012CDE60F200A16715 /* EditGiftViewController.swift in Sources */,
