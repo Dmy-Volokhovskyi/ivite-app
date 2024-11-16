@@ -63,6 +63,13 @@
 		356461CF2CD507EC003350C5 /* ProfileDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461CC2CD507EC003350C5 /* ProfileDetailsRouter.swift */; };
 		356461D02CD507EC003350C5 /* ProfileDetailsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461C82CD507EC003350C5 /* ProfileDetailsBuilder.swift */; };
 		356461D12CD507EC003350C5 /* ProfileDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461CA2CD507EC003350C5 /* ProfileDetailsInteractor.swift */; };
+		35EEC6D82CE295B6003E7758 /* IVTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6D72CE295B6003E7758 /* IVTransitioningDelegate.swift */; };
+		35EEC6DA2CE295D7003E7758 /* IVPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6D92CE295D7003E7758 /* IVPresentAnimator.swift */; };
+		35EEC6DC2CE295EF003E7758 /* IVPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6DB2CE295EF003E7758 /* IVPresentationController.swift */; };
+		35EEC6DE2CE298B9003E7758 /* IVBottomPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6DD2CE298B9003E7758 /* IVBottomPresentAnimator.swift */; };
+		35EEC7ED2CE68B2B003E7758 /* ContentSizeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7EC2CE68B2B003E7758 /* ContentSizeProvider.swift */; };
+		35EEC7EF2CE690E9003E7758 /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7EE2CE690E9003E7758 /* ModalNavigationController.swift */; };
+		35EEC7F22CE7A723003E7758 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7F12CE7A723003E7758 /* AlertViewController.swift */; };
 		35F43D5E2CD51DD6000CE237 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F43D5D2CD51DD6000CE237 /* ChangePasswordView.swift */; };
 		35F43D602CD520E5000CE237 /* ChangeEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F43D5F2CD520E5000CE237 /* ChangeEmailView.swift */; };
 		35F43D632CD534FE000CE237 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 35F43D622CD534FE000CE237 /* SDWebImage */; };
@@ -143,7 +150,6 @@
 		F643D97B2CC93634009A18F0 /* ForgotPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9782CC93634009A18F0 /* ForgotPasswordRouter.swift */; };
 		F643D97C2CC93634009A18F0 /* ForgotPasswordBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9742CC93634009A18F0 /* ForgotPasswordBuilder.swift */; };
 		F643D97D2CC93634009A18F0 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9752CC93634009A18F0 /* ForgotPasswordController.swift */; };
-		F651E6EE2CBDAE9B007D195D /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F651E6ED2CBDAE9B007D195D /* AlertViewController.swift */; };
 		F651E6F12CBDAF41007D195D /* AddCoHostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F651E6F02CBDAF41007D195D /* AddCoHostViewController.swift */; };
 		F66EC28D2CC6A3C300AE76B2 /* ActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66EC28C2CC6A3C300AE76B2 /* ActionsViewController.swift */; };
 		F67F1CCD2CA43E3200F00044 /* FontSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67F1CCC2CA43E3200F00044 /* FontSelectionView.swift */; };
@@ -267,6 +273,13 @@
 		356461CA2CD507EC003350C5 /* ProfileDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsInteractor.swift; sourceTree = "<group>"; };
 		356461CB2CD507EC003350C5 /* ProfileDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsPresenter.swift; sourceTree = "<group>"; };
 		356461CC2CD507EC003350C5 /* ProfileDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsRouter.swift; sourceTree = "<group>"; };
+		35EEC6D72CE295B6003E7758 /* IVTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVTransitioningDelegate.swift; sourceTree = "<group>"; };
+		35EEC6D92CE295D7003E7758 /* IVPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVPresentAnimator.swift; sourceTree = "<group>"; };
+		35EEC6DB2CE295EF003E7758 /* IVPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVPresentationController.swift; sourceTree = "<group>"; };
+		35EEC6DD2CE298B9003E7758 /* IVBottomPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVBottomPresentAnimator.swift; sourceTree = "<group>"; };
+		35EEC7EC2CE68B2B003E7758 /* ContentSizeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizeProvider.swift; sourceTree = "<group>"; };
+		35EEC7EE2CE690E9003E7758 /* ModalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationController.swift; sourceTree = "<group>"; };
+		35EEC7F12CE7A723003E7758 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		35F43D5D2CD51DD6000CE237 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		35F43D5F2CD520E5000CE237 /* ChangeEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailView.swift; sourceTree = "<group>"; };
 		76096A012C84F8670004BEE0 /* ivite-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ivite-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -345,7 +358,6 @@
 		F643D9762CC93634009A18F0 /* ForgotPasswordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordInteractor.swift; sourceTree = "<group>"; };
 		F643D9772CC93634009A18F0 /* ForgotPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPresenter.swift; sourceTree = "<group>"; };
 		F643D9782CC93634009A18F0 /* ForgotPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRouter.swift; sourceTree = "<group>"; };
-		F651E6ED2CBDAE9B007D195D /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		F651E6F02CBDAF41007D195D /* AddCoHostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoHostViewController.swift; sourceTree = "<group>"; };
 		F66EC28C2CC6A3C300AE76B2 /* ActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsViewController.swift; sourceTree = "<group>"; };
 		F67F1CCC2CA43E3200F00044 /* FontSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSelectionView.swift; sourceTree = "<group>"; };
@@ -583,6 +595,35 @@
 			path = ProfileDetails;
 			sourceTree = "<group>";
 		};
+		35EEC6D52CE295A4003E7758 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				35EEC7F02CE692F3003E7758 /* Trash */,
+				35EEC6D62CE295AC003E7758 /* Transition */,
+			);
+			path = helpers;
+			sourceTree = "<group>";
+		};
+		35EEC6D62CE295AC003E7758 /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				35EEC7EC2CE68B2B003E7758 /* ContentSizeProvider.swift */,
+				35EEC7EE2CE690E9003E7758 /* ModalNavigationController.swift */,
+			);
+			path = Transition;
+			sourceTree = "<group>";
+		};
+		35EEC7F02CE692F3003E7758 /* Trash */ = {
+			isa = PBXGroup;
+			children = (
+				35EEC6DD2CE298B9003E7758 /* IVBottomPresentAnimator.swift */,
+				35EEC6DB2CE295EF003E7758 /* IVPresentationController.swift */,
+				35EEC6D92CE295D7003E7758 /* IVPresentAnimator.swift */,
+				35EEC6D72CE295B6003E7758 /* IVTransitioningDelegate.swift */,
+			);
+			path = Trash;
+			sourceTree = "<group>";
+		};
 		35F43D5C2CD51DC9000CE237 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +654,7 @@
 		76096A032C84F8670004BEE0 /* ivite-app */ = {
 			isa = PBXGroup;
 			children = (
+				35EEC6D52CE295A4003E7758 /* helpers */,
 				76096A7F2C8731990004BEE0 /* extensions */,
 				76096A1B2C84FA8A0004BEE0 /* app */,
 				F6EBF5612CA446D70058F7B2 /* model */,
@@ -819,6 +861,7 @@
 				F6936A342CB97DBB00764197 /* IVControl.swift */,
 				F68EA74E2CBEEC0400F935FA /* TextFieldValidationType.swift */,
 				F66EC28C2CC6A3C300AE76B2 /* ActionsViewController.swift */,
+				35EEC7F12CE7A723003E7758 /* AlertViewController.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -926,7 +969,6 @@
 		F651E6EC2CBDAE81007D195D /* IVAlert */ = {
 			isa = PBXGroup;
 			children = (
-				F651E6ED2CBDAE9B007D195D /* AlertViewController.swift */,
 			);
 			path = IVAlert;
 			sourceTree = "<group>";
@@ -1242,10 +1284,10 @@
 				F6E32BF52CCFD76900D62C37 /* ProfileMenuItem.swift in Sources */,
 				F6936A352CB97DBB00764197 /* IVControl.swift in Sources */,
 				76096AF22C88F75E0004BEE0 /* MainSearchBarView.swift in Sources */,
+				35EEC7ED2CE68B2B003E7758 /* ContentSizeProvider.swift in Sources */,
 				F6D3CBA62CA2D21600E29761 /* TextEditMenu.swift in Sources */,
 				F6D3CBB22CA2E36C00E29761 /* GripViewBorderView.swift in Sources */,
 				3519A8132CDE77D500A16715 /* SearchFilterView.swift in Sources */,
-				F651E6EE2CBDAE9B007D195D /* AlertViewController.swift in Sources */,
 				76096AF62C89FAF80004BEE0 /* SearchBar.swift in Sources */,
 				F6EBF5632CA446EE0058F7B2 /* Layer.swift in Sources */,
 				F6936A2D2CB9720200764197 /* BaseScrollViewController.swift in Sources */,
@@ -1274,6 +1316,7 @@
 				F6F4AA442CC8328300071B0B /* TermsAndServicesView.swift in Sources */,
 				76096A762C861C990004BEE0 /* MainScreenBuilder.swift in Sources */,
 				76096A772C861C990004BEE0 /* MainScreenPresenter.swift in Sources */,
+				35EEC6DA2CE295D7003E7758 /* IVPresentAnimator.swift in Sources */,
 				3519A8332CE25C6800A16715 /* ReviewGuestView.swift in Sources */,
 				F6936A212CB9608200764197 /* EventDetailsBuilder.swift in Sources */,
 				F6936A222CB9608200764197 /* EventDetailsPresenter.swift in Sources */,
@@ -1306,6 +1349,7 @@
 				76096A552C861C420004BEE0 /* ContactBuilder.swift in Sources */,
 				F6CBD9672CAB328900911DF7 /* UIColor+Hex.swift in Sources */,
 				F6936A312CB972DE00764197 /* EventDetailsViewModel.swift in Sources */,
+				35EEC6DC2CE295EF003E7758 /* IVPresentationController.swift in Sources */,
 				F6EBF5702CA4A1EA0058F7B2 /* CreationFlowBuilder.swift in Sources */,
 				F6EBF56A2CA4496F0058F7B2 /* TileModel.swift in Sources */,
 				76096A562C861C420004BEE0 /* ContactPresenter.swift in Sources */,
@@ -1324,6 +1368,7 @@
 				F6936A3F2CBA903000764197 /* IVTextView.swift in Sources */,
 				76A34F8F2C8B5035003D3E87 /* TableViewBackgroundView.swift in Sources */,
 				76096A4A2C861C1B0004BEE0 /* HomePresenter.swift in Sources */,
+				35EEC6D82CE295B6003E7758 /* IVTransitioningDelegate.swift in Sources */,
 				F6F3C72A2CCA85DF00ED966A /* AuthentificationService.swift in Sources */,
 				F6936A292CB960B100764197 /* IVHeaderLabel.swift in Sources */,
 				F68EA7512CBEEE0D00F935FA /* DatePickerViewController.swift in Sources */,
@@ -1347,7 +1392,9 @@
 				3519A8452CE26E7F00A16715 /* PaymentOption.swift in Sources */,
 				F6EBF56C2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift in Sources */,
 				3519A8252CE0DC3000A16715 /* ReviewMainDetailView.swift in Sources */,
+				35EEC7EF2CE690E9003E7758 /* ModalNavigationController.swift in Sources */,
 				76096B022C8B1E0A0004BEE0 /* EventCardCell.swift in Sources */,
+				35EEC6DE2CE298B9003E7758 /* IVBottomPresentAnimator.swift in Sources */,
 				F6D5DB582CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift in Sources */,
 				76096A2D2C84FB440004BEE0 /* BaseBuilder.swift in Sources */,
 				F68EA74F2CBEEC0400F935FA /* TextFieldValidationType.swift in Sources */,
@@ -1366,6 +1413,7 @@
 				3519A7552CD7D00900A16715 /* GiftingOptionsBuilder.swift in Sources */,
 				3519A7562CD7D00900A16715 /* GiftingOptionsInteractor.swift in Sources */,
 				3519A8152CE0C9E000A16715 /* Guest.swift in Sources */,
+				35EEC7F22CE7A723003E7758 /* AlertViewController.swift in Sources */,
 				F6EBF55D2CA441170058F7B2 /* TemplateEditorInteractor.swift in Sources */,
 				3519A7AB2CD9267400A16715 /* GiftPlaceholderImage.swift in Sources */,
 				F6EBF55E2CA441170058F7B2 /* TemplateEditorController.swift in Sources */,

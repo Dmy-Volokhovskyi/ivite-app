@@ -33,4 +33,47 @@ class BaseRouter {
 //        guard let window = UIApplication.shared.sceneDelegate?.window else { return }
 //        window.changeRootViewController(to: viewController, animated: true, duration: 0.2, options: [], completion: { })
     }
+    
+    func showActions(actions: [ActionItem], global: Bool = false) {
+        // Create an instance of ActionsViewController and set actions
+        let actionsVC = ActionsViewController()
+        actionsVC.setActions(actions)
+        
+        // Wrap ActionsViewController in a ModalNavigationController
+        let navigationController = ModalNavigationController(rootViewController: actionsVC)
+        navigationController.isFullScreen = false
+
+        // Determine the presenting controller
+        var controller = self.controller
+        if global {
+            while controller?.presentedViewController != nil {
+                controller = controller?.presentedViewController
+            }
+        }
+        
+        // Present the navigation controller
+        controller?.present(navigationController, animated: true)
+    }
+    
+    func showAlert(alertItem: AlertItem, global: Bool = false) {
+        // Create an instance of AlertViewController and set the AlertItem
+        let alertVC = AlertViewController()
+        alertVC.setAlertItem(alertItem)
+        
+        // Wrap AlertViewController in a ModalNavigationController
+        let navigationController = ModalNavigationController(rootViewController: alertVC)
+        navigationController.isFullScreen = false
+
+        // Determine the presenting controller
+        var controller = self.controller
+        if global {
+            while controller?.presentedViewController != nil {
+                controller = controller?.presentedViewController
+            }
+        }
+        
+        // Present the navigation controller
+        controller?.present(navigationController, animated: true)
+    }
+
 }

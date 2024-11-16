@@ -18,12 +18,12 @@ final class GiftingOptionsPresenter: BasePresenter {
 extension GiftingOptionsPresenter: GiftingOptionsEventHandler {
     func didTouchMenuButton(for gift: Gift) {
         guard let viewInterface else { return }
-        let editAction = ActionItem(title: "Edit", image: UIImage(systemName: "pencil")) {
+        let editAction = ActionItem(title: "Edit", image: UIImage(systemName: "pencil"), isPrimary: true) {
         #warning("Present edit gift view")
             print("Edit tapped")
         }
         
-        let deleteAction = ActionItem(title: "Delete", image: UIImage(systemName: "trash")) {
+        let deleteAction = ActionItem(title: "Delete", image: UIImage(systemName: "trash"), isPrimary: true) {
             guard let index = self.interactor.gifts.firstIndex(where: { $0.id == gift.id }) else { return }
             self.interactor.gifts.remove(at: index)
             viewInterface.updateGifts(with: self.interactor.gifts)

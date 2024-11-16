@@ -58,11 +58,11 @@ final class EventDetailsRouter: BaseRouter {
             sheet.prefersGrabberVisible = true // Show the grabber at the top of the sheet
         }
         #warning("transition the actions to the presenter and work about them")
-        let editAction = ActionItem(title: "Edit", image: UIImage(systemName: "pencil")) {
+        let editAction = ActionItem(title: "Edit", image: UIImage(systemName: "pencil"), isPrimary: true) {
             print("Edit tapped")
         }
 
-        let deleteAction = ActionItem(title: "Delete", image: UIImage(systemName: "trash")) {
+        let deleteAction = ActionItem(title: "Delete", image: UIImage(systemName: "trash"), isPrimary: true) {
             print("Delete tapped")
         }
 

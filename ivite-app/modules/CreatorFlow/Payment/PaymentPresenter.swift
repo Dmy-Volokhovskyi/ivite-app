@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 protocol PaymentViewInterface: AnyObject {
     func reload()
@@ -21,7 +22,27 @@ extension PaymentPresenter: PaymentEventHandler {
     }
     
     func didTouchNextButton() {
+        guard let viewInterface else { return }
+//        router.showActions(actions: [ ActionItem(title: "Edit", image: UIImage(systemName: "pencil")) { print("Edit tapped") },
+//                                      ActionItem(title: "Delete", image: UIImage(systemName: "trash")) { print("Delete tapped") }
+//                                    ])
         
+        let actions = [
+            ActionItem(title: "Confirm", image: UIImage(systemName: "checkmark"), isPrimary: true) {
+                print("Confirm tapped")
+            },
+            ActionItem(title: "Cancel", image: UIImage(systemName: "xmark"), isPrimary: false) {
+                print("Cancel tapped")
+            }
+        ]
+
+        let alertItem = AlertItem(
+            title: "Alert Title",
+            message: "This is an alert message.",
+            actions: actions
+        )
+
+        router.showAlert(alertItem: alertItem)
     }
     
     func didSelectOption(at indexPath: IndexPath) {
