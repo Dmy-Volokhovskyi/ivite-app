@@ -11,7 +11,6 @@ import PureLayout
 final class NoteFromHostView: BaseView {
     private let model: EventDetailsViewModel
     
-    // UI Elements
     private let headerLabel = IVHeaderLabel(text: "Note from host")
     private let noteEntryView = EntryWithTitleView(title: "Note")
     private let noteTextView: IVTextView
@@ -35,8 +34,8 @@ final class NoteFromHostView: BaseView {
         // Configure text view appearance if needed
         noteTextView.layer.cornerRadius = 16
         noteTextView.backgroundColor = .lightGray.withAlphaComponent(0.1)
-        
         // Set the text view as content for the entry view
+        noteTextView.delegate = self
         noteEntryView.setContentView(noteTextView)
     }
     
@@ -60,5 +59,11 @@ final class NoteFromHostView: BaseView {
         noteEntryView.autoPinEdge(toSuperviewEdge: .leading, withInset: 0)
         noteEntryView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 0)
         noteEntryView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 16)
+    }
+}
+
+extension NoteFromHostView: IVTextViewdDelegate {
+    func textViewdDidChange(_ textView: IVTextView) {
+        model.note = textView.text
     }
 }

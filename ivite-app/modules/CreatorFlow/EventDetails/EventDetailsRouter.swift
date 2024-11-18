@@ -2,26 +2,26 @@ import UIKit
 
 final class EventDetailsRouter: BaseRouter {
     
-    func presentAddCoHostViewController(from viewController: UIViewController, delegate: AddCoHostViewControllerDelegate) {
-        // Initialize AddCoHostViewController
-        let addCoHostVC = AddCoHostViewController()
-        addCoHostVC.delegate = delegate // Set the delegate if needed
-        
-        // Wrap the controller in a UINavigationController, if necessary
-        let navigationController = UINavigationController(rootViewController: addCoHostVC)
-        
-        // Configure the modal presentation style
-        navigationController.modalPresentationStyle = .pageSheet
-        
-        // iOS 15+ customization for sheet behavior
-        if let sheet = navigationController.sheetPresentationController {
-            sheet.detents = [.medium(), .large()] // Allow both medium and large detents
-            sheet.prefersGrabberVisible = true // Show the grabber at the top of the sheet
-        }
-        
-        // Present the view controller
-        viewController.present(navigationController, animated: true, completion: nil)
-    }
+//    func presentAddCoHostViewController(from viewController: UIViewController, delegate: AddCoHostViewControllerDelegate) {
+//        // Initialize AddCoHostViewController
+//        let addCoHostVC = AddCoHostViewController()
+//        addCoHostVC.delegate = delegate // Set the delegate if needed
+//        
+//        // Wrap the controller in a UINavigationController, if necessary
+//        let navigationController = UINavigationController(rootViewController: addCoHostVC)
+//        
+//        // Configure the modal presentation style
+//        navigationController.modalPresentationStyle = .pageSheet
+//        
+//        // iOS 15+ customization for sheet behavior
+//        if let sheet = navigationController.sheetPresentationController {
+//            sheet.detents = [.medium(), .large()] // Allow both medium and large detents
+//            sheet.prefersGrabberVisible = true // Show the grabber at the top of the sheet
+//        }
+//        
+//        // Present the view controller
+//        viewController.present(navigationController, animated: true, completion: nil)
+//    }
     
     func presentDatePickerViewController(from viewController: UIViewController, delegate: DatePickerViewControllerDelegate) {
         // Initialize AddCoHostViewController

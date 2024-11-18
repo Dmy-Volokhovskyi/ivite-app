@@ -7,9 +7,20 @@
 
 import Foundation
 
-struct EventDetailsViewModel {
-    var eventTitle: String?
-    var date: Date?
+protocol EventDetailsViewModelDelegate: AnyObject {
+    func isReadyToSaveChanged(to value: Bool)
+}
+
+class EventDetailsViewModel {
+    var eventTitle: String? {
+        didSet { notifyIsReadyToSaveChanged() }
+    }
+    var date: Date? {
+        didSet { notifyIsReadyToSaveChanged() }
+    }
+    var timeZone: String? {
+        didSet { notifyIsReadyToSaveChanged() }
+    }
     // Host
     var hostName: String?
     var coHosts: [CoHost] = []
@@ -22,6 +33,17 @@ struct EventDetailsViewModel {
     // Bring List
     var isBringListActive: Bool = false
     var bringList: [BringListItem] = [BringListItem()]
+    
+    weak var delegate: EventDetailsViewModelDelegate?
+    
+    var isReadyToSave: Bool {
+        !(eventTitle?.isEmpty ?? true) && date != nil && !(timeZone?.isEmpty ?? true)
+    }
+    
+    private func notifyIsReadyToSaveChanged() {
+        print(isReadyToSave, "IS READY")
+        delegate?.isReadyToSaveChanged(to: isReadyToSave)
+    }
 }
 
 extension EventDetailsViewModel {

@@ -79,11 +79,13 @@ class ActionsViewController: BaseViewController {
     @objc private func buttonTapped(_ sender: UIButton) {
         let actionIndex = sender.tag
         let action = actions[actionIndex]
-        action.handler()
+        dismissVC() {
+            action.handler()
+        }
     }
     
-    @objc private func dismissVC() {
-        dismiss(animated: true, completion: nil)
+    @objc private func dismissVC(completion: (() -> Void)?) {
+        dismiss(animated: true, completion: completion)
     }
     
     private func setupStackView() {

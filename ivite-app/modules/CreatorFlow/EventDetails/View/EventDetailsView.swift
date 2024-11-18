@@ -9,10 +9,11 @@ import UIKit
 
 protocol EventDetailsViewDelegate: AnyObject {
     func eventDetailsViewDidTapPickDate(_ view: EventDetailsView)
+    func eventDetailsViewDidTapPickTimezone(_ view: IVControl)
 }
 
 final class EventDetailsView: BaseView {
-    private let model: EventDetailsViewModel
+    private var model: EventDetailsViewModel
     private let eventDetailsTitleLabel = IVHeaderLabel(text: "Event Details")
     private let eventTitleTextFiel = IVTextField(placeholder: "Your event Title")
     private let eventTitleEntry = EntryWithTitleView(title: "Event Title", isRequired: true)
@@ -20,7 +21,6 @@ final class EventDetailsView: BaseView {
     private let eventDateEntry = EntryWithTitleView(title: "Date/time", isRequired: true)
     private let timePickerStack = UIStackView()
     private let timePicker: IVControl
-    #warning("Add timezone picker")
     private let timezonePicker = IVControl(text: "WST")
     
     weak var delegate: EventDetailsViewDelegate?
@@ -45,6 +45,13 @@ final class EventDetailsView: BaseView {
         
         eventTitleEntry.setContentView(eventTitleTextFiel)
         eventDateEntry.setContentView(dateTextControl)
+        
+        eventTitleTextFiel.delegate = self
+        
+        dateTextControl.addTarget(self, action: #selector(didTouchDatePicker), for: .touchUpInside)
+        timePicker.addTarget(self, action: #selector(didTouchDatePicker), for: .touchUpInside)
+        timezonePicker.addTarget(self, action: #selector(didTouchTimezonePicker), for: .touchUpInside)
+
     }
     
     override func addSubviews() {
@@ -59,8 +66,6 @@ final class EventDetailsView: BaseView {
         
         timePickerStack.addArrangedSubview(timePicker)
         timePickerStack.addArrangedSubview(timezonePicker)
-        
-        dateTextControl.addTarget(self, action: #selector(didTouchDatePicker), for: .touchUpInside)
     }
     
     override func constrainSubviews() {
@@ -83,12 +88,27 @@ final class EventDetailsView: BaseView {
     }
     
     @objc func didTouchDatePicker(_ sender: UIControl) {
-        print("HellO! MDFK!")
         delegate?.eventDetailsViewDidTapPickDate(self)
+    }
+    
+    @objc func didTouchTimezonePicker(_ sender: IVControl) {
+        delegate?.eventDetailsViewDidTapPickTimezone(sender)
     }
     
     public func updateTimeDate(with time: String, date: String) {
         dateTextControl.text = date
         timePicker.text = time
+    }
+    
+    public func updateTimezone(with timezone: String) {
+        timezonePicker.text = timezone.timezoneShortAbbreviation
+    }
+}
+
+extension EventDetailsView: IVTextFieldDelegate {
+    func textFieldDidChange(_ textField: IVTextField) {
+        if textField == eventTitleTextFiel {
+            model.eventTitle = textField.text
+        }
     }
 }

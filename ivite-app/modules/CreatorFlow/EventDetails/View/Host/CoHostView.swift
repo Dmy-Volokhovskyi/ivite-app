@@ -54,6 +54,7 @@ final class CoHostView: BaseView {
         
         menuButton.autoPinEdge(.leading, to: .trailing, of: nameTextField, withOffset: 12)
         menuButton.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .leading)
+        menuButton.autoMatch(.width, to: .height, of: menuButton)
         
         menuButton.setContentHuggingPriority(.defaultLow, for: .horizontal)
         menuButton.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)

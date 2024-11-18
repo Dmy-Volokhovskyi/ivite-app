@@ -33,10 +33,12 @@ class AlertViewController: BaseViewController {
         titleLabel.textColor = .secondary1
         titleLabel.font = .interFont(ofSize: 24, weight: .bold)
         titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 0
         
         messageLabel.textColor = .secondary1
         messageLabel.font = .interFont(ofSize: 16, weight: .regular)
         messageLabel.textAlignment = .center
+        messageLabel.numberOfLines = 0
         
         view.backgroundColor = .clear
     }

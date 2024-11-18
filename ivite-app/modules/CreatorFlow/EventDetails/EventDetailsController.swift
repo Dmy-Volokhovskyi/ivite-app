@@ -1,28 +1,19 @@
 import UIKit
 
-// TODO: - ADd SCroll inset ++
-// TODO: - add keyboard dismiss fot scrollView ++
-// TODO: - add regex support++
-// TODO: - make allertSheet
-// TODO: - make editSheet
-// TODO: - add secondryButtonStyle
-// TODO: - add time Picker++
-// TODO: - add cohost addition sheet.
-// TODO: - add cohost deletion sheet
-// TODO: - add date picker++
-// TODO: - add time picker++
-
 protocol EventDetailsEventHandler: AnyObject {
     func didTapAddCoHostButton()
     func didTapPickDateButton()
     func didTouchMenu(for coHost: CoHost)
     func didTouchBackButton()
     func didTouchNextButton()
+    func didSelectTimeZone(_ timeZone: String)
+    func requestDeleteItem(for bringItem: BringListItem)
 }
 
 protocol EventDetailsDataSource: AnyObject {
     var coHosts: [CoHost] { get }
     var model: EventDetailsViewModel { get }
+    var selectedTimeZone: String? { get }
 }
 
 final class EventDetailsController: BaseScrollViewController {
@@ -30,11 +21,10 @@ final class EventDetailsController: BaseScrollViewController {
     private let dataSource: EventDetailsDataSource
     
     private let stackView = UIStackView()
-    #warning("Put the righ model in")
-    private let eventDetailsView = EventDetailsView(model: EventDetailsViewModel( coHosts: []))
+    private let eventDetailsView: EventDetailsView
     private let hostDetailsView: HostView
-    var locationsViewDetail = LocationsView(model: EventDetailsViewModel( coHosts: [CoHost(name: "Anna Smith", email: "")]))
-    var noteFromHostView = NoteFromHostView(model: EventDetailsViewModel( coHosts: [CoHost(name: "Anna Smith", email: "")]))
+    private let locationsViewDetail: LocationsView
+    var noteFromHostView: NoteFromHostView
     var bringListDetailView: BringListDetailView
     
     private let bottomBarView = UIView()
@@ -46,8 +36,11 @@ final class EventDetailsController: BaseScrollViewController {
         self.eventHandler = eventHandler
         self.dataSource = dataSource
         
+        self.eventDetailsView = EventDetailsView(model: dataSource.model)
         self.hostDetailsView = HostView(model: dataSource.model)
         self.bringListDetailView = BringListDetailView(model: dataSource.model)
+        self.locationsViewDetail = LocationsView(model: dataSource.model)
+        self.noteFromHostView = NoteFromHostView(model: dataSource.model)
         super.init()
     }
     
@@ -63,10 +56,13 @@ final class EventDetailsController: BaseScrollViewController {
         bottomBarView.backgroundColor = .white
         hostDetailsView.delegate = self
         eventDetailsView.delegate = self
+        bringListDetailView.delegate = self
         
         backButton.addTarget(self, action: #selector(didTouchBackButton), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(didTouchNextButton), for: .touchUpInside)
         view.backgroundColor = .white
+        
+        nextButton.IVsetEnabled(false, title: "Next")
     }
     
     override func addSubviews() {
@@ -128,16 +124,58 @@ final class EventDetailsController: BaseScrollViewController {
         setBottomInset(inset: bottomBarView.frame.height)
     }
     
+    private func showTimeZonePicker(sender: UIView) {
+        let controller = TimeZonePickerController(selectedTimeZoneIdentifier: dataSource.selectedTimeZone)
+        controller.delegate = self
+        controller.modalPresentationStyle = .popover
+        controller.popoverPresentationController?.sourceView = sender
+        controller.popoverPresentationController?.delegate = self
+        present(controller, animated: true)
+    }
+    
     @objc private func didTouchBackButton(_ sender: UIButton) {
         eventHandler.didTouchBackButton()
     }
     
     @objc private func didTouchNextButton(_ sender: UIButton) {
+        let model = dataSource.model
+        print("Event Title: \(model.eventTitle ?? "None")")
+        print("Date: \(model.date?.description ?? "None")")
+        print("Time Zone: \(model.timeZone ?? "None")")
+        
+        // Host
+        print("Host Name: \(model.hostName ?? "None")")
+        print("Co-Hosts: \(model.coHosts.map { $0.name })") // Replace `description` with a relevant property if needed
+        
+        // Location
+        print("City: \(model.city ?? "None")")
+        print("Location: \(model.location ?? "None")")
+        print("State: \(model.state ?? "None")")
+        print("Zip Code: \(model.zipCode ?? "None")")
+        
+        // Notes
+        print("Note: \(model.note ?? "None")")
+        
+        // Bring List
+        print("Is Bring List Active: \(model.isBringListActive ? "Yes" : "No")")
+        print("Bring List: \(model.bringList.map { $0.name })")
         eventHandler.didTouchNextButton()
     }
 }
 
 extension EventDetailsController: EventDetailsViewInterface {
+    func updateBringList() {
+        bringListDetailView.updateModel(with: dataSource.model)
+    }
+    
+    func isReadyToSaveChanges(ready: Bool) {
+        nextButton.IVsetEnabled(ready, title: "Next")
+    }
+    
+    func updateTimezone(with timeZone: String) {
+        eventDetailsView.updateTimezone(with: timeZone)
+    }
+    
     func updateDateView(with time: String, date: String) {
         eventDetailsView.updateTimeDate(with: time, date: date)
     }
@@ -158,7 +196,62 @@ extension EventDetailsController: HostViewDelegate {
 }
 
 extension EventDetailsController: EventDetailsViewDelegate {
+    func eventDetailsViewDidTapPickTimezone(_ view: IVControl) {
+        showTimeZonePicker(sender: view)
+    }
+    
     func eventDetailsViewDidTapPickDate(_ view: EventDetailsView) {
         eventHandler.didTapPickDateButton()
+    }
+}
+
+extension EventDetailsController: TimeZonePickerDelegate {
+    func didSelectTimeZone(_ timeZone: String) {
+        print("Selected TimeZone: \(timeZone)")
+        eventHandler.didSelectTimeZone(timeZone)
+        dismiss(animated: true)
+    }
+}
+
+extension EventDetailsController: BringListDetailViewDelegate {
+    func bringListDetailView(_ view: BringListDetailView, requestDeleteItem item: BringListItem) {
+        eventHandler.requestDeleteItem(for: item)
+    }
+}
+
+extension EventDetailsController: UIPopoverPresentationControllerDelegate {
+    public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        .none
+    }
+}
+
+extension UIButton {
+    // Disable the button with its current title
+    func IVdisable() {
+        if let currentTitle = self.title(for: .normal) {
+            print(self.attributedTitle(for: .normal))
+            self.configuration = .disabledPrimary(title: currentTitle)
+        }
+        self.isUserInteractionEnabled = false
+    }
+    
+    // Enable the button with its current title
+    func IVenable() {
+        if let currentTitle = self.title(for: .normal) {
+            self.configuration = .primary(title: currentTitle)
+        }
+        self.isUserInteractionEnabled = true
+    }
+    
+    // Set the button state with a custom title
+    func IVsetEnabled(_ enabled: Bool, title: String? = nil) {
+        let effectiveTitle = title ?? self.title(for: .normal) ?? ""
+        print(self.attributedTitle(for: .normal))
+        if enabled {
+            self.configuration = .primary(title: effectiveTitle)
+        } else {
+            self.configuration = .disabledPrimary(title: effectiveTitle)
+        }
+        self.isUserInteractionEnabled = enabled
     }
 }

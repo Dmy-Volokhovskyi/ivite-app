@@ -8,11 +8,21 @@
 import UIKit
 import PureLayout
 
+protocol IVTextViewdDelegate: AnyObject {
+    func textViewdDidChange(_ textView: IVTextView)
+}
+
 final class IVTextView: BaseControll, UITextViewDelegate {
     private var placeholder: String = ""
     private let textView = UITextView()
     private let placeholderLabel = UILabel()
+    
+    var text: String? {
+        get { textView.text }
+        set { textView.text = newValue }
+    }
 
+    weak var delegate: IVTextViewdDelegate?
     // Initializer
     init(text: String? = "", placeholder: String = "") {
         self.placeholder = placeholder
@@ -76,6 +86,7 @@ final class IVTextView: BaseControll, UITextViewDelegate {
 
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
+        delegate?.textViewdDidChange(self)
     }
 
     // Make the text view become first responder

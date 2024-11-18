@@ -26,7 +26,6 @@ final class DatePickerViewController: BaseViewController {
         // Configure date picker
         datePicker.datePickerMode = .dateAndTime
         datePicker.preferredDatePickerStyle = .inline
-//        datePicker.tintColor = . // Use your app's accent color
         
         saveButton.addTarget(self, action: #selector(didTouchSaveButton), for: .touchUpInside)
     }

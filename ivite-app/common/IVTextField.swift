@@ -7,6 +7,11 @@
 
 import UIKit
 import PureLayout
+
+protocol IVTextFieldDelegate: AnyObject {
+    func textFieldDidChange(_ textField: IVTextField)
+}
+
 final class IVTextField: BaseControll, UITextFieldDelegate {
     private let contentStackView = UIStackView()
     private var leadingImageView = UIImageView()
@@ -27,6 +32,19 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
         set { textField.text = newValue }
     }
     
+    var isValid: Bool {
+        switch validationType {
+        case .email:
+            return validationType.isValid(textField.text)
+        case .zipCode:
+            return (textField.text?.count ?? 0) == 10 // Example: ZIP Code has 10 characters
+        case .none:
+            return !(textField.text?.isEmpty ?? true) // Valid if not empty
+        }
+    }
+    
+    weak var delegate: IVTextFieldDelegate?
+    
     // Initializer
     init(text: String? = "",
          placeholder: String = "",
@@ -35,7 +53,7 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
          validationType: TextFieldValidationType = .none) {
         self.placeholder = placeholder
         self.validationType = validationType
-      
+        
         super.init(frame: .zero)
         
         leadingImageView.image = leadingImage
@@ -111,7 +129,7 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
         guard validationType == .zipCode else {
             return true // Allow regular input if not zip code validation
         }
-
+        
         // Restrict input to numbers and dash
         let allowedCharacters = CharacterSet(charactersIn: "0123456789-").inverted
         let filtered = string.components(separatedBy: allowedCharacters).joined()
@@ -122,7 +140,7 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
         
         // Get the current text, including the newly typed character
         let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
-
+        
         // Format the zip code: 12345 or 12345-6789
         if currentText.count > 10 {
             return false // Limit to 10 characters
@@ -132,16 +150,18 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
             textField.text = currentText.prefix(5) + "-" + currentText.suffix(1) // Insert dash after 5 digits
             return false
         }
-
+        
         return true
     }
-
+    
     @objc private func textFieldDidChange() {
+        text = textField.text
         if validationType == .email, !validationType.isValid(textField.text) {
-            textField.layer.borderWidth = 1
-            textField.layer.borderColor = UIColor.red.cgColor
+            self.layer.borderWidth = 1
+            self.layer.borderColor = UIColor.red.cgColor
         } else {
-            textField.layer.borderWidth = 0
+            self.layer.borderWidth = 0
         }
+        delegate?.textFieldDidChange(self)
     }
 }

@@ -70,6 +70,11 @@
 		35EEC7ED2CE68B2B003E7758 /* ContentSizeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7EC2CE68B2B003E7758 /* ContentSizeProvider.swift */; };
 		35EEC7EF2CE690E9003E7758 /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7EE2CE690E9003E7758 /* ModalNavigationController.swift */; };
 		35EEC7F22CE7A723003E7758 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7F12CE7A723003E7758 /* AlertViewController.swift */; };
+		35EEC7F42CE8D808003E7758 /* FloatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7F32CE8D808003E7758 /* FloatingViewController.swift */; };
+		35EEC7F62CEA6F13003E7758 /* TimeZonePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7F52CEA6F13003E7758 /* TimeZonePickerController.swift */; };
+		35EEC7F82CEA6F7F003E7758 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7F72CEA6F7F003E7758 /* BaseTableViewController.swift */; };
+		35EEC7FA2CEA773C003E7758 /* Timezone+FormatedDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7F92CEA773C003E7758 /* Timezone+FormatedDescription.swift */; };
+		35EEC7FC2CEA798F003E7758 /* String+TimezoneAbreviation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7FB2CEA798F003E7758 /* String+TimezoneAbreviation.swift */; };
 		35F43D5E2CD51DD6000CE237 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F43D5D2CD51DD6000CE237 /* ChangePasswordView.swift */; };
 		35F43D602CD520E5000CE237 /* ChangeEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F43D5F2CD520E5000CE237 /* ChangeEmailView.swift */; };
 		35F43D632CD534FE000CE237 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 35F43D622CD534FE000CE237 /* SDWebImage */; };
@@ -150,7 +155,7 @@
 		F643D97B2CC93634009A18F0 /* ForgotPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9782CC93634009A18F0 /* ForgotPasswordRouter.swift */; };
 		F643D97C2CC93634009A18F0 /* ForgotPasswordBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9742CC93634009A18F0 /* ForgotPasswordBuilder.swift */; };
 		F643D97D2CC93634009A18F0 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F643D9752CC93634009A18F0 /* ForgotPasswordController.swift */; };
-		F651E6F12CBDAF41007D195D /* AddCoHostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F651E6F02CBDAF41007D195D /* AddCoHostViewController.swift */; };
+		F651E6F12CBDAF41007D195D /* AddCoHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F651E6F02CBDAF41007D195D /* AddCoHostView.swift */; };
 		F66EC28D2CC6A3C300AE76B2 /* ActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66EC28C2CC6A3C300AE76B2 /* ActionsViewController.swift */; };
 		F67F1CCD2CA43E3200F00044 /* FontSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67F1CCC2CA43E3200F00044 /* FontSelectionView.swift */; };
 		F67F1CD02CA43E9500F00044 /* FontTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67F1CCF2CA43E9500F00044 /* FontTableViewCell.swift */; };
@@ -280,6 +285,11 @@
 		35EEC7EC2CE68B2B003E7758 /* ContentSizeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizeProvider.swift; sourceTree = "<group>"; };
 		35EEC7EE2CE690E9003E7758 /* ModalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationController.swift; sourceTree = "<group>"; };
 		35EEC7F12CE7A723003E7758 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		35EEC7F32CE8D808003E7758 /* FloatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingViewController.swift; sourceTree = "<group>"; };
+		35EEC7F52CEA6F13003E7758 /* TimeZonePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZonePickerController.swift; sourceTree = "<group>"; };
+		35EEC7F72CEA6F7F003E7758 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		35EEC7F92CEA773C003E7758 /* Timezone+FormatedDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timezone+FormatedDescription.swift"; sourceTree = "<group>"; };
+		35EEC7FB2CEA798F003E7758 /* String+TimezoneAbreviation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+TimezoneAbreviation.swift"; sourceTree = "<group>"; };
 		35F43D5D2CD51DD6000CE237 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		35F43D5F2CD520E5000CE237 /* ChangeEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailView.swift; sourceTree = "<group>"; };
 		76096A012C84F8670004BEE0 /* ivite-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ivite-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -358,7 +368,7 @@
 		F643D9762CC93634009A18F0 /* ForgotPasswordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordInteractor.swift; sourceTree = "<group>"; };
 		F643D9772CC93634009A18F0 /* ForgotPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPresenter.swift; sourceTree = "<group>"; };
 		F643D9782CC93634009A18F0 /* ForgotPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRouter.swift; sourceTree = "<group>"; };
-		F651E6F02CBDAF41007D195D /* AddCoHostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoHostViewController.swift; sourceTree = "<group>"; };
+		F651E6F02CBDAF41007D195D /* AddCoHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoHostView.swift; sourceTree = "<group>"; };
 		F66EC28C2CC6A3C300AE76B2 /* ActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsViewController.swift; sourceTree = "<group>"; };
 		F67F1CCC2CA43E3200F00044 /* FontSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSelectionView.swift; sourceTree = "<group>"; };
 		F67F1CCF2CA43E9500F00044 /* FontTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTableViewCell.swift; sourceTree = "<group>"; };
@@ -727,6 +737,7 @@
 				76096A292C84FB180004BEE0 /* BaseControll.swift */,
 				76096B032C8B1E580004BEE0 /* BaseTableViewCell.swift */,
 				76A34F992C8B9AF0003D3E87 /* BaseUICollectionViewItem.swift */,
+				35EEC7F72CEA6F7F003E7758 /* BaseTableViewController.swift */,
 				76096A372C84FC2B0004BEE0 /* BaseViewController.swift */,
 				F6936A2C2CB9720200764197 /* BaseScrollViewController.swift */,
 				76096A782C8620FE0004BEE0 /* BaseTabBarController.swift */,
@@ -838,6 +849,8 @@
 				76096AEE2C88F1900004BEE0 /* UIButton+Configuration.swift */,
 				F6D5DB572CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift */,
 				F6CBD9662CAB328900911DF7 /* UIColor+Hex.swift */,
+				35EEC7F92CEA773C003E7758 /* Timezone+FormatedDescription.swift */,
+				35EEC7FB2CEA798F003E7758 /* String+TimezoneAbreviation.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -862,6 +875,7 @@
 				F68EA74E2CBEEC0400F935FA /* TextFieldValidationType.swift */,
 				F66EC28C2CC6A3C300AE76B2 /* ActionsViewController.swift */,
 				35EEC7F12CE7A723003E7758 /* AlertViewController.swift */,
+				35EEC7F32CE8D808003E7758 /* FloatingViewController.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -977,7 +991,7 @@
 			isa = PBXGroup;
 			children = (
 				F6936A382CBA7F8E00764197 /* HostView.swift */,
-				F651E6F02CBDAF41007D195D /* AddCoHostViewController.swift */,
+				F651E6F02CBDAF41007D195D /* AddCoHostView.swift */,
 				F6F4AA342CC6B1CC00071B0B /* EdditCoHostView.swift */,
 				F6936A3A2CBA84AD00764197 /* CoHostView.swift */,
 			);
@@ -996,6 +1010,7 @@
 		F6936A1B2CB9607000764197 /* EventDetails */ = {
 			isa = PBXGroup;
 			children = (
+				35EEC7F52CEA6F13003E7758 /* TimeZonePickerController.swift */,
 				F6936A272CB9609700764197 /* Model */,
 				F6936A262CB9608B00764197 /* View */,
 				F6936A1C2CB9608200764197 /* EventDetailsBuilder.swift */,
@@ -1291,6 +1306,7 @@
 				76096AF62C89FAF80004BEE0 /* SearchBar.swift in Sources */,
 				F6EBF5632CA446EE0058F7B2 /* Layer.swift in Sources */,
 				F6936A2D2CB9720200764197 /* BaseScrollViewController.swift in Sources */,
+				35EEC7FC2CEA798F003E7758 /* String+TimezoneAbreviation.swift in Sources */,
 				76096A072C84F8670004BEE0 /* SceneDelegate.swift in Sources */,
 				76096A3A2C84FE6E0004BEE0 /* UIApplication+AppDelegate.swift in Sources */,
 				F6936A2F2CB9728500764197 /* EventDetailsView.swift in Sources */,
@@ -1317,6 +1333,7 @@
 				76096A762C861C990004BEE0 /* MainScreenBuilder.swift in Sources */,
 				76096A772C861C990004BEE0 /* MainScreenPresenter.swift in Sources */,
 				35EEC6DA2CE295D7003E7758 /* IVPresentAnimator.swift in Sources */,
+				35EEC7F82CEA6F7F003E7758 /* BaseTableViewController.swift in Sources */,
 				3519A8332CE25C6800A16715 /* ReviewGuestView.swift in Sources */,
 				F6936A212CB9608200764197 /* EventDetailsBuilder.swift in Sources */,
 				F6936A222CB9608200764197 /* EventDetailsPresenter.swift in Sources */,
@@ -1376,6 +1393,7 @@
 				F6E32BF92CCFDA0D00D62C37 /* ProfileMenuView.swift in Sources */,
 				76096A682C861C860004BEE0 /* ProfileController.swift in Sources */,
 				F6F4AA352CC6B1CC00071B0B /* EdditCoHostView.swift in Sources */,
+				35EEC7F62CEA6F13003E7758 /* TimeZonePickerController.swift in Sources */,
 				3519A82F2CE24E2E00A16715 /* ReviewGiftView.swift in Sources */,
 				F6936A3B2CBA84AD00764197 /* CoHostView.swift in Sources */,
 				F68CAA872CBD50A400533757 /* BringListItemView.swift in Sources */,
@@ -1398,9 +1416,10 @@
 				F6D5DB582CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift in Sources */,
 				76096A2D2C84FB440004BEE0 /* BaseBuilder.swift in Sources */,
 				F68EA74F2CBEEC0400F935FA /* TextFieldValidationType.swift in Sources */,
-				F651E6F12CBDAF41007D195D /* AddCoHostViewController.swift in Sources */,
+				F651E6F12CBDAF41007D195D /* AddCoHostView.swift in Sources */,
 				76096A312C84FB8C0004BEE0 /* BaseRouter.swift in Sources */,
 				76A34F9A2C8B9AF0003D3E87 /* BaseUICollectionViewItem.swift in Sources */,
+				35EEC7F42CE8D808003E7758 /* FloatingViewController.swift in Sources */,
 				F6EBF56E2CA4A1120058F7B2 /* CreatorFlowModel.swift in Sources */,
 				F6EBF55B2CA441170058F7B2 /* TemplateEditorRouter.swift in Sources */,
 				F6936A392CBA7F8E00764197 /* HostView.swift in Sources */,
@@ -1448,6 +1467,7 @@
 				76096A602C861C550004BEE0 /* EventsBuilder.swift in Sources */,
 				F6B47ACA2CB1965000E6DF0A /* DownloadableImageView.swift in Sources */,
 				76096A612C861C550004BEE0 /* EventsPresenter.swift in Sources */,
+				35EEC7FA2CEA773C003E7758 /* Timezone+FormatedDescription.swift in Sources */,
 				F6F4AA3D2CC8220800071B0B /* CreateAccountRouter.swift in Sources */,
 				3519A7A62CD9191800A16715 /* GiftListView.swift in Sources */,
 				F6F4AA3E2CC8220800071B0B /* CreateAccountController.swift in Sources */,

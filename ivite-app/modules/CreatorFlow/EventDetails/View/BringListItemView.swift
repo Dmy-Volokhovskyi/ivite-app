@@ -9,14 +9,16 @@ import UIKit
 
 protocol BringListItemViewDelegate: AnyObject {
     func bringListItemViewDidTapDeleteButton(_ view: BringListItemView, for id: String)
+    func didUpdateBringListItem(_ view: BringListItemView, for id: String, with model: BringListItem)
 }
 
 final class BringListItemView: BaseView, UITextFieldDelegate {
-    private let model: BringListItem?
+    private var model: BringListItem?
     private let containerView = UIView()
     private let titleTextField = UITextField()
     private let separatorView = UIView()
     private let countTextField = UITextField()
+    private let xLabel = UILabel()
     private let deleteButton = UIButton()
     
     weak var delegate: BringListItemViewDelegate?
@@ -49,12 +51,16 @@ final class BringListItemView: BaseView, UITextFieldDelegate {
         if let text = model?.count {
             countTextField.text = String(text)
         }
-        countTextField.placeholder = "2x"
+        countTextField.placeholder = "2"
         setPlaceholderColor(for: countTextField, color: .dark30)
         countTextField.textColor = countTextField.text?.isEmpty == false ? .secondary1 : .dark30
         countTextField.keyboardType = .decimalPad
         countTextField.addTarget(self, action: #selector(textValueChanged), for: .editingChanged)
         countTextField.delegate = self  // Set the delegate to self
+        
+        xLabel.text = "x"
+        xLabel.textColor = .dark30
+        xLabel.backgroundColor = countTextField.text?.isEmpty == false ? .secondary1 : .dark30
         
         deleteButton.setImage(.close, for: .normal)
         deleteButton.addTarget(self, action: #selector(didTapDeleteButton), for: .touchUpInside)
@@ -71,7 +77,8 @@ final class BringListItemView: BaseView, UITextFieldDelegate {
         [
             titleTextField,
             separatorView,
-            countTextField
+            countTextField,
+            xLabel
         ].forEach({ containerView.addSubview($0) })
     }
     
@@ -79,19 +86,30 @@ final class BringListItemView: BaseView, UITextFieldDelegate {
         super.constrainSubviews()
         
         containerView.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .trailing)
+        containerView.setContentCompressionResistancePriority(.init(1), for: .horizontal)
+        containerView.setContentHuggingPriority(.init(1), for: .horizontal)
         
         deleteButton.autoPinEdge(.leading, to: .trailing, of: containerView, withOffset: 12)
         deleteButton.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .leading)
+        deleteButton.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        deleteButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         titleTextField.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16), excludingEdge: .trailing)
+        
+        titleTextField.setContentHuggingPriority(.init(1), for: .horizontal)
+        titleTextField.setContentCompressionResistancePriority(.init(1), for: .horizontal)
         
         separatorView.autoPinEdge(.leading, to: .trailing, of: titleTextField)
         separatorView.autoSetDimension(.width, toSize: 2)
         separatorView.autoPinEdge(toSuperviewEdge: .top, withInset: 16)
         separatorView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 16)
         
-        countTextField.autoPinEdge(.leading, to: .trailing, of: separatorView, withOffset: 8)
-        countTextField.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 16), excludingEdge: .leading)
+        countTextField.autoPinEdge(.leading, to: .trailing, of: separatorView, withOffset: 6)
+        countTextField.autoPinEdge(toSuperviewEdge: .top, withInset: 12)
+        countTextField.autoPinEdge(toSuperviewEdge: .bottom, withInset: 12)
+        
+        xLabel.autoPinEdge(.leading, to: .trailing, of: countTextField)
+        xLabel.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 12, left: 16, bottom: 12, right: 32), excludingEdge: .leading)
     }
     
     // Helper function to set placeholder color
@@ -113,55 +131,39 @@ final class BringListItemView: BaseView, UITextFieldDelegate {
     @objc func textValueChanged(_ sender: UITextField) {
         if sender == titleTextField {
             titleTextField.textColor = titleTextField.text?.isEmpty == false ? .secondary1 : .dark30
+            model?.name = sender.text
         } else  {
             countTextField.textColor = countTextField.text?.isEmpty == false ? .secondary1 : .dark30
             separatorView.backgroundColor = countTextField.text?.isEmpty == false ? .secondary1 : .dark30
+            xLabel.textColor = countTextField.text?.isEmpty == false ? .secondary1 : .dark30
+            model?.count = Int(sender.text ?? "")
         }
+        guard let model else { return }
+        delegate?.didUpdateBringListItem(self, for: model.id, with: model)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    #warning("Bug here put cursor behing x and it crashes.")
-        // Get the current text without "x" for manipulation
-        var currentTextWithoutX = textField.text?.replacingOccurrences(of: "x", with: "") ?? ""
+        // Use a regular expression to allow only numeric input
+        let regex = "^[0-9]*$"
         
-        // Handle delete (backspace) by checking if the delete range includes the "x"
-        if string.isEmpty {
-            // Check if the user is trying to delete the "x"
-            if range.location >= currentTextWithoutX.count {
-                return false // Prevent deletion of "x"
+        // Check if the replacement string matches the regex
+        let isNumber = string.range(of: regex, options: .regularExpression) != nil
+        
+        if !isNumber {
+            return false // Block non-numeric input
+        }
+        
+        // Generate the new text with the replacement string
+        if let currentText = textField.text as NSString? {
+            let newText = currentText.replacingCharacters(in: range, with: string)
+            
+            // Optional: Limit the text length if needed (e.g., max 10 digits)
+            if newText.count > 10 {
+                return false
             }
         }
         
-        // Allow only numeric input
-        let allowedCharacters = CharacterSet.decimalDigits.inverted
-        let filtered = string.components(separatedBy: allowedCharacters).joined()
-        
-        if string != filtered {
-            return false // Block invalid characters
-        }
-        
-        // Generate the new text, including the replacement string
-        let newText = (currentTextWithoutX as NSString).replacingCharacters(in: range, with: string)
-        
-        // If the numeric part becomes empty, set the text field to be empty
-        if newText.isEmpty {
-            textField.text = ""
-            return false
-        }
-        
-        // Ensure the length of the numeric part does not exceed your desired limit (optional)
-        if newText.count > 10 { // Limit to 10 digits or whatever your limit is
-            return false
-        }
-        
-        // Set the updated text with "x" appended
-        textField.text = "\(newText)x"
-        
-        // Set the cursor position before the "x"
-        if let newPosition = textField.position(from: textField.beginningOfDocument, offset: newText.count) {
-            textField.selectedTextRange = textField.textRange(from: newPosition, to: newPosition)
-        }
-
-        return false // Return false because we manually update the text
+        return true // Allow the change
     }
+
 }

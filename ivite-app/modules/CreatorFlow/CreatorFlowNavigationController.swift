@@ -169,36 +169,3 @@ extension CreatorFlowNavigationController: AddGuestsDelegate {
         pushNextStep(for: .addGuests)
     }
 }
-//extension ConfigurationWizardNavigationController: ProvincesDelegate {
-//    func didEndProvinces(selectedProvincesIds: [String]) {
-//        configurationModel.selectedProvinces = selectedProvincesIds
-//        pushNextStep(for: .provinces)
-//    }
-//}
-//
-//extension ConfigurationWizardNavigationController: GeolocationDelegate {
-//    func didEndGeolocation(isGeolocationOn: Bool) {
-//        configurationModel.isGeolocationOn = isGeolocationOn
-//        pushNextStep(for: .geolocalization)
-//    }
-//}
-//
-//extension ConfigurationWizardNavigationController: CategoriesDelegate {
-//    func didEndCategories(selectedCategoriesIds: [String]) {
-//        configurationModel.selectedCategories = selectedCategoriesIds
-//        pushNextStep(for: .categories)
-//    }
-//}
-//
-//extension ConfigurationWizardNavigationController: NotificationsDelegate {
-//    func didEndNotifications(isNotificationsOn: Bool) {
-//        configurationModel.isNotificationsOn = isNotificationsOn
-//        pushNextStep(for: .notifications)
-//    }
-//}
-//
-//extension ConfigurationWizardNavigationController: ConfigurationFinalDelegate {
-//    func didEndConfiguration() {
-//        pushNextStep(for: .finish)
-//    }
-//}

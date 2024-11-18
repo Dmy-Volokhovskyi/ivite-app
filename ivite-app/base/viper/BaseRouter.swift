@@ -76,4 +76,24 @@ class BaseRouter {
         controller?.present(navigationController, animated: true)
     }
 
+    func showFloatingView(customView: UIView, global: Bool = false) {
+        // Create an instance of FloatingViewController and configure it with the custom view
+        let floatingVC = FloatingViewController()
+        floatingVC.configure(with: customView)
+        
+        // Wrap FloatingViewController in a ModalNavigationController
+        let navigationController = ModalNavigationController(rootViewController: floatingVC)
+        navigationController.isFullScreen = false
+
+        // Determine the presenting controller
+        var controller = self.controller
+        if global {
+            while controller?.presentedViewController != nil {
+                controller = controller?.presentedViewController
+            }
+        }
+        
+        // Present the navigation controller
+        controller?.present(navigationController, animated: true)
+    }
 }

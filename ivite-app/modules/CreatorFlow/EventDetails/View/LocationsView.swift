@@ -54,6 +54,11 @@ final class LocationsView: BaseView {
         cityEntry.setContentView(cityTextField)
         stateEntry.setContentView(stateTextField)
         zipEntry.setContentView(zipTextField)
+        
+        locationTextField.delegate = self
+        cityTextField.delegate = self
+        stateTextField.delegate = self
+        zipTextField.delegate = self
     }
     
     override func addSubviews() {
@@ -83,5 +88,20 @@ final class LocationsView: BaseView {
         contentStackView.autoPinEdge(toSuperviewEdge: .leading)
         contentStackView.autoPinEdge(toSuperviewEdge: .trailing)
         contentStackView.autoPinEdge(toSuperviewEdge: .bottom)
+    }
+}
+
+extension LocationsView: IVTextFieldDelegate {
+    func textFieldDidChange(_ textField: IVTextField) {
+        // Update the model based on which text field triggered the change
+        if textField === locationTextField {
+            model.location = textField.text
+        } else if textField === cityTextField {
+            model.city = textField.text
+        } else if textField === stateTextField {
+            model.state = textField.text
+        } else if textField === zipTextField {
+            model.zipCode = textField.text
+        }
     }
 }

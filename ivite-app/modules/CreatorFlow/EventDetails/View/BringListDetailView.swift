@@ -8,8 +8,6 @@
 import UIKit
 
 protocol BringListDetailViewDelegate: AnyObject {
-    func bringListDetailView(_ view: BringListDetailView, didUpdateIsBringListActive isActive: Bool)
-    func bringListDetailView(_ view: BringListDetailView, didAddItem item: BringListItem)
     func bringListDetailView(_ view: BringListDetailView, requestDeleteItem item: BringListItem)
 }
 
@@ -39,7 +37,11 @@ final class BringListDetailView: BaseView {
         super.setupView()
         
         bringItemsStack.axis = .vertical
+        bringItemsStack.spacing = 6
+        
         bringListActiveSwitch.addTarget(self, action: #selector(switchValueChanged), for: .valueChanged)
+        
+        addAnotherItemButton.addTarget(self, action: #selector(addAnotherItemButtonTapped), for: .touchUpInside)
     }
     
     override func addSubviews() {
@@ -71,12 +73,22 @@ final class BringListDetailView: BaseView {
         bringItemsStack.subviews.forEach({ $0.removeFromSuperview()} )
         
         let bringItemsViews: [BringListItemView] = bringItems.map(\.self).map(BringListItemView.init)
-        bringItemsViews.forEach(bringItemsStack.addArrangedSubview)
+        bringItemsViews.forEach({ item in
+            bringItemsStack.addArrangedSubview(item)
+            item.delegate = self
+        })
         bringItemsStack.addArrangedSubview(addAnotherItemButton)
     }
     
+    func updateModel(with model: EventDetailsViewModel) {
+        self.model = model
+        fillBringItems(with: model.bringList)
+    }
+    
     @objc private func addAnotherItemButtonTapped(_ sender: UIButton) {
-        delegate?.bringListDetailView(self, didAddItem: BringListItem())
+        model.bringList.append(BringListItem())
+        fillBringItems(with: model.bringList)
+//        delegate?.bringListDetailView(self, didAddItem: BringListItem())
     }
     
     @objc private func switchValueChanged(_ sender: UISwitch) {
@@ -87,6 +99,11 @@ final class BringListDetailView: BaseView {
 }
 
 extension BringListDetailView: BringListItemViewDelegate {
+    func didUpdateBringListItem(_ view: BringListItemView, for id: String, with model: BringListItem) {
+        guard let item = self.model.bringList.firstIndex(where: { $0.id == id } ) else { return }
+        self.model.bringList[item] = model
+    }
+    
     func bringListItemViewDidTapDeleteButton(_ view: BringListItemView, for id: String) {
         guard let item = model.bringList.first(where: { $0.id == id } ) else { return }
         

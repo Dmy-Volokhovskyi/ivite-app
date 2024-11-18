@@ -46,12 +46,15 @@ final class HostView: BaseView {
         backgroundColor = .white
         
         contentStackView.axis = .vertical
+        contentStackView.spacing = 12
         
         coHostStackView.axis = .vertical
         coHostStackView.spacing = 16
         
         hostedByEntry.setContentView(hostNameTextField)
         coHostedEntry.setContentView(coHostStackView)
+        
+        hostNameTextField.delegate = self
         
         addCoHostButton.addTarget(self, action: #selector(didtTouchAddCoHostButton), for: .touchUpInside)
     }
@@ -105,5 +108,11 @@ final class HostView: BaseView {
 extension HostView: CoHostViewDelegate {
     func coHostView(_ view: CoHost) {
         delegate?.didTouchMenu(for: view)
+    }
+}
+
+extension HostView: IVTextFieldDelegate {
+    func textFieldDidChange(_ textField: IVTextField) {
+        model.hostName = textField.text
     }
 }

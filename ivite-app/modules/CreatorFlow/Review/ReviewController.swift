@@ -51,27 +51,27 @@ final class ReviewController: BaseScrollViewController {
         invitationImageView.layer.cornerRadius = 9
         invitationImageView.clipsToBounds = true
         
-        let example = EventDetailsViewModel(
-            eventTitle: "Birthday Bash",
-            date: Date(),
-            hostName: "Alice Johnson",
-            coHosts: [
-                CoHost(name: "Bob Smith", email: "bob.smith@example.com"),
-                CoHost(name: "Charlie Brown", email: "charlie.brown@example.com")
-            ],
-            city: "New York",
-            location: "Central Park",
-            state: "NY",
-            zipCode: "10001",
-            note: "Join us for an unforgettable birthday celebration with food, games, and music!",
-            isBringListActive: true,
-            bringList: [
-                BringListItem(name: "Cake", count: 1),
-                BringListItem(name: "Chairs", count: 20),
-                BringListItem(name: "Drinks", count: 50),
-                BringListItem(name: "Party Hats", count: 30)
-            ]
-        )
+//        let example = EventDetailsViewModel(
+//            eventTitle: "Birthday Bash",
+//            date: Date(),
+//            hostName: "Alice Johnson",
+//            coHosts: [
+//                CoHost(name: "Bob Smith", email: "bob.smith@example.com"),
+//                CoHost(name: "Charlie Brown", email: "charlie.brown@example.com")
+//            ],
+//            city: "New York",
+//            location: "Central Park",
+//            state: "NY",
+//            zipCode: "10001",
+//            note: "Join us for an unforgettable birthday celebration with food, games, and music!",
+//            isBringListActive: true,
+//            bringList: [
+//                BringListItem(name: "Cake", count: 1),
+//                BringListItem(name: "Chairs", count: 20),
+//                BringListItem(name: "Drinks", count: 50),
+//                BringListItem(name: "Party Hats", count: 30)
+//            ]
+//        )
         
         let gift1 = Gift(name: "Chocolate Box", link: "https://example.com/chocolate", image: nil)
         let gift2 = Gift(name: "Book", link: "https://example.com/book", image: nil)
@@ -82,8 +82,8 @@ final class ReviewController: BaseScrollViewController {
         let giftDetailsViewModel = GiftDetailsViewModel()
         giftDetailsViewModel.gifts = gifts
         
-        reviewMainDetailView.configure(model: example )
-        reviewLocationDetailView.configure(model: example)
+//        reviewMainDetailView.configure(model: example )
+//        reviewLocationDetailView.configure(model: example)
         reviewGiftsDetailView.configure(with: giftDetailsViewModel)
         reviewGuestsDetailView.configre(with: [Guest(name: " Bam Bam", email: "@bam.com", phone: "No Phone"),
                                                Guest(name: " Bam Bam!", email: "HEJOOO@bam.com", phone: "No Phone")])
