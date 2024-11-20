@@ -19,7 +19,7 @@ final class Gift {
     }
     
     let id: UUID = .init()
-    let name: String
-    let link: String?
-    let image: Data?
+    var name: String
+    var link: String?
+    var image: Data?
 }

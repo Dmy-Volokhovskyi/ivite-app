@@ -39,6 +39,9 @@ class GiftRegistryView: BaseControll {
         repickButton.isHidden = true
         deleteButton.isHidden = true
         
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        
         self.addTarget(self, action: #selector(requestPhotoLibraryAccess), for: .touchUpInside)
         repickButton.addTarget(self, action: #selector(requestPhotoLibraryAccess), for: .touchUpInside)
         deleteButton.addTarget(self, action: #selector(didTouchDeleteButton), for: .touchUpInside)
@@ -60,6 +63,8 @@ class GiftRegistryView: BaseControll {
         self.autoMatch(.height, to: .width, of: self, withMultiplier: 280 / 343)
         
         imageView.autoPinEdgesToSuperviewEdges()
+        imageView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         
         placeholderImageViewContainer.autoCenterInSuperview()
         

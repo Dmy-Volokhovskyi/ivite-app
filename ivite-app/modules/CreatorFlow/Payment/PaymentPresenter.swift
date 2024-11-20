@@ -23,26 +23,27 @@ extension PaymentPresenter: PaymentEventHandler {
     
     func didTouchNextButton() {
         guard let viewInterface else { return }
-//        router.showActions(actions: [ ActionItem(title: "Edit", image: UIImage(systemName: "pencil")) { print("Edit tapped") },
-//                                      ActionItem(title: "Delete", image: UIImage(systemName: "trash")) { print("Delete tapped") }
-//                                    ])
-        
-        let actions = [
-            ActionItem(title: "Confirm", image: UIImage(systemName: "checkmark"), isPrimary: true) {
-                print("Confirm tapped")
+        router.showActions(actions: [
+            ActionItem(
+                title: "Edit",
+                image: UIImage(systemName: "pencil"),
+                isPrimary: false
+            ) { [weak self] in
+                guard let self = self else { return }
+                print("Edit tapped")
+//                self.editAction()
             },
-            ActionItem(title: "Cancel", image: UIImage(systemName: "xmark"), isPrimary: false) {
-                print("Cancel tapped")
+            ActionItem(
+                title: "Delete",
+                image: UIImage(systemName: "trash"),
+                isPrimary: false
+            ) { [weak self] in
+                guard let self = self else { return }
+                print("Delete tapped")
+//                self.deleteAction()
             }
-        ]
+        ])
 
-        let alertItem = AlertItem(
-            title: "Alert Title",
-            message: "This is an alert message.",
-            actions: actions
-        )
-
-        router.showAlert(alertItem: alertItem)
     }
     
     func didSelectOption(at indexPath: IndexPath) {

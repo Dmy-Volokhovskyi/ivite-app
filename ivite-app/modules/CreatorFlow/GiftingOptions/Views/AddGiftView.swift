@@ -41,11 +41,13 @@ final class AddGiftView: BaseView {
         backgroundColor = .white
         
         addGiftRegistryEntry.setContentView(giftTitleTextFiel)
+        giftTitleTextFiel.delegate = self
         
         addGiftRegistryLabel.textColor = .secondary1
         addGiftRegistryLabel.font = .interFont(ofSize: 16, weight: .regular)
         
         addGiftButton.addTarget(self, action: #selector(didTouchAddGift), for: .touchUpInside)
+        addGiftButton.IVsetEnabled(false, title: "Add")
     }
     
     override func addSubviews() {
@@ -95,7 +97,15 @@ final class AddGiftView: BaseView {
         giftTitleTextFiel.text = nil
         linkTextField.text = nil
         addImageView.displayImage(nil)
+        addGiftButton.IVsetEnabled(false, title: "Add")
         
         delegate?.didAddGift(gift)
+    }
+}
+
+extension AddGiftView: IVTextFieldDelegate {
+    func textFieldDidChange(_ textField: IVTextField) {
+        let isEnabled = textField.text?.isEmpty == false
+        addGiftButton.IVsetEnabled(isEnabled, title: "Add")
     }
 }

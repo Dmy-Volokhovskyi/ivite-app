@@ -18,7 +18,7 @@ struct ActionItem {
 
 class ActionsViewController: BaseViewController {
     
-    let closeButton = UIButton(type: .system)
+    private let closeButton = UIButton(type: .system)
     private let stackView = UIStackView()
     private var actions: [ActionItem] = []
     
@@ -27,7 +27,7 @@ class ActionsViewController: BaseViewController {
         
         closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
         closeButton.tintColor = .secondary70
-        closeButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
         view.backgroundColor = .dark10
     }
     
@@ -84,7 +84,11 @@ class ActionsViewController: BaseViewController {
         }
     }
     
-    @objc private func dismissVC(completion: (() -> Void)?) {
+    @objc private func dismiss(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+    
+    private func dismissVC(completion: (() -> Void)?) {
         dismiss(animated: true, completion: completion)
     }
     
@@ -93,6 +97,10 @@ class ActionsViewController: BaseViewController {
         stackView.alignment = .fill
         stackView.axis = .vertical
         stackView.spacing = 10
+    }
+    
+    deinit {
+        print("\(self) is being deallocated")
     }
 }
 

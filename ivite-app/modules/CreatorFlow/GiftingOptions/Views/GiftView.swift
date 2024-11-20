@@ -52,6 +52,7 @@ final class GiftView: BaseView {
         giftLinkLabel.textColor = .dark30
         giftLinkLabel.font = .interFont(ofSize: 14, weight: .regular)
         
+        linkStackView.isHidden = (gift.link?.isEmpty == true)
         menuButton.addTarget(self, action: #selector(didTouchMenuButton), for: .touchUpInside)
     }
     
@@ -79,6 +80,7 @@ final class GiftView: BaseView {
         
         nameContentStack.autoPinEdge(.leading, to: .trailing, of: giftImage, withOffset: 16)
         nameContentStack.autoPinEdge(toSuperviewEdge: .top, withInset: 16)
+        nameContentStack.autoPinEdge(toSuperviewEdge: .bottom, withInset: 16)
         nameContentStack.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
         menuButton.autoPinEdge(.leading, to: .trailing, of: nameContentStack, withOffset: 16)

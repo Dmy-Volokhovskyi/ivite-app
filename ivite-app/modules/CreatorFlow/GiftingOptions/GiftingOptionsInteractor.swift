@@ -1,5 +1,5 @@
 protocol GiftingOptionsDelegate: AnyObject {
-    func didEndGiftingOptions()
+    func didEndGiftingOptions(gifts: [Gift])
 }
 
 protocol GiftingOptionsInteractorDelegate: AnyObject {

@@ -19,7 +19,7 @@
 		3519A7A92CD9198100A16715 /* GiftDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7A82CD9198100A16715 /* GiftDetailsViewModel.swift */; };
 		3519A7AB2CD9267400A16715 /* GiftPlaceholderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7AA2CD9267400A16715 /* GiftPlaceholderImage.swift */; };
 		3519A7AD2CD92AEA00A16715 /* AddGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7AC2CD92AEA00A16715 /* AddGiftView.swift */; };
-		3519A8012CDE60F200A16715 /* EditGiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8002CDE60F200A16715 /* EditGiftViewController.swift */; };
+		3519A8012CDE60F200A16715 /* EditGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8002CDE60F200A16715 /* EditGiftView.swift */; };
 		3519A8082CDE676D00A16715 /* AddGuestsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8042CDE676D00A16715 /* AddGuestsController.swift */; };
 		3519A8092CDE676D00A16715 /* AddGuestsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8032CDE676D00A16715 /* AddGuestsBuilder.swift */; };
 		3519A80A2CDE676D00A16715 /* AddGuestsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8062CDE676D00A16715 /* AddGuestsPresenter.swift */; };
@@ -240,7 +240,7 @@
 		3519A7A82CD9198100A16715 /* GiftDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftDetailsViewModel.swift; sourceTree = "<group>"; };
 		3519A7AA2CD9267400A16715 /* GiftPlaceholderImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftPlaceholderImage.swift; sourceTree = "<group>"; };
 		3519A7AC2CD92AEA00A16715 /* AddGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGiftView.swift; sourceTree = "<group>"; };
-		3519A8002CDE60F200A16715 /* EditGiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGiftViewController.swift; sourceTree = "<group>"; };
+		3519A8002CDE60F200A16715 /* EditGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGiftView.swift; sourceTree = "<group>"; };
 		3519A8032CDE676D00A16715 /* AddGuestsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsBuilder.swift; sourceTree = "<group>"; };
 		3519A8042CDE676D00A16715 /* AddGuestsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsController.swift; sourceTree = "<group>"; };
 		3519A8052CDE676D00A16715 /* AddGuestsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsInteractor.swift; sourceTree = "<group>"; };
@@ -499,7 +499,7 @@
 		3519A7FF2CDE609D00A16715 /* EditGiftViewController */ = {
 			isa = PBXGroup;
 			children = (
-				3519A8002CDE60F200A16715 /* EditGiftViewController.swift */,
+				3519A8002CDE60F200A16715 /* EditGiftView.swift */,
 			);
 			path = EditGiftViewController;
 			sourceTree = "<group>";
@@ -1461,7 +1461,7 @@
 				3519A8432CE26DDA00A16715 /* RadioButton.swift in Sources */,
 				F643D96E2CC928FF009A18F0 /* SignInRouter.swift in Sources */,
 				F643D96F2CC928FF009A18F0 /* SignInBuilder.swift in Sources */,
-				3519A8012CDE60F200A16715 /* EditGiftViewController.swift in Sources */,
+				3519A8012CDE60F200A16715 /* EditGiftView.swift in Sources */,
 				F643D9702CC928FF009A18F0 /* SignInInteractor.swift in Sources */,
 				F643D9712CC928FF009A18F0 /* SignInPresenter.swift in Sources */,
 				76096A602C861C550004BEE0 /* EventsBuilder.swift in Sources */,

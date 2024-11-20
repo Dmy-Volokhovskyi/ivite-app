@@ -160,7 +160,8 @@ extension CreatorFlowNavigationController: EventDetailsDelegate {
 }
 
 extension CreatorFlowNavigationController: GiftingOptionsDelegate {
-    func didEndGiftingOptions() {
+    func didEndGiftingOptions(gifts: [Gift]) {
+        creatorFlowModel.giftDetailsViewModel.gifts = gifts
         pushNextStep(for: .giftingOptions)
     }
 }

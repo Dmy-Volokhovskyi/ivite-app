@@ -19,7 +19,7 @@ extension UIButton.Configuration {
         config.imagePadding = 10
         
         var attributedTitle = AttributedString(title)
-        attributedTitle.font = .interFont(ofSize: 14, weight: .semiBold)
+        attributedTitle.font = .interFont(ofSize: 16, weight: .bold)
         attributedTitle.foregroundColor = UIColor.primaryLight10
         config.imagePlacement = .trailing
         config.attributedTitle = attributedTitle
@@ -126,7 +126,7 @@ extension UIButton.Configuration {
         config.cornerStyle = .capsule
         
         var attributedTitle = AttributedString(title)
-        attributedTitle.font = .interFont(ofSize: 14, weight: .semiBold)
+        attributedTitle.font = .interFont(ofSize: 16, weight: .bold)
         attributedTitle.foregroundColor = UIColor.white
         config.attributedTitle = attributedTitle
         
