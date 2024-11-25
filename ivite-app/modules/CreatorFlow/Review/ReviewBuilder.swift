@@ -1,15 +1,16 @@
 import Foundation
 
 final class ReviewBuilder: BaseBuilder {
-    override func make() -> ReviewController {
+    func make(reviewDelegate: ReviewDelegate, creatorFlowModel: CreatorFlowModel) -> ReviewController {
         let router = ReviewRouter()
-        let interactor = ReviewInteractor(serviceProvider: serviceProvider)
+        let interactor = ReviewInteractor(creatorFlowModel: creatorFlowModel, serviceProvider: serviceProvider)
         let presenter = ReviewPresenter(router: router, interactor: interactor)
         let controller = ReviewController(eventHandler: presenter, dataSource: presenter)
 
         presenter.viewInterface = controller
 
         interactor.delegate = presenter
+        interactor.reviewDelegate = reviewDelegate
         
         router.controller = controller
 

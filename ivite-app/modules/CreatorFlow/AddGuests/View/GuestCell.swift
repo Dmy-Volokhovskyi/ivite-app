@@ -7,13 +7,19 @@
 
 import UIKit
 
+protocol GuestCellDelegate: AnyObject {
+    func didTouchMenu(for cell: BaseTableViewCell)
+}
+
 final class GuestCell: BaseTableViewCell {
     private let cellBackgroundView = UIView()
     private let nameLabel = UILabel()
     private let emailLabel = UILabel()
-    private let menuButton = UIButton(configuration: .image(image: .menu))
+    private let menuButton = UIButton(configuration: .image(image: .menu.withRenderingMode(.alwaysTemplate).withTintColor(.dark30)))
     
     private var guest: Guest?
+    
+    weak var delegate: GuestCellDelegate?
     
     override func setupCell() {
         super.setupCell()
@@ -26,6 +32,8 @@ final class GuestCell: BaseTableViewCell {
         
         emailLabel.font = .interFont(ofSize: 16, weight: .regular)
         emailLabel.textColor = .dark30
+        
+        menuButton.addTarget(self, action: #selector(handleMenuButtonTapped), for: .touchUpInside)
     }
     
     override func addCellSubviews() {
@@ -58,5 +66,9 @@ final class GuestCell: BaseTableViewCell {
     public func configure(with guest: Guest) {
         nameLabel.text = guest.name
         emailLabel.text = guest.email
+    }
+    
+    @objc private func handleMenuButtonTapped(_ sender: UIButton) {
+        delegate?.didTouchMenu(for: self)
     }
 }

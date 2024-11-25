@@ -7,57 +7,50 @@
 
 import UIKit
 
-enum AddGuestMenu: CaseIterable {
-    case usePastList
-    case adressBook
-    case addNewGuest
-    
-    var image: UIImage {
-        switch self {
-        case .usePastList: return .listChecklist
-        case .adressBook: return .adressBook
-        case .addNewGuest: return .userAdd
-        }
-    }
-    
-    var title: String {
-        switch self {
-        case .usePastList: return "Use Past Guest list"
-        case .adressBook: return "Address Book"
-        case .addNewGuest: return "Add new guest"
-        }
-    }
+protocol AddGuestMenuViewDelegate: AnyObject {
+    func addGuestMenuView(_ menuView: AddGuestMenuView, didSelectMenuItem menuItem: AddGuestMenu)
 }
+
 
 final class AddGuestMenuView: BaseView {
     private let menuStackView = UIStackView()
     
-   override func setupView() {
-       super.setupView()
-       
-       menuStackView.distribution = .fillEqually
-       menuStackView.spacing = 12
-       
-       fillStackView()
-   }
+    weak var delegate: AddGuestMenuViewDelegate?
     
-   override func addSubviews() {
-       super.addSubviews()
-       
-       addSubview(menuStackView)
-   }
+    override func setupView() {
+        super.setupView()
+        
+        menuStackView.distribution = .fillEqually
+        menuStackView.spacing = 12
+        
+        fillStackView()
+    }
     
-   override func constrainSubviews() {
-       super.constrainSubviews()
-       
-       menuStackView.autoPinEdgesToSuperviewEdges()
-   }
+    override func addSubviews() {
+        super.addSubviews()
+        
+        addSubview(menuStackView)
+    }
+    
+    override func constrainSubviews() {
+        super.constrainSubviews()
+        
+        menuStackView.autoPinEdgesToSuperviewEdges()
+    }
     
     func fillStackView() {
         menuStackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
         
         AddGuestMenu.allCases.forEach({ menuItem in
-            menuStackView.addArrangedSubview(AddGuestsmenuItem(menuItem: menuItem))
+            let menuItemView = AddGuestsMenuItem(menuItem: menuItem)
+            menuItemView.addTarget(self, action: #selector(menuItemTapped(_:)), for: .touchUpInside)
+            menuStackView.addArrangedSubview(menuItemView)
         })
+    }
+    
+    @objc private func menuItemTapped(_ sender: UIControl) {
+        guard let menuItemView = sender as? AddGuestsMenuItem else { return }
+//        guard let menuItem = menuItemView.menuItem else { return }
+        delegate?.addGuestMenuView(self, didSelectMenuItem: menuItemView.menuItem)
     }
 }

@@ -88,7 +88,6 @@ final class BringListDetailView: BaseView {
     @objc private func addAnotherItemButtonTapped(_ sender: UIButton) {
         model.bringList.append(BringListItem())
         fillBringItems(with: model.bringList)
-//        delegate?.bringListDetailView(self, didAddItem: BringListItem())
     }
     
     @objc private func switchValueChanged(_ sender: UISwitch) {

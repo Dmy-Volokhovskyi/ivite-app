@@ -22,7 +22,7 @@ final class CreatorFlowNavigationController: UINavigationController {
     }
     
     private let serviceProvider: ServiceProvider
-    private let creatorFlowModel = CreatorFlowModel()
+    private var creatorFlowModel = CreatorFlowModel()
     weak var configurationWizardDelegate: CreatorFlowDelegate?
     
     init(serviceProvider: ServiceProvider) {
@@ -74,9 +74,9 @@ private extension CreatorFlowNavigationController {
             controller = GiftingOptionsBuilder(serviceProvider: serviceProvider)
                 .make(gifts: creatorFlowModel.giftDetailsViewModel.gifts, giftingOptionsDelegate: self)
         case .addGuests:
-            controller = AddGuestsBuilder(serviceProvider: serviceProvider).make(addGuestDelegate: self, serviceProvider: serviceProvider)
+            controller = AddGuestsBuilder(serviceProvider: serviceProvider).make(addGuestDelegate: self, guests: creatorFlowModel.guests)
         case .review:
-            controller = ReviewBuilder(serviceProvider: serviceProvider).make()
+            controller = ReviewBuilder(serviceProvider: serviceProvider).make(reviewDelegate: self, creatorFlowModel: creatorFlowModel)
         }
         self.setupNavBar(for: nextStep, in: controller)
         // Push the view controller
@@ -165,8 +165,16 @@ extension CreatorFlowNavigationController: GiftingOptionsDelegate {
         pushNextStep(for: .giftingOptions)
     }
 }
+
 extension CreatorFlowNavigationController: AddGuestsDelegate {
-    func didFinishAddGuests() {
+    func didFinishAddGuests(with guests: [Guest]) {
+        creatorFlowModel.guests = guests
         pushNextStep(for: .addGuests)
+    }
+}
+
+extension CreatorFlowNavigationController: ReviewDelegate {
+    func didEndReview() {
+        print("OK")
     }
 }

@@ -7,12 +7,15 @@
 
 import UIKit
 
-final class AddGuestsmenuItem: BaseControll {
+final class AddGuestsMenuItem: BaseControll {
     private let imageContainerView = UIView()
     private let imageView = UIImageView ()
     private let menuItemLabel = UILabel()
     
+    var menuItem: AddGuestMenu
+    
     init(menuItem: AddGuestMenu) {
+        self.menuItem = menuItem
         super.init(frame: .zero)
         
         imageView.image = menuItem.image

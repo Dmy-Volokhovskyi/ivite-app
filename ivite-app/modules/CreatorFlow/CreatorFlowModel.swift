@@ -12,4 +12,5 @@ struct CreatorFlowModel {
     var canvas: Canvas?
     var eventDetailsViewModel = EventDetailsViewModel()
     var giftDetailsViewModel = GiftDetailsViewModel()
+    var guests = [Guest]()
 }

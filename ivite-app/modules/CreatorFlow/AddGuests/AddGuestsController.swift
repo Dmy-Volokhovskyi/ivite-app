@@ -1,8 +1,14 @@
 import UIKit
 
 protocol AddGuestsEventHandler: AnyObject {
+    func didSelectMenuItem(menuItem: AddGuestMenu)
     func didTouchBackButton()
     func didTouchNextButton()
+    func searchFilterViewDidTapFilterButton()
+    func searchFilterViewDidTapDeleteButton()
+    func searchFieldTextFieldDidChange(_ text: String?)
+    func didTouchMenu(for indexPath: IndexPath?)
+    func viewDidLoad()
 }
 
 protocol AddGuestsDataSource: AnyObject {
@@ -19,12 +25,13 @@ final class AddGuestsController: BaseViewController {
     private let addedGuestHeaderView = IVHeaderLabel(text: "Added Guests")
     private let searchFilterView = SearchFilterView()
     private let addedGuestListTableView = UITableView(frame: .zero, style: .plain)
+    private let tableViewBackgroundView = TableViewBackgroundView()
     
     private let bottomBarView = UIView()
     private let bottomDividerView = DividerView()
     private let backButton = UIButton(configuration: .image(image: .chewroneBack))
     private let nextButton = UIButton(configuration: .primary(title: "Next"))
-
+    
     init(eventHandler: AddGuestsEventHandler, dataSource: AddGuestsDataSource) {
         self.eventHandler = eventHandler
         self.dataSource = dataSource
@@ -41,11 +48,18 @@ final class AddGuestsController: BaseViewController {
         
         view.backgroundColor = .white
         
+        searchFilterView.delegate = self
+        
         addedGuestListTableView.delegate = self
         addedGuestListTableView.dataSource = self
         addedGuestListTableView.separatorStyle = .none
+        addedGuestListTableView.backgroundView = tableViewBackgroundView
+        
+        addGuestMenuView.delegate = self
         
         addedGuestListTableView.register(GuestCell.self)
+        
+        tableViewBackgroundView.configure(text: "Your contact list is empty", image: .list2)
         
         backButton.addTarget(self, action: #selector(didTouchBackButton), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(didTouchNextButton), for: .touchUpInside)
@@ -68,7 +82,7 @@ final class AddGuestsController: BaseViewController {
         ].forEach(view.addSubview)
         
     }
-     
+    
     override func constrainSubviews() {
         super.constrainSubviews()
         
@@ -115,6 +129,12 @@ final class AddGuestsController: BaseViewController {
         nextButton.setContentCompressionResistancePriority(.init(1), for: .horizontal)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        eventHandler.viewDidLoad()
+    }
+    
     @objc private func didTouchBackButton(_ sender: UIButton) {
         eventHandler.didTouchBackButton()
     }
@@ -125,24 +145,56 @@ final class AddGuestsController: BaseViewController {
 }
 
 extension AddGuestsController: AddGuestsViewInterface {
+    func updateSearchBar(with filter: FilterType, text: String?) {
+        searchFilterView.configure(filter: filter, text: text)
+    }
+    
+    func updateGuestList() {
+        addedGuestListTableView.reloadData()
+    }
 }
 
 extension AddGuestsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dataSource.numberOfRows
+        tableView.backgroundView?.isHidden = dataSource.numberOfRows != 0
+        nextButton.IVsetEnabled(dataSource.numberOfRows != 0, title: "Next")
+        return dataSource.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(GuestCell.self, for: indexPath)
-        
-//        // Display recommended fonts in section 0, and all fonts in section 1
-//        let fontName = indexPath.section == 0 ? recommendedFonts[indexPath.row] : fontFamilies[indexPath.row]
-//        let isSelected = fontName == selectedFont
         cell.configure(with: dataSource.getAddedGuest(for: indexPath))
+        cell.delegate = self
         return cell
     }
 }
 
 extension AddGuestsController: UITableViewDelegate {
     
+}
+
+extension AddGuestsController: AddGuestMenuViewDelegate {
+    func addGuestMenuView(_ menuView: AddGuestMenuView, didSelectMenuItem menuItem: AddGuestMenu) {
+        eventHandler.didSelectMenuItem(menuItem: menuItem)
+    }
+}
+
+extension AddGuestsController: SearchFilterViewDelegate {
+    func searchFilterViewDidTapFilterButton() {
+        eventHandler.searchFilterViewDidTapFilterButton()
+    }
+    
+    func searchFilterViewDidTapDeleteButton() {
+        eventHandler.searchFilterViewDidTapDeleteButton()
+    }
+    
+    func searchFieldTextFieldDidChange(_ text: String?) {
+        eventHandler.searchFieldTextFieldDidChange(text)
+    }
+}
+
+extension AddGuestsController: GuestCellDelegate {
+    func didTouchMenu(for cell: BaseTableViewCell) {
+        eventHandler.didTouchMenu(for: addedGuestListTableView.indexPath(for: cell))
+    }
 }

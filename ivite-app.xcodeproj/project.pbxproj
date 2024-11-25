@@ -26,7 +26,7 @@
 		3519A80B2CDE676D00A16715 /* AddGuestsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8052CDE676D00A16715 /* AddGuestsInteractor.swift */; };
 		3519A80C2CDE676D00A16715 /* AddGuestsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8072CDE676D00A16715 /* AddGuestsRouter.swift */; };
 		3519A80F2CDE685700A16715 /* AddGuestMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A80E2CDE685700A16715 /* AddGuestMenuView.swift */; };
-		3519A8112CDE686E00A16715 /* AddGuestsmenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8102CDE686E00A16715 /* AddGuestsmenuItem.swift */; };
+		3519A8112CDE686E00A16715 /* AddGuestsMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8102CDE686E00A16715 /* AddGuestsMenuItem.swift */; };
 		3519A8132CDE77D500A16715 /* SearchFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8122CDE77D500A16715 /* SearchFilterView.swift */; };
 		3519A8152CE0C9E000A16715 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8142CE0C9E000A16715 /* Guest.swift */; };
 		3519A8172CE0CB4700A16715 /* GuestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A8162CE0CB4700A16715 /* GuestCell.swift */; };
@@ -63,6 +63,18 @@
 		356461CF2CD507EC003350C5 /* ProfileDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461CC2CD507EC003350C5 /* ProfileDetailsRouter.swift */; };
 		356461D02CD507EC003350C5 /* ProfileDetailsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461C82CD507EC003350C5 /* ProfileDetailsBuilder.swift */; };
 		356461D12CD507EC003350C5 /* ProfileDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461CA2CD507EC003350C5 /* ProfileDetailsInteractor.swift */; };
+		35B8869C2CEE28DA00FE1F43 /* AddNewGuestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */; };
+		35B8869D2CEE28DA00FE1F43 /* AddNewGuestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */; };
+		35B8869E2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8869A2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift */; };
+		35B8869F2CEE28DA00FE1F43 /* AddNewGuestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8869B2CEE28DA00FE1F43 /* AddNewGuestRouter.swift */; };
+		35B886A02CEE28DA00FE1F43 /* AddNewGuestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886982CEE28DA00FE1F43 /* AddNewGuestController.swift */; };
+		35B886A22CEE2C0900FE1F43 /* AddGuestMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886A12CEE2C0900FE1F43 /* AddGuestMenu.swift */; };
+		35B886A62CEE390500FE1F43 /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886A52CEE390500FE1F43 /* FilterType.swift */; };
+		35B886AD2CEE697700FE1F43 /* EditGuestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886A82CEE697700FE1F43 /* EditGuestBuilder.swift */; };
+		35B886AE2CEE697700FE1F43 /* EditGuestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886A92CEE697700FE1F43 /* EditGuestController.swift */; };
+		35B886AF2CEE697700FE1F43 /* EditGuestPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886AB2CEE697700FE1F43 /* EditGuestPresenter.swift */; };
+		35B886B02CEE697700FE1F43 /* EditGuestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886AA2CEE697700FE1F43 /* EditGuestInteractor.swift */; };
+		35B886B12CEE697700FE1F43 /* EditGuestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886AC2CEE697700FE1F43 /* EditGuestRouter.swift */; };
 		35EEC6D82CE295B6003E7758 /* IVTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6D72CE295B6003E7758 /* IVTransitioningDelegate.swift */; };
 		35EEC6DA2CE295D7003E7758 /* IVPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6D92CE295D7003E7758 /* IVPresentAnimator.swift */; };
 		35EEC6DC2CE295EF003E7758 /* IVPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6DB2CE295EF003E7758 /* IVPresentationController.swift */; };
@@ -247,7 +259,7 @@
 		3519A8062CDE676D00A16715 /* AddGuestsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsPresenter.swift; sourceTree = "<group>"; };
 		3519A8072CDE676D00A16715 /* AddGuestsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsRouter.swift; sourceTree = "<group>"; };
 		3519A80E2CDE685700A16715 /* AddGuestMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestMenuView.swift; sourceTree = "<group>"; };
-		3519A8102CDE686E00A16715 /* AddGuestsmenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsmenuItem.swift; sourceTree = "<group>"; };
+		3519A8102CDE686E00A16715 /* AddGuestsMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestsMenuItem.swift; sourceTree = "<group>"; };
 		3519A8122CDE77D500A16715 /* SearchFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterView.swift; sourceTree = "<group>"; };
 		3519A8142CE0C9E000A16715 /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		3519A8162CE0CB4700A16715 /* GuestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCell.swift; sourceTree = "<group>"; };
@@ -278,6 +290,18 @@
 		356461CA2CD507EC003350C5 /* ProfileDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsInteractor.swift; sourceTree = "<group>"; };
 		356461CB2CD507EC003350C5 /* ProfileDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsPresenter.swift; sourceTree = "<group>"; };
 		356461CC2CD507EC003350C5 /* ProfileDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsRouter.swift; sourceTree = "<group>"; };
+		35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestBuilder.swift; sourceTree = "<group>"; };
+		35B886982CEE28DA00FE1F43 /* AddNewGuestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestController.swift; sourceTree = "<group>"; };
+		35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestInteractor.swift; sourceTree = "<group>"; };
+		35B8869A2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestPresenter.swift; sourceTree = "<group>"; };
+		35B8869B2CEE28DA00FE1F43 /* AddNewGuestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestRouter.swift; sourceTree = "<group>"; };
+		35B886A12CEE2C0900FE1F43 /* AddGuestMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuestMenu.swift; sourceTree = "<group>"; };
+		35B886A52CEE390500FE1F43 /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
+		35B886A82CEE697700FE1F43 /* EditGuestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGuestBuilder.swift; sourceTree = "<group>"; };
+		35B886A92CEE697700FE1F43 /* EditGuestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGuestController.swift; sourceTree = "<group>"; };
+		35B886AA2CEE697700FE1F43 /* EditGuestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGuestInteractor.swift; sourceTree = "<group>"; };
+		35B886AB2CEE697700FE1F43 /* EditGuestPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGuestPresenter.swift; sourceTree = "<group>"; };
+		35B886AC2CEE697700FE1F43 /* EditGuestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGuestRouter.swift; sourceTree = "<group>"; };
 		35EEC6D72CE295B6003E7758 /* IVTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVTransitioningDelegate.swift; sourceTree = "<group>"; };
 		35EEC6D92CE295D7003E7758 /* IVPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVPresentAnimator.swift; sourceTree = "<group>"; };
 		35EEC6DB2CE295EF003E7758 /* IVPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVPresentationController.swift; sourceTree = "<group>"; };
@@ -507,6 +531,8 @@
 		3519A8022CDE676000A16715 /* AddGuests */ = {
 			isa = PBXGroup;
 			children = (
+				35B886A72CEE693400FE1F43 /* EditGuest */,
+				35B886962CEE28AB00FE1F43 /* AddNewGuest */,
 				3519A80D2CDE684E00A16715 /* View */,
 				3519A8032CDE676D00A16715 /* AddGuestsBuilder.swift */,
 				3519A8042CDE676D00A16715 /* AddGuestsController.swift */,
@@ -521,9 +547,10 @@
 			isa = PBXGroup;
 			children = (
 				3519A80E2CDE685700A16715 /* AddGuestMenuView.swift */,
-				3519A8102CDE686E00A16715 /* AddGuestsmenuItem.swift */,
+				3519A8102CDE686E00A16715 /* AddGuestsMenuItem.swift */,
 				3519A8122CDE77D500A16715 /* SearchFilterView.swift */,
 				3519A8162CE0CB4700A16715 /* GuestCell.swift */,
+				35B886A12CEE2C0900FE1F43 /* AddGuestMenu.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -603,6 +630,30 @@
 				356461CC2CD507EC003350C5 /* ProfileDetailsRouter.swift */,
 			);
 			path = ProfileDetails;
+			sourceTree = "<group>";
+		};
+		35B886962CEE28AB00FE1F43 /* AddNewGuest */ = {
+			isa = PBXGroup;
+			children = (
+				35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */,
+				35B886982CEE28DA00FE1F43 /* AddNewGuestController.swift */,
+				35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */,
+				35B8869A2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift */,
+				35B8869B2CEE28DA00FE1F43 /* AddNewGuestRouter.swift */,
+			);
+			path = AddNewGuest;
+			sourceTree = "<group>";
+		};
+		35B886A72CEE693400FE1F43 /* EditGuest */ = {
+			isa = PBXGroup;
+			children = (
+				35B886A82CEE697700FE1F43 /* EditGuestBuilder.swift */,
+				35B886A92CEE697700FE1F43 /* EditGuestController.swift */,
+				35B886AA2CEE697700FE1F43 /* EditGuestInteractor.swift */,
+				35B886AB2CEE697700FE1F43 /* EditGuestPresenter.swift */,
+				35B886AC2CEE697700FE1F43 /* EditGuestRouter.swift */,
+			);
+			path = EditGuest;
 			sourceTree = "<group>";
 		};
 		35EEC6D52CE295A4003E7758 /* helpers */ = {
@@ -876,6 +927,7 @@
 				F66EC28C2CC6A3C300AE76B2 /* ActionsViewController.swift */,
 				35EEC7F12CE7A723003E7758 /* AlertViewController.swift */,
 				35EEC7F32CE8D808003E7758 /* FloatingViewController.swift */,
+				35B886A52CEE390500FE1F43 /* FilterType.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -1387,6 +1439,11 @@
 				76096A4A2C861C1B0004BEE0 /* HomePresenter.swift in Sources */,
 				35EEC6D82CE295B6003E7758 /* IVTransitioningDelegate.swift in Sources */,
 				F6F3C72A2CCA85DF00ED966A /* AuthentificationService.swift in Sources */,
+				35B886AD2CEE697700FE1F43 /* EditGuestBuilder.swift in Sources */,
+				35B886AE2CEE697700FE1F43 /* EditGuestController.swift in Sources */,
+				35B886AF2CEE697700FE1F43 /* EditGuestPresenter.swift in Sources */,
+				35B886B02CEE697700FE1F43 /* EditGuestInteractor.swift in Sources */,
+				35B886B12CEE697700FE1F43 /* EditGuestRouter.swift in Sources */,
 				F6936A292CB960B100764197 /* IVHeaderLabel.swift in Sources */,
 				F68EA7512CBEEE0D00F935FA /* DatePickerViewController.swift in Sources */,
 				76096A212C84FAD60004BEE0 /* LaunchController.swift in Sources */,
@@ -1440,14 +1497,20 @@
 				35F43D602CD520E5000CE237 /* ChangeEmailView.swift in Sources */,
 				F6936A372CB9802300764197 /* DividerView.swift in Sources */,
 				76096A222C84FAD60004BEE0 /* LaunchInteractor.swift in Sources */,
+				35B8869C2CEE28DA00FE1F43 /* AddNewGuestBuilder.swift in Sources */,
+				35B8869D2CEE28DA00FE1F43 /* AddNewGuestInteractor.swift in Sources */,
+				35B8869E2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift in Sources */,
+				35B8869F2CEE28DA00FE1F43 /* AddNewGuestRouter.swift in Sources */,
+				35B886A02CEE28DA00FE1F43 /* AddNewGuestController.swift in Sources */,
 				F6B47ACE2CB45C4F00E6DF0A /* SpacingPickerView.swift in Sources */,
 				F6B47ACC2CB1966400E6DF0A /* UserImageLibraryManager.swift in Sources */,
 				F6936A332CB973CE00764197 /* IVTextField.swift in Sources */,
 				76096A232C84FAD60004BEE0 /* LaunchRouter.swift in Sources */,
-				3519A8112CDE686E00A16715 /* AddGuestsmenuItem.swift in Sources */,
+				3519A8112CDE686E00A16715 /* AddGuestsMenuItem.swift in Sources */,
 				76096A5D2C861C550004BEE0 /* EventsController.swift in Sources */,
 				3519A81E2CE0DB5400A16715 /* ReviewBuilder.swift in Sources */,
 				3519A81F2CE0DB5400A16715 /* ReviewController.swift in Sources */,
+				35B886A22CEE2C0900FE1F43 /* AddGuestMenu.swift in Sources */,
 				3519A8202CE0DB5400A16715 /* ReviewRouter.swift in Sources */,
 				3519A8212CE0DB5400A16715 /* ReviewInteractor.swift in Sources */,
 				3519A8222CE0DB5400A16715 /* ReviewPresenter.swift in Sources */,
@@ -1473,6 +1536,7 @@
 				F6F4AA3E2CC8220800071B0B /* CreateAccountController.swift in Sources */,
 				3519A82D2CE24D8B00A16715 /* ReviewGiftsDetailView.swift in Sources */,
 				F6F4AA3F2CC8220800071B0B /* CreateAccountBuilder.swift in Sources */,
+				35B886A62CEE390500FE1F43 /* FilterType.swift in Sources */,
 				F6F4AA402CC8220800071B0B /* CreateAccountPresenter.swift in Sources */,
 				F6F4AA412CC8220800071B0B /* CreateAccountInteractor.swift in Sources */,
 				76096A282C84FB010004BEE0 /* BaseView.swift in Sources */,

@@ -16,16 +16,17 @@ final class ReviewPresenter: BasePresenter {
 
 extension ReviewPresenter: ReviewEventHandler {
     func didTouchBackButton() {
-        print("'nex'")
+        router.popVC()
     }
     
     func didTouchNextButton() {
-        print("'bac'")
+        interactor.reviewDelegate?.didEndReview()
     }
     
 }
 
 extension ReviewPresenter: ReviewDataSource {
+    var creatorFlowModel: CreatorFlowModel { interactor.creatorFlowModel }
 }
 
 extension ReviewPresenter: ReviewInteractorDelegate {
