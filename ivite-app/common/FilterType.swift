@@ -16,9 +16,9 @@ extension FilterType {
     var image: UIImage {
         switch self {
         case .alphabet:
-            return .alfabet
+            return .alfabet.withTintColor(.dark30, renderingMode: .alwaysTemplate)
         case .defaultFilter:
-            return .filter
+            return .filter.withTintColor(.dark30, renderingMode: .alwaysTemplate)
         }
     }
 }

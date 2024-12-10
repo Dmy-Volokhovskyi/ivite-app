@@ -1,9 +1,9 @@
 import Foundation
 
 final class CheckEmailBuilder: BaseBuilder {
-    override func make() -> CheckEmailController {
+    func make(email: String) -> CheckEmailController {
         let router = CheckEmailRouter()
-        let interactor = CheckEmailInteractor(serviceProvider: serviceProvider)
+        let interactor = CheckEmailInteractor(email: email, serviceProvider: serviceProvider)
         let presenter = CheckEmailPresenter(router: router, interactor: interactor)
         let controller = CheckEmailController(eventHandler: presenter, dataSource: presenter)
 

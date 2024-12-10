@@ -17,13 +17,17 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
     private var leadingImageView = UIImageView()
     private var placeholder: String = ""
     private let textField = UITextField()
-    private var trailingImageView = UIImageView(image: .eyeOpen)
+    private let trailingImageView = UIImageView(image: .eyeOpen) // Replace with your asset
     
     private var validationType: TextFieldValidationType = .none
-    var isSecureTextEntry: Bool = false {
+    
+    weak var delegate: IVTextFieldDelegate?
+    
+    var secured: Bool = false {
         didSet {
-            textField.isSecureTextEntry = isSecureTextEntry
-            trailingImageView.isHidden = !isSecureTextEntry
+            textField.isSecureTextEntry = secured
+            trailingImageView.isHidden = !secured
+            updateTrailingImage()
         }
     }
     
@@ -43,8 +47,6 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
         }
     }
     
-    weak var delegate: IVTextFieldDelegate?
-    
     // Initializer
     init(text: String? = "",
          placeholder: String = "",
@@ -59,9 +61,12 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
         leadingImageView.image = leadingImage
         leadingImageView.isHidden = leadingImage == nil
         
-        trailingImageView.image = trailingImage
-        trailingImageView.isHidden = trailingImage == nil
+        trailingImageView.isUserInteractionEnabled = true // Enable interaction for the toggle
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleSecureEntry))
+        trailingImageView.addGestureRecognizer(tapGesture)
         
+        trailingImageView.isHidden = !secured // Initially hidden if not secure entry
+        print("here")
         textField.text = text
         textField.isUserInteractionEnabled = true
         textField.delegate = self
@@ -85,6 +90,7 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
         
         textField.placeholder = placeholder
         textField.borderStyle = .none
+        textField.isSecureTextEntry = secured
     }
     
     override func addSubviews() {
@@ -94,7 +100,7 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
             leadingImageView,
             textField,
             trailingImageView
-        ].forEach({ contentStackView.addArrangedSubview($0) })
+        ].forEach { contentStackView.addArrangedSubview($0) }
         
         addSubview(contentStackView)
     }
@@ -124,34 +130,15 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
         return textField.resignFirstResponder()
     }
     
-    // Restrict zip code input to valid numeric format
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard validationType == .zipCode else {
-            return true // Allow regular input if not zip code validation
+    @objc private func toggleSecureEntry() {
+        textField.isSecureTextEntry.toggle()
+        updateTrailingImage()// Toggle the secure text entry
+    }
+    
+    private func updateTrailingImage() {
+        DispatchQueue.main.async {
+            self.trailingImageView.image = self.textField.isSecureTextEntry ? .edit : .eyeOpen
         }
-        
-        // Restrict input to numbers and dash
-        let allowedCharacters = CharacterSet(charactersIn: "0123456789-").inverted
-        let filtered = string.components(separatedBy: allowedCharacters).joined()
-        
-        if string != filtered {
-            return false // Block invalid characters
-        }
-        
-        // Get the current text, including the newly typed character
-        let currentText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
-        
-        // Format the zip code: 12345 or 12345-6789
-        if currentText.count > 10 {
-            return false // Limit to 10 characters
-        }
-        
-        if currentText.count == 6 && !currentText.contains("-") {
-            textField.text = currentText.prefix(5) + "-" + currentText.suffix(1) // Insert dash after 5 digits
-            return false
-        }
-        
-        return true
     }
     
     @objc private func textFieldDidChange() {

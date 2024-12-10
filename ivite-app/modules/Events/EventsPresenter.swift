@@ -17,7 +17,36 @@ final class EventsPresenter: BasePresenter {
 
 extension EventsPresenter: EventsEventHandler {
     func didTouchMenu(for indexPath: IndexPath?) {
-        print("open MENU!")
+        // Define the actions
+        let addGuestsAction = ActionItem(title: "Add guests", image: .guest, isPrimary: true) {
+            print("Add guests pressed")
+        }
+
+        let editAction = ActionItem(title: "Edit", image: .edit, isPrimary: false) {
+            print("Edit pressed")
+        }
+
+        let copyInvitationAction = ActionItem(title: "Copy Invitation", image: .copy, isPrimary: false) {
+            print("Copy Invitation pressed")
+        }
+
+        let viewInvitationAction = ActionItem(title: "View Invitation", image: .eyeOpen, isPrimary: false) {
+            print("View Invitation pressed")
+        }
+
+        let deleteAction = ActionItem(title: "Delete", image: .trash, isPrimary: false) {
+            print("Delete pressed")
+        }
+
+        // Use the router to display the actions
+        router.showActions(actions: [
+            addGuestsAction,
+            editAction,
+            copyInvitationAction,
+            viewInvitationAction,
+            deleteAction
+        ])
+
     }
 
     func viewDidLoad() {
@@ -26,6 +55,10 @@ extension EventsPresenter: EventsEventHandler {
 }
 
 extension EventsPresenter: EventsDataSource {
+    var user: IVUser? {
+        interactor.serviceProvider.authenticationService.getCurrentUser()
+    }
+    
     func eventCardModel(for indexPath: IndexPath) -> EventCardModel {
         interactor.eventCards[indexPath.section]
     }

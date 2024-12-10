@@ -1,6 +1,10 @@
 import UIKit
 
 protocol CreateAccountEventHandler: AnyObject {
+    func didTapCloseButton()
+    func didTapClickableText()
+    func didTouchSignUpWithGoogle()
+    func didTouchSignUp(with name: String, email: String, password: String)
 }
 
 protocol CreateAccountDataSource: AnyObject {
@@ -10,9 +14,16 @@ final class CreateAccountController: BaseViewController {
     private let eventHandler: CreateAccountEventHandler
     private let dataSource: CreateAccountDataSource
     
-    private let closeButton = UIButton()
+    private lazy var closeButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "xmark"),
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(didTapCloseButton))
+        button.tintColor = .dark30 // Set the color of the button
+        return button
+    }()
     private let createAccountLabel = UILabel()
-    private let signInWithGooglebutton = GoogleSignInButton(text: "Sign up with Google")
+    private let signUpWithGoogleButton = GoogleSignInButton(text: "Sign up with Google")
     private let dividerView = DividerView()
     private let orLabelContainerView = UIView()
     private let orLabel = UILabel()
@@ -40,6 +51,9 @@ final class CreateAccountController: BaseViewController {
        
        view.backgroundColor = .white
        
+       navigationItem.rightBarButtonItem = closeButton
+       navigationItem.hidesBackButton = true
+       
        createAccountLabel.text = "Create Account"
        createAccountLabel.textColor = .secondary1
        createAccountLabel.font = .interFont(ofSize: 32, weight: .bold)
@@ -53,6 +67,17 @@ final class CreateAccountController: BaseViewController {
        credentialsStackView.axis = .vertical
        credentialsStackView.spacing = 12
        
+       signUpWithGoogleButton.addTarget(self, action: #selector(didTouchSignUpWithGoogle), for: .touchUpInside)
+       signUpButton.addTarget(self, action: #selector(didTouchSignUp), for: .touchUpInside)
+       
+       signUpButton.IVsetEnabled(false, title: "Sign up")
+       
+       nameTextField.delegate = self
+       emailTextField.delegate = self
+       
+       passwordTextField.delegate = self
+       passwordTextField.secured = true
+       
        termsAndConditionsView.delegate = self
        allreadyHaveAnAccountView.delegate = self
    }
@@ -61,9 +86,8 @@ final class CreateAccountController: BaseViewController {
         super.addSubviews()
         
         [
-            closeButton,
             createAccountLabel,
-            signInWithGooglebutton,
+            signUpWithGoogleButton,
             dividerView,
             credentialsStackView,
             orLabelContainerView,
@@ -83,13 +107,13 @@ final class CreateAccountController: BaseViewController {
    override func constrainSubviews() {
        super.constrainSubviews()
        
-       createAccountLabel.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 68, left: 16, bottom: .zero, right: 16), excludingEdge: .bottom)
+       createAccountLabel.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 68, left: 16, bottom: .zero, right: 16), excludingEdge: .bottom)
        
-       signInWithGooglebutton.autoPinEdge(.top, to: .bottom, of: createAccountLabel, withOffset: 24)
-       signInWithGooglebutton.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
-       signInWithGooglebutton.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
+       signUpWithGoogleButton.autoPinEdge(.top, to: .bottom, of: createAccountLabel, withOffset: 24)
+       signUpWithGoogleButton.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
+       signUpWithGoogleButton.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
        
-       orLabelContainerView.autoPinEdge(.top, to: .bottom, of: signInWithGooglebutton)
+       orLabelContainerView.autoPinEdge(.top, to: .bottom, of: signUpWithGoogleButton)
        orLabelContainerView.autoAlignAxis(toSuperviewAxis: .vertical)
        
        dividerView.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
@@ -115,6 +139,19 @@ final class CreateAccountController: BaseViewController {
        allreadyHaveAnAccountView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
        allreadyHaveAnAccountView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0, relation: .greaterThanOrEqual)
    }
+    
+    @objc private func didTouchSignUpWithGoogle(_ sender: UIButton) {
+        eventHandler.didTouchSignUpWithGoogle()
+    }
+    
+    @objc private func didTapCloseButton(_ sender: UIButton) {
+        eventHandler.didTapCloseButton()
+    }
+    
+    @objc private func didTouchSignUp(_ sender: UIButton) {
+        guard let name = nameTextField.text, let email = emailTextField.text, let password = passwordTextField.text else { return }
+        eventHandler.didTouchSignUp(with: name, email: email, password: password)
+    }
 }
 
 extension CreateAccountController: CreateAccountViewInterface {
@@ -126,12 +163,19 @@ extension CreateAccountController: TermsOfServiceViewDelegate {
     }
     
     func didTapTermsOfService() {
+        
         print("Did tap")
     }
 }
 
 extension CreateAccountController: ClickableTextViewDelegate {
     func didTapClickableText() {
-        print("Did Tap Clickable Text")
+        eventHandler.didTapClickableText()
+    }
+}
+extension CreateAccountController: IVTextFieldDelegate {
+    func textFieldDidChange(_ textField: IVTextField) {
+        let credible = emailTextField.isValid && passwordTextField.isValid && nameTextField.isValid
+        signUpButton.IVsetEnabled(credible, title: "Sign up")
     }
 }

@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol ChangePasswordViewDelegate: AnyObject {
+    func changePassword(_ view: ChangePasswordView, oldPassword: String, newPassword: String)
+}
+
 final class ChangePasswordView: BaseView {
     private let titleLabel = UILabel()
-    private let oldPasswordTextField = IVTextField(placeholder: "Old password", leadingImage: .email)
-    private let newPasswordTextField = IVTextField(placeholder: "New password", leadingImage: .email)
+    private let oldPasswordTextField = IVTextField(placeholder: "Old password", leadingImage: .password)
+    private let newPasswordTextField = IVTextField(placeholder: "New password", leadingImage: .password)
     private let changePasswordButton = UIButton(configuration: .secondary(title: "Change Password"))
+    
+    weak var delegate: ChangePasswordViewDelegate?
     
     override func setupView() {
         super.setupView()
@@ -23,8 +29,16 @@ final class ChangePasswordView: BaseView {
         titleLabel.font = .interFont(ofSize: 20, weight: .bold)
         titleLabel.textColor = .secondary1
         
-        oldPasswordTextField.isSecureTextEntry = true
-        newPasswordTextField.isSecureTextEntry = true
+        oldPasswordTextField.secured = true
+        oldPasswordTextField.delegate = self
+        oldPasswordTextField.secured = true
+        
+        newPasswordTextField.secured = true
+        newPasswordTextField.delegate = self
+        newPasswordTextField.secured = true
+        
+        changePasswordButton.IVsetEnabled(false, title: "Change Password")
+        changePasswordButton.addTarget(self, action: #selector(didTouchChangePasword), for: .touchUpInside)
     }
     
     override func addSubviews() {
@@ -56,5 +70,25 @@ final class ChangePasswordView: BaseView {
         changePasswordButton.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
         changePasswordButton.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
         changePasswordButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: 24)
+    }
+    
+    @objc private func didTouchChangePasword(_ sender: UIButton) {
+        guard let oldPassword = oldPasswordTextField.text,
+              let newPassword = newPasswordTextField.text else { return }
+        delegate?.changePassword(self, oldPassword: oldPassword, newPassword: newPassword)
+    }
+    
+}
+
+extension ChangePasswordView: IVTextFieldDelegate {
+    func textFieldDidChange(_ textField: IVTextField) {
+        guard let oldPassword = oldPasswordTextField.text,
+              let newPassword = newPasswordTextField.text else { return }
+        
+        let readyToChangePassword = oldPassword.isEmpty == false &&
+            newPassword.isEmpty == false &&
+        oldPassword != newPassword
+        
+        changePasswordButton.IVsetEnabled(readyToChangePassword, title: "Change Password")
     }
 }

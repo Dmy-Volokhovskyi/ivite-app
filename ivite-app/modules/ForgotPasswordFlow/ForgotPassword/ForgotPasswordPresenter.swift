@@ -15,12 +15,12 @@ final class ForgotPasswordPresenter: BasePresenter {
 }
 
 extension ForgotPasswordPresenter: ForgotPasswordEventHandler {
-    func didTapCloseButton() {
-        router.popVC()
+    func didPressSend(with email: String) {
+        interactor.sendForgetPasswordRequest(email: email)
     }
     
-    func didPressSend() {
-        router.showCheckEmail(serviceProvider: interactor.serviceProvider)
+    func didTapCloseButton() {
+        router.popVC()
     }
 }
 
@@ -28,4 +28,14 @@ extension ForgotPasswordPresenter: ForgotPasswordDataSource {
 }
 
 extension ForgotPasswordPresenter: ForgotPasswordInteractorDelegate {
+    func didSendForgetPasswordRequest(email: String, success: Bool, error: (any Error)?) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            if let error, !success {
+                self.router.showSystemAlert(title: "An error occurred", message: error.localizedDescription)
+            } else {
+                self.router.showCheckEmail(email: email, serviceProvider: self.interactor.serviceProvider)
+            }
+        }
+    }
 }

@@ -74,7 +74,7 @@ class AlertViewController: BaseViewController {
     public func setAlertItem(_ item: AlertItem) {
         titleLabel.text = item.title
         messageLabel.text = item.message
-        messageLabel.isHidden = item.message?.isEmpty == false
+        messageLabel.isHidden = !(item.message?.isEmpty == false)
         setActions(item.actions)
     }
     

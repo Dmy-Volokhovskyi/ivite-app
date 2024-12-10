@@ -3,11 +3,15 @@ import UIKit
 protocol ContactEventHandler: AnyObject {
     func viewDidLoad()
     func didTouchMenu(for indexPath: IndexPath?)
+    func addNewTouch()
+    func didTapFilterButton()
+    func searchFieldTextDidChange(_ text: String?)
 }
 
 protocol ContactDataSource: AnyObject {
     var numberOfRows: Int { get }
     var numberOfSections: Int { get }
+    var user: IVUser? { get }
     
     func contactCardModel(for indexPath: IndexPath) -> ContactCardModel
 }
@@ -16,8 +20,9 @@ final class ContactController: BaseViewController {
     private let eventHandler: ContactEventHandler
     private let dataSource: ContactDataSource
     
-    private let searchBarView = MainSearchBarView()
-    private let listHeaderView = ListHeaderView(actionButton: UIButton(configuration: .primary(title: "Add New", image: .chewronDown)), title: "Contact List")
+    private let searchBarView: MainSearchBarView
+    private let addNewButton = UIButton(configuration: .primary(title: "Add New", image: .chewronDown))
+    private let listHeaderView : ListHeaderView
     private let invitesLeftView = InvitesLeftView()
     private let tableView = UITableView(frame: .zero, style: .grouped)
     private let tableViewBackgroundView = TableViewBackgroundView()
@@ -25,8 +30,10 @@ final class ContactController: BaseViewController {
     init(eventHandler: ContactEventHandler, dataSource: ContactDataSource) {
         self.eventHandler = eventHandler
         self.dataSource = dataSource
-        
+        self.searchBarView = MainSearchBarView(isLoggedIn: dataSource.user == nil, profileImageURL: dataSource.user?.profileImageURL)
+        listHeaderView = ListHeaderView(actionButton: addNewButton, title: "Contact List")
         super.init()
+  
     }
     
     required init?(coder: NSCoder) {
@@ -47,9 +54,15 @@ final class ContactController: BaseViewController {
         tableView.backgroundView = tableViewBackgroundView
         tableView.showsVerticalScrollIndicator = false
         
-        tableViewBackgroundView.configure(text: "Your event list is empty")
+        searchBarView.delegate = self
+        
+        tableViewBackgroundView.configure(text: "Your contact list is empty", image: .mailbox)
+        
+        listHeaderView.deeleagate = self
+        addNewButton.addTarget(self, action: #selector(addNewTouch), for: .touchUpInside)
         
         tableView.register(ContactCardCell.self)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
     }
     
     override func addSubviews() {
@@ -81,7 +94,7 @@ final class ContactController: BaseViewController {
         invitesLeftView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
         
         tableView.autoPinEdge(.top, to: .bottom, of: invitesLeftView)
-        tableView.autoPinEdgesToSuperviewSafeArea(with: .init(top: 16, left: 16, bottom: 16, right: 16),
+        tableView.autoPinEdgesToSuperviewSafeArea(with: .init(top: 16, left: 16, bottom: .zero, right: 16),
                                                   excludingEdge: .top)
     }
     
@@ -90,9 +103,23 @@ final class ContactController: BaseViewController {
         
         eventHandler.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        searchBarView.updateProfileImage(dataSource.user?.profileImageURL)
+    }
+    
+    @objc private func addNewTouch(_ sender: UIButton) {
+        eventHandler.addNewTouch()
+    }
 }
 
 extension ContactController: ContactViewInterface {
+    func updateFilter(_ filter: FilterType) {
+        listHeaderView.upateSearchButton(filter)
+    }
+    
     func reloadTableView() {
         tableView.reloadData()
     }
@@ -127,6 +154,7 @@ extension ContactController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         section == 0 ? 16 : 8
     }
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         section == dataSource.numberOfSections ? 16 : 8
     }
@@ -145,3 +173,18 @@ extension ContactController: ContactCardCellDelegate {
     }
 }
 
+extension ContactController: ListHeaderViewDelegate {
+    func didTapFilterButton() {
+        eventHandler.didTapFilterButton()
+    }
+}
+
+extension ContactController: MainSearchBarViewDelegate {
+    func didTapLogInButton() {
+        print("Call log in")
+    }
+    
+    func searchFieldTextDidChange(_ text: String?) {
+        eventHandler.searchFieldTextDidChange(text)
+    }
+}

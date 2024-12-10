@@ -25,6 +25,10 @@ final class MainScreenController: BaseTabBarController {
                                                selector: #selector(handleValidationStateChange),
                                                name: .validationStateDidChange,
                                                object: nil)
+        
+        // Replace the tab bar with RoundedTabBar
+        let roundedTabBar = RoundedTabBar()
+        setValue(roundedTabBar, forKey: "tabBar")
     }
     
     required init?(coder: NSCoder) {
@@ -37,7 +41,7 @@ final class MainScreenController: BaseTabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTabBar1()  // Call setupTabBar in viewDidLoad
+        setupTabBar1()
     }
     
     func setupTabBar1() {
@@ -47,26 +51,21 @@ final class MainScreenController: BaseTabBarController {
         let contactsController = ContactBuilder(serviceProvider: dataSource.serviceProvider).make()
         let profileController = ProfileBuilder(serviceProvider: dataSource.serviceProvider).make()
         let profileNavController = UINavigationController(rootViewController: profileController)
-        // Assign titles and icons for the tab bar items
+        
         homeNavController.tabBarItem = UITabBarItem(title: "Home", image: .home, tag: 0)
         eventController.tabBarItem = UITabBarItem(title: "Events", image: .events, tag: 1)
         contactsController.tabBarItem = UITabBarItem(title: "Contacts", image: .contacts, tag: 2)
-        profileController.tabBarItem = UITabBarItem(title: "Profile", image: .profile, tag: 3)  // Updated the tag here
+        profileNavController.tabBarItem = UITabBarItem(title: "Profile", image: .profile, tag: 3)
         
         self.viewControllers = [homeNavController, eventController, contactsController, profileNavController]
         setUpTabBarVisibility()
     }
     
     public func setUpTabBarVisibility() {
-        if dataSource.serviceProvider.authentificationService.authenticationState == .authenticated {
-            tabBar.isHidden = false
-        } else {
-            tabBar.isHidden = true
-        }
+        tabBar.isHidden = dataSource.serviceProvider.authenticationService.authenticationState != .authenticated
     }
     
     @objc private func handleAuthStateChange(_ notification: Notification) {
-        // Access authState directly from userInfo
         if let authState = notification.userInfo?["authState"] as? AuthenticationState {
             switch authState {
             case .authenticated:
@@ -81,11 +80,10 @@ final class MainScreenController: BaseTabBarController {
     }
     
     @objc private func handleValidationStateChange() {
-        // Respond to changes in validation state if needed
-        let isValid = dataSource.serviceProvider.authentificationService.isValid
-        // Use `isValid` as needed in the view controller
+        let isValid = dataSource.serviceProvider.authenticationService.isValid
+        // Respond to validation changes
     }
 }
 
-extension MainScreenController: MainScreenViewInterface {
-}
+extension MainScreenController: MainScreenViewInterface {}
+

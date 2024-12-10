@@ -6,6 +6,7 @@ protocol HomeEventHandler: AnyObject {
 }
 
 protocol HomeDataSource: AnyObject {
+    var user: IVUser? { get }
 }
 
 final class HomeController: BaseViewController {
@@ -13,7 +14,7 @@ final class HomeController: BaseViewController {
     private let eventHandler: HomeEventHandler
     private let dataSource: HomeDataSource
     
-    private let searchBarView = MainSearchBarView()
+    private let searchBarView: MainSearchBarView
     private var selectedCategories = Set<String>()
     private var categoriesCollectionView = CategoriesCollectionView(categories: ["Adult Birthday", "Kid's birthday", "Wedding", "Friends Gathering", "Love", "Baby Shower", "Seasonal", "Business", "Graduation", "NightLife", "Pet party"])
     
@@ -30,7 +31,7 @@ final class HomeController: BaseViewController {
     init(eventHandler: HomeEventHandler, dataSource: HomeDataSource) {
         self.eventHandler = eventHandler
         self.dataSource = dataSource
-        
+        self.searchBarView = MainSearchBarView(isLoggedIn: dataSource.user == nil, profileImageURL: dataSource.user?.profileImageURL)
         super.init()
     }
     
@@ -52,6 +53,7 @@ final class HomeController: BaseViewController {
         tilesCollectionView.dataSource = self
         tilesCollectionView.register(TileCollectionViewCell.self, forCellWithReuseIdentifier: TileCollectionViewCell.identifier)
         tilesCollectionView.backgroundColor = .white
+        tilesCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
         
         searchBarView.delegate = self
         view.backgroundColor = .white
@@ -75,12 +77,13 @@ final class HomeController: BaseViewController {
         categoriesCollectionView.autoPinEdge(toSuperviewEdge: .trailing)
         
         tilesCollectionView.autoPinEdge(.top, to: .bottom, of: categoriesCollectionView, withOffset: 16)
-        tilesCollectionView.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16), excludingEdge: .top)
+        tilesCollectionView.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 16, left: 16, bottom: 0, right: 16), excludingEdge: .top)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        searchBarView.updateProfileImage(dataSource.user?.profileImageURL)
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
 }
@@ -116,6 +119,10 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource, 
 }
 
 extension HomeController: MainSearchBarViewDelegate {
+    func searchFieldTextDidChange(_ text: String?) {
+        print("searchBarView")
+    }
+    
     func didTapLogInButton() {
         eventHandler.didTapLogInButton()
     }

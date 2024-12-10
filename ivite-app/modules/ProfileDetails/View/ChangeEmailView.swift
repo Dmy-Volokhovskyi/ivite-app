@@ -7,23 +7,35 @@
 
 import UIKit
 
+protocol ChangeEmailViewDelegate: AnyObject {
+    func changeEmail(_ view: ChangeEmailView, confirmPassword: String, newEmail: String)
+}
+
 final class ChangeEmailView: BaseView {
     private let titleLabel = UILabel()
-    private let changeEmailTextField = IVTextField(placeholder: "Change email", leadingImage: .email)
-    private let confirmPasswordTextField = IVTextField(placeholder: "Confirm password", leadingImage: .email)
+    private let changeEmailTextField = IVTextField(placeholder: "Change email", leadingImage: .email, validationType: .email)
+    private let confirmPasswordTextField = IVTextField(placeholder: "Confirm password", leadingImage: .password)
     private let changeEmailButton = UIButton(configuration: .secondary(title: "Change Email"))
+    
+    weak var delegate: ChangeEmailViewDelegate?
     
     override func setupView() {
         super.setupView()
         
         layer.cornerRadius = 16
         backgroundColor = .dark10
-
+        
+        titleLabel.text = "Email Addresses"
         titleLabel.font = .interFont(ofSize: 20, weight: .bold)
         titleLabel.textColor = .secondary1
         
-        changeEmailTextField.isSecureTextEntry = true
-        confirmPasswordTextField.isSecureTextEntry = true
+        changeEmailTextField.delegate = self
+        
+        confirmPasswordTextField.secured = true
+        confirmPasswordTextField.delegate = self
+        
+        changeEmailButton.IVsetEnabled(false, title: "Change Email")
+        changeEmailButton.addTarget(self, action: #selector(changeEmailButtonTapped), for: .touchUpInside)
     }
     
     override func addSubviews() {
@@ -55,5 +67,23 @@ final class ChangeEmailView: BaseView {
         changeEmailButton.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
         changeEmailButton.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
         changeEmailButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: 24)
+    }
+    
+    @objc private func changeEmailButtonTapped(_ sender: UIButton) {
+        guard let newEmail = changeEmailTextField.text,
+              let confirmPassword = confirmPasswordTextField.text else { return }
+        delegate?.changeEmail(self, confirmPassword: confirmPassword, newEmail: newEmail)
+    }
+}
+
+extension ChangeEmailView: IVTextFieldDelegate {
+    func textFieldDidChange(_ textField: IVTextField) {
+        guard let newEmail = changeEmailTextField.text,
+              let confirmPassword = confirmPasswordTextField.text else { return }
+        
+        let readyToChangeEmail = newEmail.isEmpty == false &&
+        confirmPassword.isEmpty == false
+        
+        changeEmailButton.IVsetEnabled(readyToChangeEmail, title: "Change Password")
     }
 }

@@ -11,6 +11,12 @@ import FirebaseAuth
 import GoogleSignIn
 import UIKit
 
+enum AuthenticationProvider: Codable {
+    case google
+    case firebase
+    case unknown
+}
+
 enum AuthenticationState {
     case unauthenticated
     case authenticating
@@ -22,12 +28,22 @@ enum AuthenticationFlow {
     case signUp
 }
 
-class AuthenticationService {
+final class AuthenticationService {
 
+    private let userDefaultsService: UserDefaultsService
+    
     var email: String = ""
     var password: String = ""
     var confirmPassword: String = ""
+    var provider: AuthenticationProvider = .unknown {
+        didSet {
+            saveAuthProvider()
+        }
+    }
     
+    var isSignedIn: Bool {
+        return authenticationState == .authenticated
+    }
     
     var flow: AuthenticationFlow = .login {
         didSet {
@@ -57,7 +73,9 @@ class AuthenticationService {
     
     private var authStateHandler: AuthStateDidChangeListenerHandle?
 
-    init() {
+    init(userDefaultsService: UserDefaultsService) {
+        self.userDefaultsService = userDefaultsService
+        self.provider = loadAuthProvider()
         registerAuthStateHandler()
     }
     
@@ -90,33 +108,41 @@ class AuthenticationService {
             : !(email.isEmpty || password.isEmpty || confirmPassword.isEmpty)
     }
     
-    func signInWithEmailPassword(completion: @escaping (Bool) -> Void) {
+    func signInWithEmailPassword(email: String, password: String) async throws -> User {
+        print("Attempting to sign in with email: \(email)")
         authenticationState = .authenticating
-        Auth.auth().signIn(withEmail: self.email, password: self.password) { [weak self] authResult, error in
-            guard let self = self else { return }
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-                self.authenticationState = .unauthenticated
-                completion(false)
-            } else {
-                self.authenticationState = .authenticated
-                completion(true)
-            }
+        
+        do {
+            let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
+            self.authenticationState = .authenticated
+            self.user = authResult.user
+            print("Sign-in successful for email: \(email)")
+            print("User ID: \(authResult.user.uid)")
+            return authResult.user
+        } catch let error as NSError {
+            self.authenticationState = .unauthenticated
+            self.errorMessage = error.localizedDescription
+            print("Sign-in failed for email: \(email). Error: \(error.localizedDescription)")
+            throw mapAuthError(error)
         }
     }
-    
-    func signUpWithEmailPassword(completion: @escaping (Bool) -> Void) {
+
+    func signUpWithEmailPassword(email: String, password: String) async throws -> User {
+        print("Starting sign-up process with email: \(email)")
         authenticationState = .authenticating
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
-            guard let self = self else { return }
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-                self.authenticationState = .unauthenticated
-                completion(false)
-            } else {
-                self.authenticationState = .authenticated
-                completion(true)
-            }
+        
+        do {
+            let authResult = try await Auth.auth().createUser(withEmail: email, password: password)
+            self.authenticationState = .authenticated
+            self.user = authResult.user
+            print("Sign-up successful for email: \(email)")
+            print("User ID: \(authResult.user.uid)")
+            return authResult.user
+        } catch let error as NSError {
+            self.authenticationState = .unauthenticated
+            self.errorMessage = error.localizedDescription
+            print("Sign-up failed for email: \(email). Error: \(error.localizedDescription)")
+            throw mapAuthError(error)
         }
     }
     
@@ -129,15 +155,31 @@ class AuthenticationService {
         }
     }
     
-    func deleteAccount(completion: @escaping (Bool) -> Void) {
-        user?.delete { [weak self] error in
-            if let error = error {
-                self?.errorMessage = error.localizedDescription
-                completion(false)
-            } else {
-                completion(true)
-            }
+    func updateEmail(oldEmail: String, password: String, newEmail: String) async throws -> String {
+        guard let user = Auth.auth().currentUser, user.email == oldEmail else {
+            throw NSError(domain: "com.app.auth", code: 401, userInfo: [NSLocalizedDescriptionKey: "Old email does not match the authenticated user's email."])
         }
+        
+        // Reauthenticate the user with old email and password
+        let credential = EmailAuthProvider.credential(withEmail: oldEmail, password: password)
+        try await user.reauthenticate(with: credential)
+        
+        // Send verification email to the new email address
+        try await user.sendEmailVerification(beforeUpdatingEmail: newEmail)
+        return "Verification email sent to \(newEmail). Please check your inbox to confirm the email change."
+    }
+
+    func updatePassword(oldEmail: String, currentPassword: String, newPassword: String) async throws {
+        guard let user = Auth.auth().currentUser, user.email == oldEmail else {
+            throw NSError(domain: "com.app.auth", code: 401, userInfo: [NSLocalizedDescriptionKey: "Old email does not match the authenticated user's email."])
+        }
+        
+        // Reauthenticate the user with old email and current password
+        let credential = EmailAuthProvider.credential(withEmail: oldEmail, password: currentPassword)
+        try await user.reauthenticate(with: credential)
+        
+        // Update the password to the new one
+        try await user.updatePassword(to: newPassword)
     }
     
     func getCurrentUser() -> IVUser? {
@@ -161,7 +203,15 @@ class AuthenticationService {
             userId: userId
         )
     }
-
+    
+    private func saveAuthProvider() {
+        userDefaultsService.save(provider, for: .authProvider)
+    }
+    
+    // Load the provider from UserDefaults
+    private func loadAuthProvider() -> AuthenticationProvider {
+        return userDefaultsService.get(AuthenticationProvider.self, for: .authProvider) ?? .unknown
+    }
 
 }
 
@@ -188,31 +238,44 @@ extension AuthenticationService {
                 return
             }
             
-            guard let userAuthentication = signInResult?.user else {
-                self.errorMessage = "No Google user found."
+            guard let userAuthentication = signInResult?.user,
+                  let idToken = userAuthentication.idToken else {
+                self.errorMessage = "Google Sign-In failed"
                 completion(false)
                 return
             }
             
-            guard let idToken = userAuthentication.idToken else {
-                self.errorMessage = "ID token missing"
-                completion(false)
-                return
-            }
-            
-            let accessToken = userAuthentication.accessToken
             let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString,
-                                                           accessToken: accessToken.tokenString)
-            
+                                                           accessToken: userAuthentication.accessToken.tokenString)
             Auth.auth().signIn(with: credential) { authResult, error in
                 if let error = error {
                     self.errorMessage = error.localizedDescription
                     completion(false)
                 } else {
+                    self.provider = .google
                     self.authenticationState = .authenticated
                     completion(true)
                 }
             }
+        }
+    }
+}
+
+extension AuthenticationService {
+    func sendPasswordReset(to email: String) async throws {
+        guard !email.isEmpty else {
+            throw NSError(
+                domain: "com.app.auth",
+                code: 400,
+                userInfo: [NSLocalizedDescriptionKey: "Email cannot be empty."]
+            )
+        }
+        
+        do {
+            try await Auth.auth().sendPasswordReset(withEmail: email)
+        } catch let error as NSError {
+            self.errorMessage = error.localizedDescription
+            throw error
         }
     }
 }

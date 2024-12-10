@@ -17,9 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-        let authentificationService = AuthenticationService()
+        let userDefaultsService = UserDefaultsService()
+        let authentificationService = AuthenticationService(userDefaultsService: userDefaultsService)
         authentificationService.registerAuthStateHandler()
-        serviceProvider = ServiceProvider(authentificationService: authentificationService)
+        serviceProvider = ServiceProvider(authenticationService: authentificationService, userDefaultsService: userDefaultsService)
         
         setupTabBarAppearance()
         return true

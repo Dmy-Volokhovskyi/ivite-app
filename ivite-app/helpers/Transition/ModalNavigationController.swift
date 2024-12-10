@@ -15,6 +15,7 @@ class ModalNavigationController: UINavigationController {
         super.viewDidLoad()
         
         navigationBar.isHidden = true
+        view.backgroundColor = .clear 
         // Configure the sheet presentation controller if available
         if let sheet = sheetPresentationController {
             sheet.detents = [

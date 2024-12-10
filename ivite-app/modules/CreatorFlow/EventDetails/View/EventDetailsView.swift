@@ -21,7 +21,7 @@ final class EventDetailsView: BaseView {
     private let eventDateEntry = EntryWithTitleView(title: "Date/time", isRequired: true)
     private let timePickerStack = UIStackView()
     private let timePicker: IVControl
-    private let timezonePicker = IVControl(text: "WST")
+    private let timezonePicker = IVControl(placeholder: "WST", trailingImage: .chewronDown)
     
     weak var delegate: EventDetailsViewDelegate?
     

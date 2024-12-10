@@ -8,6 +8,7 @@ protocol EventsEventHandler: AnyObject {
 protocol EventsDataSource: AnyObject {
     var numberOfRows: Int { get }
     var numberOfSections: Int { get }
+    var user: IVUser? { get }
     
     func eventCardModel(for indexPath: IndexPath) -> EventCardModel
 }
@@ -16,7 +17,7 @@ final class EventsController: BaseViewController {
     private let eventHandler: EventsEventHandler
     private let dataSource: EventsDataSource
     
-    private let searchBarView = MainSearchBarView()
+    private let searchBarView: MainSearchBarView
     private let listHeaderView = ListHeaderView(actionButton: UIButton(configuration: .primary(title: "Create New Event", image: nil)), title: "Event List")
     private let invitesLeftView = InvitesLeftView()
     private let tableView = UITableView(frame: .zero, style: .grouped)
@@ -25,7 +26,7 @@ final class EventsController: BaseViewController {
     init(eventHandler: EventsEventHandler, dataSource: EventsDataSource) {
         self.eventHandler = eventHandler
         self.dataSource = dataSource
-        
+        self.searchBarView = MainSearchBarView(isLoggedIn: dataSource.user == nil, profileImageURL: dataSource.user?.profileImageURL)
         super.init()
     }
     
@@ -50,6 +51,7 @@ final class EventsController: BaseViewController {
         tableViewBackgroundView.configure(text: "Your event list is empty")
         
         tableView.register(EventCardCell.self)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
     }
     
     override func addSubviews() {
@@ -81,7 +83,7 @@ final class EventsController: BaseViewController {
         invitesLeftView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
         
         tableView.autoPinEdge(.top, to: .bottom, of: invitesLeftView)
-        tableView.autoPinEdgesToSuperviewSafeArea(with: .init(top: 16, left: 16, bottom: 16, right: 16),
+        tableView.autoPinEdgesToSuperviewSafeArea(with: .init(top: 16, left: 16, bottom: .zero, right: 16),
                                                   excludingEdge: .top)
     }
     
@@ -89,6 +91,12 @@ final class EventsController: BaseViewController {
         super.viewDidLoad()
         
         eventHandler.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        searchBarView.updateProfileImage(dataSource.user?.profileImageURL)
     }
 }
 

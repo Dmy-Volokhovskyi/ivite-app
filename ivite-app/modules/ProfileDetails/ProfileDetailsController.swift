@@ -1,10 +1,14 @@
 import UIKit
 
 protocol ProfileDetailsEventHandler: AnyObject {
+    func didTouchDeleteAccount()
+    func changeEmail(newEmail: String, confirmPassword: String)
+    func changePassword(oldPassword: String, newPassword: String)
 }
 
 protocol ProfileDetailsDataSource: AnyObject {
     var user: IVUser? { get }
+    var authProvider: AuthenticationProvider { get }
 }
 
 final class ProfileDetailsController: BaseScrollViewController {
@@ -47,7 +51,7 @@ final class ProfileDetailsController: BaseScrollViewController {
         
         avatarImageView.layer.cornerRadius = 56
         avatarImageView.clipsToBounds = true
-        avatarImageView.sd_setImage(with: dataSource.user?.profileImageURL, placeholderImage: UIImage(named: "placeholder"))
+        avatarImageView.sd_setImage(with: dataSource.user?.profileImageURL, placeholderImage: .userAdd)
         
         nameLabel.text = dataSource.user?.firstName
         emailLabel.text = dataSource.user?.email
@@ -57,8 +61,14 @@ final class ProfileDetailsController: BaseScrollViewController {
         mainDetailsContainer.backgroundColor = .dark10
         mainDetailsContainer.layer.cornerRadius = 16
         
-        backButton.addTarget(self, action: #selector(didTouchBack), for: .touchUpInside)
+        changePasswordView.delegate = self
+        changePasswordView.isHidden = dataSource.authProvider == .google
         
+        changeEmailView.delegate = self
+        changeEmailView.isHidden = dataSource.authProvider == .google
+        
+        backButton.addTarget(self, action: #selector(didTouchBack), for: .touchUpInside)
+        deleteAccountButton.addTarget(self, action: #selector(didTouchDeleteAccount), for: .touchUpInside)
         view.backgroundColor = .white
     }
     
@@ -135,7 +145,23 @@ final class ProfileDetailsController: BaseScrollViewController {
     @objc private func didTouchBack(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc private func didTouchDeleteAccount(_ sender: UIButton) {
+        eventHandler.didTouchDeleteAccount()
+    }
 }
 
 extension ProfileDetailsController: ProfileDetailsViewInterface {
+}
+
+extension ProfileDetailsController: ChangePasswordViewDelegate {
+    func changePassword(_ view: ChangePasswordView, oldPassword: String, newPassword: String) {
+        eventHandler.changePassword(oldPassword: oldPassword, newPassword: newPassword)
+    }
+}
+
+extension ProfileDetailsController: ChangeEmailViewDelegate {
+    func changeEmail(_ view: ChangeEmailView, confirmPassword: String, newEmail: String) {
+        eventHandler.changeEmail(newEmail: newEmail, confirmPassword: confirmPassword)
+    }
 }

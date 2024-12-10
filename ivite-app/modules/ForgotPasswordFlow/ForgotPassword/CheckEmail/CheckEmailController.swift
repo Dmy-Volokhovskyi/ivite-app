@@ -1,6 +1,7 @@
 import UIKit
 
 protocol CheckEmailEventHandler: AnyObject {
+    func didTapResendButton()
 }
 
 protocol CheckEmailDataSource: AnyObject {
@@ -42,6 +43,8 @@ final class CheckEmailController: BaseViewController {
         hintLabel.numberOfLines = 0
         hintLabel.textColor = .secondary70
         hintLabel.font = .interFont(ofSize: 16)
+        
+        resendButton.delegate = self
     }
     
     override func addSubviews() {
@@ -79,58 +82,8 @@ final class CheckEmailController: BaseViewController {
 extension CheckEmailController: CheckEmailViewInterface {
 }
 
-final class ResendButtonView: BaseView {
-
-    private let resendButton = UIButton(configuration: .primary(title: "Resend link"))
-    private var countdownTimer: Timer?
-    private var remainingSeconds = 59
-
-    override func setupView() {
-        super.setupView()
-
-        resendButton.addTarget(self, action: #selector(didTapResendButton), for: .touchUpInside)
-        addSubview(resendButton)
-    }
-
-    override func constrainSubviews() {
-        super.constrainSubviews()
-        resendButton.autoPinEdgesToSuperviewEdges()
-    }
-
-    @objc private func didTapResendButton() {
-        startCountdown()
-    }
-
-    public func startCountdown() {
-        // Disable the button and apply disabled configuration
-        resendButton.configuration = .disabledPrimary(title: "Resend link")
-        resendButton.isUserInteractionEnabled = false
-
-        // Start the timer
-        countdownTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCountdown), userInfo: nil, repeats: true)
-    }
-
-    @objc private func updateCountdown() {
-        if remainingSeconds > 0 {
-            let title = "Resend link \(String(format: "%02d", remainingSeconds))"
-            updateButtonTitle(with: title)
-            remainingSeconds -= 1
-        } else {
-            countdownTimer?.invalidate()
-            remainingSeconds = 59
-
-            // Re-enable the button and apply normal configuration
-            resendButton.isUserInteractionEnabled = true
-            resendButton.configuration = .primary(title: "Resend link")
-        }
-    }
-
-    private func updateButtonTitle(with title: String) {
-        var configuration = resendButton.configuration
-        var attributedTitle = AttributedString(title)
-        attributedTitle.font = .interFont(ofSize: 14, weight: .semiBold)
-        attributedTitle.foregroundColor = UIColor.primaryLight10
-        configuration?.attributedTitle = attributedTitle
-        resendButton.configuration = configuration
+extension CheckEmailController: ResendButtonViewDelegate {
+    func didTapResendButton() {
+        eventHandler.didTapResendButton()
     }
 }

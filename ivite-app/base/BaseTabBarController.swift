@@ -9,12 +9,9 @@ import UIKit
 
 class BaseTabBarController: UITabBarController {
 
-    // Custom initializer
     init() {
         super.init(nibName: nil, bundle: nil)
         setupTabBar()
-//        addViewControllers()
-//        configureTabBarItems()
     }
     
     // Required initializer for using with storyboards or nibs

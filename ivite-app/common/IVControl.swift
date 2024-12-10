@@ -15,17 +15,30 @@ protocol IVControlDelegate: AnyObject {
 final class IVControl: BaseControll {
     private var placeholder: String = ""
     private let textField = UITextField()
+    private let contentStackView = UIStackView()
+    private var leadingImageView = UIImageView()
+    private var trailingImageView = UIImageView()
     weak var delegate: IVControlDelegate?
-
+    
     var text: String? {
         get { textField.text }
         set { textField.text = newValue }
     }
-    // Initializer
-    init(text: String = "", placeholder: String = "") {
+    
+    init(text: String = "",
+         placeholder: String = "",
+         leadingImage: UIImage? = nil,
+         trailingImage: UIImage? = nil) {
         self.placeholder = placeholder
-        textField.text = text
         super.init(frame: .zero)
+        
+        leadingImageView.image = leadingImage?.withTintColor(.dark30, renderingMode: .alwaysOriginal)
+        leadingImageView.isHidden = leadingImage == nil
+        
+        trailingImageView.image = trailingImage?.withTintColor(.dark30, renderingMode: .alwaysOriginal)
+        trailingImageView.isHidden = trailingImage == nil
+        
+        textField.text = text
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -36,15 +49,17 @@ final class IVControl: BaseControll {
         super.setupView()
         
         layer.cornerRadius = 22
-        backgroundColor = .dark10 // Initial background color
+        backgroundColor = .dark10
         self.isUserInteractionEnabled = true
         
         textField.isUserInteractionEnabled = false
         self.addTarget(self, action: #selector(didTouchUpInside), for: .touchUpInside)
-
-        // Add highlight when pressed
         self.addTarget(self, action: #selector(didTouchDown), for: .touchDown)
         self.addTarget(self, action: #selector(didTouchUp), for: [.touchUpInside, .touchUpOutside])
+        
+        contentStackView.axis = .horizontal
+        contentStackView.spacing = 12
+        contentStackView.isUserInteractionEnabled = false
         
         textField.placeholder = placeholder
         textField.borderStyle = .none
@@ -53,29 +68,35 @@ final class IVControl: BaseControll {
     override func addSubviews() {
         super.addSubviews()
         
-        addSubview(textField)
+        [leadingImageView, textField, trailingImageView].forEach { contentStackView.addArrangedSubview($0) }
+        addSubview(contentStackView)
     }
     
     override func constrainSubviews() {
         super.constrainSubviews()
         
-        textField.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20))
+        contentStackView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20))
+        leadingImageView.autoSetDimensions(to: CGSize(width: 20, height: 20))
+        trailingImageView.autoSetDimensions(to: CGSize(width: 20, height: 20))
     }
-
-    // Change background color when pressed
+    
+    public func setTrailingImageView(image: UIImage?) {
+        trailingImageView.image = image?.withTintColor(.dark30, renderingMode: .alwaysOriginal)
+        trailingImageView.isHidden = image == nil
+    }
+    
     @objc private func didTouchDown() {
-        backgroundColor = .red // Highlight when clicked
+        backgroundColor = .dark20
     }
-
-    // Revert background color when released and notify delegate
+    
     @objc private func didTouchUp() {
-        backgroundColor = .dark10 // Revert to original color
-        delegate?.didTouchDisabledTextField(self)
+        backgroundColor = .dark10
+//        delegate?.didTouchDisabledTextField(self)
     }
-
-    // Notify delegate on touch up inside
+    
     @objc private func didTouchUpInside() {
         delegate?.didTouchDisabledTextField(self)
     }
 }
+
 

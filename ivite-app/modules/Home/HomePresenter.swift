@@ -26,6 +26,9 @@ extension HomePresenter: HomeEventHandler {
 }
 
 extension HomePresenter: HomeDataSource {
+    var user: IVUser? {
+        interactor.serviceProvider.authenticationService.getCurrentUser()
+    }
 }
 
 extension HomePresenter: HomeInteractorDelegate {

@@ -12,6 +12,20 @@ final class ProfilePresenter: BasePresenter {
         self.router = router
         self.interactor = interactor
     }
+    
+    private func logOut() {
+        let logOutAction = ActionItem(title: "Log out", image: nil, isPrimary: true) {
+            self.interactor.serviceProvider.authenticationService.signOut()
+            self.router.dismissModal(completion: nil)
+            print("Delete tapped")
+        }
+        
+        let cancelAction = ActionItem(title: "Cancel", image: nil, isPrimary: false) {
+            self.router.dismiss(completion: nil)
+        }
+        
+        router.showAlert(alertItem: AlertItem(title: "Log out", message: "Do you really want to log out of your account?", actions: [logOutAction, cancelAction]))
+    }
 }
 
 extension ProfilePresenter: ProfileEventHandler {
@@ -25,19 +39,18 @@ extension ProfilePresenter: ProfileEventHandler {
         case .recentPaymentMethod:
             print(menuItem)
         case .logOut:
-            interactor.serviceProvider.authentificationService.signOut()
+            logOut()
         }
     }
     
     func didTouchShowProfile() {
         router.showProfileDetails(serviceProvider: interactor.serviceProvider)
-        print("touch profile")
     }
 }
 
 extension ProfilePresenter: ProfileDataSource {
     var user: IVUser? {
-        interactor.serviceProvider.authentificationService.getCurrentUser()
+        interactor.serviceProvider.authenticationService.getCurrentUser()
     }
     
 }

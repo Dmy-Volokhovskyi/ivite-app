@@ -3,8 +3,9 @@ import UIKit
 protocol SignInEventHandler: AnyObject {
     func didTouchForgotPassword()
     func didTapCloseButton()
-    func didTouchSignIn()
+    func didTouchSignIn(with email: String, password: String)
     func didTouchSignInWithGoogle()
+    func didTapClickableText()
 }
 
 protocol SignInDataSource: AnyObject {
@@ -28,11 +29,11 @@ final class SignInController: BaseViewController {
     private let orLabelContainerView = UIView()
     private let orLabel = UILabel()
     private let credentialsStackView = UIStackView()
-    private let emailTextField = IVTextField(placeholder: "Email address", leadingImage: .email)
-    private let passwordTextField = IVTextField(placeholder: "Password", leadingImage: .password)
+    private let emailTextField = IVTextField(placeholder: "Email address", leadingImage: .email, validationType: .email)
+    private let passwordTextField = IVTextField(placeholder: "Password", leadingImage: .password, trailingImage: .eyeOpen)
     private let forgotPasswordButton = UIButton(configuration: .clear(title: "Forgot password?"))
     private let signInButton = UIButton(configuration: .primary(title: "Sign in"))
-    private let dontHaveAnAccountView = ClickableTextView(fullText: "Don’t have an account? Sign in", clickableText: "Sign in")
+    private let dontHaveAnAccountView = ClickableTextView(fullText: "Don’t have an account? Sign up", clickableText: "Sign up")
     
     init(eventHandler: SignInEventHandler, dataSource: SignInDataSource) {
         self.eventHandler = eventHandler
@@ -66,9 +67,16 @@ final class SignInController: BaseViewController {
         credentialsStackView.axis = .vertical
         credentialsStackView.spacing = 12
         
+        emailTextField.delegate = self
+        
+        passwordTextField.delegate = self
+        passwordTextField.secured = true
+        
         signInWithGoogleButton.addTarget(self, action: #selector(didTouchSignInWithGoogle), for: .touchUpInside)
         signInButton.addTarget(self, action: #selector(didTouchSignIn), for: .touchUpInside)
         forgotPasswordButton.addTarget(self, action: #selector(didTouchForgotPassword), for: .touchUpInside)
+        
+        signInButton.IVsetEnabled(false, title: "Sign in")
         
         dontHaveAnAccountView.delegate = self
     }
@@ -149,7 +157,8 @@ final class SignInController: BaseViewController {
     }
     
     @objc private func didTouchSignIn(_ sender: UIButton) {
-        eventHandler.didTouchSignIn()
+        guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+        eventHandler.didTouchSignIn(with: email, password: password)
     }
 }
 
@@ -158,6 +167,13 @@ extension SignInController: SignInViewInterface {
 
 extension SignInController: ClickableTextViewDelegate {
     func didTapClickableText() {
-        print("Did Tap Clickable Text")
+        eventHandler.didTapClickableText()
+    }
+}
+
+extension SignInController: IVTextFieldDelegate {
+    func textFieldDidChange(_ textField: IVTextField) {
+        let credible = emailTextField.isValid && passwordTextField.isValid
+        signInButton.IVsetEnabled(credible, title: "Sign in")
     }
 }

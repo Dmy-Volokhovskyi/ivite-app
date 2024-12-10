@@ -15,10 +15,18 @@ final class CheckEmailPresenter: BasePresenter {
 }
 
 extension CheckEmailPresenter: CheckEmailEventHandler {
+    func didTapResendButton() {
+        interactor.sendForgetPasswordRequest()
+    }
 }
 
 extension CheckEmailPresenter: CheckEmailDataSource {
 }
 
 extension CheckEmailPresenter: CheckEmailInteractorDelegate {
+    func didSendForgetPasswordRequest(email: String, success: Bool, error: (any Error)?) {
+        if let error, !success {
+            router.showSystemAlert(title: "An error occurred", message: error.localizedDescription)
+        }
+    }
 }

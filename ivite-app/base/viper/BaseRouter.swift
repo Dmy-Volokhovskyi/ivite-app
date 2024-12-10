@@ -14,6 +14,14 @@ class BaseRouter {
         controller?.dismiss(animated: true, completion: completion)
     }
     
+    func dismissModal(completion: (() -> Void)?) {
+        if let navigationController = controller?.presentedViewController as? ModalNavigationController {
+            navigationController.dismiss(animated: true, completion: completion)
+        } else {
+            completion?() // If the presented view controller is not ModalNavigationController
+        }
+    }
+    
     func popVC(animated: Bool = true) {
            if let navigationController = controller?.navigationController {
                // Pop view controller from navigation stack
@@ -77,15 +85,11 @@ class BaseRouter {
     }
 
     func showFloatingView(customView: UIView, global: Bool = false) {
-        // Create an instance of FloatingViewController and configure it with the custom view
         let floatingVC = FloatingViewController()
         floatingVC.configure(with: customView)
-        
-        // Wrap FloatingViewController in a ModalNavigationController
         let navigationController = ModalNavigationController(rootViewController: floatingVC)
         navigationController.isFullScreen = false
-
-        // Determine the presenting controller
+        
         var controller = self.controller
         if global {
             while controller?.presentedViewController != nil {
@@ -95,5 +99,23 @@ class BaseRouter {
         
         // Present the navigation controller
         controller?.present(navigationController, animated: true)
+    }
+    
+    func showSystemAlert(title: String, message: String, actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default)], global: Bool = false) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        actions.forEach { alertController.addAction($0) }
+        
+        // Determine the presenting controller
+        var presentingController = self.controller
+        if global {
+            while presentingController?.presentedViewController != nil {
+                presentingController = presentingController?.presentedViewController
+            }
+        }
+        
+        // Present the alert
+        DispatchQueue.main.async {
+            presentingController?.present(alertController, animated: true)
+        }
     }
 }

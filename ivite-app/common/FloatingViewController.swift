@@ -7,29 +7,25 @@
 
 import UIKit
 
-class FloatingViewController: BaseViewController {
-    private let contentView = UIView()
-    private var customView: UIView? // Custom view to be added to the contentView
+protocol PreferredContentSizeUpdatable: AnyObject {
+    func updatePreferredContentSize()
+}
 
+final class FloatingViewController: BaseViewController, PreferredContentSizeUpdatable {
+    private let contentView = UIView()
+    private var customView: UIView?
+    
     override func setupView() {
         super.setupView()
-        
-        // Configure contentView
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 16
         contentView.clipsToBounds = true
-        
-        // Configure background of the main view
         view.backgroundColor = .clear
     }
     
     override func addSubviews() {
         super.addSubviews()
-        
-        // Add contentView to the main view
         view.addSubview(contentView)
-        
-        // If a custom view is provided, add it to the contentView
         if let customView = customView {
             contentView.addSubview(customView)
         }
@@ -37,35 +33,43 @@ class FloatingViewController: BaseViewController {
     
     override func constrainSubviews() {
         super.constrainSubviews()
-        
-        // Pin contentView to the safe area of the screen
         contentView.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
-        
-        // If a custom view exists, constrain it inside the contentView
         if let customView = customView {
             customView.autoPinEdgesToSuperviewEdges()
         }
     }
     
-    /// Configure the floating view with a custom UIView.
-    /// - Parameter view: The custom view to display inside the contentView.
     public func configure(with view: UIView) {
-        // Clear existing customView
         customView?.removeFromSuperview()
         customView = view
         
-        // Add the new customView to contentView and re-constrain
+        if var customViewWithDelegate = customView as? PreferredContentSizeUpdatable {
+            customViewWithDelegate = self
+        }
+        
         if isViewLoaded {
             contentView.addSubview(customView!)
             constrainSubviews()
+            updatePreferredContentSize()
         }
     }
     
-    /// Dismiss the floating view controller
+    internal func updatePreferredContentSize() {
+        guard let customView = customView else { return }
+        let targetSize = CGSize(width: view.frame.width, height: UIView.layoutFittingCompressedSize.height)
+        let fittingSize = customView.systemLayoutSizeFitting(
+            targetSize,
+            withHorizontalFittingPriority: .defaultHigh,
+            verticalFittingPriority: .fittingSizeLevel
+        )
+        preferredContentSize = CGSize(width: targetSize.width, height: fittingSize.height)
+    }
+    
     @objc private func dismissVC() {
         dismiss(animated: true, completion: nil)
     }
 }
+
 
 extension FloatingViewController: ContentSizeProvider {
     func contentSize(for maxHeight: CGFloat) -> CGSize {

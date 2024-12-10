@@ -30,7 +30,7 @@ final class ProfileDetailView: BaseControll {
         
         guard let user else { return }
         firstNamelabel.text = user.firstName
-        profileImageView.sd_setImage(with: user.profileImageURL, placeholderImage: UIImage(named: "placeholder"))
+        profileImageView.sd_setImage(with: user.profileImageURL, placeholderImage: .userAdd)
     }
     
     @MainActor required init?(coder: NSCoder) {

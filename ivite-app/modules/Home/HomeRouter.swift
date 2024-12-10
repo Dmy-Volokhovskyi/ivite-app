@@ -11,7 +11,6 @@ final class HomeRouter: BaseRouter {
     func showSignIn(serviceProvider: ServiceProvider) {
         let controller = SignInBuilder(serviceProvider: serviceProvider)
             .make()
-        //        controller.modalPresentationStyle = .fullScreen
         self.controller?.navigationController?.pushViewController(controller, animated: true)
     }
 }

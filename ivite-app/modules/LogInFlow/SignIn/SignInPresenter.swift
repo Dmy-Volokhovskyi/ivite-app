@@ -15,16 +15,20 @@ final class SignInPresenter: BasePresenter {
 }
 
 extension SignInPresenter: SignInEventHandler {
+    func didTapClickableText() {
+        router.showCreateAccount(serviceProvider: interactor.serviceProvider)
+    }
+    
     func didTouchSignInWithGoogle() {
         guard let controller = viewInterface else { return }
-        interactor.serviceProvider.authentificationService.signInWithGoogle(presentingViewController: controller, completion: {_ in 
-            print("sucess")
+        interactor.serviceProvider.authenticationService.signInWithGoogle(presentingViewController: controller, completion: {_ in 
+            self.router.popVC()
         })
     }
     
-    func didTouchSignIn() {
-        if interactor.signIn() {
-            router.popVC()
+    func didTouchSignIn(with email: String, password: String) {
+        Task {
+            await interactor.signIn(with: email, password: password)
         }
     }
     
@@ -43,4 +47,11 @@ extension SignInPresenter: SignInDataSource {
 }
 
 extension SignInPresenter: SignInInteractorDelegate {
+    func showAlert(title: String, message: String) {
+        router.showSystemAlert(title: title, message: message)
+    }
+    
+    func signInDidComplete(did signIn: Bool) {
+        router.popVC()
+    }
 }

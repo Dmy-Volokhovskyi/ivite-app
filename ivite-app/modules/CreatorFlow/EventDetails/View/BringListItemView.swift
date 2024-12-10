@@ -59,8 +59,7 @@ final class BringListItemView: BaseView, UITextFieldDelegate {
         countTextField.delegate = self  // Set the delegate to self
         
         xLabel.text = "x"
-        xLabel.textColor = .dark30
-        xLabel.backgroundColor = countTextField.text?.isEmpty == false ? .secondary1 : .dark30
+        xLabel.textColor = countTextField.text?.isEmpty == false ? .secondary1 : .dark30
         
         deleteButton.setImage(.close, for: .normal)
         deleteButton.addTarget(self, action: #selector(didTapDeleteButton), for: .touchUpInside)

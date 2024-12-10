@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ForgotPasswordEventHandler: AnyObject {
-    func didPressSend()
+    func didPressSend(with email: String)
     func didTapCloseButton()
 }
 
@@ -58,10 +58,14 @@ final class ForgotPasswordController: BaseViewController {
        hintLabel.textColor = .secondary70
        hintLabel.font = .interFont(ofSize: 16)
        
+       emailTextField.delegate = self
+       
        sendButton.addTarget(self, action: #selector(didTouchSendButton), for: .touchUpInside)
        
        buttonStackView.axis = .vertical
        buttonStackView.spacing = 12
+       
+       sendButton.IVsetEnabled(false, title: "Send")
    }
     
     override func addSubviews() {
@@ -100,7 +104,8 @@ final class ForgotPasswordController: BaseViewController {
    }
     
     @objc private func didTouchSendButton(_ sender: UIButton) {
-        eventHandler.didPressSend()
+        guard let email = emailTextField.text, emailTextField.isValid else { return }
+        eventHandler.didPressSend(with: email)
     }
     
     @objc private func didTapCloseButton(_ sender: UIButton) {
@@ -109,4 +114,10 @@ final class ForgotPasswordController: BaseViewController {
 }
 
 extension ForgotPasswordController: ForgotPasswordViewInterface {
+}
+
+extension ForgotPasswordController: IVTextFieldDelegate {
+    func textFieldDidChange(_ textField: IVTextField) {
+        sendButton.IVsetEnabled(textField.isValid, title: "Send")
+    }
 }

@@ -7,15 +7,21 @@
 
 import UIKit
 
+protocol DynamicSearchBarDelegate: AnyObject {
+   func textFieldDidChange(_ textField: IVTextField)
+}
+
 final class DynamicSearchBar: BaseView {
     private let searchButton = UIButton(configuration: .image(image: .search))
     private let cancelButton = UIButton(configuration: .image(image: .close))
-    private let searchTextField = SearchBar()
+    private let searchTextField = IVTextField(placeholder: "Search", leadingImage: .search)
     
     private var foldedSearchButtonLeadingConstraint: NSLayoutConstraint?
     private var foldedSearchButtonTrailingConstraint: NSLayoutConstraint?
     
     private var unFoldedSearchButtonTrailingConstraint: NSLayoutConstraint?
+    
+    weak var delegate: DynamicSearchBarDelegate?
     
     override func setupView() {
         super.setupView()
@@ -28,6 +34,8 @@ final class DynamicSearchBar: BaseView {
         
         searchButton.addTarget(self, action: #selector(unfoldSearchBarDidTouch), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(cancelSearchDidTouch), for: .touchUpInside)
+        
+        searchTextField.delegate = self
     }
     
     override func addSubviews() {
@@ -93,5 +101,11 @@ final class DynamicSearchBar: BaseView {
             self.searchTextField.resignFirstResponder()
             self.cancelButton.isHidden = true
         })
+    }
+}
+
+extension DynamicSearchBar: IVTextFieldDelegate {
+    func textFieldDidChange(_ textField: IVTextField) {
+        delegate?.textFieldDidChange(textField)
     }
 }
