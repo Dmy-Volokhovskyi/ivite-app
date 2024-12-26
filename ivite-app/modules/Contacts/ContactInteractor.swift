@@ -5,10 +5,22 @@ protocol ContactInteractorDelegate: AnyObject {
 }
 
 final class ContactInteractor: BaseInteractor {
+    var currentUser: IVUser?
+    
+    override init(serviceProvider: ServiceProvider) {
+        super.init(serviceProvider: serviceProvider)
+        
+        currentUser = serviceProvider.userDefaultsService.getUser()
+    }
+    
     var contactCards = [ContactCardModel]()
     var groups: [ContactGroup] = []
     
     weak var delegate: ContactInteractorDelegate?
+    
+    func checkForUserUpdates() {
+        currentUser = serviceProvider.userDefaultsService.getUser()
+    }
     
     func getContacts() {
         let dateFormatter = DateFormatter()

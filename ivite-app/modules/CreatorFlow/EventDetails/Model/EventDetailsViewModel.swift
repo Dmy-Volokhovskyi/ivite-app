@@ -65,6 +65,22 @@ extension EventDetailsViewModel {
         dateFormatter.dateFormat = "dd/MM/yyyy"
         return dateFormatter.string(from: date)
     }
+    
+    func reviewFormattedDate() -> String {
+        guard let date = self.date else { return "" }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMMM d, yyyy HH:mm"
+        return dateFormatter.string(from: date)
+    }
+    
+    func reviewFormattedTimezone() -> String {
+        guard let date = self.date else { return "" }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "(a z)"
+        return dateFormatter.string(from: date)
+    }
 }
 
 struct CoHost {

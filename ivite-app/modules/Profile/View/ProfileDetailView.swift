@@ -30,7 +30,8 @@ final class ProfileDetailView: BaseControll {
         
         guard let user else { return }
         firstNamelabel.text = user.firstName
-        profileImageView.sd_setImage(with: user.profileImageURL, placeholderImage: .userAdd)
+        guard let imageUrl = URL(string: user.profileImageURL ?? "") else { return }
+        profileImageView.sd_setImage(with: imageUrl, placeholderImage: .userAdd)
     }
     
     @MainActor required init?(coder: NSCoder) {
@@ -49,12 +50,12 @@ final class ProfileDetailView: BaseControll {
         labelsStackView.isUserInteractionEnabled = false
         
         firstNamelabel.textColor = .secondary1
-        firstNamelabel.font = .interFont(ofSize: 14)
+        firstNamelabel.font = .interFont(ofSize: 16, weight: .regular)
         firstNamelabel.isUserInteractionEnabled = false
         
         showProfilLabel.text = "Show profile"
         showProfilLabel.textColor = .dark30
-        showProfilLabel.font = .interFont(ofSize: 16)
+        showProfilLabel.font = .interFont(ofSize: 16, weight: .regular)
         showProfilLabel.isUserInteractionEnabled = false
         
         backgroundColor = .white
@@ -99,8 +100,10 @@ final class ProfileDetailView: BaseControll {
         chevroneRightImageView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
     }
     
-    public func setUpProfile() {
-        
+    public func setUpProfile(for user: IVUser) {
+        firstNamelabel.text = user.firstName
+        let imageUrl = URL(string: user.profileImageURL ?? "")
+        profileImageView.sd_setImage(with: imageUrl, placeholderImage: .userAdd)
     }
     
     @objc private func didTouchShowProfile(_ sender: UIControl) {

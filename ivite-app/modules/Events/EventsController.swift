@@ -2,7 +2,10 @@ import UIKit
 
 protocol EventsEventHandler: AnyObject {
     func viewDidLoad()
+    func viewWillAppear()
     func didTouchMenu(for indexPath: IndexPath?)
+    func createNewEventButtonTouch()
+    
 }
 
 protocol EventsDataSource: AnyObject {
@@ -18,7 +21,8 @@ final class EventsController: BaseViewController {
     private let dataSource: EventsDataSource
     
     private let searchBarView: MainSearchBarView
-    private let listHeaderView = ListHeaderView(actionButton: UIButton(configuration: .primary(title: "Create New Event", image: nil)), title: "Event List")
+    private let createNewEventButton = UIButton(configuration: .primary(title: "Create New Event", image: nil))
+    private let listHeaderView: ListHeaderView
     private let invitesLeftView = InvitesLeftView()
     private let tableView = UITableView(frame: .zero, style: .grouped)
     private let tableViewBackgroundView = TableViewBackgroundView()
@@ -27,6 +31,7 @@ final class EventsController: BaseViewController {
         self.eventHandler = eventHandler
         self.dataSource = dataSource
         self.searchBarView = MainSearchBarView(isLoggedIn: dataSource.user == nil, profileImageURL: dataSource.user?.profileImageURL)
+        self.listHeaderView = ListHeaderView(actionButton: createNewEventButton, title: "Event List")
         super.init()
     }
     
@@ -39,7 +44,7 @@ final class EventsController: BaseViewController {
         
         view.backgroundColor = .white
         
-        invitesLeftView.configure(invitesLeft: "136")
+        createNewEventButton.addTarget(self, action: #selector(createNewEventButtonTouch), for: .touchUpInside)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -96,13 +101,25 @@ final class EventsController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        searchBarView.updateProfileImage(dataSource.user?.profileImageURL)
+        eventHandler.viewWillAppear()
+    }
+    
+    @objc private func createNewEventButtonTouch(_ sender: UIButton) {
+        eventHandler.createNewEventButtonTouch()
     }
 }
 
 extension EventsController: EventsViewInterface {
     func reloadTableView() {
         tableView.reloadData()
+    }
+    
+    func updateSearchBar() {
+        searchBarView.updateProfileImage(dataSource.user?.profileImageURL)
+        
+        if let remainingInvites = dataSource.user?.remainingInvites {
+            invitesLeftView.configure(invitesLeft: remainingInvites)
+        }
     }
 }
 

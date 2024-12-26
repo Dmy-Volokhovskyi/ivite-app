@@ -32,7 +32,7 @@ final class SignInController: BaseViewController {
     private let emailTextField = IVTextField(placeholder: "Email address", leadingImage: .email, validationType: .email)
     private let passwordTextField = IVTextField(placeholder: "Password", leadingImage: .password, trailingImage: .eyeOpen)
     private let forgotPasswordButton = UIButton(configuration: .clear(title: "Forgot password?"))
-    private let signInButton = UIButton(configuration: .primary(title: "Sign in"))
+    private let signInButton = IVButton(configuration: .primary(title: "Sign in"), title: "Sign in")
     private let dontHaveAnAccountView = ClickableTextView(fullText: "Don’t have an account? Sign up", clickableText: "Sign up")
     
     init(eventHandler: SignInEventHandler, dataSource: SignInDataSource) {
@@ -163,6 +163,13 @@ final class SignInController: BaseViewController {
 }
 
 extension SignInController: SignInViewInterface {
+    func showLoadingIndicator() {
+        signInButton.showLoading()
+    }
+    
+    func hideLoadingIndicator() {
+        signInButton.hideLoading()
+    }
 }
 
 extension SignInController: ClickableTextViewDelegate {

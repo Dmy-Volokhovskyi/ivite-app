@@ -44,7 +44,7 @@ final class InvitesLeftView: BaseView {
         invitesLeftCountLabel.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .leading)
     }
     
-    func configure(invitesLeft: String) {
-        invitesLeftCountLabel.text = invitesLeft
+    func configure(invitesLeft: Int) {
+        invitesLeftCountLabel.text = String(invitesLeft)
     }
 }

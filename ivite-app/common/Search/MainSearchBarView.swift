@@ -28,7 +28,7 @@ final class MainSearchBarView: BaseView {
     
     weak var delegate: MainSearchBarViewDelegate?
     
-    init(isLoggedIn: Bool = false, profileImageURL: URL?) {
+    init(isLoggedIn: Bool = false, profileImageURL: String?) {
         self.isLoggedIn = isLoggedIn
         super.init()
         
@@ -36,7 +36,9 @@ final class MainSearchBarView: BaseView {
         profileImage.isHidden = !isLoggedIn
         profileImage.layer.cornerRadius = 22
         profileImage.clipsToBounds = true
-        profileImage.sd_setImage(with: profileImageURL, placeholderImage: .userAdd)
+        
+        let url = URL(string: profileImageURL ?? "")
+        profileImage.sd_setImage(with: url, placeholderImage: .userAdd)
         
         searchButton.delegate = self
         NotificationCenter.default.addObserver(self,
@@ -82,8 +84,9 @@ final class MainSearchBarView: BaseView {
         stackView.autoPinEdgesToSuperviewEdges()
     }
     
-    public func updateProfileImage(_ profileImageURL: URL?) {
-        profileImage.sd_setImage(with: profileImageURL, placeholderImage: .userAdd)
+    public func updateProfileImage(_ profileImageURL: String?) {
+        let url = URL(string: profileImageURL ?? "")
+        profileImage.sd_setImage(with: url, placeholderImage: .userAdd)
     }
     
     @objc private func didTouchLogInButton(_ sender: UIButton) {

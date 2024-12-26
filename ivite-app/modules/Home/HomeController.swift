@@ -3,6 +3,7 @@ import UIKit
 protocol HomeEventHandler: AnyObject {
     func didSelectItem(at indexPath: IndexPath)
     func didTapLogInButton()
+    func viewWillAppear()
 }
 
 protocol HomeDataSource: AnyObject {
@@ -83,8 +84,17 @@ final class HomeController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        searchBarView.updateProfileImage(dataSource.user?.profileImageURL)
+        eventHandler.viewWillAppear()
         navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+}
+
+extension HomeController: HomeViewInterface {
+    func didSignIn() {
+    }
+    
+    func updateSearchBar() {
+        searchBarView.updateProfileImage(dataSource.user?.profileImageURL)
     }
 }
 

@@ -78,6 +78,11 @@ final class ChangePasswordView: BaseView {
         delegate?.changePassword(self, oldPassword: oldPassword, newPassword: newPassword)
     }
     
+    public func clear() {
+        oldPasswordTextField.text = nil
+        newPasswordTextField.text = nil
+    }
+    
 }
 
 extension ChangePasswordView: IVTextFieldDelegate {

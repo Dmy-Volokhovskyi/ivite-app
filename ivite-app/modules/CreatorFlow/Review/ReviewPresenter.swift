@@ -15,6 +15,10 @@ final class ReviewPresenter: BasePresenter {
 }
 
 extension ReviewPresenter: ReviewEventHandler {
+    func didTouchPreviewButton() {
+        router.showPreview(creatorFlowModel: interactor.creatorFlowModel, serviceProvider: interactor.serviceProvider)
+    }
+    
     func didTouchBackButton() {
         router.popVC()
     }

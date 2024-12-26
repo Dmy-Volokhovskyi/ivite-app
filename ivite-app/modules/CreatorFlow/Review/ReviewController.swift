@@ -3,6 +3,7 @@ import UIKit
 protocol ReviewEventHandler: AnyObject {
     func didTouchBackButton()
     func didTouchNextButton()
+    func didTouchPreviewButton()
 }
 
 protocol ReviewDataSource: AnyObject {
@@ -63,6 +64,7 @@ final class ReviewController: BaseScrollViewController {
         
         backButton.addTarget(self, action: #selector(didTouchBackButton), for: .touchUpInside)
         nextButton.addTarget(self, action: #selector(didTouchNextButton), for: .touchUpInside)
+        previewButton.addTarget(self, action: #selector(didTouchPreviewButton), for: .touchUpInside)
     }
     
     override func addSubviews() {
@@ -93,12 +95,8 @@ final class ReviewController: BaseScrollViewController {
         super.constrainSubviews()
         
         contentStackView.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
-        
-        //        invitationImageView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16), excludingEdge: .bottom)
+
         invitationImageView.autoMatch(.height, to: .width, of: invitationImageView, withMultiplier: 491 / 343)
-        //        reviewMainDetailView.autoPinEdge(.top, to: .bottom, of: invitationImageView, withOffset: 16)
-        //        reviewMainDetailView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16), excludingEdge: .top)
-        
         bottomBarView.autoPinEdgesToSuperviewEdges(with:.zero, excludingEdge: .top)
         
         setUpBottomViewConstraints()
@@ -139,6 +137,10 @@ final class ReviewController: BaseScrollViewController {
     
     @objc private func didTouchNextButton(_ sender: UIButton) {
         eventHandler.didTouchNextButton()
+    }
+    
+    @objc private func didTouchPreviewButton(_ sender: UIButton) {
+        eventHandler.didTouchPreviewButton()
     }
 }
 

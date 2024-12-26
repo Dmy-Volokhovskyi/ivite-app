@@ -32,7 +32,7 @@ final class CreateAccountController: BaseViewController {
     private let emailTextField = IVTextField(placeholder: "Email address", leadingImage: .email)
     private let passwordTextField = IVTextField(placeholder: "Password", leadingImage: .password)
     private let termsAndConditionsView = TermsOfServiceView()
-    private let signUpButton = UIButton(configuration: .primary(title: "Sign up"))
+    private let signUpButton = IVButton(configuration: .primary(title: "Sign up"), title: "Sign up")
     private let allreadyHaveAnAccountView = ClickableTextView(fullText: "Already have an account? Sign in", clickableText: "Sign in")
 
     init(eventHandler: CreateAccountEventHandler, dataSource: CreateAccountDataSource) {
@@ -70,7 +70,7 @@ final class CreateAccountController: BaseViewController {
        signUpWithGoogleButton.addTarget(self, action: #selector(didTouchSignUpWithGoogle), for: .touchUpInside)
        signUpButton.addTarget(self, action: #selector(didTouchSignUp), for: .touchUpInside)
        
-       signUpButton.IVsetEnabled(false, title: "Sign up")
+       signUpButton.IVsetEnabled(false)
        
        nameTextField.delegate = self
        emailTextField.delegate = self
@@ -155,6 +155,17 @@ final class CreateAccountController: BaseViewController {
 }
 
 extension CreateAccountController: CreateAccountViewInterface {
+    func showLoadingIndicator() {
+        DispatchQueue.main.async {
+            self.signUpButton.showLoading()
+        }
+    }
+    
+    func hideLoadingIndicator() {
+        DispatchQueue.main.async {
+            self.signUpButton.hideLoading()
+        }
+    }
 }
 
 extension CreateAccountController: TermsOfServiceViewDelegate {
@@ -163,7 +174,12 @@ extension CreateAccountController: TermsOfServiceViewDelegate {
     }
     
     func didTapTermsOfService() {
-        
+        Task {
+        signUpButton.showLoading()
+
+            try await Task.sleep(for: .seconds(3))
+            signUpButton.hideLoading()
+        }
         print("Did tap")
     }
 }
@@ -173,9 +189,10 @@ extension CreateAccountController: ClickableTextViewDelegate {
         eventHandler.didTapClickableText()
     }
 }
+
 extension CreateAccountController: IVTextFieldDelegate {
     func textFieldDidChange(_ textField: IVTextField) {
         let credible = emailTextField.isValid && passwordTextField.isValid && nameTextField.isValid
-        signUpButton.IVsetEnabled(credible, title: "Sign up")
+        signUpButton.IVsetEnabled(credible)
     }
 }

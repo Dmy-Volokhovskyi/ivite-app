@@ -118,6 +118,7 @@ final class AuthenticationService {
             self.user = authResult.user
             print("Sign-in successful for email: \(email)")
             print("User ID: \(authResult.user.uid)")
+            self.provider = .firebase
             return authResult.user
         } catch let error as NSError {
             self.authenticationState = .unauthenticated
@@ -137,6 +138,7 @@ final class AuthenticationService {
             self.user = authResult.user
             print("Sign-up successful for email: \(email)")
             print("User ID: \(authResult.user.uid)")
+            self.provider = .firebase
             return authResult.user
         } catch let error as NSError {
             self.authenticationState = .unauthenticated
@@ -150,6 +152,8 @@ final class AuthenticationService {
         do {
             try Auth.auth().signOut()
             authenticationState = .unauthenticated
+            self.provider = .unknown
+            userDefaultsService.removeUser()
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -170,45 +174,28 @@ final class AuthenticationService {
     }
 
     func updatePassword(oldEmail: String, currentPassword: String, newPassword: String) async throws {
+        print("Reauth", currentPassword, newPassword, email, user?.email)
         guard let user = Auth.auth().currentUser, user.email == oldEmail else {
             throw NSError(domain: "com.app.auth", code: 401, userInfo: [NSLocalizedDescriptionKey: "Old email does not match the authenticated user's email."])
         }
         
+        print("Reauth", currentPassword, newPassword, email, user.email)
         // Reauthenticate the user with old email and current password
         let credential = EmailAuthProvider.credential(withEmail: oldEmail, password: currentPassword)
         try await user.reauthenticate(with: credential)
-        
+        print(" update ", currentPassword, newPassword, email, user.email)
         // Update the password to the new one
         try await user.updatePassword(to: newPassword)
     }
     
-    func getCurrentUser() -> IVUser? {
-        // Use Auth.auth().currentUser to get the current authenticated user
-        guard let user = Auth.auth().currentUser else {
-            return nil
-        }
-        
-        // Retrieve basic information from the Firebase `User` object
-        let firstName = user.displayName ?? "Unknown"
-        let email = user.email
-        let userId = user.uid
-        let profileImageURL = user.photoURL // URL to use with SDWebImage
-        
-        // Construct and return `IVUser` with all available data
-        return IVUser(
-            firstName: firstName,
-            profileImageURL: profileImageURL,
-            email: email,
-            lastName: nil, // Firebase User doesn't include last name by default
-            userId: userId
-        )
+    func getCurrentUser() -> User? {
+        Auth.auth().currentUser
     }
     
     private func saveAuthProvider() {
         userDefaultsService.save(provider, for: .authProvider)
     }
-    
-    // Load the provider from UserDefaults
+
     private func loadAuthProvider() -> AuthenticationProvider {
         return userDefaultsService.get(AuthenticationProvider.self, for: .authProvider) ?? .unknown
     }
@@ -223,38 +210,40 @@ extension Notification.Name {
 
 // Google Sign-In extension
 extension AuthenticationService {
-    func signInWithGoogle(presentingViewController: UIViewController, completion: @escaping (Bool) -> Void) {
+    @MainActor
+    func signInWithGoogle(presentingViewController: UIViewController) async throws -> User {
         guard let clientID = FirebaseApp.app()?.options.clientID else {
             fatalError("No client ID found in Firebase configuration")
         }
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
         
-        GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { [weak self] signInResult, error in
-            guard let self = self else { return }
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-                completion(false)
-                return
-            }
-            
-            guard let userAuthentication = signInResult?.user,
-                  let idToken = userAuthentication.idToken else {
-                self.errorMessage = "Google Sign-In failed"
-                completion(false)
-                return
-            }
-            
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString,
-                                                           accessToken: userAuthentication.accessToken.tokenString)
-            Auth.auth().signIn(with: credential) { authResult, error in
+        return try await withCheckedThrowingContinuation { continuation in
+            GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { [weak self] signInResult, error in
+                guard let self = self else { return }
                 if let error = error {
-                    self.errorMessage = error.localizedDescription
-                    completion(false)
-                } else {
-                    self.provider = .google
-                    self.authenticationState = .authenticated
-                    completion(true)
+                    continuation.resume(throwing: error)
+                    return
+                }
+                
+                guard let userAuthentication = signInResult?.user,
+                      let idToken = userAuthentication.idToken else {
+                    continuation.resume(throwing: NSError(domain: "com.app.auth", code: 400, userInfo: [NSLocalizedDescriptionKey: "Google Sign-In failed"]))
+                    return
+                }
+                
+                let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString,
+                                                               accessToken: userAuthentication.accessToken.tokenString)
+                Auth.auth().signIn(with: credential) { authResult, error in
+                    if let error = error {
+                        continuation.resume(throwing: error)
+                    } else if let user = authResult?.user {
+                        self.provider = .google
+                        self.authenticationState = .authenticated
+                        continuation.resume(returning: user)
+                    } else {
+                        continuation.resume(throwing: NSError(domain: "com.app.auth", code: 500, userInfo: [NSLocalizedDescriptionKey: "Unexpected error during Google Sign-In"]))
+                    }
                 }
             }
         }

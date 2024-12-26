@@ -59,6 +59,12 @@
 		3533EF342D04EF6D005EC055 /* AuthenticationService+MapError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3533EF332D04EF6D005EC055 /* AuthenticationService+MapError.swift */; };
 		3533EF372D04FF9B005EC055 /* ResendButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3533EF362D04FF9B005EC055 /* ResendButtonView.swift */; };
 		3533EFF92D072A7B005EC055 /* SelectGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3533EFF82D072A7B005EC055 /* SelectGroupCell.swift */; };
+		354EE14E2D08D164002E7BD3 /* PreviewInvitePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE14C2D08D164002E7BD3 /* PreviewInvitePresenter.swift */; };
+		354EE14F2D08D164002E7BD3 /* PreviewInviteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE14A2D08D164002E7BD3 /* PreviewInviteController.swift */; };
+		354EE1502D08D164002E7BD3 /* PreviewInviteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE1492D08D164002E7BD3 /* PreviewInviteBuilder.swift */; };
+		354EE1512D08D164002E7BD3 /* PreviewInviteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE14B2D08D164002E7BD3 /* PreviewInviteInteractor.swift */; };
+		354EE1522D08D164002E7BD3 /* PreviewInviteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE14D2D08D164002E7BD3 /* PreviewInviteRouter.swift */; };
+		354EE1552D08D4AD002E7BD3 /* PreviewMainDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE1542D08D4AD002E7BD3 /* PreviewMainDetailView.swift */; };
 		356461B52CD4E1CF003350C5 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B42CD4E1CF003350C5 /* FirebaseCore */; };
 		356461B72CD4E1D3003350C5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B62CD4E1D3003350C5 /* FirebaseAuth */; };
 		356461B92CD4E1D8003350C5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 356461B82CD4E1D8003350C5 /* FirebaseFirestore */; };
@@ -99,6 +105,16 @@
 		35EEC7F82CEA6F7F003E7758 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7F72CEA6F7F003E7758 /* BaseTableViewController.swift */; };
 		35EEC7FA2CEA773C003E7758 /* Timezone+FormatedDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7F92CEA773C003E7758 /* Timezone+FormatedDescription.swift */; };
 		35EEC7FC2CEA798F003E7758 /* String+TimezoneAbreviation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7FB2CEA798F003E7758 /* String+TimezoneAbreviation.swift */; };
+		35F19CA12D09DD1B00835195 /* PreviewTitledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F19CA02D09DD1B00835195 /* PreviewTitledView.swift */; };
+		35F19CA32D09E24500835195 /* PreviewLocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F19CA22D09E24500835195 /* PreviewLocationDetailView.swift */; };
+		35F19CA52D09E42C00835195 /* PreviewBringItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F19CA42D09E42C00835195 /* PreviewBringItemView.swift */; };
+		35F19CA72D09E7D000835195 /* PreviewGiftsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F19CA62D09E7CF00835195 /* PreviewGiftsDetailView.swift */; };
+		35F19CA92D09E91E00835195 /* PreviewGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F19CA82D09E91E00835195 /* PreviewGiftView.swift */; };
+		35F19CAB2D0A2EF700835195 /* PreviewGuestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F19CAA2D0A2EF700835195 /* PreviewGuestsView.swift */; };
+		35F19CAD2D0A2F8000835195 /* PreviewGuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F19CAC2D0A2F8000835195 /* PreviewGuestView.swift */; };
+		35F19CAF2D0A396D00835195 /* GifterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F19CAE2D0A396D00835195 /* GifterView.swift */; };
+		35F19CB22D0F521300835195 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F19CB12D0F521300835195 /* FirestoreManager.swift */; };
+		35F19CB42D0F5BDC00835195 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F19CB32D0F5BDC00835195 /* LoadingButton.swift */; };
 		35F43D5E2CD51DD6000CE237 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F43D5D2CD51DD6000CE237 /* ChangePasswordView.swift */; };
 		35F43D602CD520E5000CE237 /* ChangeEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F43D5F2CD520E5000CE237 /* ChangeEmailView.swift */; };
 		35F43D632CD534FE000CE237 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 35F43D622CD534FE000CE237 /* SDWebImage */; };
@@ -304,6 +320,12 @@
 		3533EF332D04EF6D005EC055 /* AuthenticationService+MapError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticationService+MapError.swift"; sourceTree = "<group>"; };
 		3533EF362D04FF9B005EC055 /* ResendButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendButtonView.swift; sourceTree = "<group>"; };
 		3533EFF82D072A7B005EC055 /* SelectGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupCell.swift; sourceTree = "<group>"; };
+		354EE1492D08D164002E7BD3 /* PreviewInviteBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInviteBuilder.swift; sourceTree = "<group>"; };
+		354EE14A2D08D164002E7BD3 /* PreviewInviteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInviteController.swift; sourceTree = "<group>"; };
+		354EE14B2D08D164002E7BD3 /* PreviewInviteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInviteInteractor.swift; sourceTree = "<group>"; };
+		354EE14C2D08D164002E7BD3 /* PreviewInvitePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInvitePresenter.swift; sourceTree = "<group>"; };
+		354EE14D2D08D164002E7BD3 /* PreviewInviteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInviteRouter.swift; sourceTree = "<group>"; };
+		354EE1542D08D4AD002E7BD3 /* PreviewMainDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewMainDetailView.swift; sourceTree = "<group>"; };
 		356461BC2CD4E2E5003350C5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		356461C32CD4EA14003350C5 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		356461C82CD507EC003350C5 /* ProfileDetailsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsBuilder.swift; sourceTree = "<group>"; };
@@ -338,6 +360,16 @@
 		35EEC7F72CEA6F7F003E7758 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		35EEC7F92CEA773C003E7758 /* Timezone+FormatedDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timezone+FormatedDescription.swift"; sourceTree = "<group>"; };
 		35EEC7FB2CEA798F003E7758 /* String+TimezoneAbreviation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+TimezoneAbreviation.swift"; sourceTree = "<group>"; };
+		35F19CA02D09DD1B00835195 /* PreviewTitledView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewTitledView.swift; sourceTree = "<group>"; };
+		35F19CA22D09E24500835195 /* PreviewLocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLocationDetailView.swift; sourceTree = "<group>"; };
+		35F19CA42D09E42C00835195 /* PreviewBringItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewBringItemView.swift; sourceTree = "<group>"; };
+		35F19CA62D09E7CF00835195 /* PreviewGiftsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGiftsDetailView.swift; sourceTree = "<group>"; };
+		35F19CA82D09E91E00835195 /* PreviewGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGiftView.swift; sourceTree = "<group>"; };
+		35F19CAA2D0A2EF700835195 /* PreviewGuestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGuestsView.swift; sourceTree = "<group>"; };
+		35F19CAC2D0A2F8000835195 /* PreviewGuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGuestView.swift; sourceTree = "<group>"; };
+		35F19CAE2D0A396D00835195 /* GifterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifterView.swift; sourceTree = "<group>"; };
+		35F19CB12D0F521300835195 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		35F19CB32D0F5BDC00835195 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		35F43D5D2CD51DD6000CE237 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		35F43D5F2CD520E5000CE237 /* ChangeEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmailView.swift; sourceTree = "<group>"; };
 		76096A012C84F8670004BEE0 /* ivite-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ivite-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -644,6 +676,33 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		354EE1482D08D150002E7BD3 /* PreviewInvite */ = {
+			isa = PBXGroup;
+			children = (
+				354EE1532D08D499002E7BD3 /* View */,
+				354EE1492D08D164002E7BD3 /* PreviewInviteBuilder.swift */,
+				354EE14A2D08D164002E7BD3 /* PreviewInviteController.swift */,
+				354EE14B2D08D164002E7BD3 /* PreviewInviteInteractor.swift */,
+				354EE14C2D08D164002E7BD3 /* PreviewInvitePresenter.swift */,
+				354EE14D2D08D164002E7BD3 /* PreviewInviteRouter.swift */,
+			);
+			path = PreviewInvite;
+			sourceTree = "<group>";
+		};
+		354EE1532D08D499002E7BD3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35F19CAA2D0A2EF700835195 /* PreviewGuestsView.swift */,
+				35F19CAC2D0A2F8000835195 /* PreviewGuestView.swift */,
+				35F19CA22D09E24500835195 /* PreviewLocationDetailView.swift */,
+				35F19CA02D09DD1B00835195 /* PreviewTitledView.swift */,
+				354EE1542D08D4AD002E7BD3 /* PreviewMainDetailView.swift */,
+				35F19CA42D09E42C00835195 /* PreviewBringItemView.swift */,
+				35F19CB02D0A3CBF00835195 /* Gift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		356461B32CD4E1CF003350C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -725,6 +784,16 @@
 				35EEC6D72CE295B6003E7758 /* IVTransitioningDelegate.swift */,
 			);
 			path = Trash;
+			sourceTree = "<group>";
+		};
+		35F19CB02D0A3CBF00835195 /* Gift */ = {
+			isa = PBXGroup;
+			children = (
+				35F19CA62D09E7CF00835195 /* PreviewGiftsDetailView.swift */,
+				35F19CA82D09E91E00835195 /* PreviewGiftView.swift */,
+				35F19CAE2D0A396D00835195 /* GifterView.swift */,
+			);
+			path = Gift;
 			sourceTree = "<group>";
 		};
 		35F43D5C2CD51DC9000CE237 /* View */ = {
@@ -852,6 +921,7 @@
 		76096A342C84FBC00004BEE0 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				35F19CB12D0F521300835195 /* FirestoreManager.swift */,
 				3533EF302D04D855005EC055 /* UserDefaultsService.swift */,
 				76096A352C84FBD40004BEE0 /* ServiceProvider.swift */,
 				F6F3C7292CCA85DF00ED966A /* AuthentificationService.swift */,
@@ -954,6 +1024,7 @@
 		76096AF02C88F6860004BEE0 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				35F19CB32D0F5BDC00835195 /* LoadingButton.swift */,
 				3519A75A2CD7F11800A16715 /* PhotoLibraryManager.swift */,
 				356461C22CD4EA06003350C5 /* SignIn */,
 				F651E6EC2CBDAE81007D195D /* IVAlert */,
@@ -1211,6 +1282,7 @@
 		F6EBF5552CA440D00058F7B2 /* CreatorFlow */ = {
 			isa = PBXGroup;
 			children = (
+				354EE1482D08D150002E7BD3 /* PreviewInvite */,
 				3519A8342CE2665600A16715 /* Payment */,
 				3519A8182CE0DB4500A16715 /* Review */,
 				3519A8022CDE676000A16715 /* AddGuests */,
@@ -1414,10 +1486,16 @@
 				76096A072C84F8670004BEE0 /* SceneDelegate.swift in Sources */,
 				76096A3A2C84FE6E0004BEE0 /* UIApplication+AppDelegate.swift in Sources */,
 				F6936A2F2CB9728500764197 /* EventDetailsView.swift in Sources */,
+				35F19CA72D09E7D000835195 /* PreviewGiftsDetailView.swift in Sources */,
 				F67F1CCD2CA43E3200F00044 /* FontSelectionView.swift in Sources */,
 				F6936A412CBA909000764197 /* NoteFromHostView.swift in Sources */,
 				76096A2A2C84FB180004BEE0 /* BaseControll.swift in Sources */,
 				76096A462C861C1B0004BEE0 /* HomeController.swift in Sources */,
+				354EE14E2D08D164002E7BD3 /* PreviewInvitePresenter.swift in Sources */,
+				354EE14F2D08D164002E7BD3 /* PreviewInviteController.swift in Sources */,
+				354EE1502D08D164002E7BD3 /* PreviewInviteBuilder.swift in Sources */,
+				354EE1512D08D164002E7BD3 /* PreviewInviteInteractor.swift in Sources */,
+				354EE1522D08D164002E7BD3 /* PreviewInviteRouter.swift in Sources */,
 				76096A472C861C1B0004BEE0 /* HomeInteractor.swift in Sources */,
 				3519A7A92CD9198100A16715 /* GiftDetailsViewModel.swift in Sources */,
 				3533EF312D04D855005EC055 /* UserDefaultsService.swift in Sources */,
@@ -1432,11 +1510,13 @@
 				3519A80C2CDE676D00A16715 /* AddGuestsRouter.swift in Sources */,
 				3519A8412CE26DCF00A16715 /* PaymentOptionCell.swift in Sources */,
 				3519A75D2CD7F15100A16715 /* GiftRegistryView.swift in Sources */,
+				35F19CAB2D0A2EF700835195 /* PreviewGuestsView.swift in Sources */,
 				76A34F952C8B5E61003D3E87 /* ContactCardCell.swift in Sources */,
 				F6936A2B2CB9621F00764197 /* EntryWithTitle.swift in Sources */,
 				76096A752C861C990004BEE0 /* MainScreenRouter.swift in Sources */,
 				F6F4AA442CC8328300071B0B /* TermsAndServicesView.swift in Sources */,
 				76096A762C861C990004BEE0 /* MainScreenBuilder.swift in Sources */,
+				35F19CB42D0F5BDC00835195 /* LoadingButton.swift in Sources */,
 				76096A772C861C990004BEE0 /* MainScreenPresenter.swift in Sources */,
 				35EEC6DA2CE295D7003E7758 /* IVPresentAnimator.swift in Sources */,
 				35EEC7F82CEA6F7F003E7758 /* BaseTableViewController.swift in Sources */,
@@ -1474,6 +1554,7 @@
 				76096A552C861C420004BEE0 /* ContactBuilder.swift in Sources */,
 				F6CBD9672CAB328900911DF7 /* UIColor+Hex.swift in Sources */,
 				F6936A312CB972DE00764197 /* EventDetailsViewModel.swift in Sources */,
+				35F19CA32D09E24500835195 /* PreviewLocationDetailView.swift in Sources */,
 				35EEC6DC2CE295EF003E7758 /* IVPresentationController.swift in Sources */,
 				F6EBF5702CA4A1EA0058F7B2 /* CreationFlowBuilder.swift in Sources */,
 				F6EBF56A2CA4496F0058F7B2 /* TileModel.swift in Sources */,
@@ -1489,6 +1570,7 @@
 				F6CBD9692CAB384300911DF7 /* TextFormatPickerView.swift in Sources */,
 				3515B1102CFF566F00934E4F /* Error+AuthError.swift in Sources */,
 				76A34F982C8B9AA9003D3E87 /* CategoriesCollectionView.swift in Sources */,
+				35F19CA92D09E91E00835195 /* PreviewGiftView.swift in Sources */,
 				F68CAA852CBD4F5C00533757 /* BringListDetailView.swift in Sources */,
 				76096A482C861C1B0004BEE0 /* HomeRouter.swift in Sources */,
 				76096A812C8731AD0004BEE0 /* UIFont+Inter.swift in Sources */,
@@ -1504,6 +1586,7 @@
 				35B886B02CEE697700FE1F43 /* EditGuestInteractor.swift in Sources */,
 				35B886B12CEE697700FE1F43 /* EditGuestRouter.swift in Sources */,
 				F6936A292CB960B100764197 /* IVHeaderLabel.swift in Sources */,
+				354EE1552D08D4AD002E7BD3 /* PreviewMainDetailView.swift in Sources */,
 				F68EA7512CBEEE0D00F935FA /* DatePickerViewController.swift in Sources */,
 				76096A212C84FAD60004BEE0 /* LaunchController.swift in Sources */,
 				F6E32BF92CCFDA0D00D62C37 /* ProfileMenuView.swift in Sources */,
@@ -1527,6 +1610,7 @@
 				3519A8452CE26E7F00A16715 /* PaymentOption.swift in Sources */,
 				F6EBF56C2CA48DED0058F7B2 /* CreatorFlowNavigationController.swift in Sources */,
 				3519A8252CE0DC3000A16715 /* ReviewMainDetailView.swift in Sources */,
+				35F19CA52D09E42C00835195 /* PreviewBringItemView.swift in Sources */,
 				3533EFF92D072A7B005EC055 /* SelectGroupCell.swift in Sources */,
 				35EEC7EF2CE690E9003E7758 /* ModalNavigationController.swift in Sources */,
 				76096B022C8B1E0A0004BEE0 /* EventCardCell.swift in Sources */,
@@ -1534,6 +1618,7 @@
 				F6D5DB582CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift in Sources */,
 				76096A2D2C84FB440004BEE0 /* BaseBuilder.swift in Sources */,
 				F68EA74F2CBEEC0400F935FA /* TextFieldValidationType.swift in Sources */,
+				35F19CAF2D0A396D00835195 /* GifterView.swift in Sources */,
 				F651E6F12CBDAF41007D195D /* AddCoHostView.swift in Sources */,
 				76096A312C84FB8C0004BEE0 /* BaseRouter.swift in Sources */,
 				76A34F9A2C8B9AF0003D3E87 /* BaseUICollectionViewItem.swift in Sources */,
@@ -1545,9 +1630,11 @@
 				F6EBF55C2CA441170058F7B2 /* TemplateEditorBuilder.swift in Sources */,
 				3519A7522CD7D00900A16715 /* GiftingOptionsRouter.swift in Sources */,
 				3519A8292CE0DF4D00A16715 /* ReviewTitledView.swift in Sources */,
+				35F19CAD2D0A2F8000835195 /* PreviewGuestView.swift in Sources */,
 				3519A7532CD7D00900A16715 /* GiftingOptionsPresenter.swift in Sources */,
 				3519A7542CD7D00900A16715 /* GiftingOptionsController.swift in Sources */,
 				3519A7552CD7D00900A16715 /* GiftingOptionsBuilder.swift in Sources */,
+				35F19CB22D0F521300835195 /* FirestoreManager.swift in Sources */,
 				3519A7562CD7D00900A16715 /* GiftingOptionsInteractor.swift in Sources */,
 				3519A8152CE0C9E000A16715 /* Guest.swift in Sources */,
 				35EEC7F22CE7A723003E7758 /* AlertViewController.swift in Sources */,
@@ -1607,6 +1694,7 @@
 				76096A382C84FC2B0004BEE0 /* BaseViewController.swift in Sources */,
 				76096AFC2C8B11FC0004BEE0 /* InvitesLeftView.swift in Sources */,
 				76096A252C84FAD60004BEE0 /* LaunchPresenter.swift in Sources */,
+				35F19CA12D09DD1B00835195 /* PreviewTitledView.swift in Sources */,
 				F6E32BEE2CCFCEE400D62C37 /* ProfileDetailView.swift in Sources */,
 				F6E32BF32CCFD08700D62C37 /* IVUser.swift in Sources */,
 				76096A332C84FBA90004BEE0 /* BaseInteractor.swift in Sources */,

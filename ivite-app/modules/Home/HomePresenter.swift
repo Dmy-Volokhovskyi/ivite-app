@@ -2,6 +2,7 @@ import Foundation
 
 protocol HomeViewInterface: AnyObject {
     func didSignIn()
+    func updateSearchBar()
 }
 
 final class HomePresenter: BasePresenter {
@@ -16,6 +17,11 @@ final class HomePresenter: BasePresenter {
 }
 
 extension HomePresenter: HomeEventHandler {
+    func viewWillAppear() {
+        interactor.checkForUserUpdates()
+        viewInterface?.updateSearchBar()
+    }
+    
     func didTapLogInButton() {
         router.showSignIn(serviceProvider: interactor.serviceProvider)
     }
@@ -27,7 +33,7 @@ extension HomePresenter: HomeEventHandler {
 
 extension HomePresenter: HomeDataSource {
     var user: IVUser? {
-        interactor.serviceProvider.authenticationService.getCurrentUser()
+        interactor.currentUser
     }
 }
 

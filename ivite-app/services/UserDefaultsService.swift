@@ -8,6 +8,7 @@ import UIKit
 
 enum UserDefaultsKeys: String {
     case authProvider
+    case currentUser
 }
 
 final class UserDefaultsService {
@@ -16,8 +17,7 @@ final class UserDefaultsService {
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
     }
-    
-    // Save a value to UserDefaults
+
     func save<T: Codable>(_ value: T, for key: UserDefaultsKeys) {
         do {
             let data = try JSONEncoder().encode(value)
@@ -26,8 +26,7 @@ final class UserDefaultsService {
             print("Failed to save value for key \(key.rawValue): \(error)")
         }
     }
-    
-    // Retrieve a value from UserDefaults
+
     func get<T: Codable>(_ type: T.Type, for key: UserDefaultsKeys) -> T? {
         guard let data = defaults.data(forKey: key.rawValue) else { return nil }
         do {
@@ -37,9 +36,23 @@ final class UserDefaultsService {
             return nil
         }
     }
-    
-    // Remove a value from UserDefaults
+
     func remove(for key: UserDefaultsKeys) {
         defaults.removeObject(forKey: key.rawValue)
+    }
+    
+    // MARK: - Store User Data
+    func saveUser(_ user: IVUser) {
+        save(user, for: .currentUser)
+    }
+    
+    // MARK: - Retrieve User Data
+    func getUser() -> IVUser? {
+        return get(IVUser.self, for: .currentUser)
+    }
+    
+    // MARK: - Remove User Data
+    func removeUser() {
+        remove(for: .currentUser)
     }
 }

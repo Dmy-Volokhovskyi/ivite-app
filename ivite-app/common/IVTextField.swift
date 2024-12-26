@@ -12,6 +12,7 @@ protocol IVTextFieldDelegate: AnyObject {
     func textFieldDidChange(_ textField: IVTextField)
 }
 
+@MainActor
 final class IVTextField: BaseControll, UITextFieldDelegate {
     private let contentStackView = UIStackView()
     private var leadingImageView = UIImageView()

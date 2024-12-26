@@ -1,6 +1,7 @@
 import Foundation
 
 protocol ProfileViewInterface: AnyObject {
+    func update(_ user: IVUser)
 }
 
 final class ProfilePresenter: BasePresenter {
@@ -29,6 +30,12 @@ final class ProfilePresenter: BasePresenter {
 }
 
 extension ProfilePresenter: ProfileEventHandler {
+    func viewDidAppear() {
+        Task {
+            await interactor.fetchCurrentUser()
+        }
+    }
+    
     func didSelectMenuItem(menuItem: ProfileMenuItem) {
       
         switch menuItem {
@@ -44,16 +51,25 @@ extension ProfilePresenter: ProfileEventHandler {
     }
     
     func didTouchShowProfile() {
-        router.showProfileDetails(serviceProvider: interactor.serviceProvider)
+        guard let user else { return }
+        router.showProfileDetails(currentUser: user, serviceProvider: interactor.serviceProvider)
     }
 }
 
 extension ProfilePresenter: ProfileDataSource {
     var user: IVUser? {
-        interactor.serviceProvider.authenticationService.getCurrentUser()
+        interactor.currentUser
     }
     
 }
 
 extension ProfilePresenter: ProfileInteractorDelegate {
+    func didFetchUser(_ user: IVUser) {
+        print("sucess")
+        viewInterface?.update(user)
+    }
+    
+    func didFailToFetchUser(with error: String) {
+        
+    }
 }

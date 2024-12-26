@@ -3,6 +3,7 @@ import Foundation
 protocol ContactViewInterface: AnyObject {
     func reloadTableView()
     func updateFilter(_ filter: FilterType)
+    func updateSearchBar()
 }
 
 final class ContactPresenter: BasePresenter {
@@ -13,7 +14,6 @@ final class ContactPresenter: BasePresenter {
     private var filter: FilterType = .defaultFilter
     private var searchText: String?
     private var filteredContacts: [ContactCardModel] = []
-    lazy var curentUser: IVUser? = interactor.serviceProvider.authenticationService.getCurrentUser()
     
     init(router: ContactRouter, interactor: ContactInteractor) {
         self.router = router
@@ -100,6 +100,11 @@ final class ContactPresenter: BasePresenter {
 }
 
 extension ContactPresenter: ContactEventHandler {
+    func viewWillAppear() {
+        interactor.checkForUserUpdates()
+        viewInterface?.updateSearchBar()
+    }
+    
     func didTapFilterButton() {
         let alphabetAction = ActionItem(title: "Alphabet", image: .alfabet, isPrimary: true) {
             self.updateFilter(.alphabet)
@@ -156,7 +161,7 @@ extension ContactPresenter: ContactDataSource {
     }
     
     var user: IVUser? {
-        curentUser
+        interactor.currentUser
     }
     
     var numberOfRows: Int {

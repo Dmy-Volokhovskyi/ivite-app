@@ -1,6 +1,7 @@
 import UIKit
 
 protocol ProfileEventHandler: AnyObject {
+    func viewDidAppear()
     func didTouchShowProfile()
     func didSelectMenuItem(menuItem: ProfileMenuItem)
 }
@@ -78,9 +79,28 @@ final class ProfileController: BaseScrollViewController {
         profileMenuView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
         profileMenuView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 16)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        eventHandler.viewDidAppear()
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
 }
 
 extension ProfileController: ProfileViewInterface {
+    func update(_ user: IVUser) {
+        DispatchQueue.main.async {
+            self.profileDetailView.setUpProfile(for: user)
+        }
+    }
+    
 }
 
 extension ProfileController: ProfileViewDelegate {

@@ -1,7 +1,7 @@
 final class ProfileRouter: BaseRouter {
-    func showProfileDetails(serviceProvider: ServiceProvider) {
+    func showProfileDetails(currentUser: IVUser, serviceProvider: ServiceProvider) {
         let controller = ProfileDetailsBuilder(serviceProvider: serviceProvider)
-            .make()
+            .make(currentUser: currentUser)
         self.controller?.navigationController?.pushViewController(controller, animated: true)
     }
 }

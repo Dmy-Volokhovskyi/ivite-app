@@ -1,6 +1,7 @@
 import UIKit
 
 protocol ProfileDetailsEventHandler: AnyObject {
+    func viewWillAppear()
     func didTouchDeleteAccount()
     func changeEmail(newEmail: String, confirmPassword: String)
     func changePassword(oldPassword: String, newPassword: String)
@@ -51,11 +52,7 @@ final class ProfileDetailsController: BaseScrollViewController {
         
         avatarImageView.layer.cornerRadius = 56
         avatarImageView.clipsToBounds = true
-        avatarImageView.sd_setImage(with: dataSource.user?.profileImageURL, placeholderImage: .userAdd)
-        
-        nameLabel.text = dataSource.user?.firstName
-        emailLabel.text = dataSource.user?.email
-        
+
         credentialsStackView.axis = .vertical
         credentialsStackView.spacing = 8
         mainDetailsContainer.backgroundColor = .dark10
@@ -136,9 +133,10 @@ final class ProfileDetailsController: BaseScrollViewController {
         deleteAccountButton.autoPinEdge(toSuperviewEdge: .bottom, withInset: 24)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        eventHandler.viewWillAppear()
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -152,6 +150,17 @@ final class ProfileDetailsController: BaseScrollViewController {
 }
 
 extension ProfileDetailsController: ProfileDetailsViewInterface {
+    func clearPasswordChange() {
+        changePasswordView.clear()
+    }
+    
+    func update(_ user: IVUser) {
+        let url = URL(string: user.profileImageURL ?? "")
+        avatarImageView.sd_setImage(with: url, placeholderImage: .userAdd)
+        
+        nameLabel.text = user.firstName
+        emailLabel.text = user.email
+    }
 }
 
 extension ProfileDetailsController: ChangePasswordViewDelegate {

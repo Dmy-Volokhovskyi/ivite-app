@@ -1,9 +1,9 @@
 import Foundation
 
 final class ProfileDetailsBuilder: BaseBuilder {
-    override func make() -> ProfileDetailsController {
+    func make(currentUser: IVUser) -> ProfileDetailsController {
         let router = ProfileDetailsRouter()
-        let interactor = ProfileDetailsInteractor(serviceProvider: serviceProvider)
+        let interactor = ProfileDetailsInteractor(currentUser: currentUser, serviceProvider: serviceProvider)
         let presenter = ProfileDetailsPresenter(router: router, interactor: interactor)
         let controller = ProfileDetailsController(eventHandler: presenter, dataSource: presenter)
 

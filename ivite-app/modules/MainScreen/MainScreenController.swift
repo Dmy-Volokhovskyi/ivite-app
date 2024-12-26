@@ -48,6 +48,7 @@ final class MainScreenController: BaseTabBarController {
         let homeController = HomeBuilder(serviceProvider: dataSource.serviceProvider).make()
         let homeNavController = UINavigationController(rootViewController: homeController)
         let eventController = EventsBuilder(serviceProvider: dataSource.serviceProvider).make()
+        let eventNavController = UINavigationController(rootViewController: eventController)
         let contactsController = ContactBuilder(serviceProvider: dataSource.serviceProvider).make()
         let profileController = ProfileBuilder(serviceProvider: dataSource.serviceProvider).make()
         let profileNavController = UINavigationController(rootViewController: profileController)
@@ -57,7 +58,7 @@ final class MainScreenController: BaseTabBarController {
         contactsController.tabBarItem = UITabBarItem(title: "Contacts", image: .contacts, tag: 2)
         profileNavController.tabBarItem = UITabBarItem(title: "Profile", image: .profile, tag: 3)
         
-        self.viewControllers = [homeNavController, eventController, contactsController, profileNavController]
+        self.viewControllers = [homeNavController, eventNavController, contactsController, profileNavController]
         setUpTabBarVisibility()
     }
     
@@ -67,14 +68,16 @@ final class MainScreenController: BaseTabBarController {
     
     @objc private func handleAuthStateChange(_ notification: Notification) {
         if let authState = notification.userInfo?["authState"] as? AuthenticationState {
-            switch authState {
-            case .authenticated:
-                tabBar.isHidden = false
-            case .unauthenticated:
-                self.selectedIndex = 0
-                tabBar.isHidden = true
-            default:
-                break
+            DispatchQueue.main.async { [weak self] in
+                switch authState {
+                case .authenticated:
+                    self?.tabBar.isHidden = false
+                case .unauthenticated:
+                    self?.selectedIndex = 0
+                    self?.tabBar.isHidden = true
+                default:
+                    break
+                }
             }
         }
     }

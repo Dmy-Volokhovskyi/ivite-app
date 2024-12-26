@@ -12,14 +12,22 @@ final class GiftDetailsViewModel {
 }
 
 final class Gift {
-    init(name: String, link: String?, image: Data?) {
-        self.name = name
-        self.link = link
-        self.image = image
-    }
-    
     let id: UUID = .init()
     var name: String
     var link: String?
     var image: Data?
+    var imageURL: URL?
+    var gifterEmail: String?
+    
+    init(name: String,
+         link: String?,
+         image: Data?,
+         imageURL: URL? = nil,
+         gifterEmail: String? = nil) {
+        self.name = name
+        self.link = link
+        self.image = image
+        self.imageURL = imageURL
+        self.gifterEmail = gifterEmail
+    }
 }

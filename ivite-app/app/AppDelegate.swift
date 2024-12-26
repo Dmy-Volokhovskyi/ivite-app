@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseCore
+import FirebaseFirestore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,7 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userDefaultsService = UserDefaultsService()
         let authentificationService = AuthenticationService(userDefaultsService: userDefaultsService)
         authentificationService.registerAuthStateHandler()
-        serviceProvider = ServiceProvider(authenticationService: authentificationService, userDefaultsService: userDefaultsService)
+        let firestore = Firestore.firestore()
+        serviceProvider = ServiceProvider(authenticationService: authentificationService,
+                                          userDefaultsService: userDefaultsService,
+                                          firestore: firestore)
         
         setupTabBarAppearance()
         return true

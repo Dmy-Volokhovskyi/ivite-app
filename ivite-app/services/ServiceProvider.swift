@@ -6,13 +6,19 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 class ServiceProvider {
     var authenticationService: AuthenticationService
     var userDefaultsService: UserDefaultsService
+    var firestoreManager: FirestoreManager
     
-    init(authenticationService: AuthenticationService, userDefaultsService: UserDefaultsService) {
+    init(authenticationService: AuthenticationService,
+         userDefaultsService: UserDefaultsService,
+         firestore: Firestore) {
+        
         self.authenticationService = authenticationService
         self.userDefaultsService = userDefaultsService
+        self.firestoreManager = FirestoreManager(db: firestore, userDefaultsService: userDefaultsService)
     }
 }

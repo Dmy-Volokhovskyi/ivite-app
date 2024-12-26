@@ -1,6 +1,8 @@
 import Foundation
 
 protocol CreateAccountViewInterface: AnyObject {
+    func showLoadingIndicator()
+    func hideLoadingIndicator()
 }
 
 final class CreateAccountPresenter: BasePresenter {
@@ -17,14 +19,14 @@ final class CreateAccountPresenter: BasePresenter {
 extension CreateAccountPresenter: CreateAccountEventHandler {
     func didTouchSignUpWithGoogle() {
         guard let controller = viewInterface else { return }
-        interactor.serviceProvider.authenticationService.signInWithGoogle(presentingViewController: controller, completion: {_ in
-            self.router.popVC()
-        })
+        Task {
+            await interactor.signUpWithGoogle(presentingViewController: controller)
+        }
     }
     
     func didTouchSignUp(with name: String, email: String, password: String) {
         Task {
-            await interactor.signUp(with: email, password: password)
+            await interactor.signUp(with: name, email: email, password: password)
         }
     }
     
@@ -41,6 +43,18 @@ extension CreateAccountPresenter: CreateAccountDataSource {
 }
 
 extension CreateAccountPresenter: CreateAccountInteractorDelegate {
+    func signInSuccessfully() {
+        router.popVC()
+    }
+    
+    func showLoadingIndicator() {
+        viewInterface?.showLoadingIndicator() // Pass loading state to the view
+    }
+    
+    func hideLoadingIndicator() {
+        viewInterface?.hideLoadingIndicator() // Hide loading indicator in the view
+    }
+    
     func showAlert(title: String, message: String) {
         router.showSystemAlert(title: title, message: message)
     }

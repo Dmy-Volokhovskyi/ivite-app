@@ -7,6 +7,18 @@ final class EventsInteractor: BaseInteractor {
     var eventCards = [EventCardModel]()
     weak var delegate: EventsInteractorDelegate?
     
+    var currentUser: IVUser?
+    
+    override init(serviceProvider: ServiceProvider) {
+        super.init(serviceProvider: serviceProvider)
+        
+        currentUser = serviceProvider.userDefaultsService.getUser()
+    }
+    
+    func checkForUserUpdates() {
+        currentUser = serviceProvider.userDefaultsService.getUser()
+    }
+    
     func getEvents() {
         // Sample date formatter to create date objects
         let dateFormatter = DateFormatter()

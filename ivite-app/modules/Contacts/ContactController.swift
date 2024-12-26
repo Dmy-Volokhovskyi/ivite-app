@@ -6,6 +6,7 @@ protocol ContactEventHandler: AnyObject {
     func addNewTouch()
     func didTapFilterButton()
     func searchFieldTextDidChange(_ text: String?)
+    func viewWillAppear()
 }
 
 protocol ContactDataSource: AnyObject {
@@ -44,8 +45,6 @@ final class ContactController: BaseViewController {
         super.setupView()
         
         view.backgroundColor = .white
-        
-        invitesLeftView.configure(invitesLeft: "136")
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -107,7 +106,7 @@ final class ContactController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        searchBarView.updateProfileImage(dataSource.user?.profileImageURL)
+        eventHandler.viewWillAppear()
     }
     
     @objc private func addNewTouch(_ sender: UIButton) {
@@ -116,6 +115,13 @@ final class ContactController: BaseViewController {
 }
 
 extension ContactController: ContactViewInterface {
+    func updateSearchBar() {
+        searchBarView.updateProfileImage(dataSource.user?.profileImageURL)
+        if let remainingInvites = dataSource.user?.remainingInvites {
+            invitesLeftView.configure(invitesLeft: remainingInvites)
+        }
+    }
+    
     func updateFilter(_ filter: FilterType) {
         listHeaderView.upateSearchButton(filter)
     }

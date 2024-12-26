@@ -1,6 +1,8 @@
 import Foundation
 
 protocol SignInViewInterface: AnyObject {
+    func showLoadingIndicator()
+    func hideLoadingIndicator()
 }
 
 final class SignInPresenter: BasePresenter {
@@ -21,9 +23,9 @@ extension SignInPresenter: SignInEventHandler {
     
     func didTouchSignInWithGoogle() {
         guard let controller = viewInterface else { return }
-        interactor.serviceProvider.authenticationService.signInWithGoogle(presentingViewController: controller, completion: {_ in 
-            self.router.popVC()
-        })
+        Task {
+            await interactor.signInWithGoogle(presentingViewController: controller)
+        }
     }
     
     func didTouchSignIn(with email: String, password: String) {
@@ -38,7 +40,6 @@ extension SignInPresenter: SignInEventHandler {
     
     func didTouchForgotPassword() {
         router.pushForgotPassword(serviceProvider: interactor.serviceProvider)
-        #warning("handle did forgot password")
     }
     
 }
@@ -47,11 +48,19 @@ extension SignInPresenter: SignInDataSource {
 }
 
 extension SignInPresenter: SignInInteractorDelegate {
-    func showAlert(title: String, message: String) {
-        router.showSystemAlert(title: title, message: message)
+    func signInSuccessfully() {
+        router.popVC()
     }
     
-    func signInDidComplete(did signIn: Bool) {
-        router.popVC()
+    func showLoadingIndicator() {
+        viewInterface?.showLoadingIndicator() // Pass loading state to the view
+    }
+    
+    func hideLoadingIndicator() {
+        viewInterface?.hideLoadingIndicator() // Hide loading indicator in the view
+    }
+    
+    func showAlert(title: String, message: String) {
+        router.showSystemAlert(title: title, message: message)
     }
 }
