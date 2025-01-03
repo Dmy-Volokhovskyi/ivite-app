@@ -40,6 +40,7 @@ extension ProfilePresenter: ProfileEventHandler {
       
         switch menuItem {
         case .dataPrivacy:
+            router.showDataPrivacy(serviceProvider: interactor.serviceProvider)
             print(menuItem)
         case .orderHistory:
             print(menuItem)
