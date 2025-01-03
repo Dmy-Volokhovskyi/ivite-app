@@ -5,35 +5,56 @@
 //  Created by Max Volokhovskyi on 26/09/2024.
 //
 
-import Foundation
+import UIKit
+import CoreGraphics // optional, for CGFloat if desired
 
 // MARK: - Protocol for Base Layer
 protocol LayerProtocol: Codable {
+    var figmaId: String? { get }       // Original Figma node ID
     var id: String { get }
     var name: String { get }
-    var coordinates: Coordinates { get }
-    var size: Size { get }
+    var coordinates: Coordinates { get set }
+    var size: Size { get set }
     var editable: Bool { get }
     var type: LayerType { get }
+    var rotation: Double? { get set }  // rotation in degrees
 }
 
 // MARK: - Enum for Layer Type
 enum LayerType: String, Codable {
     case text
     case image
+    case shape
+}
+
+// MARK: - Coordinates & Size
+struct Coordinates: Codable {
+    var x: Double
+    var y: Double
+}
+
+struct Size: Codable {
+    var width: Double
+    var height: Double
 }
 
 // MARK: - Text Layer
 final class TextLayer: LayerProtocol {
+    var figmaId: String?
     var id: String = UUID().uuidString
+    
     let name: String
     var coordinates: Coordinates
     var size: Size
     let editable: Bool
     let type: LayerType = .text
+    var rotation: Double?
+    
+    // Text-specific
     var textValue: String?
     var font: String?
     var fontSize: Double?
+    /// Hex color, e.g. "#RRGGBBAA" or "#RRGGBB"
     var textColor: String?
     var textBoxCoordinates: TextBoxCoordinates?
     var textFormatting: TextFormatting?
@@ -41,12 +62,31 @@ final class TextLayer: LayerProtocol {
     var letterSpacing: Double?
     var lineHeight: Double?
     
-    init(id: String, name: String, coordinates: Coordinates, size: Size, editable: Bool, textValue: String? = nil, font: String? = nil, fontSize: Double? = nil, textColor: String? = nil, textBoxCoordinates: TextBoxCoordinates? = nil, textFormatting: TextFormatting? = nil, textAlignment: TextAlignment? = nil, letterSpacing: Double? = nil, lineHeight: Double? = nil) {
+    init(
+        figmaId: String? = nil,
+        id: String = UUID().uuidString,
+        name: String,
+        coordinates: Coordinates,
+        size: Size,
+        editable: Bool,
+        rotation: Double? = nil,
+        textValue: String? = nil,
+        font: String? = nil,
+        fontSize: Double? = nil,
+        textColor: String? = nil,
+        textBoxCoordinates: TextBoxCoordinates? = nil,
+        textFormatting: TextFormatting? = nil,
+        textAlignment: TextAlignment? = nil,
+        letterSpacing: Double? = nil,
+        lineHeight: Double? = nil
+    ) {
+        self.figmaId = figmaId
         self.id = id
         self.name = name
         self.coordinates = coordinates
         self.size = size
         self.editable = editable
+        self.rotation = rotation
         self.textValue = textValue
         self.font = font
         self.fontSize = fontSize
@@ -59,11 +99,13 @@ final class TextLayer: LayerProtocol {
     }
     
     enum CodingKeys: String, CodingKey {
+        case figmaId = "figma_id"
         case name
         case coordinates
         case size
         case editable
         case type
+        case rotation
         case textValue = "text_value"
         case font
         case fontSize = "font_size"
@@ -75,14 +117,18 @@ final class TextLayer: LayerProtocol {
         case lineHeight = "line_height"
     }
 }
-extension TextLayer {
-    func copy() -> TextLayer {
+
+// Optional NSCopying for duplication
+extension TextLayer: NSCopying {
+    func copy(with zone: NSZone? = nil) -> Any {
         return TextLayer(
+            figmaId: self.figmaId,
             id: self.id,
             name: self.name,
             coordinates: self.coordinates,
             size: self.size,
             editable: self.editable,
+            rotation: self.rotation,
             textValue: self.textValue,
             font: self.font,
             fontSize: self.fontSize,
@@ -96,61 +142,148 @@ extension TextLayer {
     }
 }
 
-
-
 // MARK: - Image Layer
 final class ImageLayer: LayerProtocol {
+    var figmaId: String?
     var id: String = UUID().uuidString
+    
     let name: String
     var coordinates: Coordinates
     var size: Size
     let editable: Bool
     let type: LayerType = .image
+    var rotation: Double?
+    var backgroundColor: String?
+    
+    /// Store image as a URL string
     var imageFile: String?
+    var customImage: UIImage?
     var croppedSize: Size?
     var croppedCoordinates: Coordinates?
     
     enum CodingKeys: String, CodingKey {
+        case figmaId = "figma_id"
+        case id
         case name
         case coordinates
         case size
         case editable
         case type
+        case rotation
         case imageFile = "image_file"
         case croppedSize = "cropped_size"
         case croppedCoordinates = "cropped_coordinates"
     }
     
-    init(id: String,
-         name: String,
-         coordinates: Coordinates,
-         size: Size,
-         editable: Bool,
-         imageFile: String? = nil,
-         croppedSize: Size? = nil,
-         croppedCoordinates: Coordinates? = nil) {
+    init(
+        figmaId: String? = nil,
+        id: String = UUID().uuidString,
+        name: String,
+        coordinates: Coordinates,
+        size: Size,
+        editable: Bool,
+        rotation: Double? = nil,
+        backgroundColor: String? = nil,
+        imageFile: String? = nil,
+        croppedSize: Size? = nil,
+        croppedCoordinates: Coordinates? = nil
+    ) {
+        self.figmaId = figmaId
         self.id = id
         self.name = name
         self.coordinates = coordinates
         self.size = size
         self.editable = editable
+        self.rotation = rotation
+        self.backgroundColor = backgroundColor
         self.imageFile = imageFile
         self.croppedSize = croppedSize
         self.croppedCoordinates = croppedCoordinates
     }
 }
 
-extension ImageLayer {
-    func copy() -> ImageLayer {
+extension ImageLayer: NSCopying {
+    func copy(with zone: NSZone? = nil) -> Any {
         return ImageLayer(
+            figmaId: self.figmaId,
             id: self.id,
             name: self.name,
             coordinates: self.coordinates,
             size: self.size,
             editable: self.editable,
+            rotation: self.rotation,
             imageFile: self.imageFile,
             croppedSize: self.croppedSize,
             croppedCoordinates: self.croppedCoordinates
+        )
+    }
+}
+
+// MARK: - Shape Layer (New)
+final class ShapeLayer: LayerProtocol {
+    var figmaId: String?
+    var id: String = UUID().uuidString
+    
+    let name: String
+    var coordinates: Coordinates
+    var size: Size
+    let editable: Bool
+    let type: LayerType = .shape
+    var rotation: Double?
+    
+    /// e.g. "#RRGGBBAA" or nil
+    var backgroundColor: String?
+    /// Corner radius if uniform. If corners are different, you might store an array or just the average.
+    var cornerRadius: Double?
+    
+    enum CodingKeys: String, CodingKey {
+        case figmaId = "figma_id"
+        case id
+        case name
+        case coordinates
+        case size
+        case editable
+        case type
+        case rotation
+        case backgroundColor = "background_color"
+        case cornerRadius = "corner_radius"
+    }
+    
+    init(
+        figmaId: String? = nil,
+        id: String = UUID().uuidString,
+        name: String,
+        coordinates: Coordinates,
+        size: Size,
+        editable: Bool,
+        rotation: Double? = nil,
+        backgroundColor: String? = nil,
+        cornerRadius: Double? = nil
+    ) {
+        self.figmaId = figmaId
+        self.id = id
+        self.name = name
+        self.coordinates = coordinates
+        self.size = size
+        self.editable = editable
+        self.rotation = rotation
+        self.backgroundColor = backgroundColor
+        self.cornerRadius = cornerRadius
+    }
+}
+
+extension ShapeLayer: NSCopying {
+    func copy(with zone: NSZone? = nil) -> Any {
+        return ShapeLayer(
+            figmaId: self.figmaId,
+            id: self.id,
+            name: self.name,
+            coordinates: self.coordinates,
+            size: self.size,
+            editable: self.editable,
+            rotation: self.rotation,
+            backgroundColor: self.backgroundColor,
+            cornerRadius: self.cornerRadius
         )
     }
 }
@@ -159,6 +292,7 @@ extension ImageLayer {
 enum Layer: Codable {
     case text(TextLayer)
     case image(ImageLayer)
+    case shape(ShapeLayer)
     
     enum CodingKeys: String, CodingKey {
         case type
@@ -170,20 +304,24 @@ enum Layer: Codable {
             return textLayer.id
         case .image(let imageLayer):
             return imageLayer.id
+        case .shape(let shapeLayer):
+            return shapeLayer.id
         }
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let type = try container.decode(LayerType.self, forKey: .type)
-        
-        switch type {
+        let t = try container.decode(LayerType.self, forKey: .type)
+        switch t {
         case .text:
             let textLayer = try TextLayer(from: decoder)
             self = .text(textLayer)
         case .image:
             let imageLayer = try ImageLayer(from: decoder)
             self = .image(imageLayer)
+        case .shape:
+            let shapeLayer = try ShapeLayer(from: decoder)
+            self = .shape(shapeLayer)
         }
     }
     
@@ -193,6 +331,8 @@ enum Layer: Codable {
             try textLayer.encode(to: encoder)
         case .image(let imageLayer):
             try imageLayer.encode(to: encoder)
+        case .shape(let shapeLayer):
+            try shapeLayer.encode(to: encoder)
         }
     }
 }
@@ -201,13 +341,14 @@ extension Layer {
     func copy() -> Layer {
         switch self {
         case .text(let textLayer):
-            return Layer.text(textLayer.copy())
+            return .text(textLayer.copy() as! TextLayer)
         case .image(let imageLayer):
-            return Layer.image(imageLayer.copy())
+            return .image(imageLayer.copy() as! ImageLayer)
+        case .shape(let shapeLayer):
+            return .shape(shapeLayer.copy() as! ShapeLayer)
         }
     }
 }
-
 
 // MARK: - Canvas Model
 struct Canvas: Codable {
@@ -224,17 +365,15 @@ struct Canvas: Codable {
 
 extension Canvas {
     func copy() -> Canvas {
-        return Canvas(size: self.size, numberOfLayers: self.numberOfLayers, content: self.content.map { $0.copy() })
+        return Canvas(
+            size: self.size,
+            numberOfLayers: self.numberOfLayers,
+            content: self.content.map { $0.copy() }
+        )
     }
 }
 
-
 // MARK: - Other Supporting Structures
-struct Coordinates: Codable {
-    let x: Int
-    let y: Int
-}
-
 struct TextBoxCoordinates: Codable {
     let x: Double
     let y: Double
@@ -242,12 +381,6 @@ struct TextBoxCoordinates: Codable {
     let height: Double
 }
 
-struct Size: Codable {
-    let width: Int
-    let height: Int
-}
-
-// MARK: - Enum for Text Formatting
 enum TextFormatting: String, Codable {
     case allCaps = "all_caps"
     case allLowercase = "all_lowercase"
@@ -255,7 +388,6 @@ enum TextFormatting: String, Codable {
     case none
 }
 
-// MARK: - Enum for Text Alignment
 enum TextAlignment: String, Codable {
     case left
     case right
@@ -263,33 +395,3 @@ enum TextAlignment: String, Codable {
     case justified
 }
 
-extension TextLayer: NSCopying {
-    func copy(with zone: NSZone? = nil) -> Any {
-        let copy = TextLayer(id: id, name: name, coordinates: coordinates, size: size, editable: editable, textValue: textValue, font: font, fontSize: fontSize, textColor: textColor, textBoxCoordinates: textBoxCoordinates, textFormatting: textFormatting, textAlignment: textAlignment, letterSpacing: letterSpacing, lineHeight: lineHeight)
-        return copy
-    }
-}
-
-extension ImageLayer: NSCopying {
-    func copy(with zone: NSZone? = nil) -> Any {
-        let copy = ImageLayer(id: id, name: name, coordinates: coordinates, size: size, editable: editable, imageFile: imageFile, croppedSize: croppedSize, croppedCoordinates: croppedCoordinates)
-        return copy
-    }
-}
-
-//extension Layer: NSCopying {
-//    func copy(with zone: NSZone? = nil) -> Any {
-//        switch self {
-//        case .text(let textLayer):
-//            return Layer.text(textLayer.copy() as! TextLayer)
-//        case .image(let imageLayer):
-//            return Layer.image(imageLayer.copy() as! ImageLayer)
-//        }
-//    }
-//}
-//
-//extension Canvas: NSCopying {
-//    func copy(with zone: NSZone? = nil) -> Any {
-//        return Canvas(size: size, numberOfLayers: numberOfLayers, content: content.map { $0.copy() as! Layer })
-//    }
-//}

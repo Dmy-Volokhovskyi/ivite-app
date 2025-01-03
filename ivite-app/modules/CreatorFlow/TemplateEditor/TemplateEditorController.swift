@@ -4,7 +4,7 @@ import UIKit
 // TODO: - Add cancel Selction gesture recognizer
 // TODO: - add Text Edit
 // TODO: - add spacing and lineheight
-// TODO: - remove the Reset from model 
+// TODO: - remove the Reset from model
 // TODO: - add default highlight for editable
 
 protocol TemplateEditorEventHandler: AnyObject {
@@ -20,12 +20,12 @@ protocol TemplateEditorEventHandler: AnyObject {
     func resetFont(for id: String)
     func resetFontSize(for id: String)
     func resetTextColor(for id: String)
-    func resetTextFormating(for id: String)
-    func resetAlignment(for id: String)
+    func resetTextFormatingAndAllinement(for id: String)
     func resetLineHeight(for id: String)
     func resetLetterSpacing(for id: String)
     
     func didUpdatePositionAndSize(for id: String, with coordinates: Coordinates, and size: Size)
+    func updateImageLayer(with image: UIImage, layerIndex: Int)
     func nextButtonTapped()
 }
 
@@ -45,7 +45,7 @@ final class TemplateEditorController: BaseViewController {
             activeResizableView?.showEditingHandles()
             oldValue?.hideEditingHandles()
             oldValue?.contentView?.resignFirstResponder()
-//            activeResizableView?.contentView?.resignFirstResponder()
+            //            activeResizableView?.contentView?.resignFirstResponder()
             toggleControlls(for: activeResizableView)
         }
     }
@@ -100,10 +100,10 @@ final class TemplateEditorController: BaseViewController {
     
     override func constrainSubviews() {
         super.constrainSubviews()
-
+        
         // Set the scrollView to pin to the edges of the view with insets
-        scrollView.autoPinEdgesToSuperviewSafeArea(with: .zero, excludingEdge: .bottom)
-
+        scrollView.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0), excludingEdge: .bottom)
+        
         // Set the contentView to pin to the scrollView edges with insets (16 on left/right)
         contentView.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
         contentView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
@@ -114,33 +114,33 @@ final class TemplateEditorController: BaseViewController {
         
         // Ensure the contentView matches the scrollView's width with the insets
         contentView.autoMatch(.width, to: .width, of: scrollView, withOffset: -32) // -32 accounts for 16px insets on each side
-
+        
         // Optional: Define a minimum height for the contentView to ensure scrolling is possible
-        contentView.autoSetDimension(.height, toSize: 1000, relation: .greaterThanOrEqual)
-
+        //        contentView.autoSetDimension(.height, toSize: 1000, relation: .greaterThanOrEqual)
+        
         // Constrain other subviews as needed
         bottomBarView.autoPinEdge(.top, to: .bottom, of: scrollView, withOffset: 16)
         bottomBarView.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .top)
         
         bottomMenu.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), excludingEdge: .top)
         fontSelectionView.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .top)
-        fontSelectionView.autoSetDimension(.height, toSize: 200)
+        fontSelectionView.autoSetDimension(.height, toSize: view.frame.height / 4)
         
         fontSizePicker.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .top)
         fontSizePicker.autoSetDimension(.height, toSize: 200)
         
-        colorPickerView.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .top)
+        colorPickerView.autoPinEdgesToSuperviewSafeArea(with: .zero, excludingEdge: .top)
         colorPickerView.autoSetDimension(.height, toSize: 200)
         
-        textFormattingPicker.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .top)
+        textFormattingPicker.autoPinEdgesToSuperviewSafeArea(with: .zero, excludingEdge: .top)
         textFormattingPicker.autoSetDimension(.height, toSize: 200)
         
-        spacingPickerView.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .top)
+        spacingPickerView.autoPinEdgesToSuperviewSafeArea(with: .zero, excludingEdge: .top)
         spacingPickerView.autoSetDimension(.height, toSize: 200)
         
         setUpBottomViewConstraints()
     }
-
+    
     
     override func setupView() {
         super.setupView()
@@ -180,18 +180,18 @@ final class TemplateEditorController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         eventHandler.viewDidLoad()
-
+        
         bottomMenu.isHidden = true
         // Register for keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        
         // Remove keyboard notifications
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -201,12 +201,12 @@ final class TemplateEditorController: BaseViewController {
         bottomDividerView.autoPinEdgesToSuperviewEdges(with: .zero, excludingEdge: .bottom)
         
         nextButton.autoPinEdge(.top, to: .bottom, of: bottomDividerView, withOffset: 24)
-            nextButton.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
-            nextButton.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
+        nextButton.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
+        nextButton.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
         nextButton.autoPinEdge(toSuperviewSafeArea: .bottom, withInset: 8)
         
-            nextButton.setContentHuggingPriority(.init(999), for: .vertical)
-            nextButton.setContentCompressionResistancePriority(.init(999), for: .vertical)
+        nextButton.setContentHuggingPriority(.init(999), for: .vertical)
+        nextButton.setContentCompressionResistancePriority(.init(999), for: .vertical)
     }
     
     @objc func nextButtonTapped(_ sender: UIButton) {
@@ -253,7 +253,7 @@ final class TemplateEditorController: BaseViewController {
             scrollView.scrollRectToVisible(textViewFrameInContentView, animated: true)
         }
     }
-
+    
     @objc private func keyboardWillHide(notification: NSNotification) {
         // Reset scrollView's content inset when the keyboard is dismissed
         let contentInsets = UIEdgeInsets.zero
@@ -269,22 +269,65 @@ final class TemplateEditorController: BaseViewController {
         // Remove all existing subviews in case of relayout
         contentView.subviews.forEach { $0.removeFromSuperview() }
         self.scaleFactor = scaleFactor
+        
         for layer in canvas.content {
             switch layer {
             case .image(let imageLayer):
                 addImageLayer(imageLayer, scale: scaleFactor)
             case .text(let textLayer):
                 addTextLayer(textLayer, scale: scaleFactor)
+            case .shape(let shapeLayer):
+                addShapeLayer(shapeLayer, scale: scaleFactor) // NEW
             }
         }
     }
+    
+    private func addShapeLayer(_ layer: ShapeLayer, scale: CGFloat) {
+        // Scale coordinates and size
+        let xPos = CGFloat(layer.coordinates.x) * scale
+        let yPos = CGFloat(layer.coordinates.y) * scale
+        let width = CGFloat(layer.size.width) * scale
+        let height = CGFloat(layer.size.height) * scale
+        
+        // Create a UIView to represent the shape layer
+        let shapeView = UIView(frame: CGRect(x: xPos, y: yPos, width: width, height: height))
+        shapeView.isUserInteractionEnabled = layer.editable
+        // Apply background color if present
+        if let hexColor = layer.backgroundColor, let uiColor = UIColor(hex: hexColor) {
+            print(hexColor)
+            shapeView.backgroundColor = uiColor
+        } else {
+            shapeView.backgroundColor = .clear
+        }
+        
+        // Apply corner radius if present
+        if let cornerRadius = layer.cornerRadius {
+            shapeView.layer.cornerRadius = CGFloat(cornerRadius) * scale
+            shapeView.clipsToBounds = true
+        }
+        
+        // If editable, wrap it in a resizable view
+        if layer.editable {
+            let resizableView = RKUserResizableView(frame: shapeView.frame)
+            resizableView.id = layer.id
+            resizableView.delegate = self
+            resizableView.contentView = shapeView
+            contentView.addSubview(resizableView)
+        } else {
+            // Not editable, just add directly
+            contentView.addSubview(shapeView)
+        }
+    }
+    
     
     private func addImageLayer(_ layer: ImageLayer, scale: CGFloat) {
         let size: CGSize
         let coordinates: Coordinates
         
         // Scale the size and coordinates
-        if layer.editable, let croppedSize = layer.croppedSize, let croppedCoordinates = layer.croppedCoordinates {
+        if layer.editable,
+           let croppedSize = layer.croppedSize,
+           let croppedCoordinates = layer.croppedCoordinates {
             size = CGSize(width: CGFloat(croppedSize.width) * scale, height: CGFloat(croppedSize.height) * scale)
             coordinates = croppedCoordinates
         } else {
@@ -292,38 +335,67 @@ final class TemplateEditorController: BaseViewController {
             coordinates = layer.coordinates
         }
         
-        // Create and scale the image view
-        if let imageName = layer.imageFile, let image = UIImage(named: imageName) {
-            let imageView =  UIImageView(image: image)
-            imageView.contentMode = .scaleAspectFit
-            imageView.isUserInteractionEnabled = layer.editable
+        // Determine which image to use
+        let image: UIImage?
+        if let customImage = layer.customImage {
+            image = customImage
+        } else if let imageName = layer.imageFile {
+            image = UIImage(named: imageName)
+        } else {
+            image = nil
+        }
+        
+        // Proceed only if an image is available
+        guard let displayImage = image else { return }
+        
+        let imageView = UIImageView(image: displayImage)
+        imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = layer.editable
+        
+        // Set background color if available
+        if let hexColor = layer.backgroundColor, let uiColor = UIColor(hex: hexColor) {
+            imageView.backgroundColor = uiColor
+        } else {
+            imageView.backgroundColor = .clear
+        }
+        
+        // Handle editable layers
+        if layer.editable {
+            // Create frame for the resizable view using coordinates and size
+            let imageFrame = CGRect(x: CGFloat(coordinates.x) * scale,
+                                    y: CGFloat(coordinates.y) * scale,
+                                    width: size.width,
+                                    height: size.height)
             
-            // If editable, wrap the imageView inside a resizable view
-            if layer.editable {
-                // Create frame for the resizable view using coordinates and size
-                let imageFrame = CGRect(x: CGFloat(coordinates.x) * scale,
-                                        y: CGFloat(coordinates.y) * scale,
-                                        width: size.width,
-                                        height: size.height)
-                
-                let resizableImageView = RKUserResizableView(frame: imageFrame)
-                resizableImageView.id = layer.id
-                resizableImageView.contentView = imageView
-                resizableImageView.delegate = self
-                contentView.addSubview(resizableImageView)
-                
-            } else {
-                // If not editable, position the imageView directly with frames
-                let imageFrame = CGRect(x: CGFloat(coordinates.x) * scale,
-                                        y: CGFloat(coordinates.y) * scale,
-                                        width: size.width,
-                                        height: size.height)
-                imageView.frame = imageFrame
-                contentView.addSubview(imageView)
-            }
+            let resizableImageView = RKUserResizableView(frame: imageFrame)
+            imageView.contentMode = .scaleToFill
+            resizableImageView.id = layer.id
+            resizableImageView.contentView = imageView
+            resizableImageView.delegate = self
+            
+            // Add a button for changing the image
+            let button = UIButton(type: .system)
+            button.setTitle("Pick Image", for: .normal)
+            button.tintColor = .white
+            button.backgroundColor = .black.withAlphaComponent(0.5)
+            button.layer.cornerRadius = 15
+            button.addTarget(self, action: #selector(changeImageButtonTapped(_:)), for: .touchUpInside)
+            button.tag = dataSource.canvas?.content.firstIndex(where: { $0.id == layer.id }) ?? 0
+            
+            resizableImageView.addSubview(imageView)
+            resizableImageView.addSubview(button)
+            button.autoCenterInSuperview()
+            contentView.addSubview(resizableImageView)
+        } else {
+            // Handle non-editable layers
+            let imageFrame = CGRect(x: CGFloat(coordinates.x) * scale,
+                                    y: CGFloat(coordinates.y) * scale,
+                                    width: size.width,
+                                    height: size.height)
+            imageView.frame = imageFrame
+            contentView.addSubview(imageView)
         }
     }
-    
     
     private func addTextLayer(_ layer: TextLayer, scale: CGFloat) {
         guard let textBoxCoordinates = layer.textBoxCoordinates else { return }
@@ -338,7 +410,7 @@ final class TemplateEditorController: BaseViewController {
             let resizableTextView = RKUserResizableView(frame: CGRect(x: CGFloat(textBoxCoordinates.x) * scale,
                                                                       y: CGFloat(textBoxCoordinates.y) * scale,
                                                                       width: scaledTextBoxWidth,
-                                                                      height: scaledTextBoxHeight + 40))
+                                                                      height: scaledTextBoxHeight))
             resizableTextView.contentView = label
             resizableTextView.id = layer.id
             resizableTextView.delegate = self
@@ -363,7 +435,7 @@ final class TemplateEditorController: BaseViewController {
         resizableView.frame = CGRect(x: CGFloat(textBoxCoordinates.x) * scale,
                                      y: CGFloat(textBoxCoordinates.y) * scale,
                                      width: scaledTextBoxWidth,
-                                     height: scaledTextBoxHeight + 40)
+                                     height: scaledTextBoxHeight)
         
         // Re-apply attributes to the text
         applyTextAttributes(to: label, layer: layer, scale: scale)
@@ -371,66 +443,77 @@ final class TemplateEditorController: BaseViewController {
     
     // Helper method to create the text view with initial configuration
     private func createTextView(for layer: TextLayer, scale: CGFloat) -> UITextView {
-        let label = UITextView()
-        label.isScrollEnabled = false
-        label.backgroundColor = .clear
-        label.isUserInteractionEnabled = false
+        let textView = UITextView()
+        textView.isScrollEnabled = false
+        textView.backgroundColor = .clear
+        textView.isUserInteractionEnabled = false
+        textView.textContainerInset = .zero // Ensure no default padding
+        textView.textContainer.lineFragmentPadding = 0 // Ensure no extra padding around text
         
         // Apply text and attributes
-        label.text = layer.textValue
-        applyTextAttributes(to: label, layer: layer, scale: scale)
+        textView.text = layer.textValue
+        applyTextAttributes(to: textView, layer: layer, scale: scale)
         
-        return label
+        return textView
     }
     
-    private func applyTextAttributes(to label: UITextView, layer: TextLayer, scale: CGFloat) {
+    private func applyTextAttributes(to textView: UITextView, layer: TextLayer, scale: CGFloat) {
         let scaledFontSize = CGFloat(layer.fontSize ?? 131.4) * scale
-        let attributedString = NSMutableAttributedString(string: label.text ?? "")
+        let attributedString = NSMutableAttributedString(string: textView.text ?? "")
         
-        // Apply font
-        if let fontName = layer.font, let font = UIFont(name: fontName, size: scaledFontSize) {
-            attributedString.addAttribute(.font, value: font, range: NSRange(location: 0, length: attributedString.length))
+        // Configure the font
+        let font: UIFont
+        if let fontName = layer.font, let customFont = UIFont(name: fontName, size: scaledFontSize) {
+            font = customFont
+            print( font.lineHeight, "Font Lineheight")
         } else {
-            attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: scaledFontSize), range: NSRange(location: 0, length: attributedString.length))
+            font = UIFont.systemFont(ofSize: scaledFontSize)
         }
-        
-        // Apply text color (with hex handling)
+        // Apply text color
         if let hexColor = layer.textColor, let textColor = UIColor(hex: hexColor) {
             attributedString.addAttribute(.foregroundColor, value: textColor, range: NSRange(location: 0, length: attributedString.length))
         } else {
             attributedString.addAttribute(.foregroundColor, value: UIColor.white, range: NSRange(location: 0, length: attributedString.length)) // Default to white
         }
         
-        // Apply text alignment and formatting
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = textAlignment(from: layer.textAlignment)
-        
         // Apply text formatting (all caps, lowercase, capitalized)
-        let formattedText = formatText(label.text ?? "", basedOn: layer.textFormatting)
+        let formattedText = formatText(textView.text ?? "", basedOn: layer.textFormatting)
         attributedString.mutableString.setString(formattedText)
+        
+        // Calculate line height and baseline offset
+        if let lineHeight = layer.lineHeight {
+            let scaledLineHeight = max(CGFloat(lineHeight) * scale, font.lineHeight) // Ensure line height is valid
+            
+            // Configure paragraph style
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.minimumLineHeight = scaledLineHeight
+            paragraphStyle.maximumLineHeight = scaledLineHeight
+            paragraphStyle.alignment = textAlignment(from: layer.textAlignment)
+            
+            // Calculate baseline offset for vertical centering
+            let baselineOffset = (scaledLineHeight - font.lineHeight) / 2.0
+            
+            // Apply attributes
+            attributedString.addAttribute(.font, value: font, range: NSRange(location: 0, length: attributedString.length))
+            attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+            attributedString.addAttribute(.baselineOffset, value: baselineOffset, range: NSRange(location: 0, length: attributedString.length))
+        } else {
+            // Fallback to font-only styling
+            attributedString.addAttribute(.font, value: font, range: NSRange(location: 0, length: attributedString.length))
+        }
         
         // Apply letter spacing
         if let letterSpacing = layer.letterSpacing {
             attributedString.addAttribute(.kern, value: letterSpacing, range: NSRange(location: 0, length: attributedString.length))
         }
         
-        // Apply line height (adjust minimum and maximum line height to match the line spacing)
-        if let lineHeight = layer.lineHeight {
-            paragraphStyle.lineSpacing = CGFloat(lineHeight)
-            paragraphStyle.minimumLineHeight = CGFloat(lineHeight) * scaledFontSize
-            paragraphStyle.maximumLineHeight = CGFloat(lineHeight) * scaledFontSize
-        }
-        
-        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
-        
-        // Ensure text container settings in UITextView do not interfere with line height
-        label.textContainer.lineFragmentPadding = 0
-        label.textContainerInset = .zero
+        // Ensure text container settings in UITextView do not interfere with rendering
+        textView.textContainer.lineFragmentPadding = 0
+        textView.textContainerInset = .zero
         
         // Assign attributed string to the label
-        label.attributedText = attributedString
+        textView.attributedText = attributedString
     }
-
     
     // Helper method to handle text alignment
     private func textAlignment(from alignment: TextAlignment?) -> NSTextAlignment {
@@ -462,9 +545,65 @@ final class TemplateEditorController: BaseViewController {
         }
     }
     
+    @objc private func changeImageButtonTapped(_ sender: UIButton) {
+        let layerId = sender.tag
+        // Implement the logic to change the image for the layer with the given ID
+        print("Change image button tapped for layer ID: \(layerId)")
+        
+        // For example, present an image picker to select a new image
+        presentImagePicker(forLayerId: layerId)
+    }
+    
+    private func presentImagePicker(forLayerId layerId: Int) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        imagePicker.view.tag = layerId // Tag the image picker with the layer ID
+        present(imagePicker, animated: true)
+    }
 }
 
 extension TemplateEditorController: TemplateEditorViewInterface {
+    func updateImageLayer(_ layer: ImageLayer) {
+        // Find the matching resizable view for the image layer
+        guard let resizableView = contentView.subviews.compactMap({ $0 as? RKUserResizableView }).first(where: { $0.id == layer.id }) else {
+            print("No matching resizable view found for ImageLayer with ID: \(layer.id)")
+            return
+        }
+        
+        // Ensure the resizable view's contentView is a UIImageView
+        guard let imageView = resizableView.contentView as? UIImageView else {
+            print("ContentView is not a UIImageView")
+            return
+        }
+        
+        // Update the image in the UIImageView
+        if let customImage = layer.customImage {
+            imageView.image = customImage
+        } else if let imageName = layer.imageFile, let image = UIImage(named: imageName) {
+            imageView.image = image
+        } else {
+            print("No image available for ImageLayer with ID: \(layer.id)")
+            return
+        }
+        
+        // Update additional properties like background color
+        if let hexColor = layer.backgroundColor, let uiColor = UIColor(hex: hexColor) {
+            imageView.backgroundColor = uiColor
+        } else {
+            imageView.backgroundColor = .clear
+        }
+        
+        // Update the frame of the resizable view if coordinates or size have changed
+        let newFrame = CGRect(
+            x: CGFloat(layer.coordinates.x) * self.scaleFactor!,
+            y: CGFloat(layer.coordinates.y) * self.scaleFactor!,
+            width: CGFloat(layer.size.width) * self.scaleFactor!,
+            height: CGFloat(layer.size.height) * self.scaleFactor!
+        )
+        resizableView.frame = newFrame
+    }
+    
     func updateTextLayer(_ layer: TextLayer) {
         guard let resizableView = contentView.subviews.compactMap({ $0 as? RKUserResizableView }).first(where: { $0.id == layer.id }) else {
             print("No matching resizable view found")
@@ -505,18 +644,23 @@ extension TemplateEditorController: TemplateEditorViewInterface {
     private func toggleControlls(for resizableView: RKUserResizableView?) {
         guard let resizableView,
               let id = resizableView.id,
-              let type = dataSource.getLayerType(for: id) else {
+              let type = dataSource.getLayerType(for: id)
+        else {
             bottomMenu.isHidden = true
             return
         }
         
         switch type {
         case .text:
+            // Show text-edit menu
             bottomMenu.isHidden = false
-        case .image:
+            
+        case .image, .shape:
+            // For images and shapes, hide the text-edit menu
             bottomMenu.isHidden = true
         }
     }
+    
 }
 
 extension TemplateEditorController: UIScrollViewDelegate {
@@ -564,8 +708,6 @@ extension TemplateEditorController: TextEditMenuDelegate {
 
 extension TemplateEditorController: RKUserResizableViewDelegate{
     func userResizableViewDidBeginEditing(_ userResizableView: RKUserResizableView) {
-        print("begin", userResizableView.id)
-        
         activeResizableView?.hideEditingHandles()
         
         // Set the new active view and show its handles
@@ -574,23 +716,24 @@ extension TemplateEditorController: RKUserResizableViewDelegate{
     }
     
     func userResizableViewDidEndEditing(_ userResizableView: RKUserResizableView) {
-           guard let id = userResizableView.id, let scaleFactor = scaleFactor else { return }
-           
-           // Extract the actual (unscaled) coordinates and size by dividing by the scaleFactor
-           let actualCoordinates = Coordinates(
-               x: Int(userResizableView.frame.origin.x / scaleFactor),
-               y: Int(userResizableView.frame.origin.y / scaleFactor)
-           )
-           let actualSize = Size(
-               width: Int(userResizableView.frame.size.width / scaleFactor),
-               height: Int(userResizableView.frame.size.height / scaleFactor)
-           )
-           
-           // Notify the presenter of the changes
-           eventHandler.didUpdatePositionAndSize(for: id, with: actualCoordinates, and: actualSize)
-           
-           print("End editing", id, "new position:", actualCoordinates, "new size:", actualSize)
-       }
+        guard let id = userResizableView.id, let scaleFactor = scaleFactor else { return }
+        
+        // Extract the actual (unscaled) coordinates and size by dividing by the scaleFactor
+        let actualCoordinates = Coordinates(
+            x: userResizableView.frame.origin.x / scaleFactor,
+            y: userResizableView.frame.origin.y / scaleFactor
+        )
+        let actualSize = Size(
+            width: userResizableView.frame.size.width / scaleFactor,
+            height: userResizableView.frame.size.height / scaleFactor
+        )
+        
+        // Notify the presenter of the changes
+        eventHandler.didUpdatePositionAndSize(for: id, with: actualCoordinates, and: actualSize)
+        
+        print("End editing", id, "new position:", actualCoordinates, "new size:", actualSize)
+    }
+    
 }
 
 extension TemplateEditorController: FontSelectionDelegate {
@@ -620,9 +763,8 @@ extension TemplateEditorController: FontSizePickerDelegate {
     func fontSizePickerDidReset(_ pickerView: FontSizePickerView) {
         guard let id = activeResizableView?.id else { return }
         eventHandler.resetFontSize(for: id)
-        fontSelectionView.isHidden.toggle()
+        fontSizePicker.isHidden.toggle()
         print("Font size reset to default")
-        // Handle resetting the font size, maybe set the default size on the active layer
     }
 }
 
@@ -638,7 +780,7 @@ extension TemplateEditorController: ColorPickerDelegate {
     func colorPickerDidReset(_ pickerView: ColorPickerView) {
         guard let id = activeResizableView?.id else { return }
         eventHandler.resetTextColor(for: id)
-        fontSelectionView.isHidden.toggle()
+        colorPickerView.isHidden.toggle()
         print("Color reset to default")
         // Handle resetting the color, maybe set the default color on the active layer
     }
@@ -662,9 +804,8 @@ extension TemplateEditorController: TextFormatPickerDelegate {
     func textFormatPickerDidReset(_ pickerView: TextFormatPickerView) {
         // Handle reset action
         guard let id = activeResizableView?.id else { return }
-        eventHandler.resetAlignment(for: id)
-        eventHandler.resetTextFormating(for: id)
-        fontSelectionView.isHidden.toggle()
+        eventHandler.resetTextFormatingAndAllinement(for: id)
+        textFormattingPicker.isHidden.toggle()
         print("Text format and alignment reset")
     }
 }
@@ -676,20 +817,37 @@ extension TemplateEditorController: SpacingPickerDelegate {
         eventHandler.didSelectLetterSpacing(for: activeLayerID , with: letterSpacing)
         // Handle updating text layer with new letter spacing
     }
-
+    
     func spacingPickerDidUpdateLineHeight(_ pickerView: SpacingPickerView, lineHeight: CGFloat) {
         print("Updated line height: \(lineHeight)")
         // Handle updating text layer with new line height
         guard let activeLayerID = activeResizableView?.id else { return }
         eventHandler.didSelectLineHeight(for: activeLayerID , with: lineHeight)
     }
-
+    
     func spacingPickerDidReset(_ pickerView: SpacingPickerView) {
         print("Spacing reset to defaults")
         guard let id = activeResizableView?.id else { return }
         eventHandler.resetLetterSpacing(for: id)
         eventHandler.resetLineHeight(for: id)
-        fontSelectionView.isHidden.toggle()
+        spacingPickerView.isHidden.toggle()
         // Handle reset logic
+    }
+}
+
+extension TemplateEditorController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[.originalImage] as? UIImage else {
+            picker.dismiss(animated: true)
+            return
+        }
+        
+        let layerId = picker.view.tag
+        eventHandler.updateImageLayer(with: selectedImage, layerIndex: layerId)
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
     }
 }

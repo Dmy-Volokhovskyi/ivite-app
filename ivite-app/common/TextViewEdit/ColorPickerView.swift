@@ -39,6 +39,8 @@ class ColorPickerView: BaseView {
         super.setupView()
 
         backgroundColor = .white
+        layer.cornerRadius = 10
+        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         setupTitleLabel()
         setupResetAndCloseButtons()

@@ -31,6 +31,8 @@ class TextFormatPickerView: BaseView {
         super.setupView()
 
         backgroundColor = .white
+        layer.cornerRadius = 10
+        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         setupTitleLabel()
         setupResetAndCloseButtons()
@@ -54,8 +56,8 @@ class TextFormatPickerView: BaseView {
         resetButton.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
         resetButton.autoPinEdge(toSuperviewEdge: .top, withInset: 16)
         
-        closeButton.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
-        closeButton.autoPinEdge(toSuperviewEdge: .top, withInset: 16)
+        closeButton.autoPinEdge(toSuperviewSafeArea: .trailing, withInset: 16)
+        closeButton.autoPinEdge(toSuperviewSafeArea: .top, withInset: 16)
         closeButton.autoMatch(.height, to: .height, of: resetButton)
         
         titleLabel.autoPinEdge(.top, to: .bottom, of: closeButton, withOffset: 16)

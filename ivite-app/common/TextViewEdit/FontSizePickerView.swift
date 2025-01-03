@@ -32,6 +32,8 @@ class FontSizePickerView: BaseView {
         super.setupView()
         
         backgroundColor = .white
+        layer.cornerRadius = 10
+        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         titleLabel.text = "FONT SIZE"
         titleLabel.font = .boldSystemFont(ofSize: 16)

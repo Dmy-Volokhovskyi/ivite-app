@@ -93,6 +93,7 @@
 		35B886AF2CEE697700FE1F43 /* EditGuestPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886AB2CEE697700FE1F43 /* EditGuestPresenter.swift */; };
 		35B886B02CEE697700FE1F43 /* EditGuestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886AA2CEE697700FE1F43 /* EditGuestInteractor.swift */; };
 		35B886B12CEE697700FE1F43 /* EditGuestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886AC2CEE697700FE1F43 /* EditGuestRouter.swift */; };
+		35CBF9732D1DB7F1006D939F /* IrishGrover-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35CBF9722D1DB7F1006D939F /* IrishGrover-Regular.ttf */; };
 		35EEC6D82CE295B6003E7758 /* IVTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6D72CE295B6003E7758 /* IVTransitioningDelegate.swift */; };
 		35EEC6DA2CE295D7003E7758 /* IVPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6D92CE295D7003E7758 /* IVPresentAnimator.swift */; };
 		35EEC6DC2CE295EF003E7758 /* IVPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6DB2CE295EF003E7758 /* IVPresentationController.swift */; };
@@ -348,6 +349,7 @@
 		35B886AA2CEE697700FE1F43 /* EditGuestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGuestInteractor.swift; sourceTree = "<group>"; };
 		35B886AB2CEE697700FE1F43 /* EditGuestPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGuestPresenter.swift; sourceTree = "<group>"; };
 		35B886AC2CEE697700FE1F43 /* EditGuestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGuestRouter.swift; sourceTree = "<group>"; };
+		35CBF9722D1DB7F1006D939F /* IrishGrover-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IrishGrover-Regular.ttf"; sourceTree = "<group>"; };
 		35EEC6D72CE295B6003E7758 /* IVTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVTransitioningDelegate.swift; sourceTree = "<group>"; };
 		35EEC6D92CE295D7003E7758 /* IVPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVPresentAnimator.swift; sourceTree = "<group>"; };
 		35EEC6DB2CE295EF003E7758 /* IVPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVPresentationController.swift; sourceTree = "<group>"; };
@@ -1002,6 +1004,7 @@
 			isa = PBXGroup;
 			children = (
 				76096A7C2C8730E30004BEE0 /* Inter-Italic-VariableFont_opsz,wght.ttf */,
+				35CBF9722D1DB7F1006D939F /* IrishGrover-Regular.ttf */,
 				76096A7B2C8730E20004BEE0 /* Inter-VariableFont_opsz,wght.ttf */,
 			);
 			path = Fonts;
@@ -1452,6 +1455,7 @@
 			files = (
 				766AB7522C933010004FC6EE /* canvasData.json in Resources */,
 				76096A0E2C84F8680004BEE0 /* Assets.xcassets in Resources */,
+				35CBF9732D1DB7F1006D939F /* IrishGrover-Regular.ttf in Resources */,
 				76096A7D2C8730E30004BEE0 /* Inter-VariableFont_opsz,wght.ttf in Resources */,
 				76096A112C84F8680004BEE0 /* Base in Resources */,
 				76096A7E2C8730E30004BEE0 /* Inter-Italic-VariableFont_opsz,wght.ttf in Resources */,

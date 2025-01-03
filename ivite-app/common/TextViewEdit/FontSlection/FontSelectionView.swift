@@ -38,6 +38,9 @@ class FontSelectionView: BaseView {
     override func setupView() {
         super.setupView()
         
+        layer.cornerRadius = 10
+        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(FontTableViewCell.self)

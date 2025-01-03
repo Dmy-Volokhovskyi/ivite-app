@@ -4,6 +4,7 @@ import UIKit
 protocol TemplateEditorViewInterface: AnyObject {
     func loadCanvas()
     func updateTextLayer(_ layer: TextLayer)
+    func updateImageLayer(_ layer: ImageLayer)
 }
 
 final class TemplateEditorPresenter: BasePresenter {
@@ -18,6 +19,25 @@ final class TemplateEditorPresenter: BasePresenter {
 }
 
 extension TemplateEditorPresenter: TemplateEditorEventHandler {
+    func updateImageLayer(with image: UIImage, layerIndex: Int) {
+        // Ensure the layerIndex is valid and retrieve the image layer
+        guard let canvas = interactor.creationFlowModel.canvas,
+              layerIndex >= 0,
+              layerIndex < canvas.content.count,
+              case var .image(imageLayer) = canvas.content[layerIndex] else {
+            return
+        }
+        
+        // Update the `customImage` property of the image layer
+        imageLayer.customImage = image
+        
+        // Replace the updated layer back into the canvas
+        interactor.creationFlowModel.canvas?.content[layerIndex] = .image(imageLayer)
+        
+        // Notify the view interface to update the layer
+        viewInterface?.updateImageLayer(imageLayer)
+    }
+    
     func nextButtonTapped() {
         interactor.editorDelegate?.didEndTemplateEdition()
     }
@@ -27,7 +47,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
 
         // Check the layer type and update the coordinates and size accordingly
         switch interactor.creationFlowModel.canvas?.content[index] {
-        case .text(var textLayer):
+        case .text(let textLayer):
             textLayer.textBoxCoordinates = TextBoxCoordinates(
                         x: Double(coordinates.x),
                         y: Double(coordinates.y),
@@ -37,12 +57,15 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
             interactor.creationFlowModel.canvas?.content[index] = .text(textLayer)
 //            viewInterface?.updateTextLayer(textLayer)
             
-        case .image(var imageLayer):
+        case .image(let imageLayer):
             imageLayer.coordinates = coordinates
             imageLayer.size = size
             interactor.creationFlowModel.canvas?.content[index] = .image(imageLayer)
 //            viewInterface?.updateImageLayer(imageLayer)
-            
+        case .shape(let shapeLayer):
+            shapeLayer.coordinates = coordinates
+            shapeLayer.size = size
+            interactor.creationFlowModel.canvas?.content[index] = .shape(shapeLayer)
         case .none:
             break
         }
@@ -52,7 +75,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     func didSelectLineHeight(for id: String, with height: CGFloat) {
         guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
 
-        if case var .text(textLayer) = layer {
+        if case let .text(textLayer) = layer {
             textLayer.lineHeight = height
             viewInterface?.updateTextLayer(textLayer)
         } else {
@@ -64,7 +87,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     func didSelectLetterSpacing(for id: String, with spacing: CGFloat) {
         guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
 
-        if case var .text(textLayer) = layer {
+        if case let .text(textLayer) = layer {
             textLayer.letterSpacing = spacing
             viewInterface?.updateTextLayer(textLayer)
         } else {
@@ -76,7 +99,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     func didSelectTextFormating(for id: String, with format: TextFormatting) {
         guard let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
 
-           if case var .text(textLayer) = interactor.creationFlowModel.canvas?.content[index] {
+           if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index] {
                textLayer.textFormatting = format
                interactor.creationFlowModel.canvas?.content[index] = .text(textLayer)
                viewInterface?.updateTextLayer(textLayer)
@@ -88,7 +111,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     func didSelectAlignment(for id: String, with alignment: TextAlignment) {
         guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
 
-        if case var .text(textLayer) = layer {
+        if case let .text(textLayer) = layer {
             textLayer.textAlignment = alignment as? TextAlignment
             viewInterface?.updateTextLayer(textLayer)
         } else {
@@ -101,7 +124,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
         print(color)
         guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
 
-        if case var .text(textLayer) = layer {
+        if case let .text(textLayer) = layer {
             textLayer.textColor = color
             viewInterface?.updateTextLayer(textLayer)
         } else {
@@ -113,7 +136,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     func didSelectFontSize(for id: String, with size: Double) {
         guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
 
-        if case var .text(textLayer) = layer {
+        if case let .text(textLayer) = layer {
             textLayer.fontSize = size
             viewInterface?.updateTextLayer(textLayer)
         } else {
@@ -125,7 +148,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     func didSelectNewFont(for id: String, with name: String) {
         guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
 
-        if case var .text(textLayer) = layer {
+        if case let .text(textLayer) = layer {
             textLayer.font = name
             viewInterface?.updateTextLayer(textLayer)
         } else {
@@ -138,7 +161,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
         guard let originalLayer = interactor.creationFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
               let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
 
-        if case var .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
+        if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
            case let .text(originalTextLayer) = originalLayer {
             
             textLayer.font = originalTextLayer.font
@@ -151,7 +174,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
         guard let originalLayer = interactor.creationFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
               let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
 
-        if case var .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
+        if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
            case let .text(originalTextLayer) = originalLayer {
             
             textLayer.fontSize = originalTextLayer.fontSize
@@ -164,7 +187,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
         guard let originalLayer = interactor.creationFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
               let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
 
-        if case var .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
+        if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
            case let .text(originalTextLayer) = originalLayer {
             
             textLayer.textColor = originalTextLayer.textColor
@@ -173,27 +196,16 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
         }
     }
 
-    func resetTextFormating(for id: String) {
+    func resetTextFormatingAndAllinement(for id: String) {
         guard let originalLayer = interactor.creationFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
               let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
 
-        if case var .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
-           case let .text(originalTextLayer) = originalLayer {
-            
-            textLayer.textFormatting = originalTextLayer.textFormatting
-            interactor.creationFlowModel.canvas?.content[index] = .text(textLayer)
-            viewInterface?.updateTextLayer(textLayer)
-        }
-    }
-
-    func resetAlignment(for id: String) {
-        guard let originalLayer = interactor.creationFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
-              let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
-
-        if case var .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
+        if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
            case let .text(originalTextLayer) = originalLayer {
             
             textLayer.textAlignment = originalTextLayer.textAlignment
+            textLayer.textFormatting = originalTextLayer.textFormatting
+            
             interactor.creationFlowModel.canvas?.content[index] = .text(textLayer)
             viewInterface?.updateTextLayer(textLayer)
         }
@@ -203,7 +215,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
         guard let originalLayer = interactor.creationFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
               let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
 
-        if case var .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
+        if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
            case let .text(originalTextLayer) = originalLayer {
             
             textLayer.lineHeight = originalTextLayer.lineHeight
@@ -216,7 +228,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
         guard let originalLayer = interactor.creationFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
               let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
 
-        if case var .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
+        if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
            case let .text(originalTextLayer) = originalLayer {
             
             textLayer.letterSpacing = originalTextLayer.letterSpacing

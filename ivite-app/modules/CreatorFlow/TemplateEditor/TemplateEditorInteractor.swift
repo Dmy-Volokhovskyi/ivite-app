@@ -18,9 +18,9 @@ final class TemplateEditorInteractor: BaseInteractor {
             do {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
-                let model = try decoder.decode(CanvasResponse.self, from: data).canvas
+                let model = try decoder.decode(Canvas.self, from: data)
                 creationFlowModel.originalCanvas = model
-                creationFlowModel.canvas = model
+                creationFlowModel.canvas = model.copy()
             } catch {
                 print("Error parsing JSON: \(error)")
                 throw error
