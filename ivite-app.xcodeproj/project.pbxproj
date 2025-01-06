@@ -25,6 +25,7 @@
 		3516DE872D2BF41F00FDAED2 /* OrderHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DE862D2BF41F00FDAED2 /* OrderHistoryCell.swift */; };
 		3516DE892D2BFA0300FDAED2 /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DE882D2BFA0300FDAED2 /* KeyValueView.swift */; };
 		3516DE8B2D2BFA0E00FDAED2 /* OrderHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DE8A2D2BFA0E00FDAED2 /* OrderHistoryItem.swift */; };
+		3516DE8D2D2C124100FDAED2 /* ProVersionBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DE8C2D2C124100FDAED2 /* ProVersionBannerView.swift */; };
 		3519A7522CD7D00900A16715 /* GiftingOptionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7512CD7D00900A16715 /* GiftingOptionsRouter.swift */; };
 		3519A7532CD7D00900A16715 /* GiftingOptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7502CD7D00900A16715 /* GiftingOptionsPresenter.swift */; };
 		3519A7542CD7D00900A16715 /* GiftingOptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A74E2CD7D00900A16715 /* GiftingOptionsController.swift */; };
@@ -300,6 +301,7 @@
 		3516DE862D2BF41F00FDAED2 /* OrderHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryCell.swift; sourceTree = "<group>"; };
 		3516DE882D2BFA0300FDAED2 /* KeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueView.swift; sourceTree = "<group>"; };
 		3516DE8A2D2BFA0E00FDAED2 /* OrderHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryItem.swift; sourceTree = "<group>"; };
+		3516DE8C2D2C124100FDAED2 /* ProVersionBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionBannerView.swift; sourceTree = "<group>"; };
 		3519A74D2CD7D00900A16715 /* GiftingOptionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsBuilder.swift; sourceTree = "<group>"; };
 		3519A74E2CD7D00900A16715 /* GiftingOptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsController.swift; sourceTree = "<group>"; };
 		3519A74F2CD7D00900A16715 /* GiftingOptionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsInteractor.swift; sourceTree = "<group>"; };
@@ -1332,6 +1334,7 @@
 				F6E32BED2CCFCEE400D62C37 /* ProfileDetailView.swift */,
 				F6E32BF62CCFD8D300D62C37 /* MenuItemView.swift */,
 				F6E32BF82CCFDA0D00D62C37 /* ProfileMenuView.swift */,
+				3516DE8C2D2C124100FDAED2 /* ProVersionBannerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1658,6 +1661,7 @@
 				35EEC6D82CE295B6003E7758 /* IVTransitioningDelegate.swift in Sources */,
 				F6F3C72A2CCA85DF00ED966A /* AuthentificationService.swift in Sources */,
 				35B886AD2CEE697700FE1F43 /* EditGuestBuilder.swift in Sources */,
+				3516DE8D2D2C124100FDAED2 /* ProVersionBannerView.swift in Sources */,
 				35B886AE2CEE697700FE1F43 /* EditGuestController.swift in Sources */,
 				35B886AF2CEE697700FE1F43 /* EditGuestPresenter.swift in Sources */,
 				35B886B02CEE697700FE1F43 /* EditGuestInteractor.swift in Sources */,

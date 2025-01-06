@@ -17,7 +17,10 @@ final class ProfileController: BaseScrollViewController {
     private let accountSettingsLabel = UILabel()
     private let profileDetailView: ProfileDetailView
     private let dividerView = DividerView(topSpace: 24, bottomSpace: 24)
-    private let proVersionBanner = UIView()
+    private let proVersionBannerStackView = UIStackView()
+    private let invitesLeftView = InvitesLeftView()
+    private let proVersionBanner = ProVersionBannerView()
+    private let spacerView = UIView()
     private let profileMenuView = ProfileMenuView()
     
     init(eventHandler: ProfileEventHandler, dataSource: ProfileDataSource) {
@@ -43,6 +46,11 @@ final class ProfileController: BaseScrollViewController {
         
         profileDetailView.delegate = self
         profileMenuView.delegate = self
+        
+        proVersionBannerStackView.axis = .vertical
+        proVersionBannerStackView.spacing = 24
+        
+        invitesLeftView.configure(invitesLeft: dataSource.user?.remainingInvites ?? 0)
     }
     
     override func addSubviews() {
@@ -51,10 +59,14 @@ final class ProfileController: BaseScrollViewController {
         [
             accountSettingsLabel,
             profileDetailView,
+            proVersionBannerStackView,
             dividerView,
-            proVersionBanner,
             profileMenuView
         ].forEach({ contentView.addSubview($0) })
+        
+        proVersionBannerStackView.addArrangedSubview(invitesLeftView)
+        proVersionBannerStackView.addArrangedSubview(proVersionBanner)
+        proVersionBannerStackView.addArrangedSubview(spacerView)
     }
     
     override func constrainSubviews() {
@@ -70,14 +82,16 @@ final class ProfileController: BaseScrollViewController {
         dividerView.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
         dividerView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
         
-        proVersionBanner.autoPinEdge(.top, to: .bottom, of: dividerView)
-        proVersionBanner.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
-        proVersionBanner.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
+        proVersionBannerStackView.autoPinEdge(.top, to: .bottom, of: dividerView)
+        proVersionBannerStackView.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
+        proVersionBannerStackView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
         
-        profileMenuView.autoPinEdge(.top, to: .bottom, of: proVersionBanner)
+        profileMenuView.autoPinEdge(.top, to: .bottom, of: proVersionBannerStackView)
         profileMenuView.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
         profileMenuView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
         profileMenuView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 16)
+        
+        spacerView.autoSetDimension(.height, toSize: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,6 +112,8 @@ extension ProfileController: ProfileViewInterface {
     func update(_ user: IVUser) {
         DispatchQueue.main.async {
             self.profileDetailView.setUpProfile(for: user)
+            
+            self.proVersionBannerStackView.subviews.forEach { $0.isHidden = user.isPremium }
         }
     }
     
