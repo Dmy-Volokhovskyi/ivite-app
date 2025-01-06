@@ -10,4 +10,10 @@ final class ProfileRouter: BaseRouter {
             .make()
         self.controller?.navigationController?.pushViewController(controller, animated: true)
     }
+    
+    func showOrderHistory(serviceProvider: ServiceProvider) {
+        let controller = OrderHistoryBuilder(serviceProvider: serviceProvider)
+            .make()
+        self.controller?.navigationController?.pushViewController(controller, animated: true)
+    }
 }

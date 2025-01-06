@@ -44,6 +44,7 @@ extension ProfilePresenter: ProfileEventHandler {
             print(menuItem)
         case .orderHistory:
             print(menuItem)
+            router.showOrderHistory(serviceProvider: interactor.serviceProvider)
         case .recentPaymentMethod:
             print(menuItem)
         case .logOut:

@@ -66,6 +66,7 @@ final class DataPrivacyController: BaseScrollViewController {
         
         ... (Continue with the rest of your policy text)
         """
+        
         dataPrivacyDescriptionLabel.numberOfLines = 0
         dataPrivacyDescriptionLabel.textColor = .secondary70
         dataPrivacyDescriptionLabel.font = .interFont(ofSize: 16, weight: .regular)

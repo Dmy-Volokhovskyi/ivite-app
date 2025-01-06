@@ -21,6 +21,9 @@ extension OrderHistoryPresenter: OrderHistoryEventHandler {
 }
 
 extension OrderHistoryPresenter: OrderHistoryDataSource {
+    var numberOfRows: Int {
+        2
+    }
 }
 
 extension OrderHistoryPresenter: OrderHistoryInteractorDelegate {
