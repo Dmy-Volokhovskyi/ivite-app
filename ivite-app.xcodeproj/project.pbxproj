@@ -26,6 +26,14 @@
 		3516DE892D2BFA0300FDAED2 /* KeyValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DE882D2BFA0300FDAED2 /* KeyValueView.swift */; };
 		3516DE8B2D2BFA0E00FDAED2 /* OrderHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DE8A2D2BFA0E00FDAED2 /* OrderHistoryItem.swift */; };
 		3516DE8D2D2C124100FDAED2 /* ProVersionBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DE8C2D2C124100FDAED2 /* ProVersionBannerView.swift */; };
+		3516DE8F2D2C225900FDAED2 /* ToggleControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DE8E2D2C225900FDAED2 /* ToggleControlView.swift */; };
+		3516DF562D302FF800FDAED2 /* AdressBookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DF532D302FF800FDAED2 /* AdressBookInteractor.swift */; };
+		3516DF572D302FF800FDAED2 /* AdressBookBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DF512D302FF800FDAED2 /* AdressBookBuilder.swift */; };
+		3516DF582D302FF800FDAED2 /* AdressBookRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DF552D302FF800FDAED2 /* AdressBookRouter.swift */; };
+		3516DF592D302FF800FDAED2 /* AdressBookPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DF542D302FF800FDAED2 /* AdressBookPresenter.swift */; };
+		3516DF5A2D302FF800FDAED2 /* AdressBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DF522D302FF800FDAED2 /* AdressBookController.swift */; };
+		3516DF5C2D3031C800FDAED2 /* GuestContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DF5B2D3031C800FDAED2 /* GuestContactCell.swift */; };
+		3516DF5E2D34043400FDAED2 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DF5D2D34043400FDAED2 /* SectionHeaderView.swift */; };
 		3519A7522CD7D00900A16715 /* GiftingOptionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7512CD7D00900A16715 /* GiftingOptionsRouter.swift */; };
 		3519A7532CD7D00900A16715 /* GiftingOptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7502CD7D00900A16715 /* GiftingOptionsPresenter.swift */; };
 		3519A7542CD7D00900A16715 /* GiftingOptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A74E2CD7D00900A16715 /* GiftingOptionsController.swift */; };
@@ -302,6 +310,14 @@
 		3516DE882D2BFA0300FDAED2 /* KeyValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueView.swift; sourceTree = "<group>"; };
 		3516DE8A2D2BFA0E00FDAED2 /* OrderHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryItem.swift; sourceTree = "<group>"; };
 		3516DE8C2D2C124100FDAED2 /* ProVersionBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProVersionBannerView.swift; sourceTree = "<group>"; };
+		3516DE8E2D2C225900FDAED2 /* ToggleControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleControlView.swift; sourceTree = "<group>"; };
+		3516DF512D302FF800FDAED2 /* AdressBookBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressBookBuilder.swift; sourceTree = "<group>"; };
+		3516DF522D302FF800FDAED2 /* AdressBookController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressBookController.swift; sourceTree = "<group>"; };
+		3516DF532D302FF800FDAED2 /* AdressBookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressBookInteractor.swift; sourceTree = "<group>"; };
+		3516DF542D302FF800FDAED2 /* AdressBookPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressBookPresenter.swift; sourceTree = "<group>"; };
+		3516DF552D302FF800FDAED2 /* AdressBookRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressBookRouter.swift; sourceTree = "<group>"; };
+		3516DF5B2D3031C800FDAED2 /* GuestContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestContactCell.swift; sourceTree = "<group>"; };
+		3516DF5D2D34043400FDAED2 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		3519A74D2CD7D00900A16715 /* GiftingOptionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsBuilder.swift; sourceTree = "<group>"; };
 		3519A74E2CD7D00900A16715 /* GiftingOptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsController.swift; sourceTree = "<group>"; };
 		3519A74F2CD7D00900A16715 /* GiftingOptionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsInteractor.swift; sourceTree = "<group>"; };
@@ -603,6 +619,20 @@
 				3516DE862D2BF41F00FDAED2 /* OrderHistoryCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3516DF502D302FE500FDAED2 /* AdressBook */ = {
+			isa = PBXGroup;
+			children = (
+				3516DF5D2D34043400FDAED2 /* SectionHeaderView.swift */,
+				3516DF5B2D3031C800FDAED2 /* GuestContactCell.swift */,
+				3516DF512D302FF800FDAED2 /* AdressBookBuilder.swift */,
+				3516DF522D302FF800FDAED2 /* AdressBookController.swift */,
+				3516DF532D302FF800FDAED2 /* AdressBookInteractor.swift */,
+				3516DF542D302FF800FDAED2 /* AdressBookPresenter.swift */,
+				3516DF552D302FF800FDAED2 /* AdressBookRouter.swift */,
+			);
+			path = AdressBook;
 			sourceTree = "<group>";
 		};
 		3519A74C2CD7CFF500A16715 /* GiftingOptions */ = {
@@ -1162,6 +1192,7 @@
 		76A34F932C8B5E52003D3E87 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3516DE8E2D2C225900FDAED2 /* ToggleControlView.swift */,
 				76A34F942C8B5E61003D3E87 /* ContactCardCell.swift */,
 				3515B0682CFA34A900934E4F /* CreateContactView.swift */,
 				3533EFF82D072A7B005EC055 /* SelectGroupCell.swift */,
@@ -1353,6 +1384,7 @@
 				354EE1482D08D150002E7BD3 /* PreviewInvite */,
 				3519A8342CE2665600A16715 /* Payment */,
 				3519A8182CE0DB4500A16715 /* Review */,
+				3516DF502D302FE500FDAED2 /* AdressBook */,
 				3519A8022CDE676000A16715 /* AddGuests */,
 				3519A74C2CD7CFF500A16715 /* GiftingOptions */,
 				F6936A1B2CB9607000764197 /* EventDetails */,
@@ -1549,6 +1581,11 @@
 				76096AF42C89F9E40004BEE0 /* DynamicSearchBar.swift in Sources */,
 				F6E32BF52CCFD76900D62C37 /* ProfileMenuItem.swift in Sources */,
 				F6936A352CB97DBB00764197 /* IVControl.swift in Sources */,
+				3516DF562D302FF800FDAED2 /* AdressBookInteractor.swift in Sources */,
+				3516DF572D302FF800FDAED2 /* AdressBookBuilder.swift in Sources */,
+				3516DF582D302FF800FDAED2 /* AdressBookRouter.swift in Sources */,
+				3516DF592D302FF800FDAED2 /* AdressBookPresenter.swift in Sources */,
+				3516DF5A2D302FF800FDAED2 /* AdressBookController.swift in Sources */,
 				76096AF22C88F75E0004BEE0 /* MainSearchBarView.swift in Sources */,
 				35EEC7ED2CE68B2B003E7758 /* ContentSizeProvider.swift in Sources */,
 				F6D3CBA62CA2D21600E29761 /* TextEditMenu.swift in Sources */,
@@ -1605,6 +1642,7 @@
 				F6936A222CB9608200764197 /* EventDetailsPresenter.swift in Sources */,
 				F6936A232CB9608200764197 /* EventDetailsController.swift in Sources */,
 				F6936A242CB9608200764197 /* EventDetailsInteractor.swift in Sources */,
+				3516DE8F2D2C225900FDAED2 /* ToggleControlView.swift in Sources */,
 				F6936A252CB9608200764197 /* EventDetailsRouter.swift in Sources */,
 				356461CD2CD507EC003350C5 /* ProfileDetailsController.swift in Sources */,
 				356461CE2CD507EC003350C5 /* ProfileDetailsPresenter.swift in Sources */,
@@ -1615,6 +1653,7 @@
 				35F43D5E2CD51DD6000CE237 /* ChangePasswordView.swift in Sources */,
 				76A34F922C8B5D1A003D3E87 /* ContactCardModel.swift in Sources */,
 				F6CBD9652CAB2F7100911DF7 /* ColorPickerView.swift in Sources */,
+				3516DF5C2D3031C800FDAED2 /* GuestContactCell.swift in Sources */,
 				F643D9792CC93634009A18F0 /* ForgotPasswordInteractor.swift in Sources */,
 				F643D97A2CC93634009A18F0 /* ForgotPasswordPresenter.swift in Sources */,
 				F643D97B2CC93634009A18F0 /* ForgotPasswordRouter.swift in Sources */,
@@ -1719,6 +1758,7 @@
 				3519A7552CD7D00900A16715 /* GiftingOptionsBuilder.swift in Sources */,
 				35F19CB22D0F521300835195 /* FirestoreManager.swift in Sources */,
 				3519A7562CD7D00900A16715 /* GiftingOptionsInteractor.swift in Sources */,
+				3516DF5E2D34043400FDAED2 /* SectionHeaderView.swift in Sources */,
 				3519A8152CE0C9E000A16715 /* Guest.swift in Sources */,
 				3516DE892D2BFA0300FDAED2 /* KeyValueView.swift in Sources */,
 				35EEC7F22CE7A723003E7758 /* AlertViewController.swift in Sources */,

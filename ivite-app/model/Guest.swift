@@ -28,8 +28,8 @@ struct Guest: Equatable {
     var phone: String
     var status: GuestStatus = .invited
     
-    init(name: String, email: String, phone: String, status: GuestStatus = .invited) {
-        self.id = UUID().uuidString
+    init(id: String? = nil, name: String, email: String, phone: String, status: GuestStatus = .invited) {
+        self.id = id ?? UUID().uuidString
         self.name = name
         self.email = email
         self.phone = phone

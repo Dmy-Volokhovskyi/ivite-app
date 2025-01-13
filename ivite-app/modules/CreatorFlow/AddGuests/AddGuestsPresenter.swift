@@ -124,7 +124,7 @@ extension AddGuestsPresenter: AddGuestsEventHandler {
         case .usePastList:
             return
         case .adressBook:
-            return
+            router.pushAdressBook(guests: interactor.invitedGuests, adressBookDelegate: self, serviceProvider: interactor.serviceProvider)
         case .addNewGuest:
             router.pushAddGuest(addGuestDelegate: self, serviceProvider: interactor.serviceProvider)
         }
@@ -163,6 +163,13 @@ extension AddGuestsPresenter: EditGuestDelegate {
     func didEditGuest(guest: Guest) {
         guard let index = interactor.invitedGuests.firstIndex(where: { $0.id == guest.id }) else  { return }
         interactor.invitedGuests[index] = guest
+        applyFilterAndSort()
+    }
+}
+
+extension AddGuestsPresenter: AdressBookDelegate {
+    func didFinishWithGuestList(_ guestList: [Guest]) {
+        interactor.invitedGuests = guestList
         applyFilterAndSort()
     }
 }
