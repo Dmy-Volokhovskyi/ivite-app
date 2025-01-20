@@ -4,10 +4,18 @@ protocol HomeEventHandler: AnyObject {
     func didSelectItem(at indexPath: IndexPath)
     func didTapLogInButton()
     func viewWillAppear()
+    func viewDidLoad()
+    func updateCategoryFilter(_ category: TemplateCategory?)
+    func updateSearchText(_ text: String?)
 }
 
 protocol HomeDataSource: AnyObject {
     var user: IVUser? { get }
+    
+    var templateCount: Int { get }
+    var categories: [TemplateCategory] { get }
+    
+    func templateModelForItem(at indexPath: IndexPath) -> Template
 }
 
 final class HomeController: BaseViewController {
@@ -17,22 +25,15 @@ final class HomeController: BaseViewController {
     
     private let searchBarView: MainSearchBarView
     private var selectedCategories = Set<String>()
-    private var categoriesCollectionView = CategoriesCollectionView(categories: ["Adult Birthday", "Kid's birthday", "Wedding", "Friends Gathering", "Love", "Baby Shower", "Seasonal", "Business", "Graduation", "NightLife", "Pet party"])
+    private var categoriesCollectionView: CategoriesCollectionView
     
     private var tilesCollectionView: UICollectionView!
-    
-    private let tiles: [TileModel] = [
-        TileModel(imageName: "testImageCover", title: "Eden Turns 30"),
-        TileModel(imageName: "testImageCover2", title: "Jennifer & Andrew"),
-        TileModel(imageName: "testImageCover3", title: "Little Miss Wonderful"),
-        TileModel(imageName: "testImageCover4", title: "Big Day Coming"),
-        TileModel(imageName: "testImageCover4", title: "Big Day Coming")
-    ]
     
     init(eventHandler: HomeEventHandler, dataSource: HomeDataSource) {
         self.eventHandler = eventHandler
         self.dataSource = dataSource
         self.searchBarView = MainSearchBarView(isLoggedIn: dataSource.user == nil, profileImageURL: dataSource.user?.profileImageURL)
+        categoriesCollectionView = CategoriesCollectionView(categories: dataSource.categories)
         super.init()
     }
     
@@ -48,6 +49,8 @@ final class HomeController: BaseViewController {
         layout.minimumInteritemSpacing = 8
         layout.minimumLineSpacing = 8
         layout.scrollDirection = .vertical
+        
+        categoriesCollectionView.delegate = self
         
         tilesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         tilesCollectionView.delegate = self
@@ -87,9 +90,21 @@ final class HomeController: BaseViewController {
         eventHandler.viewWillAppear()
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        eventHandler.viewDidLoad()
+    }
 }
 
 extension HomeController: HomeViewInterface {
+    func reloadCollectionView() {
+        DispatchQueue.main.async { [weak self] in 
+            self?.tilesCollectionView.reloadData()
+        }
+    }
+    
     func didSignIn() {
     }
     
@@ -101,14 +116,14 @@ extension HomeController: HomeViewInterface {
 extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tiles.count
+        dataSource.templateCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TileCollectionViewCell.identifier, for: indexPath) as? TileCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.configure(with: tiles[indexPath.item])
+        cell.configure(with: dataSource.templateModelForItem(at: indexPath))
         return cell
     }
     
@@ -130,10 +145,16 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource, 
 
 extension HomeController: MainSearchBarViewDelegate {
     func searchFieldTextDidChange(_ text: String?) {
-        print("searchBarView")
+        eventHandler.updateSearchText(text)
     }
     
     func didTapLogInButton() {
         eventHandler.didTapLogInButton()
+    }
+}
+
+extension HomeController: CategoriesCollectionViewDelegate {
+    func didSelectCategory(category: TemplateCategory?) {
+        eventHandler.updateCategoryFilter(category)
     }
 }

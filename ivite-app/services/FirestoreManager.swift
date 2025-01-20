@@ -80,4 +80,33 @@ final class FirestoreManager {
     }
 }
 
+extension FirestoreManager {
+    func fetchTemplates() async throws -> [Template] {
+        let snapshot = try await db.collection("templates").getDocuments()
+        
+        let templates: [Template] = snapshot.documents.compactMap { document in
+            guard let id = document["id"] as? String,
+                  let name = document["name"] as? String,
+                  let detailsURL = document["detailsURL"] as? String,
+                  let prefabricatedImage = document["prefabricatedImage"] as? String,
+                  let type = document["type"] as? String,
+                  let categoryString = document["type"] as? String,
+                  let category = TemplateCategory(rawValue: categoryString) else {
+                print("Error parsing document with ID: \(document.documentID)")
+                return nil
+            }
+            
+            return Template(
+                id: id,
+                name: name,
+                detailsURL: detailsURL,
+                prefabricatedImage: prefabricatedImage,
+                type: type,
+                category: category
+            )
+        }
+        
+        return templates
+    }
+}
 

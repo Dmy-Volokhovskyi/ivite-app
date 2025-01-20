@@ -37,7 +37,7 @@ class RKUserResizableView: UIView {
     weak var delegate: RKUserResizableViewDelegate?
     var minWidth: CGFloat = 48.0
     var minHeight: CGFloat = 48.0
-    private(set) var currentRotation: CGFloat = 0.0
+    /*private(set)*/ var currentRotation: CGFloat = 0.0
     var id: String?
     
     // MARK: - Private Properties

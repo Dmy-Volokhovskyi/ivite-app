@@ -34,6 +34,21 @@
 		3516DF5A2D302FF800FDAED2 /* AdressBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DF522D302FF800FDAED2 /* AdressBookController.swift */; };
 		3516DF5C2D3031C800FDAED2 /* GuestContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DF5B2D3031C800FDAED2 /* GuestContactCell.swift */; };
 		3516DF5E2D34043400FDAED2 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DF5D2D34043400FDAED2 /* SectionHeaderView.swift */; };
+		3516DF602D35609600FDAED2 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3516DF5F2D35609600FDAED2 /* Pacifico-Regular.ttf */; };
+		3516DF622D35610A00FDAED2 /* Rubik-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3516DF612D35610A00FDAED2 /* Rubik-VariableFont_wght.ttf */; };
+		3516DF6B2D36D52300FDAED2 /* Merriweather-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3516DF652D36D52300FDAED2 /* Merriweather-Bold.ttf */; };
+		3516DF6C2D36D52300FDAED2 /* Merriweather-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3516DF662D36D52300FDAED2 /* Merriweather-BoldItalic.ttf */; };
+		3516DF6D2D36D52300FDAED2 /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3516DF6A2D36D52300FDAED2 /* Merriweather-Regular.ttf */; };
+		3516DF6E2D36D52300FDAED2 /* Merriweather-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3516DF672D36D52300FDAED2 /* Merriweather-Italic.ttf */; };
+		3516DF6F2D36D52300FDAED2 /* Merriweather-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3516DF682D36D52300FDAED2 /* Merriweather-Light.ttf */; };
+		3516DF702D36D52300FDAED2 /* Merriweather-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3516DF692D36D52300FDAED2 /* Merriweather-LightItalic.ttf */; };
+		3516DF712D36D52300FDAED2 /* Merriweather-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3516DF632D36D52300FDAED2 /* Merriweather-Black.ttf */; };
+		3516DF722D36D52300FDAED2 /* Merriweather-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3516DF642D36D52300FDAED2 /* Merriweather-BlackItalic.ttf */; };
+		3516DF752D36D5E200FDAED2 /* BirthstoneBounce-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3516DF732D36D5E200FDAED2 /* BirthstoneBounce-Medium.ttf */; };
+		3516DF762D36D5E200FDAED2 /* BirthstoneBounce-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3516DF742D36D5E200FDAED2 /* BirthstoneBounce-Regular.ttf */; };
+		3516DF782D36D77500FDAED2 /* Roboto-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3516DF772D36D77500FDAED2 /* Roboto-VariableFont_wdth,wght.ttf */; };
+		3516DF7A2D3DA29C00FDAED2 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DF792D3DA29C00FDAED2 /* Template.swift */; };
+		3516DF7C2D3ED02200FDAED2 /* TemplateCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516DF7B2D3ED02200FDAED2 /* TemplateCategory.swift */; };
 		3519A7522CD7D00900A16715 /* GiftingOptionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7512CD7D00900A16715 /* GiftingOptionsRouter.swift */; };
 		3519A7532CD7D00900A16715 /* GiftingOptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A7502CD7D00900A16715 /* GiftingOptionsPresenter.swift */; };
 		3519A7542CD7D00900A16715 /* GiftingOptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3519A74E2CD7D00900A16715 /* GiftingOptionsController.swift */; };
@@ -318,6 +333,21 @@
 		3516DF552D302FF800FDAED2 /* AdressBookRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressBookRouter.swift; sourceTree = "<group>"; };
 		3516DF5B2D3031C800FDAED2 /* GuestContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestContactCell.swift; sourceTree = "<group>"; };
 		3516DF5D2D34043400FDAED2 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		3516DF5F2D35609600FDAED2 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
+		3516DF612D35610A00FDAED2 /* Rubik-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		3516DF632D36D52300FDAED2 /* Merriweather-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Black.ttf"; sourceTree = "<group>"; };
+		3516DF642D36D52300FDAED2 /* Merriweather-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-BlackItalic.ttf"; sourceTree = "<group>"; };
+		3516DF652D36D52300FDAED2 /* Merriweather-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Bold.ttf"; sourceTree = "<group>"; };
+		3516DF662D36D52300FDAED2 /* Merriweather-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-BoldItalic.ttf"; sourceTree = "<group>"; };
+		3516DF672D36D52300FDAED2 /* Merriweather-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Italic.ttf"; sourceTree = "<group>"; };
+		3516DF682D36D52300FDAED2 /* Merriweather-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Light.ttf"; sourceTree = "<group>"; };
+		3516DF692D36D52300FDAED2 /* Merriweather-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-LightItalic.ttf"; sourceTree = "<group>"; };
+		3516DF6A2D36D52300FDAED2 /* Merriweather-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Merriweather-Regular.ttf"; sourceTree = "<group>"; };
+		3516DF732D36D5E200FDAED2 /* BirthstoneBounce-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BirthstoneBounce-Medium.ttf"; sourceTree = "<group>"; };
+		3516DF742D36D5E200FDAED2 /* BirthstoneBounce-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BirthstoneBounce-Regular.ttf"; sourceTree = "<group>"; };
+		3516DF772D36D77500FDAED2 /* Roboto-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
+		3516DF792D3DA29C00FDAED2 /* Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
+		3516DF7B2D3ED02200FDAED2 /* TemplateCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateCategory.swift; sourceTree = "<group>"; };
 		3519A74D2CD7D00900A16715 /* GiftingOptionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsBuilder.swift; sourceTree = "<group>"; };
 		3519A74E2CD7D00900A16715 /* GiftingOptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsController.swift; sourceTree = "<group>"; };
 		3519A74F2CD7D00900A16715 /* GiftingOptionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftingOptionsInteractor.swift; sourceTree = "<group>"; };
@@ -1097,6 +1127,19 @@
 		76096A7A2C8730540004BEE0 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				3516DF772D36D77500FDAED2 /* Roboto-VariableFont_wdth,wght.ttf */,
+				3516DF632D36D52300FDAED2 /* Merriweather-Black.ttf */,
+				3516DF642D36D52300FDAED2 /* Merriweather-BlackItalic.ttf */,
+				3516DF652D36D52300FDAED2 /* Merriweather-Bold.ttf */,
+				3516DF662D36D52300FDAED2 /* Merriweather-BoldItalic.ttf */,
+				3516DF672D36D52300FDAED2 /* Merriweather-Italic.ttf */,
+				3516DF682D36D52300FDAED2 /* Merriweather-Light.ttf */,
+				3516DF732D36D5E200FDAED2 /* BirthstoneBounce-Medium.ttf */,
+				3516DF742D36D5E200FDAED2 /* BirthstoneBounce-Regular.ttf */,
+				3516DF692D36D52300FDAED2 /* Merriweather-LightItalic.ttf */,
+				3516DF6A2D36D52300FDAED2 /* Merriweather-Regular.ttf */,
+				3516DF5F2D35609600FDAED2 /* Pacifico-Regular.ttf */,
+				3516DF612D35610A00FDAED2 /* Rubik-VariableFont_wght.ttf */,
 				76096A7C2C8730E30004BEE0 /* Inter-Italic-VariableFont_opsz,wght.ttf */,
 				35CBF9722D1DB7F1006D939F /* IrishGrover-Regular.ttf */,
 				76096A7B2C8730E20004BEE0 /* Inter-VariableFont_opsz,wght.ttf */,
@@ -1411,6 +1454,8 @@
 		F6EBF5612CA446D70058F7B2 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				3516DF7B2D3ED02200FDAED2 /* TemplateCategory.swift */,
+				3516DF792D3DA29C00FDAED2 /* Template.swift */,
 				3516DE8A2D2BFA0E00FDAED2 /* OrderHistoryItem.swift */,
 				3519A8442CE26E7F00A16715 /* PaymentOption.swift */,
 				F6E32BF12CCFD08000D62C37 /* User */,
@@ -1552,10 +1597,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				766AB7522C933010004FC6EE /* canvasData.json in Resources */,
+				3516DF6B2D36D52300FDAED2 /* Merriweather-Bold.ttf in Resources */,
+				3516DF752D36D5E200FDAED2 /* BirthstoneBounce-Medium.ttf in Resources */,
+				3516DF762D36D5E200FDAED2 /* BirthstoneBounce-Regular.ttf in Resources */,
+				3516DF6C2D36D52300FDAED2 /* Merriweather-BoldItalic.ttf in Resources */,
+				3516DF6D2D36D52300FDAED2 /* Merriweather-Regular.ttf in Resources */,
+				3516DF6E2D36D52300FDAED2 /* Merriweather-Italic.ttf in Resources */,
+				3516DF6F2D36D52300FDAED2 /* Merriweather-Light.ttf in Resources */,
+				3516DF702D36D52300FDAED2 /* Merriweather-LightItalic.ttf in Resources */,
+				3516DF712D36D52300FDAED2 /* Merriweather-Black.ttf in Resources */,
+				3516DF722D36D52300FDAED2 /* Merriweather-BlackItalic.ttf in Resources */,
 				76096A0E2C84F8680004BEE0 /* Assets.xcassets in Resources */,
 				35CBF9732D1DB7F1006D939F /* IrishGrover-Regular.ttf in Resources */,
+				3516DF622D35610A00FDAED2 /* Rubik-VariableFont_wght.ttf in Resources */,
 				76096A7D2C8730E30004BEE0 /* Inter-VariableFont_opsz,wght.ttf in Resources */,
 				76096A112C84F8680004BEE0 /* Base in Resources */,
+				3516DF782D36D77500FDAED2 /* Roboto-VariableFont_wdth,wght.ttf in Resources */,
+				3516DF602D35609600FDAED2 /* Pacifico-Regular.ttf in Resources */,
 				76096A7E2C8730E30004BEE0 /* Inter-Italic-VariableFont_opsz,wght.ttf in Resources */,
 				356461C52CD4EC30003350C5 /* GoogleService-Info.plist in Resources */,
 			);
@@ -1689,10 +1747,12 @@
 				F6CBD9692CAB384300911DF7 /* TextFormatPickerView.swift in Sources */,
 				3515B1102CFF566F00934E4F /* Error+AuthError.swift in Sources */,
 				76A34F982C8B9AA9003D3E87 /* CategoriesCollectionView.swift in Sources */,
+				3516DF7C2D3ED02200FDAED2 /* TemplateCategory.swift in Sources */,
 				35F19CA92D09E91E00835195 /* PreviewGiftView.swift in Sources */,
 				F68CAA852CBD4F5C00533757 /* BringListDetailView.swift in Sources */,
 				76096A482C861C1B0004BEE0 /* HomeRouter.swift in Sources */,
 				76096A812C8731AD0004BEE0 /* UIFont+Inter.swift in Sources */,
+				3516DF7A2D3DA29C00FDAED2 /* Template.swift in Sources */,
 				76096A492C861C1B0004BEE0 /* HomeBuilder.swift in Sources */,
 				F6936A3F2CBA903000764197 /* IVTextView.swift in Sources */,
 				76A34F8F2C8B5035003D3E87 /* TableViewBackgroundView.swift in Sources */,

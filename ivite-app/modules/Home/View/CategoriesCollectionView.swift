@@ -8,12 +8,18 @@ import UIKit
 import PureLayout
 import Reusable
 
-class CategoriesCollectionView: BaseView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+protocol CategoriesCollectionViewDelegate: AnyObject {
+   func didSelectCategory(category: TemplateCategory?)
+}
+
+final class CategoriesCollectionView: BaseView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    private var categories: [String]
-    private var selectedCategory: String?
+    private var categories: [TemplateCategory]
+    private var selectedCategory: TemplateCategory?
+    
     let layout = CenteredCollectionViewFlowLayout()
     var collectionHeightConstraint: NSLayoutConstraint?
+    public weak var delegate: CategoriesCollectionViewDelegate?
     
     private lazy var collectionView: UICollectionView = {
         let layout = layout
@@ -30,7 +36,7 @@ class CategoriesCollectionView: BaseView, UICollectionViewDelegate, UICollection
         return collectionView
     }()
     
-    init(categories: [String]) {
+    init(categories: [TemplateCategory]) {
         self.categories = categories
         super.init(frame: .zero)
         setupView()
@@ -66,7 +72,7 @@ class CategoriesCollectionView: BaseView, UICollectionViewDelegate, UICollection
         let cell = collectionView.dequeueReusableCell(CategoryCell.self, for: indexPath)
         let category = categories[indexPath.item]
         let isSelected = category == selectedCategory
-        cell.configure(with: category, isSelected: isSelected)
+        cell.configure(with: category.rawValue, isSelected: isSelected)
         return cell
     }
     
@@ -77,13 +83,14 @@ class CategoriesCollectionView: BaseView, UICollectionViewDelegate, UICollection
         selectedCategory = selectedCategory == category ? nil : category
         collectionView.reloadData()
         updateCollectionViewHeight()
+        delegate?.didSelectCategory(category: selectedCategory)
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cell = CategoryCell()
-        cell.configure(with: categories[indexPath.item], isSelected: false)
+        cell.configure(with: categories[indexPath.item].rawValue, isSelected: false)
         
         // Calculate size using systemLayoutSizeFitting
         let targetSize = CGSize(width: collectionView.bounds.width, height: 40)
@@ -114,7 +121,6 @@ class CategoriesCollectionView: BaseView, UICollectionViewDelegate, UICollection
         }
     }
 }
-
 
 import UIKit
 import PureLayout

@@ -17,12 +17,25 @@
 	</array>
 	<key>GIDClientID</key>
 	<string>1092127980210-q13hcvn12mndok4ok6e2isbvhd09lmof.apps.googleusercontent.com</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Inter-Italic-VariableFont_opsz,wght.ttf</string>
-		<string>Inter-VariableFont_opsz,wght.ttf</string>
+    <key>UIAppFonts</key>
+    <array>
+        <string>Rubik-VariableFont_wght.ttf</string>
+        <string>Pacifico-Regular.ttf</string>
+        <string>Inter-Italic-VariableFont_opsz,wght.ttf</string>
+        <string>Inter-VariableFont_opsz,wght.ttf</string>
         <string>IrishGrover-Regular.ttf</string>
-	</array>
+        <string>Merriweather-Black.ttf</string>
+        <string>Merriweather-BlackItalic.ttf</string>
+        <string>Merriweather-Bold.ttf</string>
+        <string>Merriweather-BoldItalic.ttf</string>
+        <string>Merriweather-Italic.ttf</string>
+        <string>Merriweather-Light.ttf</string>
+        <string>Merriweather-LightItalic.ttf</string>
+        <string>Merriweather-Regular.ttf</string>
+        <string>BirthstoneBounce-Medium.ttf</string>
+        <string>BirthstoneBounce-Regular.ttf</string>
+        <string>Roboto-VariableFont_wdth,wght.ttf</string>
+    </array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

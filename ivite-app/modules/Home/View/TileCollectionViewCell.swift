@@ -45,8 +45,9 @@ final class TileCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with model: TileModel) {
-        imageView.image = model.image
-        titleLabel.text = model.title
+    func configure(with model: Template) {
+        let imageUrl = URL(string: model.prefabricatedImage ?? "")
+        imageView.sd_setImage(with: imageUrl, placeholderImage: .userAdd)
+        titleLabel.text = model.name
     }
 }

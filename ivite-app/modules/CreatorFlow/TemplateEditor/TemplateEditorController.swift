@@ -319,7 +319,6 @@ final class TemplateEditorController: BaseViewController {
         }
     }
     
-    
     private func addImageLayer(_ layer: ImageLayer, scale: CGFloat) {
         let size: CGSize
         let coordinates: Coordinates
@@ -404,9 +403,12 @@ final class TemplateEditorController: BaseViewController {
         let scaledTextBoxHeight = CGFloat(textBoxCoordinates.height) * scale
         let label = createTextView(for: layer, scale: scale)
         
+        // Calculate rotation transform
+        let rotationAngle = layer.rotation ?? 0 // Default to 0 if no rotation is provided
+        let rotationTransform = CGAffineTransform(rotationAngle: rotationAngle)
+        
         // Check if the layer is editable and apply resizable logic
         if layer.editable {
-            // Use frame to position the resizable text view
             let resizableTextView = RKUserResizableView(frame: CGRect(x: CGFloat(textBoxCoordinates.x) * scale,
                                                                       y: CGFloat(textBoxCoordinates.y) * scale,
                                                                       width: scaledTextBoxWidth,
@@ -414,17 +416,19 @@ final class TemplateEditorController: BaseViewController {
             resizableTextView.contentView = label
             resizableTextView.id = layer.id
             resizableTextView.delegate = self
+            resizableTextView.transform = rotationTransform // Apply rotation to the resizable view
+            resizableTextView.currentRotation = rotationAngle // Store the rotation
             contentView.addSubview(resizableTextView)
-            
         } else {
-            // Position the label directly with a frame if not editable
             label.frame = CGRect(x: CGFloat(textBoxCoordinates.x) * scale,
                                  y: CGFloat(textBoxCoordinates.y) * scale,
                                  width: scaledTextBoxWidth,
                                  height: scaledTextBoxHeight)
+            label.transform = rotationTransform // Apply rotation directly to the label
             contentView.addSubview(label)
         }
     }
+
     
     private func updateTextLayer(_ resizableView: RKUserResizableView, with layer: TextLayer, scale: CGFloat) {
         guard let textBoxCoordinates = layer.textBoxCoordinates, let label = resizableView.contentView as? UITextView else { return }
