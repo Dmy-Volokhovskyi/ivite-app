@@ -25,9 +25,10 @@ final class CreatorFlowNavigationController: UINavigationController {
     private var creatorFlowModel = CreatorFlowModel()
     weak var configurationWizardDelegate: CreatorFlowDelegate?
     
-    init(serviceProvider: ServiceProvider) {
+    private let urlString: String
+    init(serviceProvider: ServiceProvider, urlString: String) {
         self.serviceProvider = serviceProvider
-        
+        self.urlString = urlString
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -65,7 +66,7 @@ private extension CreatorFlowNavigationController {
         switch nextStep {
         case .templateEditor:
             controller = TemplateEditorBuilder(serviceProvider: serviceProvider)
-                .make(templateEditorDelegate: self)
+                .make(templateEditorDelegate: self, urlString: urlString)
         case .eventDetails:
             controller = EventDetailsBuilder(serviceProvider: serviceProvider)
                 .make(eventDetailsDelegate: self,

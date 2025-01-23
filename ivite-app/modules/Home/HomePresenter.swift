@@ -68,7 +68,7 @@ extension HomePresenter: HomeEventHandler {
     }
     
     func didSelectItem(at indexPath: IndexPath) {
-        router.switchToCreatorFlow(serviceProvider: interactor.serviceProvider)
+        router.switchToCreatorFlow(urlString: filteredTemplates[indexPath.item].detailsURL, serviceProvider: interactor.serviceProvider)
     }
 
     func updateCategoryFilter(_ category: TemplateCategory?) {

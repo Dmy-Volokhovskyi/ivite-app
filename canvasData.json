@@ -3,11 +3,13 @@
         "width": 1192.0,
         "height": 1514.0
     },
-    "number_of_layers": 7,
+    "rotation": 0.0,
+    "number_of_layers": 9,
+    "category": "Love",
     "content": [
         {
-            "figma_id": "5748:2425",
-            "id": "5748:2425",
+            "figma_id": "5750:9332",
+            "id": "5750:9332",
             "name": "Frame 1",
             "coordinates": {
                 "x": 0.0,
@@ -17,171 +19,250 @@
                 "width": 1192.0,
                 "height": 1514.0
             },
+            "rotation": 0.0,
             "type": "shape",
             "editable": false,
-            "rotation": 0.0,
-            "background_color": "#FFACCA"
+            "background_color": "#000000"
         },
         {
-            "figma_id": "5748:2427",
-            "id": "5748:2427",
-            "name": "non-editable - graphic element",
+            "figma_id": "5750:9333",
+            "id": "5750:9333",
+            "name": "non-editable - Love",
             "coordinates": {
-                "x": 126.25,
-                "y": 647.5
+                "x": -138.0027618408203,
+                "y": -308.802327349782
             },
             "size": {
-                "width": 793.5953369140625,
-                "height": 298.0
+                "width": 1468.0055897682905,
+                "height": 1415.571769669652
             },
-            "type": "image",
-            "image_file": "non-editable_-_graphic_element",
-            "editable": false
-        },
-        {
-            "figma_id": "5748:2432",
-            "id": "5748:2432",
-            "name": "EDITABLE - Details",
-            "coordinates": {
-                "x": 135.1295166015625,
-                "y": 803.4383544921875
-            },
-            "size": {
-                "width": 266.0,
-                "height": 70.0
-            },
+            "rotation": -0.14438860355866695,
             "type": "text",
-            "editable": true,
-            "text_value": "Date:\r\n14th December",
-            "font": "Roboto-Regular",
-            "font_size": 30.0,
-            "text_color": "#204D60",
+            "editable": false,
+            "text_value": "love",
+            "font": "PinyonScript-Regular",
+            "font_size": 995.0,
+            "text_color": "#000000",
             "text_box_coordinates": {
-                "x": 135.1295166015625,
-                "y": 803.4383544921875,
-                "width": 266.0,
-                "height": 70.0
-            },
-            "letter_spacing": 5.1000000000000005,
-            "line_height": 35.15625,
-            "text_alignment": "left",
-            "text_formatting": "none"
-        },
-        {
-            "figma_id": "5748:2433",
-            "id": "5748:2433",
-            "name": "EDITABLE - Address",
-            "coordinates": {
-                "x": 135.1295166015625,
-                "y": 702.4693603515625
-            },
-            "size": {
-                "width": 200.0,
-                "height": 70.0
-            },
-            "type": "text",
-            "editable": true,
-            "text_value": "Address:\r\nStreet, City",
-            "font": "Roboto-Regular",
-            "font_size": 30.0,
-            "text_color": "#204D60",
-            "text_box_coordinates": {
-                "x": 135.1295166015625,
-                "y": 702.4693603515625,
-                "width": 200.0,
-                "height": 70.0
-            },
-            "letter_spacing": 5.1000000000000005,
-            "line_height": 35.15625,
-            "text_alignment": "left",
-            "text_formatting": "none"
-        },
-        {
-            "figma_id": "5748:2434",
-            "id": "5748:2434",
-            "name": "EDITABLE - Additional info",
-            "coordinates": {
-                "x": 962.999982559156,
-                "y": 65.99999606597505
-            },
-            "size": {
-                "width": 90.00001744084398,
-                "height": 399.00000393402496
-            },
-            "type": "text",
-            "editable": true,
-            "text_value": "Don't miss this great\nopportunity to spend\nan unforgettable evening",
-            "font": "Roboto-Regular",
-            "font_size": 28.0,
-            "text_color": "#204D60",
-            "text_box_coordinates": {
-                "x": 962.999982559156,
-                "y": 65.99999606597505,
-                "width": 90.00001744084398,
-                "height": 399.00000393402496
-            },
-            "letter_spacing": 3.9200000000000004,
-            "line_height": 30.0,
-            "text_alignment": "left",
-            "text_formatting": "none"
-        },
-        {
-            "figma_id": "5748:2436",
-            "id": "5748:2436",
-            "name": "EDITABLE - Date",
-            "coordinates": {
-                "x": 725.564697265625,
-                "y": 740.7193603515625
-            },
-            "size": {
-                "width": 134.0,
-                "height": 65.0
-            },
-            "type": "text",
-            "editable": true,
-            "text_value": "12/14",
-            "font": "Roboto-Bold",
-            "font_size": 50.0,
-            "text_color": "#204D60",
-            "text_box_coordinates": {
-                "x": 725.564697265625,
-                "y": 740.7193603515625,
-                "width": 134.0,
-                "height": 65.0
+                "x": -138.0027618408203,
+                "y": -308.802327349782,
+                "width": 1468.0055897682905,
+                "height": 1415.571769669652
             },
             "letter_spacing": 0.0,
-            "line_height": 65.0,
+            "line_height": 1241.32080078125,
             "text_alignment": "left",
-            "text_formatting": "none"
+            "text_formatting": "all_lower"
         },
         {
-            "figma_id": "5748:2435",
-            "id": "5748:2435",
-            "name": "EDITABLE - CTA",
+            "figma_id": "5750:9334",
+            "id": "5750:9334",
+            "name": "non-editable - and",
             "coordinates": {
-                "x": 135.1295166015625,
-                "y": 541.5
+                "x": 565.0000610351562,
+                "y": 951.3847045898438
             },
             "size": {
-                "width": 275.0,
-                "height": 130.0
+                "width": 62.0,
+                "height": 56.0
             },
+            "rotation": 0.0,
+            "type": "text",
+            "editable": false,
+            "text_value": "and",
+            "font": "PinyonScript-Regular",
+            "font_size": 45.0,
+            "text_color": "#FAD0C0",
+            "text_box_coordinates": {
+                "x": 565.0000610351562,
+                "y": 951.3847045898438,
+                "width": 62.0,
+                "height": 56.0
+            },
+            "letter_spacing": 0.0,
+            "line_height": 56.14013671875,
+            "text_alignment": "left",
+            "text_formatting": "all_lower"
+        },
+        {
+            "figma_id": "5750:9335",
+            "id": "5750:9335",
+            "name": "EDITABLE - Place",
+            "coordinates": {
+                "x": 433.5,
+                "y": 1301.4044189453125
+            },
+            "size": {
+                "width": 325.0,
+                "height": 29.0
+            },
+            "rotation": 0.0,
             "type": "text",
             "editable": true,
-            "text_value": "Let's Join\r\nOur Party!",
-            "font": "Roboto-Bold",
-            "font_size": 50.0,
-            "text_color": "#204D60",
+            "text_value": "Place: [address]",
+            "font": "Montserrat-Medium",
+            "font_size": 24.0,
+            "text_color": "#FFA58B",
             "text_box_coordinates": {
-                "x": 135.1295166015625,
-                "y": 541.5,
-                "width": 275.0,
-                "height": 130.0
+                "x": 433.5,
+                "y": 1301.4044189453125,
+                "width": 325.0,
+                "height": 29.0
             },
-            "letter_spacing": 5.0,
-            "line_height": 65.0,
+            "letter_spacing": 6.24,
+            "line_height": 29.256000518798828,
             "text_alignment": "left",
-            "text_formatting": "none"
+            "text_formatting": "capitalized"
+        },
+        {
+            "figma_id": "5750:9336",
+            "id": "5750:9336",
+            "name": "EDITABLE - Time",
+            "coordinates": {
+                "x": 488.0,
+                "y": 1267.3369140625
+            },
+            "size": {
+                "width": 218.0,
+                "height": 29.0
+            },
+            "rotation": 0.0,
+            "type": "text",
+            "editable": true,
+            "text_value": "Time: [time]",
+            "font": "Montserrat-Medium",
+            "font_size": 24.0,
+            "text_color": "#FFA58B",
+            "text_box_coordinates": {
+                "x": 488.0,
+                "y": 1267.3369140625,
+                "width": 218.0,
+                "height": 29.0
+            },
+            "letter_spacing": 6.24,
+            "line_height": 29.256000518798828,
+            "text_alignment": "left",
+            "text_formatting": "capitalized"
+        },
+        {
+            "figma_id": "5750:9337",
+            "id": "5750:9337",
+            "name": "EDITABLE - Date",
+            "coordinates": {
+                "x": 483.00006103515625,
+                "y": 1233.2694091796875
+            },
+            "size": {
+                "width": 243.0,
+                "height": 29.0
+            },
+            "rotation": 0.0,
+            "type": "text",
+            "editable": true,
+            "text_value": "Date: [date]\r",
+            "font": "Montserrat-Medium",
+            "font_size": 24.0,
+            "text_color": "#FFA58B",
+            "text_box_coordinates": {
+                "x": 483.00006103515625,
+                "y": 1233.2694091796875,
+                "width": 243.0,
+                "height": 29.0
+            },
+            "letter_spacing": 6.24,
+            "line_height": 29.256000518798828,
+            "text_alignment": "left",
+            "text_formatting": "capitalized"
+        },
+        {
+            "figma_id": "5750:9338",
+            "id": "5750:9338",
+            "name": "EDITABLE - Name 2",
+            "coordinates": {
+                "x": 384.5,
+                "y": 1017.2694091796875
+            },
+            "size": {
+                "width": 423.0,
+                "height": 67.0
+            },
+            "rotation": 0.0,
+            "type": "text",
+            "editable": true,
+            "text_value": "THOM FORD",
+            "font": "Montserrat-Medium",
+            "font_size": 55.0,
+            "text_color": "#FAD0C0",
+            "text_box_coordinates": {
+                "x": 384.5,
+                "y": 1017.2694091796875,
+                "width": 423.0,
+                "height": 67.0
+            },
+            "letter_spacing": 8.25,
+            "line_height": 67.04499816894531,
+            "text_alignment": "left",
+            "text_formatting": "all_upper"
+        },
+        {
+            "figma_id": "5750:9339",
+            "id": "5750:9339",
+            "name": "EDITABLE - Name 1",
+            "coordinates": {
+                "x": 324.5,
+                "y": 874.5
+            },
+            "size": {
+                "width": 543.0,
+                "height": 67.0
+            },
+            "rotation": 0.0,
+            "type": "text",
+            "editable": true,
+            "text_value": "LAUREN LOREN",
+            "font": "Montserrat-Medium",
+            "font_size": 55.0,
+            "text_color": "#FAD0C0",
+            "text_box_coordinates": {
+                "x": 324.5,
+                "y": 874.5,
+                "width": 543.0,
+                "height": 67.0
+            },
+            "letter_spacing": 8.25,
+            "line_height": 67.04499816894531,
+            "text_alignment": "left",
+            "text_formatting": "all_upper"
+        },
+        {
+            "figma_id": "5750:9340",
+            "id": "5750:9340",
+            "name": "EDITABLE - CTA",
+            "coordinates": {
+                "x": 381.5,
+                "y": 694.0
+            },
+            "size": {
+                "width": 429.0,
+                "height": 90.0
+            },
+            "rotation": 0.0,
+            "type": "text",
+            "editable": true,
+            "text_value": "You are invited to an\r\nengagement party",
+            "font": "Montserrat-Regular",
+            "font_size": 22.0,
+            "text_color": "#000000",
+            "text_box_coordinates": {
+                "x": 381.5,
+                "y": 694.0,
+                "width": 429.0,
+                "height": 90.0
+            },
+            "letter_spacing": 7.04,
+            "line_height": 45.0,
+            "text_alignment": "center",
+            "text_formatting": "capitalized"
         }
     ]
 }

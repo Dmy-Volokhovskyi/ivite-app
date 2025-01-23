@@ -334,20 +334,8 @@ final class TemplateEditorController: BaseViewController {
             coordinates = layer.coordinates
         }
         
-        // Determine which image to use
-        let image: UIImage?
-        if let customImage = layer.customImage {
-            image = customImage
-        } else if let imageName = layer.imageFile {
-            image = UIImage(named: imageName)
-        } else {
-            image = nil
-        }
-        
-        // Proceed only if an image is available
-        guard let displayImage = image else { return }
-        
-        let imageView = UIImageView(image: displayImage)
+        // Create the UIImageView for displaying the image
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = layer.editable
         
@@ -358,7 +346,44 @@ final class TemplateEditorController: BaseViewController {
             imageView.backgroundColor = .clear
         }
         
-        // Handle editable layers
+        // Asynchronously load the image using SDWebImage
+        if let imageFileURL = layer.imageFile, let url = URL(string: imageFileURL) {
+            imageView.sd_setImage(with: url, placeholderImage: nil) { [weak self] image, error, cacheType, url in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    print("Failed to load image from URL: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let displayImage = image else {
+                    print("Image is nil for URL: \(url?.absoluteString ?? "Unknown URL")")
+                    return
+                }
+                
+                // Once the image is loaded, proceed to add it to the contentView
+                self.addImageToContentView(
+                    imageView: imageView,
+                    layer: layer,
+                    size: size,
+                    coordinates: coordinates,
+                    scale: scale
+                )
+            }
+        } else {
+            print("Invalid or missing image URL.")
+            return
+        }
+    }
+    
+    /// Helper method to handle adding the image view to the contentView
+    private func addImageToContentView(
+        imageView: UIImageView,
+        layer: ImageLayer,
+        size: CGSize,
+        coordinates: Coordinates,
+        scale: CGFloat
+    ) {
         if layer.editable {
             // Create frame for the resizable view using coordinates and size
             let imageFrame = CGRect(x: CGFloat(coordinates.x) * scale,
@@ -395,6 +420,7 @@ final class TemplateEditorController: BaseViewController {
             contentView.addSubview(imageView)
         }
     }
+
     
     private func addTextLayer(_ layer: TextLayer, scale: CGFloat) {
         guard let textBoxCoordinates = layer.textBoxCoordinates else { return }

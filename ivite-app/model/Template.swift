@@ -11,6 +11,5 @@ struct Template {
     let name: String
     let detailsURL: String
     let prefabricatedImage: String
-    let type: String
     let category: TemplateCategory
 }

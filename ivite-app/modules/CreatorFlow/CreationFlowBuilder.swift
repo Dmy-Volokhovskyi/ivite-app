@@ -8,10 +8,10 @@
 import Foundation
 
 final class ConfigurationWizardBuilder: BaseBuilder {
-    override func make() -> CreatorFlowNavigationController {
-        let navigationController = CreatorFlowNavigationController(serviceProvider: serviceProvider)
+    func make(urlString: String) -> CreatorFlowNavigationController {
+        let navigationController = CreatorFlowNavigationController(serviceProvider: serviceProvider, urlString: urlString)
         
-        let controller = TemplateEditorBuilder(serviceProvider: serviceProvider).make(templateEditorDelegate: navigationController)
+        let controller = TemplateEditorBuilder(serviceProvider: serviceProvider).make(templateEditorDelegate: navigationController, urlString: urlString)
         
         navigationController.viewControllers = [controller]
         

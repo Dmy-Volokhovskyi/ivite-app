@@ -89,9 +89,8 @@ extension FirestoreManager {
                   let name = document["name"] as? String,
                   let detailsURL = document["detailsURL"] as? String,
                   let prefabricatedImage = document["prefabricatedImage"] as? String,
-                  let type = document["type"] as? String,
-                  let categoryString = document["type"] as? String,
-                  let category = TemplateCategory(rawValue: categoryString) else {
+                  let categoryString = document["category"] as? String,
+                  let category = TemplateCategory(rawValue: categoryString.capitalizeFirstLetter()) else {
                 print("Error parsing document with ID: \(document.documentID)")
                 return nil
             }
@@ -101,7 +100,6 @@ extension FirestoreManager {
                 name: name,
                 detailsURL: detailsURL,
                 prefabricatedImage: prefabricatedImage,
-                type: type,
                 category: category
             )
         }

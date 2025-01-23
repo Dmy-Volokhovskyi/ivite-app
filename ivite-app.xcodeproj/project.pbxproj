@@ -118,6 +118,7 @@
 		357297C12CF8F1FC00F2A282 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357297C02CF8F1FC00F2A282 /* GroupCell.swift */; };
 		357297C32CF8F6AC00F2A282 /* GroupCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357297C22CF8F6AC00F2A282 /* GroupCellModel.swift */; };
 		359783D82CF5090E0012CBE6 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359783D72CF5090E0012CBE6 /* CreateGroupView.swift */; };
+		3599D1A02D40316F00E07DD7 /* String+CapitalizeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D19F2D40316F00E07DD7 /* String+CapitalizeFirst.swift */; };
 		35B8869C2CEE28DA00FE1F43 /* AddNewGuestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */; };
 		35B8869D2CEE28DA00FE1F43 /* AddNewGuestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */; };
 		35B8869E2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8869A2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift */; };
@@ -411,6 +412,7 @@
 		357297C02CF8F1FC00F2A282 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		357297C22CF8F6AC00F2A282 /* GroupCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCellModel.swift; sourceTree = "<group>"; };
 		359783D72CF5090E0012CBE6 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
+		3599D19F2D40316F00E07DD7 /* String+CapitalizeFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CapitalizeFirst.swift"; sourceTree = "<group>"; };
 		35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestBuilder.swift; sourceTree = "<group>"; };
 		35B886982CEE28DA00FE1F43 /* AddNewGuestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestController.swift; sourceTree = "<group>"; };
 		35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestInteractor.swift; sourceTree = "<group>"; };
@@ -1150,6 +1152,7 @@
 		76096A7F2C8731990004BEE0 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3599D19F2D40316F00E07DD7 /* String+CapitalizeFirst.swift */,
 				76096A802C8731AD0004BEE0 /* UIFont+Inter.swift */,
 				76096AEE2C88F1900004BEE0 /* UIButton+Configuration.swift */,
 				F6D5DB572CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift */,
@@ -1852,6 +1855,7 @@
 				3519A7592CD7E20200A16715 /* GiftView.swift in Sources */,
 				76096A5F2C861C550004BEE0 /* EventsRouter.swift in Sources */,
 				F6EBF5652CA4470C0058F7B2 /* CanvasResponse.swift in Sources */,
+				3599D1A02D40316F00E07DD7 /* String+CapitalizeFirst.swift in Sources */,
 				76096B002C8B1BF90004BEE0 /* EventCardModel.swift in Sources */,
 				F643D96D2CC928FF009A18F0 /* SignInController.swift in Sources */,
 				3519A8432CE26DDA00A16715 /* RadioButton.swift in Sources */,

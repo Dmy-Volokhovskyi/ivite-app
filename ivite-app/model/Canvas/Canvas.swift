@@ -382,8 +382,8 @@ struct TextBoxCoordinates: Codable {
 }
 
 enum TextFormatting: String, Codable {
-    case allCaps = "all_caps"
-    case allLowercase = "all_lowercase"
+    case allCaps = "all_upper"
+    case allLowercase = "all_lower"
     case capitalized
     case none
 }
