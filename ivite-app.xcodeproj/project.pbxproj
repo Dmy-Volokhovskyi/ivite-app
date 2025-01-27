@@ -119,6 +119,8 @@
 		357297C32CF8F6AC00F2A282 /* GroupCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357297C22CF8F6AC00F2A282 /* GroupCellModel.swift */; };
 		359783D82CF5090E0012CBE6 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359783D72CF5090E0012CBE6 /* CreateGroupView.swift */; };
 		3599D1A02D40316F00E07DD7 /* String+CapitalizeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D19F2D40316F00E07DD7 /* String+CapitalizeFirst.swift */; };
+		3599D1A22D47D02100E07DD7 /* EditContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D1A12D47D02100E07DD7 /* EditContactView.swift */; };
+		3599D1A42D47D71D00E07DD7 /* EditGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D1A32D47D71D00E07DD7 /* EditGroupView.swift */; };
 		35B8869C2CEE28DA00FE1F43 /* AddNewGuestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */; };
 		35B8869D2CEE28DA00FE1F43 /* AddNewGuestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */; };
 		35B8869E2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8869A2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift */; };
@@ -413,6 +415,8 @@
 		357297C22CF8F6AC00F2A282 /* GroupCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCellModel.swift; sourceTree = "<group>"; };
 		359783D72CF5090E0012CBE6 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
 		3599D19F2D40316F00E07DD7 /* String+CapitalizeFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CapitalizeFirst.swift"; sourceTree = "<group>"; };
+		3599D1A12D47D02100E07DD7 /* EditContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactView.swift; sourceTree = "<group>"; };
+		3599D1A32D47D71D00E07DD7 /* EditGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupView.swift; sourceTree = "<group>"; };
 		35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestBuilder.swift; sourceTree = "<group>"; };
 		35B886982CEE28DA00FE1F43 /* AddNewGuestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestController.swift; sourceTree = "<group>"; };
 		35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestInteractor.swift; sourceTree = "<group>"; };
@@ -1241,8 +1245,10 @@
 				3516DE8E2D2C225900FDAED2 /* ToggleControlView.swift */,
 				76A34F942C8B5E61003D3E87 /* ContactCardCell.swift */,
 				3515B0682CFA34A900934E4F /* CreateContactView.swift */,
+				3599D1A12D47D02100E07DD7 /* EditContactView.swift */,
 				3533EFF82D072A7B005EC055 /* SelectGroupCell.swift */,
 				359783D72CF5090E0012CBE6 /* CreateGroupView.swift */,
+				3599D1A32D47D71D00E07DD7 /* EditGroupView.swift */,
 				357297C02CF8F1FC00F2A282 /* GroupCell.swift */,
 			);
 			path = View;
@@ -1690,6 +1696,7 @@
 				3519A75D2CD7F15100A16715 /* GiftRegistryView.swift in Sources */,
 				35F19CAB2D0A2EF700835195 /* PreviewGuestsView.swift in Sources */,
 				76A34F952C8B5E61003D3E87 /* ContactCardCell.swift in Sources */,
+				3599D1A22D47D02100E07DD7 /* EditContactView.swift in Sources */,
 				F6936A2B2CB9621F00764197 /* EntryWithTitle.swift in Sources */,
 				76096A752C861C990004BEE0 /* MainScreenRouter.swift in Sources */,
 				F6F4AA442CC8328300071B0B /* TermsAndServicesView.swift in Sources */,
@@ -1785,6 +1792,7 @@
 				76096A6A2C861C860004BEE0 /* ProfileRouter.swift in Sources */,
 				76096A6B2C861C860004BEE0 /* ProfileBuilder.swift in Sources */,
 				76096A6C2C861C860004BEE0 /* ProfilePresenter.swift in Sources */,
+				3599D1A42D47D71D00E07DD7 /* EditGroupView.swift in Sources */,
 				F6E32BF72CCFD8D300D62C37 /* MenuItemView.swift in Sources */,
 				76096A362C84FBD40004BEE0 /* ServiceProvider.swift in Sources */,
 				F66EC28D2CC6A3C300AE76B2 /* ActionsViewController.swift in Sources */,

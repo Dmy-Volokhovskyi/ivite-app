@@ -68,49 +68,7 @@ extension LaunchPresenter: LaunchEventHandler {
                 Guest(name: "Bob Builder", email: "bob@example.com", phone: "9876543210")
             ]
         )
-        
-//        let mainScreenController = PreviewInviteBuilder(serviceProvider: interactor.serviceProvider).make(previewMode: true, creatorFlowModel: testCreatorFlowModel)
-        var people: [ContactCardModel] = [
-            ContactCardModel(name: "John Smith", email: "john.smith@example.com", date: Date()),
-            ContactCardModel(name: "Jane Doe", email: "jane.doe@example.com", date: Date()),
-            ContactCardModel(name: "Uncle Bob", email: "uncle.bob@example.com", date: Date()),
-            ContactCardModel(name: "Alice Johnson", email: "alice.j@example.com", date: Date()),
-            ContactCardModel(name: "Bob Brown", email: "bob.brown@example.com", date: Date()),
-            ContactCardModel(name: "Charlie Davis", email: "charlie.davis@example.com", date: Date()),
-            ContactCardModel(name: "Dana White", email: "dana.white@example.com", date: Date())
-        ]
-        
-        // Step 2: Create Groups and Assign Members
-        let familyGroup = ContactGroup(name: "Family")
-        let friendsGroup = ContactGroup(name: "Friends")
-        let colleaguesGroup = ContactGroup(name: "Colleagues")
-        
-        // Assign members to groups
-        familyGroup.members = [people[0], people[1], people[2]] // John, Jane, Uncle Bob
-        friendsGroup.members = [people[3], people[4]]           // Alice, Bob
-        colleaguesGroup.members = [people[5], people[6]]        // Charlie, Dana
-        
-        // Add group references to each contact
-        people[0].addGroup(familyGroup)
-        people[1].addGroup(familyGroup)
-        people[2].addGroup(familyGroup)
-        
-        people[3].addGroup(friendsGroup)
-        people[4].addGroup(friendsGroup)
-        
-        people[5].addGroup(colleaguesGroup)
-        people[6].addGroup(colleaguesGroup)
-        
-        // Step 3: Create the Unified Test Data
-        let testGroups: [ContactGroup] = [familyGroup, friendsGroup, colleaguesGroup]
-        let testContacts: [ContactCardModel] = people
-        
-        let testGuestList: [Guest] = [
-            Guest(id: people[0].id, name: people[0].name, email: people[0].email, phone: "123-456-7890", status: .confirmed),
-            Guest(id: people[1].id, name: people[1].name, email: people[1].email, phone: "987-654-3210", status: .invited)
-        ]
 
-//        let mainScreenController = AdressBookBuilder(serviceProvider: interactor.serviceProvider).make(groups: testGroups, contacts: testContacts, guestList: testGuestList)
         router.changeRoot(to: mainScreenController)
     }
 }

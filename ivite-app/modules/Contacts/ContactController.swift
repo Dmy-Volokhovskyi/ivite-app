@@ -115,10 +115,14 @@ final class ContactController: BaseViewController {
 }
 
 extension ContactController: ContactViewInterface {
+    func updateLoadingState(_ isLoading: Bool) {
+        // TODO: - update
+    }
+    
     func updateSearchBar() {
         searchBarView.updateProfileImage(dataSource.user?.profileImageURL)
         if let remainingInvites = dataSource.user?.remainingInvites {
-//            invitesLeftView.configure(invitesLeft: remainingInvites)
+            invitesLeftView.configure(invitesLeft: remainingInvites)
         }
     }
     

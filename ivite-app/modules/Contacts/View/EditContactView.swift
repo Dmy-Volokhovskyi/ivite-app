@@ -1,49 +1,43 @@
 //
-//  CreateContactView.swift
+//  EditContactView.swift
 //  ivite-app
 //
-//  Created by Дмитро Волоховський on 29/11/2024.
+//  Created by Дмитро Волоховський on 27/01/2025.
 //
 
 import UIKit
 
-protocol CreateContactViewDelegate: AnyObject {
-    func createContact(contact: ContactCardModel, groups: [ContactGroup])
-    func selectGroupCellDidTapDelete(group: ContactGroup)
-    func selectGroupCellDidTapEdit(contact: ContactCardModel, group: ContactGroup)
-    func didTouchCancel()
-    func createNewGroup(contact: ContactCardModel, view: CreateContactView)
+protocol EditContactViewDelegate: AnyObject {
+    func editContactView(_ view: EditContactView, requestSave contact: ContactCardModel)
+    func editContactViewDidCancel(_ view: EditContactView)
+    func editContactView(_ view: EditContactView, requestCreateNewGroupFor contact: ContactCardModel)
+    func editContactView(_ view: EditContactView, requestEdit group: ContactGroup, for contact: ContactCardModel)
+    func editContactView(_ view: EditContactView, requestDeleteGroup group: ContactGroup)
 }
 
-final class CreateContactView: BaseView {
-    private let addContactHeader: IVHeaderLabel = .init(text: "Add contact")
+
+final class EditContactView: BaseView {
+    private let editContactHeader: IVHeaderLabel = .init(text: "Edit contact")
     private let contactNameTextField = IVTextField(placeholder: "Name", leadingImage: .person)
     private let contactEmailTextField = IVTextField(placeholder: "Email contact", leadingImage: .email, validationType: .email)
     private let addGroupControl = IVControl(placeholder: "Add new group", leadingImage: .group, trailingImage: .chewronDown)
     private let groupsTableView = UITableView(frame: .zero, style: .grouped)
     private let tableBackgroundView = UIView()
     private let tableViewBackgroundView = TableViewBackgroundView()
-    private let confirmButton = UIButton(configuration: .primary(title: "Add"))
+    private let confirmButton = UIButton(configuration: .primary(title: "Save"))
     private let cancelButton = UIButton(configuration: .secondary(title: "Cancel"))
     private let addNewGroupButton = UIButton(configuration: .clear(title: "+ Add new group"))
     
-    private var contact = ContactCardModel(name: "", email: "", phone: "", date: Date())
-    private var groups = [ContactGroup(name: "")]
+    private var contact: ContactCardModel
+    private var groups: [ContactGroup]
     
-    let confirmButtonTitle: String
     
-    weak var delegate: CreateContactViewDelegate?
+    weak var delegate: EditContactViewDelegate?
     weak var sizeDelegate: PreferredContentSizeUpdatable?
     
-    init(contact: ContactCardModel?, groups: [ContactGroup]) {
+    init(contact: ContactCardModel, groups: [ContactGroup]) {
         self.groups = groups
-        if let contact {
-            self.contact = contact
-            self.confirmButtonTitle = "Add"
-        } else {
-            self.contact = ContactCardModel(name: "", email: "", phone: "", date: Date())
-            self.confirmButtonTitle = "Add"
-        }
+        self.contact = contact
         super.init()
         
         setupContactView()
@@ -76,7 +70,7 @@ final class CreateContactView: BaseView {
         
         addNewGroupButton.addTarget(self, action: #selector(didTouchAddGroupButton), for: .touchUpInside)
         
-        confirmButton.IVsetEnabled(false, title: confirmButtonTitle)
+        confirmButton.IVsetEnabled(false, title: "Save")
         confirmButton.addTarget(self, action: #selector(didTouchSaveButton), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(didTouchCancelButton), for: .touchUpInside)
     }
@@ -85,7 +79,7 @@ final class CreateContactView: BaseView {
         super.addSubviews()
         
         [
-            addContactHeader,
+            editContactHeader,
             contactNameTextField,
             contactEmailTextField,
             addGroupControl,
@@ -102,9 +96,9 @@ final class CreateContactView: BaseView {
     override func constrainSubviews() {
         super.constrainSubviews()
         
-        addContactHeader.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24), excludingEdge: .bottom)
+        editContactHeader.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 24, left: 24, bottom: 24, right: 24), excludingEdge: .bottom)
         
-        contactNameTextField.autoPinEdge(.top, to: .bottom, of: addContactHeader, withOffset: 24)
+        contactNameTextField.autoPinEdge(.top, to: .bottom, of: editContactHeader, withOffset: 24)
         contactNameTextField.autoPinEdge(toSuperviewEdge: .leading, withInset: 24)
         contactNameTextField.autoPinEdge(toSuperviewEdge: .trailing, withInset: 24)
         
@@ -141,15 +135,15 @@ final class CreateContactView: BaseView {
     }
     
     @objc private func didTouchSaveButton(_ sender: UIButton) {
-        delegate?.createContact(contact: contact, groups: groups)
+        delegate?.editContactView(self, requestSave: contact)
     }
     
     @objc private func didTouchCancelButton(_ sender: UIButton) {
-        delegate?.didTouchCancel()
+        delegate?.editContactViewDidCancel(self)
     }
     
     @objc private func didTouchAddGroupButton(_ sender: UIButton) {
-        delegate?.createNewGroup(contact: contact, view: self)
+        delegate?.editContactView(self, requestCreateNewGroupFor: contact)
     }
     
     private func setupContactView() {
@@ -173,7 +167,7 @@ final class CreateContactView: BaseView {
     }
 }
 
-extension CreateContactView: UITableViewDataSource {
+extension EditContactView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableView.backgroundView?.isHidden = groups.count != 0
         return groups.count
@@ -182,7 +176,7 @@ extension CreateContactView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(SelectGroupCell.self, for: indexPath)
         let group = groups[indexPath.row]
-        let isSelected = group.members.contains(contact)
+        let isSelected = contact.groupIds.contains(group.id)
         
         cell.configure(with: group, isSelected: isSelected)
         cell.delegate = self
@@ -210,7 +204,7 @@ extension CreateContactView: UITableViewDataSource {
     }
 }
 
-extension CreateContactView: UITableViewDelegate {
+extension EditContactView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? SelectGroupCell else { return }
         
@@ -225,12 +219,12 @@ extension CreateContactView: UITableViewDelegate {
             .filter { contact.groupIds.contains($0.id) } // Filter groups by IDs in contact.groupIds
             .map(\.name) // Extract the names of matching groups
             .joined(separator: ", ") // Combine names into a single string
-
+        
         groupsTableView.reloadData()
     }
 }
 
-extension CreateContactView: IVTextFieldDelegate {
+extension EditContactView: IVTextFieldDelegate {
     func textFieldDidChange(_ textField: IVTextField) {
         guard let name = contactNameTextField.text,
               let email = contactEmailTextField.text
@@ -241,17 +235,17 @@ extension CreateContactView: IVTextFieldDelegate {
         
         let isValid = contactNameTextField.isValid && contactEmailTextField.isValid
         
-        confirmButton.IVsetEnabled(isValid, title: confirmButtonTitle)
+        confirmButton.IVsetEnabled(isValid, title: "Save")
     }
 }
 
-extension CreateContactView: SelectGroupCellDelegate {
+extension EditContactView: SelectGroupCellDelegate {
     func selectGroupCellDidTapEdit(_ cell: SelectGroupCell) {
         guard let indexPath = groupsTableView.indexPath(for: cell) else {
             return
         }
         let group = groups[indexPath.row]
-        delegate?.selectGroupCellDidTapEdit(contact: contact, group: group)
+        delegate?.editContactView(self, requestEdit: group, for: contact)
     }
     
     func selectGroupCellDidTapDelete(_ cell: SelectGroupCell) {
@@ -259,7 +253,6 @@ extension CreateContactView: SelectGroupCellDelegate {
             return
         }
         let group = groups[indexPath.row]
-        delegate?.selectGroupCellDidTapDelete(group: group)
+        delegate?.editContactView(self, requestDeleteGroup: group)
     }
 }
-

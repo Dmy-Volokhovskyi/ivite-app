@@ -4,6 +4,7 @@ protocol ContactViewInterface: AnyObject {
     func reloadTableView()
     func updateFilter(_ filter: FilterType)
     func updateSearchBar()
+    func updateLoadingState(_ isLoading: Bool)
 }
 
 final class ContactPresenter: BasePresenter {
@@ -14,6 +15,13 @@ final class ContactPresenter: BasePresenter {
     private var filter: FilterType = .defaultFilter
     private var searchText: String?
     private var filteredContacts: [ContactCardModel] = []
+    private var currentContact: ContactCardModel?
+    private var isEditing = false
+    private var isLoading: Bool = false {
+        didSet {
+            viewInterface?.updateLoadingState(isLoading)
+        }
+    }
     
     init(router: ContactRouter, interactor: ContactInteractor) {
         self.router = router
@@ -54,11 +62,21 @@ final class ContactPresenter: BasePresenter {
         applyFilterAndSort()
     }
     
+    func removeGroup(_ group: ContactGroup) {
+        Task {
+            isLoading = true
+            await interactor.removeGroup(group)
+            isLoading = false
+        }
+    }
     
     func deleteContact(for contact: ContactCardModel) {
-        let deleteAction = ActionItem(title: "Delete contact", image: nil, isPrimary: true) {
-            self.remove(contact: contact)
-            print("Delete tapped")
+        let deleteAction = ActionItem(title: "Delete contact", image: nil, isPrimary: true) { [self] in
+            Task {
+                isLoading = true
+                await interactor.deleteContact(contact)
+                isLoading = false
+            }
         }
         
         let cancelAction = ActionItem(title: "Cancel", image: nil, isPrimary: false) {
@@ -74,20 +92,20 @@ final class ContactPresenter: BasePresenter {
         router.showFloatingView(customView: view, global: global)
     }
     
-    private func showCreateContactView() {
-        let view = CreateContactView(contact: nil, groups: interactor.groups)
-        view.delegate = self
-        router.showFloatingView(customView: view)
-    }
-    
-    private func showEditContactView(for contact: ContactCardModel) {
+    private func showCreateContactView(for contact: ContactCardModel?) {
         let view = CreateContactView(contact: contact, groups: interactor.groups)
         view.delegate = self
         router.showFloatingView(customView: view)
     }
     
+    private func showEditContactView(for contact: ContactCardModel) {
+        let view = EditContactView(contact: contact, groups: interactor.groups)
+        view.delegate = self
+        router.showFloatingView(customView: view)
+    }
+    
     func showEditGroupView(for group: ContactGroup) {
-        let view = CreateGroupView(contacts: interactor.contactCards, group: group)
+        let view = EditGroupView(contacts: interactor.contactCards, group: group)
         view.delegate = self
         router.showFloatingView(customView: view)
     }
@@ -100,6 +118,14 @@ final class ContactPresenter: BasePresenter {
 }
 
 extension ContactPresenter: ContactEventHandler {
+    func viewDidLoad() {
+        Task {
+            isLoading = true
+            await interactor.fetchAllContactsAndGroups()
+            isLoading = false
+        }
+    }
+    
     func viewWillAppear() {
         interactor.checkForUserUpdates()
         viewInterface?.updateSearchBar()
@@ -124,7 +150,7 @@ extension ContactPresenter: ContactEventHandler {
         }
         
         let addNewContactAction = ActionItem(title: "Add new contact", image: .guest, isPrimary: true) {
-            self.showCreateContactView()
+            self.showCreateContactView(for: nil)
             print("Add new presed")
         }
         
@@ -148,10 +174,6 @@ extension ContactPresenter: ContactEventHandler {
     
     func searchFieldTextDidChange(_ text: String?) {
         updateSearchText(text)
-    }
-    
-    func viewDidLoad() {
-        interactor.getContacts()
     }
 }
 
@@ -181,13 +203,23 @@ extension ContactPresenter: ContactInteractorDelegate {
 
 extension ContactPresenter: CreateGroupViewDelegate {
     func didCreateGroup(_ group: ContactGroup, contacts: [ContactCardModel]) {
-        interactor.groups.append(group)
-        contacts.forEach({ $0.groups.append(group) })
-        interactor.contactCards = contacts
-        applyFilterAndSort()
-        interactor.groups.map({ print($0.name) })
-        interactor.contactCards.map({ print($0.groups.map(\.name)) })
-        router.dismissModal(completion: nil)
+        Task {
+            isLoading = true
+            await interactor.saveGroup(group)
+            contacts.forEach { $0.groupIds.append(group.id) }
+            interactor.contactCards = contacts
+            await MainActor.run {
+                router.dismissModal(completion: { [weak self] in
+                    guard let self, let currentContact else { return }
+                    if isEditing {
+                        showEditContactView(for: currentContact)
+                    } else {
+                        showCreateContactView(for: currentContact)
+                    }
+                })
+            }
+            isLoading = false
+        }
     }
     
     func didTouchCancel() {
@@ -196,20 +228,95 @@ extension ContactPresenter: CreateGroupViewDelegate {
 }
 
 extension ContactPresenter: CreateContactViewDelegate {
-    func createNewGroup(view: CreateContactView) {
-        showCreateGroupView(global: true)
+    func selectGroupCellDidTapEdit(contact: ContactCardModel, group: ContactGroup) {
+        router.dismissModal(completion: { [ weak self] in
+            self?.currentContact = contact
+            self?.showCreateGroupView(group: group, global: true)
+        })
     }
     
-    func createContact(contact: ContactCardModel, groups: [ContactGroup]) {
-        interactor.contactCards.append(contact)
-        interactor.groups = groups
+    func createNewGroup(contact: ContactCardModel, view: CreateContactView) {
+        router.dismissModal(completion: { [ weak self ] in
+            self?.currentContact = contact
+            self?.showCreateGroupView(global: true)
+        })
+      
     }
     
     func selectGroupCellDidTapDelete(group: ContactGroup) {
-        interactor.removeGroup(group: group)
+        removeGroup(group)
+    }
+
+    func createContact(contact: ContactCardModel, groups: [ContactGroup]) {
+        Task {
+            isLoading = true
+            await interactor.saveContact(contact)
+            interactor.groups = groups
+            await MainActor.run {
+                router.dismissModal(completion: nil)
+            }
+            isLoading = false
+        }
+    }
+}
+
+extension ContactPresenter: EditGroupViewDelegate {
+    func didEditGroup(_ group: ContactGroup, contacts: [ContactCardModel]) {
+        Task {
+            isLoading = true
+            await interactor.saveGroup(group)
+            await MainActor.run {
+                router.dismissModal(completion: { [weak self] in
+                    guard let self, let currentContact else { return }
+                    if isEditing {
+                        showEditContactView(for: currentContact)
+                    } else {
+                        showCreateContactView(for: currentContact)
+                    }
+                })
+            }
+            isEditing = false
+            isLoading = false
+        }
+     }
+}
+
+extension ContactPresenter: EditContactViewDelegate {
+    func editContactView(_ view: EditContactView, requestSave contact: ContactCardModel) {
+        Task {
+            isLoading = true
+            await interactor.saveContact(contact)
+            await MainActor.run {
+                router.dismissModal(completion: nil)
+            }
+            isEditing = false
+            isLoading = false
+        }
     }
     
-    func selectGroupCellDidTapEdit(group: ContactGroup) {
-        showCreateGroupView(group: group, global: true)
+    func editContactViewDidCancel(_ view: EditContactView) {
+        router.dismissModal(completion: nil)
+    }
+    
+    func editContactView(_ view: EditContactView, requestCreateNewGroupFor contact: ContactCardModel) {
+        router.dismissModal(completion: { [weak self] in
+            guard let self else { return }
+            self.currentContact = contact
+            self.isEditing = true
+            self.showCreateGroupView()
+        })
+    }
+    
+    func editContactView(_ view: EditContactView, requestEdit group: ContactGroup, for contact: ContactCardModel) {
+        router.dismissModal(completion: { [weak self] in
+            guard let self else { return }
+            currentContact = contact
+            self.isEditing = true
+            showEditGroupView(for: group)
+        })
+    }
+    
+    func editContactView(_ view: EditContactView, requestDeleteGroup group: ContactGroup) {
+        removeGroup(group)
     }
 }

@@ -10,25 +10,42 @@ import Foundation
 class ContactGroup {
     let id: String
     var name: String
-    var members: [ContactCardModel] // Array of references to contacts
+    var members: [ContactCardModel]
     
-    init(name: String, members: [ContactCardModel] = []) {
-        self.id = UUID().uuidString
+    // Overload the init to allow setting 'id' from Firestore or a new UUID.
+    init(name: String, members: [ContactCardModel] = [], id: String? = nil) {
+        self.id = id ?? UUID().uuidString
         self.name = name
         self.members = members
     }
     
+    // Convert to Firestore dictionary. We store contact IDs in Firestore
+    func toDictionary() -> [String: Any] {
+        return [
+            "id": id,
+            "name": name,
+            // Just store the contact IDs, *not* the full contact data
+            "members": members.map { $0.id }
+        ]
+    }
+    
+    // Add or remove members in memory
     func addMember(_ contact: ContactCardModel) {
-        if !members.contains(where: { $0.id == contact.id }) {
-            members.append(contact)
-            contact.addGroup(self) // Update the contact's groups
+        guard !members.contains(where: { $0.id == contact.id }) else { return }
+        members.append(contact)
+        // Optionally update the contact’s groupIds as well
+        if !contact.groupIds.contains(id) {
+            contact.groupIds.append(id)
         }
     }
     
-    func removeMember(by id: String) {
-        if let index = members.firstIndex(where: { $0.id == id }) {
-            members[index].removeGroup(self) // Update the contact's groups
-            members.remove(at: index)
-        }
+    func removeMember(by contactId: String) {
+        guard let index = members.firstIndex(where: { $0.id == contactId }) else { return }
+        let contact = members[index]
+        members.remove(at: index)
+        
+        // Remove group from the contact’s groupIds
+        contact.groupIds.removeAll(where: { $0 == id })
     }
 }
+

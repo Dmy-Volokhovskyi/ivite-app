@@ -95,7 +95,8 @@ final class ContactCardCell: BaseTableViewCell {
         nameLabel.text = contactCardModel.name
         emailLabel.text = contactCardModel.email
         birthDateLabel.text = dateFormatter.string(from: contactCardModel.date)
-        contactGroupLabel.text = contactCardModel.groups.map{ $0.name }.joined(separator: ", ")
+        
+//        contactGroupLabel.text = contactCardModel.groups.map{ $0.name }.joined(separator: ", ")
     }
     
     @objc private func openMenuDidTouch(_ sender: UIButton) {
