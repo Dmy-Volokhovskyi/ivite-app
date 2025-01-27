@@ -117,7 +117,6 @@ extension EventsController: EventsViewInterface {
     }
     
     func updateSearchBar() {
-        searchBarView.updateProfileImage(dataSource.user?.profileImageURL)
         
         if let remainingInvites = dataSource.user?.remainingInvites {
             invitesLeftView.configure(invitesLeft: remainingInvites)

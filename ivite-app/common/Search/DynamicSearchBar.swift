@@ -76,7 +76,7 @@ final class DynamicSearchBar: BaseView {
     }
     #warning("Work On animation")
     @objc private func unfoldSearchBarDidTouch(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.75, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.foldedSearchButtonLeadingConstraint?.isActive = true
             self.foldedSearchButtonTrailingConstraint?.isActive = false
             self.unFoldedSearchButtonTrailingConstraint?.isActive = true
@@ -92,7 +92,7 @@ final class DynamicSearchBar: BaseView {
         searchButton.isHidden = false
         cancelButton.isHidden = true
         searchTextField.isHidden = true
-        UIView.animate(withDuration: 0.75, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.unFoldedSearchButtonTrailingConstraint?.isActive = false
             self.foldedSearchButtonTrailingConstraint?.isActive = true
             self.foldedSearchButtonLeadingConstraint?.isActive = false

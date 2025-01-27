@@ -16,13 +16,11 @@ final class MainSearchBarView: BaseView {
     private let stackView = UIStackView()
     private let logoImage = UIImageView(image: .logo)
     private let searchButton = DynamicSearchBar()
-    private let profileImage = UIImageView(image: .test)
     private let logInButton = UIButton(configuration: .secondary(title: "Log in"))
     
     var isLoggedIn = false {
         didSet {
             logInButton.isHidden = isLoggedIn
-            profileImage.isHidden = !isLoggedIn
         }
     }
     
@@ -33,12 +31,6 @@ final class MainSearchBarView: BaseView {
         super.init()
         
         logInButton.isHidden = isLoggedIn
-        profileImage.isHidden = !isLoggedIn
-        profileImage.layer.cornerRadius = 22
-        profileImage.clipsToBounds = true
-        
-        let url = URL(string: profileImageURL ?? "")
-        profileImage.sd_setImage(with: url, placeholderImage: .userAdd)
         
         searchButton.delegate = self
         NotificationCenter.default.addObserver(self,
@@ -67,7 +59,6 @@ final class MainSearchBarView: BaseView {
         [
             logoImage,
             searchButton,
-            profileImage,
             logInButton
         ].forEach({ stackView.addArrangedSubview($0) })
     }
@@ -77,16 +68,9 @@ final class MainSearchBarView: BaseView {
         
         logoImage.autoSetDimensions(to: CGSize(width: 44, height: 44))
         
-        profileImage.autoSetDimensions(to: CGSize(width: 44, height: 44))
-        
         logInButton.setContentCompressionResistancePriority(.init(999), for: .horizontal)
         
         stackView.autoPinEdgesToSuperviewEdges()
-    }
-    
-    public func updateProfileImage(_ profileImageURL: String?) {
-        let url = URL(string: profileImageURL ?? "")
-        profileImage.sd_setImage(with: url, placeholderImage: .userAdd)
     }
     
     @objc private func didTouchLogInButton(_ sender: UIButton) {

@@ -109,7 +109,6 @@ extension HomeController: HomeViewInterface {
     }
     
     func updateSearchBar() {
-        searchBarView.updateProfileImage(dataSource.user?.profileImageURL)
     }
 }
 
