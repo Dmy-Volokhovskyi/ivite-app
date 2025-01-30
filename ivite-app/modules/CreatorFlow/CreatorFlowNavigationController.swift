@@ -66,7 +66,7 @@ private extension CreatorFlowNavigationController {
         switch nextStep {
         case .templateEditor:
             controller = TemplateEditorBuilder(serviceProvider: serviceProvider)
-                .make(templateEditorDelegate: self, urlString: urlString)
+                .make(creatorFlowModel: creatorFlowModel, urlString: urlString, templateEditorDelegate: self)
         case .eventDetails:
             controller = EventDetailsBuilder(serviceProvider: serviceProvider)
                 .make(eventDetailsDelegate: self,
@@ -91,6 +91,10 @@ private extension CreatorFlowNavigationController {
     
     
     private func saveData() {
+    }
+    
+    private func saveToDrafts() {
+        
     }
     
     private func setupNavBar(for step: Step, in controller: UIViewController) {
@@ -126,7 +130,6 @@ private extension CreatorFlowNavigationController {
         
     }
     
-    
     private func navBarTitle(for step: Step) -> String {
         // Updated step names based on the new enum
         switch step {
@@ -144,12 +147,36 @@ private extension CreatorFlowNavigationController {
     }
     
     @objc private func closeButtonTouch(_ sender: UIBarButtonItem) {
-        presentingViewController?.dismiss(animated: true)
+        let saveToDraftsAction = ActionItem(title: "Save to drafts", image: nil, isPrimary: true) {
+            self.saveToDrafts()
+            print("Saved to drafts tapped")
+        }
+        
+        let exitWithoutSavingAction = ActionItem(title: "Exit without saving", image: nil, isPrimary: false) {
+            self.presentingViewController?.dismiss(animated: true)
+        }
+        
+        let alertItem = AlertItem(
+            title: "Save to drafts",
+            message: "Save your progress and continue editing later",
+            actions: [saveToDraftsAction, exitWithoutSavingAction]
+        )
+        
+        let alertVC = AlertViewController()
+        alertVC.setAlertItem(alertItem)
+        
+        // Wrap AlertViewController in a ModalNavigationController
+        let navigationController = ModalNavigationController(rootViewController: alertVC)
+        navigationController.isFullScreen = false
+        
+        // Present the navigation controller
+        self.present(navigationController, animated: true)
     }
 }
 
 extension CreatorFlowNavigationController: TemplateEditorDelegate {
-    func didEndTemplateEdition() {
+    func didEndTemplateEdition(creatorFlowModel: CreatorFlowModel) {
+        self.creatorFlowModel = creatorFlowModel
         pushNextStep(for: .templateEditor)
     }
 }
@@ -176,6 +203,35 @@ extension CreatorFlowNavigationController: AddGuestsDelegate {
 
 extension CreatorFlowNavigationController: ReviewDelegate {
     func didEndReview() {
-        print("OK")
+        guard let image = creatorFlowModel.image else {
+            print("No image found in CreatorFlowModel")
+            return
+        }
+        
+        let newEvent = Event(from: creatorFlowModel, status: .pending)
+        let storagePath = "events/\(newEvent.id)/canvasImage.jpg"
+        
+        Task {
+            do {
+                // Step 1: Upload the image to Firebase Storage
+                let imageURL = try await serviceProvider.firestoreManager.uploadImageToStorage(
+                    image: image,
+                    path: storagePath
+                )
+                
+                print("Image uploaded successfully: \(imageURL)")
+                
+                // Step 2: Update the event model with the image URL
+                var updatedEvent = newEvent
+                updatedEvent.canvasImageURL = imageURL
+                
+                // Step 3: Save the updated event to Firestore
+                try await serviceProvider.firestoreManager.saveEvent(updatedEvent)
+                print("Event saved successfully with canvas image URL!")
+            } catch {
+                print("Error saving event with canvas image: \(error.localizedDescription)")
+            }
+        }
     }
 }
+

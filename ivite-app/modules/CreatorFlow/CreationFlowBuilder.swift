@@ -11,9 +11,9 @@ final class ConfigurationWizardBuilder: BaseBuilder {
     func make(urlString: String) -> CreatorFlowNavigationController {
         let navigationController = CreatorFlowNavigationController(serviceProvider: serviceProvider, urlString: urlString)
         
-        let controller = TemplateEditorBuilder(serviceProvider: serviceProvider).make(templateEditorDelegate: navigationController, urlString: urlString)
-        
-        navigationController.viewControllers = [controller]
+//        let controller = TemplateEditorBuilder(serviceProvider: serviceProvider).make(creatorFlowModel: creatorFlowModel, urlString: urlString, templateEditorDelegate: navigationController)
+//        
+//        navigationController.viewControllers = [controller]
         
         return navigationController
     }

@@ -1,9 +1,13 @@
 import Foundation
 
 final class TemplateEditorBuilder: BaseBuilder {
-    func make(templateEditorDelegate: TemplateEditorDelegate, urlString: String) -> TemplateEditorController {
+    func make(creatorFlowModel: CreatorFlowModel,
+              urlString: String,
+              templateEditorDelegate: TemplateEditorDelegate) -> TemplateEditorController {
         let router = TemplateEditorRouter()
-        let interactor = TemplateEditorInteractor(urlString: urlString, serviceProvider: serviceProvider)
+        let interactor = TemplateEditorInteractor(creatorFlowModel: creatorFlowModel,
+                                                  urlString: urlString,
+                                                  serviceProvider: serviceProvider)
         let presenter = TemplateEditorPresenter(router: router, interactor: interactor)
         let controller = TemplateEditorController(eventHandler: presenter, dataSource: presenter)
 

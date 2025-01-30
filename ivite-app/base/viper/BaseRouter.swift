@@ -11,7 +11,9 @@ class BaseRouter {
     weak var controller: UIViewController?
     
     func dismiss(completion: (() -> Void)?) {
-        controller?.dismiss(animated: true, completion: completion)
+        DispatchQueue.main.async {
+            self.controller?.dismiss(animated: true, completion: completion)
+        }
     }
     
     func dismissModal(completion: (() -> Void)?) {

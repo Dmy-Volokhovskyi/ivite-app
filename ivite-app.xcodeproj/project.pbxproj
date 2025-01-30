@@ -121,6 +121,11 @@
 		3599D1A02D40316F00E07DD7 /* String+CapitalizeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D19F2D40316F00E07DD7 /* String+CapitalizeFirst.swift */; };
 		3599D1A22D47D02100E07DD7 /* EditContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D1A12D47D02100E07DD7 /* EditContactView.swift */; };
 		3599D1A42D47D71D00E07DD7 /* EditGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D1A32D47D71D00E07DD7 /* EditGroupView.swift */; };
+		3599D1A72D4821B500E07DD7 /* EventStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D1A62D4821B500E07DD7 /* EventStatus.swift */; };
+		3599D1A92D4821BA00E07DD7 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D1A82D4821BA00E07DD7 /* Event.swift */; };
+		3599D1AC2D48220E00E07DD7 /* FirestoreManager+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D1AB2D48220E00E07DD7 /* FirestoreManager+Event.swift */; };
+		3599D1B02D48225200E07DD7 /* Event+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D1AF2D48225200E07DD7 /* Event+Dictionary.swift */; };
+		3599D1B22D482F8A00E07DD7 /* FirestoreManager+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D1B12D482F8A00E07DD7 /* FirestoreManager+Storage.swift */; };
 		35B8869C2CEE28DA00FE1F43 /* AddNewGuestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */; };
 		35B8869D2CEE28DA00FE1F43 /* AddNewGuestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */; };
 		35B8869E2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8869A2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift */; };
@@ -417,6 +422,11 @@
 		3599D19F2D40316F00E07DD7 /* String+CapitalizeFirst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+CapitalizeFirst.swift"; sourceTree = "<group>"; };
 		3599D1A12D47D02100E07DD7 /* EditContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactView.swift; sourceTree = "<group>"; };
 		3599D1A32D47D71D00E07DD7 /* EditGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupView.swift; sourceTree = "<group>"; };
+		3599D1A62D4821B500E07DD7 /* EventStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStatus.swift; sourceTree = "<group>"; };
+		3599D1A82D4821BA00E07DD7 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		3599D1AB2D48220E00E07DD7 /* FirestoreManager+Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirestoreManager+Event.swift"; sourceTree = "<group>"; };
+		3599D1AF2D48225200E07DD7 /* Event+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+Dictionary.swift"; sourceTree = "<group>"; };
+		3599D1B12D482F8A00E07DD7 /* FirestoreManager+Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirestoreManager+Storage.swift"; sourceTree = "<group>"; };
 		35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestBuilder.swift; sourceTree = "<group>"; };
 		35B886982CEE28DA00FE1F43 /* AddNewGuestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestController.swift; sourceTree = "<group>"; };
 		35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestInteractor.swift; sourceTree = "<group>"; };
@@ -861,6 +871,26 @@
 			path = ProfileDetails;
 			sourceTree = "<group>";
 		};
+		3599D1A52D4821B200E07DD7 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				3599D1A82D4821BA00E07DD7 /* Event.swift */,
+				3599D1AF2D48225200E07DD7 /* Event+Dictionary.swift */,
+				3599D1A62D4821B500E07DD7 /* EventStatus.swift */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		3599D1AA2D4821FD00E07DD7 /* Firestore */ = {
+			isa = PBXGroup;
+			children = (
+				35F19CB12D0F521300835195 /* FirestoreManager.swift */,
+				3599D1AB2D48220E00E07DD7 /* FirestoreManager+Event.swift */,
+				3599D1B12D482F8A00E07DD7 /* FirestoreManager+Storage.swift */,
+			);
+			path = Firestore;
+			sourceTree = "<group>";
+		};
 		35B886962CEE28AB00FE1F43 /* AddNewGuest */ = {
 			isa = PBXGroup;
 			children = (
@@ -1053,7 +1083,7 @@
 		76096A342C84FBC00004BEE0 /* services */ = {
 			isa = PBXGroup;
 			children = (
-				35F19CB12D0F521300835195 /* FirestoreManager.swift */,
+				3599D1AA2D4821FD00E07DD7 /* Firestore */,
 				3533EF302D04D855005EC055 /* UserDefaultsService.swift */,
 				76096A352C84FBD40004BEE0 /* ServiceProvider.swift */,
 				F6F3C7292CCA85DF00ED966A /* AuthentificationService.swift */,
@@ -1463,6 +1493,7 @@
 		F6EBF5612CA446D70058F7B2 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				3599D1A52D4821B200E07DD7 /* Event */,
 				3516DF7B2D3ED02200FDAED2 /* TemplateCategory.swift */,
 				3516DF792D3DA29C00FDAED2 /* Template.swift */,
 				3516DE8A2D2BFA0E00FDAED2 /* OrderHistoryItem.swift */,
@@ -1780,6 +1811,7 @@
 				F68EA7512CBEEE0D00F935FA /* DatePickerViewController.swift in Sources */,
 				76096A212C84FAD60004BEE0 /* LaunchController.swift in Sources */,
 				F6E32BF92CCFDA0D00D62C37 /* ProfileMenuView.swift in Sources */,
+				3599D1A92D4821BA00E07DD7 /* Event.swift in Sources */,
 				76096A682C861C860004BEE0 /* ProfileController.swift in Sources */,
 				3515B06B2CFE445C00934E4F /* RoundedTabBar.swift in Sources */,
 				F6F4AA352CC6B1CC00071B0B /* EdditCoHostView.swift in Sources */,
@@ -1871,6 +1903,7 @@
 				F643D96E2CC928FF009A18F0 /* SignInRouter.swift in Sources */,
 				F643D96F2CC928FF009A18F0 /* SignInBuilder.swift in Sources */,
 				3519A8012CDE60F200A16715 /* EditGiftView.swift in Sources */,
+				3599D1A72D4821B500E07DD7 /* EventStatus.swift in Sources */,
 				F643D9702CC928FF009A18F0 /* SignInInteractor.swift in Sources */,
 				F643D9712CC928FF009A18F0 /* SignInPresenter.swift in Sources */,
 				76096A602C861C550004BEE0 /* EventsBuilder.swift in Sources */,
@@ -1886,16 +1919,19 @@
 				F6F4AA402CC8220800071B0B /* CreateAccountPresenter.swift in Sources */,
 				F6F4AA412CC8220800071B0B /* CreateAccountInteractor.swift in Sources */,
 				76096A282C84FB010004BEE0 /* BaseView.swift in Sources */,
+				3599D1B22D482F8A00E07DD7 /* FirestoreManager+Storage.swift in Sources */,
 				76096A242C84FAD60004BEE0 /* LaunchBuilder.swift in Sources */,
 				76096A382C84FC2B0004BEE0 /* BaseViewController.swift in Sources */,
 				76096AFC2C8B11FC0004BEE0 /* InvitesLeftView.swift in Sources */,
 				76096A252C84FAD60004BEE0 /* LaunchPresenter.swift in Sources */,
 				35F19CA12D09DD1B00835195 /* PreviewTitledView.swift in Sources */,
+				3599D1AC2D48220E00E07DD7 /* FirestoreManager+Event.swift in Sources */,
 				F6E32BEE2CCFCEE400D62C37 /* ProfileDetailView.swift in Sources */,
 				F6E32BF32CCFD08700D62C37 /* IVUser.swift in Sources */,
 				76096A332C84FBA90004BEE0 /* BaseInteractor.swift in Sources */,
 				3519A7AD2CD92AEA00A16715 /* AddGiftView.swift in Sources */,
 				F67F1CD02CA43E9500F00044 /* FontTableViewCell.swift in Sources */,
+				3599D1B02D48225200E07DD7 /* Event+Dictionary.swift in Sources */,
 				F6CBD9632CAB2AA300911DF7 /* FontSizePickerView.swift in Sources */,
 				F6D3CBA92CA2D2F600E29761 /* TextEditMenuView.swift in Sources */,
 				3519A8172CE0CB4700A16715 /* GuestCell.swift in Sources */,

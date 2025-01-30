@@ -83,14 +83,27 @@ extension EventDetailsViewModel {
     }
 }
 
-struct CoHost {
-    let id = UUID().uuidString
+struct CoHost: Codable {
+    let id: String
     var name: String
     var email: String
+    
+    init(id: String = UUID().uuidString, name: String, email: String) {
+        self.id = id
+        self.name = name
+        self.email = email
+    }
 }
 
-struct BringListItem {
-    let id = UUID().uuidString
+struct BringListItem: Codable {
+    let id: String
     var name: String?
     var count: Int?
+    
+    init(id: String = UUID().uuidString, name: String? = nil, count: Int? = nil) {
+        self.id = id
+        self.name = name
+        self.count = count
+    }
 }
+

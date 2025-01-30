@@ -1,7 +1,7 @@
 import Foundation
 
 protocol TemplateEditorDelegate: AnyObject {
-    func didEndTemplateEdition()
+    func didEndTemplateEdition(creatorFlowModel: CreatorFlowModel)
 }
 
 protocol TemplateEditorInteractorDelegate: AnyObject {
@@ -12,11 +12,13 @@ final class TemplateEditorInteractor: BaseInteractor {
     weak var delegate: TemplateEditorInteractorDelegate?
     weak var editorDelegate: TemplateEditorDelegate?
     
-    var creationFlowModel = CreatorFlowModel()
+    var creatorFlowModel: CreatorFlowModel
     var canvasURLString: String
     
-    init(urlString: String,
-                  serviceProvider: ServiceProvider) {
+    init(creatorFlowModel: CreatorFlowModel,
+         urlString: String,
+         serviceProvider: ServiceProvider) {
+        self.creatorFlowModel = creatorFlowModel
         self.canvasURLString = urlString
         super.init(serviceProvider: serviceProvider)
     }
@@ -36,8 +38,8 @@ final class TemplateEditorInteractor: BaseInteractor {
             let model = try decoder.decode(Canvas.self, from: data)
             
             // Update the creation flow model
-            creationFlowModel.originalCanvas = model
-            creationFlowModel.canvas = model.copy()
+            creatorFlowModel.originalCanvas = model
+            creatorFlowModel.canvas = model.copy()
             delegate?.didLoadCanvasData()
         } catch {
             // Handle and propagate any errors

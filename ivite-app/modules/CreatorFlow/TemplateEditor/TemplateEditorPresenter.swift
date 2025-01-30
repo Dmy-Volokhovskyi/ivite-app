@@ -1,10 +1,10 @@
-import Foundation
 import UIKit
 
 protocol TemplateEditorViewInterface: AnyObject {
     func loadCanvas()
     func updateTextLayer(_ layer: TextLayer)
     func updateImageLayer(_ layer: ImageLayer)
+    func getImage() -> UIImage?
 }
 
 final class TemplateEditorPresenter: BasePresenter {
@@ -21,7 +21,7 @@ final class TemplateEditorPresenter: BasePresenter {
 extension TemplateEditorPresenter: TemplateEditorEventHandler {
     func updateImageLayer(with image: UIImage, layerIndex: Int) {
         // Ensure the layerIndex is valid and retrieve the image layer
-        guard let canvas = interactor.creationFlowModel.canvas,
+        guard let canvas = interactor.creatorFlowModel.canvas,
               layerIndex >= 0,
               layerIndex < canvas.content.count,
               case var .image(imageLayer) = canvas.content[layerIndex] else {
@@ -32,21 +32,23 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
         imageLayer.customImage = image
         
         // Replace the updated layer back into the canvas
-        interactor.creationFlowModel.canvas?.content[layerIndex] = .image(imageLayer)
+        interactor.creatorFlowModel.canvas?.content[layerIndex] = .image(imageLayer)
         
         // Notify the view interface to update the layer
         viewInterface?.updateImageLayer(imageLayer)
     }
     
     func nextButtonTapped() {
-        interactor.editorDelegate?.didEndTemplateEdition()
+        interactor.creatorFlowModel.image = viewInterface?.getImage()
+        print(interactor.creatorFlowModel.image?.size)
+        interactor.editorDelegate?.didEndTemplateEdition(creatorFlowModel: interactor.creatorFlowModel)
     }
     
     func didUpdatePositionAndSize(for id: String, with coordinates: Coordinates, and size: Size) {
-        guard let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
+        guard let index = interactor.creatorFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
         
         // Check the layer type and update the coordinates and size accordingly
-        switch interactor.creationFlowModel.canvas?.content[index] {
+        switch interactor.creatorFlowModel.canvas?.content[index] {
         case .text(let textLayer):
             textLayer.textBoxCoordinates = TextBoxCoordinates(
                 x: Double(coordinates.x),
@@ -54,18 +56,18 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
                 width: Double(size.width),
                 height: Double(size.height)
             )
-            interactor.creationFlowModel.canvas?.content[index] = .text(textLayer)
+            interactor.creatorFlowModel.canvas?.content[index] = .text(textLayer)
             //            viewInterface?.updateTextLayer(textLayer)
             
         case .image(let imageLayer):
             imageLayer.coordinates = coordinates
             imageLayer.size = size
-            interactor.creationFlowModel.canvas?.content[index] = .image(imageLayer)
+            interactor.creatorFlowModel.canvas?.content[index] = .image(imageLayer)
             //            viewInterface?.updateImageLayer(imageLayer)
         case .shape(let shapeLayer):
             shapeLayer.coordinates = coordinates
             shapeLayer.size = size
-            interactor.creationFlowModel.canvas?.content[index] = .shape(shapeLayer)
+            interactor.creatorFlowModel.canvas?.content[index] = .shape(shapeLayer)
         case .none:
             break
         }
@@ -73,7 +75,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     
     
     func didSelectLineHeight(for id: String, with height: CGFloat) {
-        guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
+        guard let layer = interactor.creatorFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
         
         if case let .text(textLayer) = layer {
             textLayer.lineHeight = height
@@ -85,7 +87,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     }
     
     func didSelectLetterSpacing(for id: String, with spacing: CGFloat) {
-        guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
+        guard let layer = interactor.creatorFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
         
         if case let .text(textLayer) = layer {
             textLayer.letterSpacing = spacing
@@ -97,11 +99,11 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     }
     
     func didSelectTextFormating(for id: String, with format: TextFormatting) {
-        guard let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
+        guard let index = interactor.creatorFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
         
-        if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index] {
+        if case let .text(textLayer) = interactor.creatorFlowModel.canvas?.content[index] {
             textLayer.textFormatting = format
-            interactor.creationFlowModel.canvas?.content[index] = .text(textLayer)
+            interactor.creatorFlowModel.canvas?.content[index] = .text(textLayer)
             viewInterface?.updateTextLayer(textLayer)
         } else {
             
@@ -109,7 +111,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     }
     
     func didSelectAlignment(for id: String, with alignment: TextAlignment) {
-        guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
+        guard let layer = interactor.creatorFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
         
         if case let .text(textLayer) = layer {
             textLayer.textAlignment = alignment as? TextAlignment
@@ -122,7 +124,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     
     func didSelecteTextColor(for id: String, with color: String) {
         print(color)
-        guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
+        guard let layer = interactor.creatorFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
         
         if case let .text(textLayer) = layer {
             textLayer.textColor = color
@@ -134,7 +136,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     }
     
     func didSelectFontSize(for id: String, with size: Double) {
-        guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
+        guard let layer = interactor.creatorFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
         
         if case let .text(textLayer) = layer {
             textLayer.fontSize = size
@@ -146,7 +148,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     }
     
     func didSelectNewFont(for id: String, with name: String) {
-        guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
+        guard let layer = interactor.creatorFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
         
         if case let .text(textLayer) = layer {
             textLayer.font = name
@@ -158,81 +160,81 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     }
     
     func resetFont(for id: String) {
-        guard let originalLayer = interactor.creationFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
-              let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
+        guard let originalLayer = interactor.creatorFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
+              let index = interactor.creatorFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
         
-        if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
+        if case let .text(textLayer) = interactor.creatorFlowModel.canvas?.content[index],
            case let .text(originalTextLayer) = originalLayer {
             
             textLayer.font = originalTextLayer.font
-            interactor.creationFlowModel.canvas?.content[index] = .text(textLayer)
+            interactor.creatorFlowModel.canvas?.content[index] = .text(textLayer)
             viewInterface?.updateTextLayer(textLayer)
         }
     }
     
     func resetFontSize(for id: String) {
-        guard let originalLayer = interactor.creationFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
-              let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
+        guard let originalLayer = interactor.creatorFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
+              let index = interactor.creatorFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
         
-        if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
+        if case let .text(textLayer) = interactor.creatorFlowModel.canvas?.content[index],
            case let .text(originalTextLayer) = originalLayer {
             
             textLayer.fontSize = originalTextLayer.fontSize
-            interactor.creationFlowModel.canvas?.content[index] = .text(textLayer)
+            interactor.creatorFlowModel.canvas?.content[index] = .text(textLayer)
             viewInterface?.updateTextLayer(textLayer)
         }
     }
     
     func resetTextColor(for id: String) {
-        guard let originalLayer = interactor.creationFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
-              let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
+        guard let originalLayer = interactor.creatorFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
+              let index = interactor.creatorFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
         
-        if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
+        if case let .text(textLayer) = interactor.creatorFlowModel.canvas?.content[index],
            case let .text(originalTextLayer) = originalLayer {
             
             textLayer.textColor = originalTextLayer.textColor
-            interactor.creationFlowModel.canvas?.content[index] = .text(textLayer)
+            interactor.creatorFlowModel.canvas?.content[index] = .text(textLayer)
             viewInterface?.updateTextLayer(textLayer)
         }
     }
     
     func resetTextFormatingAndAllinement(for id: String) {
-        guard let originalLayer = interactor.creationFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
-              let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
+        guard let originalLayer = interactor.creatorFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
+              let index = interactor.creatorFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
         
-        if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
+        if case let .text(textLayer) = interactor.creatorFlowModel.canvas?.content[index],
            case let .text(originalTextLayer) = originalLayer {
             
             textLayer.textAlignment = originalTextLayer.textAlignment
             textLayer.textFormatting = originalTextLayer.textFormatting
             
-            interactor.creationFlowModel.canvas?.content[index] = .text(textLayer)
+            interactor.creatorFlowModel.canvas?.content[index] = .text(textLayer)
             viewInterface?.updateTextLayer(textLayer)
         }
     }
     
     func resetLineHeight(for id: String) {
-        guard let originalLayer = interactor.creationFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
-              let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
+        guard let originalLayer = interactor.creatorFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
+              let index = interactor.creatorFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
         
-        if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
+        if case let .text(textLayer) = interactor.creatorFlowModel.canvas?.content[index],
            case let .text(originalTextLayer) = originalLayer {
             
             textLayer.lineHeight = originalTextLayer.lineHeight
-            interactor.creationFlowModel.canvas?.content[index] = .text(textLayer)
+            interactor.creatorFlowModel.canvas?.content[index] = .text(textLayer)
             viewInterface?.updateTextLayer(textLayer)
         }
     }
     
     func resetLetterSpacing(for id: String) {
-        guard let originalLayer = interactor.creationFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
-              let index = interactor.creationFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
+        guard let originalLayer = interactor.creatorFlowModel.originalCanvas?.content.first(where: { $0.id == id }),
+              let index = interactor.creatorFlowModel.canvas?.content.firstIndex(where: { $0.id == id }) else { return }
         
-        if case let .text(textLayer) = interactor.creationFlowModel.canvas?.content[index],
+        if case let .text(textLayer) = interactor.creatorFlowModel.canvas?.content[index],
            case let .text(originalTextLayer) = originalLayer {
             
             textLayer.letterSpacing = originalTextLayer.letterSpacing
-            interactor.creationFlowModel.canvas?.content[index] = .text(textLayer)
+            interactor.creatorFlowModel.canvas?.content[index] = .text(textLayer)
             viewInterface?.updateTextLayer(textLayer)
         }
     }
@@ -253,7 +255,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
 
 extension TemplateEditorPresenter: TemplateEditorDataSource {
     func getLayerType(for id: String) -> LayerType? {
-        guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return nil }
+        guard let layer = interactor.creatorFlowModel.canvas?.content.first(where: { $0.id == id }) else { return nil }
         
         // Check if it's a text layer and extract the font size
         if case let .text(textLayer) = layer {
@@ -267,10 +269,10 @@ extension TemplateEditorPresenter: TemplateEditorDataSource {
         }
     }
     
-    var canvas: Canvas? { interactor.creationFlowModel.originalCanvas }
+    var canvas: Canvas? { interactor.creatorFlowModel.originalCanvas }
     func getFontSize(for id: String) -> Double? {
         // Find the layer with the given id
-        guard let layer = interactor.creationFlowModel.canvas?.content.first(where: { $0.id == id }) else { return nil }
+        guard let layer = interactor.creatorFlowModel.canvas?.content.first(where: { $0.id == id }) else { return nil }
         
         // Check if it's a text layer and extract the font size
         if case let .text(textLayer) = layer {

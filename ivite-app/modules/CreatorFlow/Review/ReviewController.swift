@@ -49,7 +49,7 @@ final class ReviewController: BaseScrollViewController {
         contentStackView.axis = .vertical
         contentStackView.spacing = 16
         
-        invitationImageView.image = .testInvite
+        invitationImageView.image = dataSource.creatorFlowModel.image
         invitationImageView.layer.cornerRadius = 9
         invitationImageView.clipsToBounds = true
         

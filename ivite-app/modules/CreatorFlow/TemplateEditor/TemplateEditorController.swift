@@ -1,11 +1,4 @@
 import UIKit
-// TODOS
-// TODO: - Place View in center
-// TODO: - Add cancel Selction gesture recognizer
-// TODO: - add Text Edit
-// TODO: - add spacing and lineheight
-// TODO: - remove the Reset from model
-// TODO: - add default highlight for editable
 
 protocol TemplateEditorEventHandler: AnyObject {
     func viewDidLoad()
@@ -594,6 +587,10 @@ final class TemplateEditorController: BaseViewController {
 }
 
 extension TemplateEditorController: TemplateEditorViewInterface {
+    func getImage() -> UIImage? {
+        return renderCanvasToImage()
+    }
+    
     func updateImageLayer(_ layer: ImageLayer) {
         // Find the matching resizable view for the image layer
         guard let resizableView = contentView.subviews.compactMap({ $0 as? RKUserResizableView }).first(where: { $0.id == layer.id }) else {
@@ -691,6 +688,20 @@ extension TemplateEditorController: TemplateEditorViewInterface {
         }
     }
     
+    func renderCanvasToImage() -> UIImage? {
+        // Step 1: Determine the visible content bounds of the `contentView`
+        let visibleBounds = contentView.bounds
+        
+        // Step 2: Render only the visible bounds
+        let renderer = UIGraphicsImageRenderer(size: visibleBounds.size)
+        return renderer.image { context in
+            // Offset the context to focus on the visible content
+            context.cgContext.translateBy(x: -visibleBounds.origin.x, y: -visibleBounds.origin.y)
+            
+            // Render the entire `contentView`, but only the visible area will be captured
+            contentView.layer.render(in: context.cgContext)
+        }
+    }
 }
 
 extension TemplateEditorController: UIScrollViewDelegate {
