@@ -126,6 +126,10 @@
 		3599D1AC2D48220E00E07DD7 /* FirestoreManager+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D1AB2D48220E00E07DD7 /* FirestoreManager+Event.swift */; };
 		3599D1B02D48225200E07DD7 /* Event+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D1AF2D48225200E07DD7 /* Event+Dictionary.swift */; };
 		3599D1B22D482F8A00E07DD7 /* FirestoreManager+Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D1B12D482F8A00E07DD7 /* FirestoreManager+Storage.swift */; };
+		3599D2742D4C073900E07DD7 /* FontURLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D2732D4C073900E07DD7 /* FontURLProvider.swift */; };
+		3599D2762D4C075300E07DD7 /* GoogleFontsURLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D2752D4C075300E07DD7 /* GoogleFontsURLProvider.swift */; };
+		3599D2792D4C078E00E07DD7 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D2782D4C078E00E07DD7 /* FontManager.swift */; };
+		3599D27B2D4C0E7C00E07DD7 /* font_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = 3599D27A2D4C0E7C00E07DD7 /* font_mapping.json */; };
 		35B8869C2CEE28DA00FE1F43 /* AddNewGuestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */; };
 		35B8869D2CEE28DA00FE1F43 /* AddNewGuestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */; };
 		35B8869E2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8869A2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift */; };
@@ -427,6 +431,10 @@
 		3599D1AB2D48220E00E07DD7 /* FirestoreManager+Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirestoreManager+Event.swift"; sourceTree = "<group>"; };
 		3599D1AF2D48225200E07DD7 /* Event+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+Dictionary.swift"; sourceTree = "<group>"; };
 		3599D1B12D482F8A00E07DD7 /* FirestoreManager+Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirestoreManager+Storage.swift"; sourceTree = "<group>"; };
+		3599D2732D4C073900E07DD7 /* FontURLProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontURLProvider.swift; sourceTree = "<group>"; };
+		3599D2752D4C075300E07DD7 /* GoogleFontsURLProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleFontsURLProvider.swift; sourceTree = "<group>"; };
+		3599D2782D4C078E00E07DD7 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
+		3599D27A2D4C0E7C00E07DD7 /* font_mapping.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = font_mapping.json; sourceTree = "<group>"; };
 		35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestBuilder.swift; sourceTree = "<group>"; };
 		35B886982CEE28DA00FE1F43 /* AddNewGuestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestController.swift; sourceTree = "<group>"; };
 		35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestInteractor.swift; sourceTree = "<group>"; };
@@ -891,6 +899,15 @@
 			path = Firestore;
 			sourceTree = "<group>";
 		};
+		3599D2772D4C075800E07DD7 /* FontProvider */ = {
+			isa = PBXGroup;
+			children = (
+				3599D2752D4C075300E07DD7 /* GoogleFontsURLProvider.swift */,
+				3599D2732D4C073900E07DD7 /* FontURLProvider.swift */,
+			);
+			path = FontProvider;
+			sourceTree = "<group>";
+		};
 		35B886962CEE28AB00FE1F43 /* AddNewGuest */ = {
 			isa = PBXGroup;
 			children = (
@@ -968,6 +985,7 @@
 		760969F82C84F8670004BEE0 = {
 			isa = PBXGroup;
 			children = (
+				3599D27A2D4C0E7C00E07DD7 /* font_mapping.json */,
 				766AB7512C933010004FC6EE /* canvasData.json */,
 				76096A032C84F8670004BEE0 /* ivite-app */,
 				356461B32CD4E1CF003350C5 /* Frameworks */,
@@ -1083,6 +1101,7 @@
 		76096A342C84FBC00004BEE0 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				3599D2782D4C078E00E07DD7 /* FontManager.swift */,
 				3599D1AA2D4821FD00E07DD7 /* Firestore */,
 				3533EF302D04D855005EC055 /* UserDefaultsService.swift */,
 				76096A352C84FBD40004BEE0 /* ServiceProvider.swift */,
@@ -1201,6 +1220,7 @@
 		76096AF02C88F6860004BEE0 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				3599D2772D4C075800E07DD7 /* FontProvider */,
 				35F19CB32D0F5BDC00835195 /* LoadingButton.swift */,
 				3519A75A2CD7F11800A16715 /* PhotoLibraryManager.swift */,
 				356461C22CD4EA06003350C5 /* SignIn */,
@@ -1656,6 +1676,7 @@
 				3516DF602D35609600FDAED2 /* Pacifico-Regular.ttf in Resources */,
 				76096A7E2C8730E30004BEE0 /* Inter-Italic-VariableFont_opsz,wght.ttf in Resources */,
 				356461C52CD4EC30003350C5 /* GoogleService-Info.plist in Resources */,
+				3599D27B2D4C0E7C00E07DD7 /* font_mapping.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1684,8 +1705,10 @@
 				3516DF582D302FF800FDAED2 /* AdressBookRouter.swift in Sources */,
 				3516DF592D302FF800FDAED2 /* AdressBookPresenter.swift in Sources */,
 				3516DF5A2D302FF800FDAED2 /* AdressBookController.swift in Sources */,
+				3599D2792D4C078E00E07DD7 /* FontManager.swift in Sources */,
 				76096AF22C88F75E0004BEE0 /* MainSearchBarView.swift in Sources */,
 				35EEC7ED2CE68B2B003E7758 /* ContentSizeProvider.swift in Sources */,
+				3599D2762D4C075300E07DD7 /* GoogleFontsURLProvider.swift in Sources */,
 				F6D3CBA62CA2D21600E29761 /* TextEditMenu.swift in Sources */,
 				3516DE802D2843C200FDAED2 /* OrderHistoryInteractor.swift in Sources */,
 				3516DE812D2843C200FDAED2 /* OrderHistoryPresenter.swift in Sources */,
@@ -1815,6 +1838,7 @@
 				76096A682C861C860004BEE0 /* ProfileController.swift in Sources */,
 				3515B06B2CFE445C00934E4F /* RoundedTabBar.swift in Sources */,
 				F6F4AA352CC6B1CC00071B0B /* EdditCoHostView.swift in Sources */,
+				3599D2742D4C073900E07DD7 /* FontURLProvider.swift in Sources */,
 				35EEC7F62CEA6F13003E7758 /* TimeZonePickerController.swift in Sources */,
 				3519A82F2CE24E2E00A16715 /* ReviewGiftView.swift in Sources */,
 				F6936A3B2CBA84AD00764197 /* CoHostView.swift in Sources */,

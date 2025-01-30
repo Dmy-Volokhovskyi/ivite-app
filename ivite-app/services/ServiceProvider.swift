@@ -12,6 +12,7 @@ class ServiceProvider {
     var authenticationService: AuthenticationService
     var userDefaultsService: UserDefaultsService
     var firestoreManager: FirestoreManager
+    var fontManager: FontManager
     
     init(authenticationService: AuthenticationService,
          userDefaultsService: UserDefaultsService,
@@ -20,5 +21,6 @@ class ServiceProvider {
         self.authenticationService = authenticationService
         self.userDefaultsService = userDefaultsService
         self.firestoreManager = FirestoreManager(db: firestore, userDefaultsService: userDefaultsService)
+        self.fontManager = FontManager(urlProvider: GoogleFontsURLProvider())
     }
 }
