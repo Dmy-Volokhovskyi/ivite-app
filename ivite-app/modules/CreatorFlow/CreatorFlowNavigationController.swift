@@ -30,6 +30,8 @@ final class CreatorFlowNavigationController: UINavigationController {
         self.serviceProvider = serviceProvider
         self.urlString = urlString
         super.init(nibName: nil, bundle: nil)
+        
+    #warning("Set up paywall non premium user == 1 draft.")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -38,7 +40,7 @@ final class CreatorFlowNavigationController: UINavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        setupNavBar(for: .templateEditor)
+        
         pushNextStep(for: nil)
         navigationBar.isHidden = false
     }
@@ -57,7 +59,6 @@ private extension CreatorFlowNavigationController {
     
     func pushNextStep(for step: Step?) {
         guard let nextStep = nextStepAfter(step) else {
-            saveData()
             configurationWizardDelegate?.didCompleteCreatorFlow()
             return
         }
@@ -90,11 +91,36 @@ private extension CreatorFlowNavigationController {
     }
     
     
-    private func saveData() {
-    }
-    
-    private func saveToDrafts() {
+    private func saveData(isDraft: Bool) {
+        guard let image = creatorFlowModel.image else {
+            print("No image found in CreatorFlowModel")
+            return
+        }
         
+        let newEvent = Event(from: creatorFlowModel, status: isDraft ? .draft : .pending)
+        let storagePath = "events/\(newEvent.id)/canvasImage.jpg"
+        
+        Task {
+            do {
+                // Step 1: Upload the image to Firebase Storage
+                let imageURL = try await serviceProvider.firestoreManager.uploadImageToStorage(
+                    image: image,
+                    path: storagePath
+                )
+                
+                print("Image uploaded successfully: \(imageURL)")
+                
+                // Step 2: Update the event model with the image URL
+                var updatedEvent = newEvent
+                updatedEvent.canvasImageURL = imageURL
+                
+                // Step 3: Save the updated event to Firestore
+                try await serviceProvider.firestoreManager.saveEvent(updatedEvent)
+                print("Event saved successfully with canvas image URL!")
+            } catch {
+                print("Error saving event with canvas image: \(error.localizedDescription)")
+            }
+        }
     }
     
     private func setupNavBar(for step: Step, in controller: UIViewController) {
@@ -148,7 +174,7 @@ private extension CreatorFlowNavigationController {
     
     @objc private func closeButtonTouch(_ sender: UIBarButtonItem) {
         let saveToDraftsAction = ActionItem(title: "Save to drafts", image: nil, isPrimary: true) {
-            self.saveToDrafts()
+            self.saveData(isDraft: true)
             print("Saved to drafts tapped")
         }
         
@@ -203,35 +229,7 @@ extension CreatorFlowNavigationController: AddGuestsDelegate {
 
 extension CreatorFlowNavigationController: ReviewDelegate {
     func didEndReview() {
-        guard let image = creatorFlowModel.image else {
-            print("No image found in CreatorFlowModel")
-            return
-        }
-        
-        let newEvent = Event(from: creatorFlowModel, status: .pending)
-        let storagePath = "events/\(newEvent.id)/canvasImage.jpg"
-        
-        Task {
-            do {
-                // Step 1: Upload the image to Firebase Storage
-                let imageURL = try await serviceProvider.firestoreManager.uploadImageToStorage(
-                    image: image,
-                    path: storagePath
-                )
-                
-                print("Image uploaded successfully: \(imageURL)")
-                
-                // Step 2: Update the event model with the image URL
-                var updatedEvent = newEvent
-                updatedEvent.canvasImageURL = imageURL
-                
-                // Step 3: Save the updated event to Firestore
-                try await serviceProvider.firestoreManager.saveEvent(updatedEvent)
-                print("Event saved successfully with canvas image URL!")
-            } catch {
-                print("Error saving event with canvas image: \(error.localizedDescription)")
-            }
-        }
+        saveData(isDraft: false)
     }
 }
 
