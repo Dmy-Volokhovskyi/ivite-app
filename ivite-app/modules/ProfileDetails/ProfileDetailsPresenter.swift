@@ -1,8 +1,9 @@
-import Foundation
+import UIKit
 
 protocol ProfileDetailsViewInterface: AnyObject {
     func update(_ user: IVUser)
     func clearPasswordChange()
+    func showImagePicker()
 }
 
 final class ProfileDetailsPresenter: BasePresenter {
@@ -73,6 +74,21 @@ extension ProfileDetailsPresenter: ProfileDetailsEventHandler {
             actions: [deleteAction, cancelAction]
         ))
     }
+    
+    func didTouchChangeProfileImage() {
+        viewInterface?.showImagePicker()
+    }
+    
+    func didSelectNewProfileImage(_ image: UIImage) {
+        Task {
+            do {
+                let newImageUrl = try await interactor.uploadProfileImage(image)
+                await interactor.updateUserProfileImage(newImageUrl)
+            } catch {
+                print("Failed to update profile image: \(error.localizedDescription)")
+            }
+        }
+    }
 }
 
 extension ProfileDetailsPresenter: ProfileDetailsDataSource {
@@ -96,7 +112,9 @@ extension ProfileDetailsPresenter: ProfileDetailsInteractorDelegate {
     }
     
     func didFetchUser(_ user: IVUser) {
-        viewInterface?.update(user)
+        DispatchQueue.main.async {
+            self.viewInterface?.update(user)
+        }
     }
     
     func didFailToFetchUser(with error: String) {

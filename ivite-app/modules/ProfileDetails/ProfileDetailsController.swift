@@ -2,6 +2,8 @@ import UIKit
 
 protocol ProfileDetailsEventHandler: AnyObject {
     func viewWillAppear()
+    func didTouchChangeProfileImage()
+    func didSelectNewProfileImage(_ image: UIImage)
     func didTouchDeleteAccount()
     func changeEmail(newEmail: String, confirmPassword: String)
     func changePassword(oldPassword: String, newPassword: String)
@@ -20,7 +22,7 @@ final class ProfileDetailsController: BaseScrollViewController {
     private let profileDetailsLabel = UILabel()
     private let contentStackView = UIStackView()
     private let mainDetailsContainer = UIView()
-    private let avatarImageView = UIImageView(image: .test)
+    private let profileImageView = UIImageView(image: .test)
     private let credentialsStackView = UIStackView()
     private let nameLabel = IVTextField(placeholder: "Your name", leadingImage: .person)
     private let emailLabel = IVTextField(placeholder: "Email address", leadingImage: .email)
@@ -50,9 +52,12 @@ final class ProfileDetailsController: BaseScrollViewController {
         profileDetailsLabel.font = .interFont(ofSize: 24, weight: .bold)
         profileDetailsLabel.textColor = .secondary1
         
-        avatarImageView.layer.cornerRadius = 56
-        avatarImageView.clipsToBounds = true
-
+        profileImageView.layer.cornerRadius = 56
+        profileImageView.clipsToBounds = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapProfileImage))
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(tapGesture)
+        
         credentialsStackView.axis = .vertical
         credentialsStackView.spacing = 8
         mainDetailsContainer.backgroundColor = .dark10
@@ -85,7 +90,7 @@ final class ProfileDetailsController: BaseScrollViewController {
         ].forEach(contentStackView.addArrangedSubview)
         
         [
-            avatarImageView,
+            profileImageView,
             credentialsStackView,
             deleteAccountButton
         ].forEach({ mainDetailsContainer.addSubview($0) })
@@ -117,13 +122,13 @@ final class ProfileDetailsController: BaseScrollViewController {
     }
     
     private func setUpmainDetailsContainerConstraints() {
-        avatarImageView.autoPinEdge(toSuperviewEdge: .top, withInset: 24)
-        avatarImageView.autoPinEdge(toSuperviewEdge: .leading, withInset: 16, relation: .greaterThanOrEqual)
-        avatarImageView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16, relation: .greaterThanOrEqual)
-        avatarImageView.autoAlignAxis(toSuperviewAxis: .vertical)
-        avatarImageView.autoSetDimensions(to: CGSize(width: 112, height: 112))
+        profileImageView.autoPinEdge(toSuperviewEdge: .top, withInset: 24)
+        profileImageView.autoPinEdge(toSuperviewEdge: .leading, withInset: 16, relation: .greaterThanOrEqual)
+        profileImageView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16, relation: .greaterThanOrEqual)
+        profileImageView.autoAlignAxis(toSuperviewAxis: .vertical)
+        profileImageView.autoSetDimensions(to: CGSize(width: 112, height: 112))
         
-        credentialsStackView.autoPinEdge(.top, to: .bottom, of: avatarImageView, withOffset: 24)
+        credentialsStackView.autoPinEdge(.top, to: .bottom, of: profileImageView, withOffset: 24)
         credentialsStackView.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
         credentialsStackView.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
         
@@ -147,6 +152,10 @@ final class ProfileDetailsController: BaseScrollViewController {
     @objc private func didTouchDeleteAccount(_ sender: UIButton) {
         eventHandler.didTouchDeleteAccount()
     }
+    
+    @objc private func didTapProfileImage() {
+        eventHandler.didTouchChangeProfileImage()
+    }
 }
 
 extension ProfileDetailsController: ProfileDetailsViewInterface {
@@ -156,10 +165,17 @@ extension ProfileDetailsController: ProfileDetailsViewInterface {
     
     func update(_ user: IVUser) {
         let url = URL(string: user.profileImageURL ?? "")
-        avatarImageView.sd_setImage(with: url, placeholderImage: .userAdd)
+        profileImageView.sd_setImage(with: url, placeholderImage: .userAdd)
         
         nameLabel.text = user.firstName
         emailLabel.text = user.email
+    }
+    
+    func showImagePicker() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        present(imagePicker, animated: true)
     }
 }
 
@@ -172,5 +188,21 @@ extension ProfileDetailsController: ChangePasswordViewDelegate {
 extension ProfileDetailsController: ChangeEmailViewDelegate {
     func changeEmail(_ view: ChangeEmailView, confirmPassword: String, newEmail: String) {
         eventHandler.changeEmail(newEmail: newEmail, confirmPassword: confirmPassword)
+    }
+}
+
+extension ProfileDetailsController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[.originalImage] as? UIImage else {
+            picker.dismiss(animated: true)
+            return
+        }
+        
+        eventHandler.didSelectNewProfileImage(selectedImage)
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
     }
 }

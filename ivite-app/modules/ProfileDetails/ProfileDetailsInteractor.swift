@@ -1,3 +1,5 @@
+import UIKit
+
 protocol ProfileDetailsInteractorDelegate: AnyObject {
     func didFetchUser(_ user: IVUser)
     func didFailToFetchUser(with error: String)
@@ -43,4 +45,22 @@ final class ProfileDetailsInteractor: BaseInteractor {
             }
         }
     }
+    
+    func uploadProfileImage(_ image: UIImage) async throws -> String {
+        let imagePath = "profile_images/\(currentUser.userId).jpg"
+        return try await serviceProvider.firestoreManager.uploadImageToStorage(image: image, path: imagePath)
+    }
+    
+    func updateUserProfileImage(_ newImageUrl: String) async {
+        var updatedUser = currentUser
+        updatedUser.profileImageURL = newImageUrl
+        
+        do {
+            try await serviceProvider.firestoreManager.updateUser(updatedUser)
+            delegate?.didFetchUser(updatedUser) // Notify Presenter about the updated user
+        } catch {
+            print("Failed to update user profile image: \(error.localizedDescription)")
+        }
+    }
+
 }
