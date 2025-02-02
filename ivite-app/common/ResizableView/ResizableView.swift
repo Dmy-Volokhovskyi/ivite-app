@@ -38,6 +38,8 @@ class RKUserResizableView: UIView {
     var minWidth: CGFloat = 48.0
     var minHeight: CGFloat = 48.0
     /*private(set)*/ var currentRotation: CGFloat = 0.0
+    var isEditingEnabled: Bool = false
+
     var id: String?
     
     // MARK: - Private Properties
@@ -65,8 +67,8 @@ class RKUserResizableView: UIView {
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
-        super.init(frame: CGRect(x: frame.minX - 5, y: frame.minY - 5, width: frame.width + 10, height: frame.height + 10))
-        self.setupDefaults()
+        super.init(frame: frame) // Keep exactly what the user provides
+        setupDefaults()
     }
     
     required init?(coder: NSCoder) {
@@ -78,13 +80,15 @@ class RKUserResizableView: UIView {
     
     private func setupDefaults() {
         bringSubviewToFront(borderView)
+        clipsToBounds = false
+        borderView.clipsToBounds = false
         setupRotationButton()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        borderView.frame = self.bounds.insetBy(dx: -handleSize, dy: -handleSize)
+        borderView.frame = self.bounds.insetBy(dx: -handleSize / 2, dy: -handleSize / 2)
         borderView.setNeedsDisplay()
         
         if let rotationButton = rotationButton {
@@ -116,8 +120,8 @@ class RKUserResizableView: UIView {
     
     func setViewFrame(_ newFrame: CGRect) {
         self.frame = newFrame
-        _contentView?.frame = self.bounds
-        borderView.frame = self.bounds
+        _contentView?.frame = self.bounds.insetBy(dx: handleSize / 2, dy: handleSize / 2)
+        borderView.frame = self.bounds.insetBy(dx: -handleSize / 2, dy: -handleSize / 2)
         borderView.setNeedsDisplay()
     }
     
@@ -175,6 +179,7 @@ class RKUserResizableView: UIView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
+        
         delegate?.userResizableViewDidBeginEditing(self)
         showEditingHandles()
         guard let touch = touches.first else { return }
@@ -284,7 +289,7 @@ class RKUserResizableView: UIView {
         
         // Update the frame
         self.frame = CGRect(x: newX, y: newY, width: newWidth, height: newHeight)
-        _contentView?.frame = bounds
+        _contentView?.frame = self.bounds.insetBy(dx: handleSize / 2, dy: handleSize / 2)
         borderView.frame = bounds
         borderView.setNeedsDisplay()
         

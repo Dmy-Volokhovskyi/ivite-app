@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum ResizeHandle {
+    case none
+    case topLeft, topRight, bottomLeft, bottomRight
+    case left, right, top, bottom
+}
+
 class GripViewBorderView: UIView {
     
     /// Accent color for borders and handles.

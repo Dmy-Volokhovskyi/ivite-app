@@ -435,7 +435,8 @@ final class TemplateEditorController: BaseViewController {
             resizableTextView.contentView = label
             resizableTextView.id = layer.id
             resizableTextView.delegate = self
-            resizableTextView.transform = rotationTransform // Apply rotation to the resizable view
+            print(label.text, label.frame.size, label.font?.pointSize, "xxx")
+//            resizableTextView.transform = rotationTransform // Apply rotation to the resizable view
             resizableTextView.currentRotation = rotationAngle // Store the rotation
             contentView.addSubview(resizableTextView)
         } else {
@@ -481,7 +482,8 @@ final class TemplateEditorController: BaseViewController {
     }
     
     private func applyTextAttributes(to textView: UITextView, layer: TextLayer, scale: CGFloat) {
-        let scaledFontSize = CGFloat(layer.fontSize ?? 131.4) * scale
+        let scaledFontSize = CGFloat(layer.fontSize ?? 11) * scale
+        print(scaledFontSize, layer.size , layer.textFormatting, "FONT SIZE HERE")
         let attributedString = NSMutableAttributedString(string: textView.text ?? "")
         
         // Configure the font
@@ -527,7 +529,7 @@ final class TemplateEditorController: BaseViewController {
         
         // Apply letter spacing
         if let letterSpacing = layer.letterSpacing {
-            attributedString.addAttribute(.kern, value: letterSpacing, range: NSRange(location: 0, length: attributedString.length))
+            attributedString.addAttribute(.kern, value: letterSpacing * scale, range: NSRange(location: 0, length: attributedString.length))
         }
         
         // Ensure text container settings in UITextView do not interfere with rendering
