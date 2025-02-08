@@ -22,9 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let authentificationService = AuthenticationService(userDefaultsService: userDefaultsService)
         authentificationService.registerAuthStateHandler()
         let firestore = Firestore.firestore()
+        let sendGridManager = SendGridManager()
         serviceProvider = ServiceProvider(authenticationService: authentificationService,
                                           userDefaultsService: userDefaultsService,
-                                          firestore: firestore)
+                                          firestore: firestore,
+                                          sendGridManager: sendGridManager)
         
         setupTabBarAppearance()
         return true

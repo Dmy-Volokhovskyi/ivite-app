@@ -44,6 +44,13 @@ final class CreatorFlowNavigationController: UINavigationController {
         pushNextStep(for: nil)
         navigationBar.isHidden = false
     }
+    
+    func sendEmails() {
+        Task {
+            await serviceProvider.sendGridManager.sendEmails(to: [Guest(name: "Banaan", email: "nox8991@gmail.com", phone: "")], eventId: "2BA0CACE-D0E4-47EE-9AD1-8A56398B3B94", senderName: creatorFlowModel.eventDetailsViewModel.hostName ?? "")
+        }
+    }
+
 }
 
 private extension CreatorFlowNavigationController {

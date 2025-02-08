@@ -13,14 +13,17 @@ class ServiceProvider {
     var userDefaultsService: UserDefaultsService
     var firestoreManager: FirestoreManager
     var fontManager: FontManager
+    var sendGridManager: SendGridManager
     
     init(authenticationService: AuthenticationService,
          userDefaultsService: UserDefaultsService,
-         firestore: Firestore) {
+         firestore: Firestore,
+         sendGridManager: SendGridManager) {
         
         self.authenticationService = authenticationService
         self.userDefaultsService = userDefaultsService
         self.firestoreManager = FirestoreManager(db: firestore, userDefaultsService: userDefaultsService)
         self.fontManager = FontManager(urlProvider: GoogleFontsURLProvider())
+        self.sendGridManager = sendGridManager
     }
 }

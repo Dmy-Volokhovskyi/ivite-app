@@ -130,6 +130,8 @@
 		3599D2762D4C075300E07DD7 /* GoogleFontsURLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D2752D4C075300E07DD7 /* GoogleFontsURLProvider.swift */; };
 		3599D2792D4C078E00E07DD7 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D2782D4C078E00E07DD7 /* FontManager.swift */; };
 		3599D27B2D4C0E7C00E07DD7 /* font_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = 3599D27A2D4C0E7C00E07DD7 /* font_mapping.json */; };
+		3599D27D2D51208B00E07DD7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D27C2D51208B00E07DD7 /* NetworkManager.swift */; };
+		3599D27F2D51209700E07DD7 /* SendGridManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D27E2D51209700E07DD7 /* SendGridManager.swift */; };
 		35B8869C2CEE28DA00FE1F43 /* AddNewGuestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */; };
 		35B8869D2CEE28DA00FE1F43 /* AddNewGuestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */; };
 		35B8869E2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8869A2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift */; };
@@ -435,6 +437,8 @@
 		3599D2752D4C075300E07DD7 /* GoogleFontsURLProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleFontsURLProvider.swift; sourceTree = "<group>"; };
 		3599D2782D4C078E00E07DD7 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		3599D27A2D4C0E7C00E07DD7 /* font_mapping.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = font_mapping.json; sourceTree = "<group>"; };
+		3599D27C2D51208B00E07DD7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		3599D27E2D51209700E07DD7 /* SendGridManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendGridManager.swift; sourceTree = "<group>"; };
 		35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestBuilder.swift; sourceTree = "<group>"; };
 		35B886982CEE28DA00FE1F43 /* AddNewGuestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestController.swift; sourceTree = "<group>"; };
 		35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestInteractor.swift; sourceTree = "<group>"; };
@@ -1101,6 +1105,8 @@
 		76096A342C84FBC00004BEE0 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				3599D27E2D51209700E07DD7 /* SendGridManager.swift */,
+				3599D27C2D51208B00E07DD7 /* NetworkManager.swift */,
 				3599D2782D4C078E00E07DD7 /* FontManager.swift */,
 				3599D1AA2D4821FD00E07DD7 /* Firestore */,
 				3533EF302D04D855005EC055 /* UserDefaultsService.swift */,
@@ -1749,6 +1755,7 @@
 				3519A8412CE26DCF00A16715 /* PaymentOptionCell.swift in Sources */,
 				3519A75D2CD7F15100A16715 /* GiftRegistryView.swift in Sources */,
 				35F19CAB2D0A2EF700835195 /* PreviewGuestsView.swift in Sources */,
+				3599D27F2D51209700E07DD7 /* SendGridManager.swift in Sources */,
 				76A34F952C8B5E61003D3E87 /* ContactCardCell.swift in Sources */,
 				3599D1A22D47D02100E07DD7 /* EditContactView.swift in Sources */,
 				F6936A2B2CB9621F00764197 /* EntryWithTitle.swift in Sources */,
@@ -1939,6 +1946,7 @@
 				F6F4AA3E2CC8220800071B0B /* CreateAccountController.swift in Sources */,
 				3519A82D2CE24D8B00A16715 /* ReviewGiftsDetailView.swift in Sources */,
 				F6F4AA3F2CC8220800071B0B /* CreateAccountBuilder.swift in Sources */,
+				3599D27D2D51208B00E07DD7 /* NetworkManager.swift in Sources */,
 				35B886A62CEE390500FE1F43 /* FilterType.swift in Sources */,
 				F6F4AA402CC8220800071B0B /* CreateAccountPresenter.swift in Sources */,
 				F6F4AA412CC8220800071B0B /* CreateAccountInteractor.swift in Sources */,
