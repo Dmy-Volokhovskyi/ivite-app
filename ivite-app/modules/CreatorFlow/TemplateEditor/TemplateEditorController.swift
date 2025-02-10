@@ -89,6 +89,7 @@ final class TemplateEditorController: BaseViewController {
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+
         view.addSubview(bottomMenu)
         view.addSubview(fontSelectionView)
         view.addSubview(fontSizePicker)
@@ -154,6 +155,7 @@ final class TemplateEditorController: BaseViewController {
         bottomMenu.delegate = self
         
         contentView.backgroundColor = .lightGray
+        contentView.clipsToBounds = false
         
         fontSelectionView.isHidden = true
         fontSelectionView.delegate = self
@@ -330,6 +332,7 @@ final class TemplateEditorController: BaseViewController {
            let croppedCoordinates = layer.croppedCoordinates {
             size = CGSize(width: CGFloat(croppedSize.width) * scale, height: CGFloat(croppedSize.height) * scale)
             coordinates = croppedCoordinates
+            
         } else {
             size = CGSize(width: CGFloat(layer.size.width) * scale, height: CGFloat(layer.size.height) * scale)
             coordinates = layer.coordinates
@@ -397,7 +400,7 @@ final class TemplateEditorController: BaseViewController {
             resizableImageView.id = layer.id
             resizableImageView.contentView = imageView
             resizableImageView.delegate = self
-            
+            resizableImageView.preventsPositionOutsideSuperview = false
             // Add a button for changing the image
             let button = UIButton(type: .system)
             button.setTitle("Pick Image", for: .normal)
@@ -410,25 +413,32 @@ final class TemplateEditorController: BaseViewController {
             resizableImageView.addSubview(imageView)
             resizableImageView.addSubview(button)
             button.autoCenterInSuperview()
-            contentView.addSubview(resizableImageView)
+            if let layerIndex = dataSource.canvas?.content.firstIndex(where: { $0.id == layer.id }) {
+                contentView.insertSubview(resizableImageView, at: layerIndex)
+            } else {
+                contentView.addSubview(resizableImageView)
+            }
+
         } else {
-            // Handle non-editable layers
             let imageFrame = CGRect(x: CGFloat(coordinates.x) * scale,
                                     y: CGFloat(coordinates.y) * scale,
                                     width: size.width,
                                     height: size.height)
             imageView.frame = imageFrame
-            contentView.addSubview(imageView)
+            if let layerIndex = dataSource.canvas?.content.firstIndex(where: { $0.id == layer.id }) {
+                contentView.insertSubview(imageView, at: layerIndex)
+            } else {
+                contentView.addSubview(imageView)
+            }
         }
     }
-
     
     private func addTextLayer(_ layer: TextLayer, scale: CGFloat) {
         guard let textBoxCoordinates = layer.textBoxCoordinates else { return }
         
         let scaledTextBoxWidth = CGFloat(textBoxCoordinates.width) * scale
         let scaledTextBoxHeight = CGFloat(textBoxCoordinates.height) * scale
-        let label = createTextView(for: layer, scale: scale)
+        let textView = createTextView(for: layer, scale: scale)
         
         // Calculate rotation transform
         let rotationAngle = layer.rotation ?? 0 // Default to 0 if no rotation is provided
@@ -438,25 +448,28 @@ final class TemplateEditorController: BaseViewController {
         if layer.editable {
             let resizableTextView = RKUserResizableView(frame: CGRect(x: CGFloat(textBoxCoordinates.x) * scale,
                                                                       y: CGFloat(textBoxCoordinates.y) * scale,
-                                                                      width: scaledTextBoxWidth,
-                                                                      height: scaledTextBoxHeight))
-            resizableTextView.contentView = label
+                                                                      width: scaledTextBoxWidth + 20,
+                                                                      height: scaledTextBoxHeight + 20))
+           
             resizableTextView.id = layer.id
             resizableTextView.delegate = self
-            print(label.text, label.frame.size, label.font?.pointSize, "xxx")
-//            resizableTextView.transform = rotationTransform // Apply rotation to the resizable view
-            resizableTextView.currentRotation = rotationAngle // Store the rotation
+            print(textView.text, textView.frame.size,textView.frame.width, "Width" , textView.font?.pointSize, "xxx")
+            textView.transform = CGAffineTransform(rotationAngle: rotationAngle)
+            resizableTextView.preventsPositionOutsideSuperview = false
+            resizableTextView.setNeedsLayout()
+
             contentView.addSubview(resizableTextView)
+            resizableTextView.contentView = textView
+            resizableTextView.layoutSubviews()
         } else {
-            label.frame = CGRect(x: CGFloat(textBoxCoordinates.x) * scale,
+            textView.frame = CGRect(x: CGFloat(textBoxCoordinates.x) * scale,
                                  y: CGFloat(textBoxCoordinates.y) * scale,
                                  width: scaledTextBoxWidth,
                                  height: scaledTextBoxHeight)
-            label.transform = rotationTransform // Apply rotation directly to the label
-            contentView.addSubview(label)
+            textView.transform = rotationTransform // Apply rotation directly to the label
+            contentView.addSubview(textView)
         }
     }
-
     
     private func updateTextLayer(_ resizableView: RKUserResizableView, with layer: TextLayer, scale: CGFloat) {
         guard let textBoxCoordinates = layer.textBoxCoordinates, let label = resizableView.contentView as? UITextView else { return }

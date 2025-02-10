@@ -45,8 +45,14 @@ class RKUserResizableView: UIView {
             updateEditingHandlesVisibility()
         }
     }
-
-
+    var presetRotation: CGFloat = 0.0 {
+        didSet {
+            // When presetRotation is changed, update the internal rotation state
+            // and apply the corresponding rotation transform.
+            currentRotation = presetRotation
+            self.transform = CGAffineTransform(rotationAngle: currentRotation)
+        }
+    }
 
     var id: String?
     
@@ -307,38 +313,40 @@ class RKUserResizableView: UIView {
     private func resize(usingTouchLocation touchPoint: CGPoint, anchor: RKUserResizableViewAnchorPoint) {
         guard let sv = self.superview else { return }
         
-        // Save and reset the transform so resizing math works in the view's unrotated space.
+        // 1. Save the view's current center in superview coordinates BEFORE removing the transform.
+        let savedCenter = self.center
+        
+        // 2. Save and reset the transform so resizing math works in the view's unrotated space.
         let currentTransform = self.transform
         self.transform = .identity
         
-        // Convert both the original touchStart and the current touchPoint (from superview) to our local coordinate system.
+        // 3. Convert both the original touchStart and the current touchPoint (from superview) to our local coordinate system.
         // Then apply the inverse rotation.
         let inverseRotation = CGAffineTransform(rotationAngle: -currentRotation)
         let unrotatedTouchStart = self.convert(touchStart, from: sv).applying(inverseRotation)
         let unrotatedTouchPoint = self.convert(touchPoint, from: sv).applying(inverseRotation)
         
-        // Calculate the delta for width and height using the unrotated coordinates.
+        // 4. Calculate the delta for width and height using the unrotated coordinates.
         let deltaW = anchor.adjustsW * (unrotatedTouchStart.x - unrotatedTouchPoint.x)
         let deltaH = anchor.adjustsH * (unrotatedTouchPoint.y - unrotatedTouchStart.y)
         
-        // Compute new width and height.
+        // 5. Compute new width and height.
         let newWidth = frame.size.width + deltaW
         let newHeight = frame.size.height + deltaH
         
-        // Enforce minimum sizes.
-        let adjustedWidth = newWidth < minWidth ? minWidth : newWidth
-        let adjustedHeight = newHeight < minHeight ? minHeight : newHeight
+        // 6. Enforce minimum sizes.
+        let adjustedWidth = max(newWidth, minWidth)
+        let adjustedHeight = max(newHeight, minHeight)
         
-        // Instead of updating the origin using deltaX/deltaY, lock the center.
-        let currentCenter = self.center
+        // 7. Create a new frame using the saved center so the view's center does not drift.
         var newFrame = CGRect(
-            x: currentCenter.x - adjustedWidth / 2,
-            y: currentCenter.y - adjustedHeight / 2,
+            x: savedCenter.x - adjustedWidth / 2,
+            y: savedCenter.y - adjustedHeight / 2,
             width: adjustedWidth,
             height: adjustedHeight
         )
         
-        // Optionally clamp the new frame inside the superview.
+        // 8. (Optional) Clamp newFrame inside the superview’s bounds only if preventsPositionOutsideSuperview is true.
         if preventsPositionOutsideSuperview {
             if newFrame.origin.x < 0 { newFrame.origin.x = 0 }
             if newFrame.origin.y < 0 { newFrame.origin.y = 0 }
@@ -352,20 +360,19 @@ class RKUserResizableView: UIView {
             }
         }
         
-        // Update the frame and subviews.
+        // 9. Update the frame and subviews.
         self.frame = newFrame
         _contentView?.frame = self.bounds.insetBy(dx: handleSize / 2, dy: handleSize / 2)
         borderView.frame = self.bounds.insetBy(dx: -handleSize / 2, dy: -handleSize / 2)
         borderView.setNeedsDisplay()
         
-        // Restore the original rotation.
+        // 10. Restore the original rotation.
         self.transform = currentTransform
         
-        // Update touchStart (in superview coordinates) for continuous resizing.
+        // 11. Update touchStart (in superview coordinates) for continuous resizing.
         touchStart = touchPoint
     }
 
-    
     private func anchorPoint(forTouchLocation touchPoint: CGPoint) -> RKUserResizableViewAnchorPoint {
         let noAnchor = RKUserResizableViewAnchorPoint()
         let buffer: CGFloat = handleSize
