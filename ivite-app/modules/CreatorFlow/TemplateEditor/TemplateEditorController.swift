@@ -61,6 +61,12 @@ final class TemplateEditorController: BaseViewController {
     private let bottomDividerView = DividerView()
     private let nextButton = UIButton(configuration: .primary(title: "Next",
                                                               insets: NSDirectionalEdgeInsets(top: 13, leading: 24, bottom: 13, trailing: 24)))
+    var areEditingHandlesHidden: Bool = false {
+        didSet {
+            updateResizableViewsEditingHandles()
+            updateNavBarButtonIcon()
+        }
+    }
     
     init(eventHandler: TemplateEditorEventHandler, dataSource: TemplateEditorDataSource) {
         self.eventHandler = eventHandler
@@ -163,6 +169,8 @@ final class TemplateEditorController: BaseViewController {
         
         spacingPickerView.delegate = self
         spacingPickerView.isHidden = true
+        
+        configureNavBarButton()
         
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(cancelSelection))
@@ -555,7 +563,6 @@ final class TemplateEditorController: BaseViewController {
             return .left
         }
     }
-    
     // Helper method to apply text formatting
     private func formatText(_ text: String, basedOn formatting: TextFormatting?) -> String {
         switch formatting {
@@ -585,6 +592,28 @@ final class TemplateEditorController: BaseViewController {
         imagePicker.delegate = self
         imagePicker.view.tag = layerId // Tag the image picker with the layer ID
         present(imagePicker, animated: true)
+    }
+    
+    private func configureNavBarButton() {
+        // Initially use the "eye" symbol (showing that handles are visible).
+        let barButton = UIBarButtonItem(image: UIImage(systemName: "eye"), style: .plain, target: self, action: #selector(toggleEditingHandles))
+        navigationItem.rightBarButtonItem = barButton
+    }
+    
+    @objc private func toggleEditingHandles() {
+        // Toggle the flag.
+        areEditingHandlesHidden.toggle()
+    }
+    
+    // Update each resizable view with the new setting.
+    private func updateResizableViewsEditingHandles() {
+        contentView.subviews.forEach { ($0 as? RKUserResizableView)?.forceHideEditingHandles = areEditingHandlesHidden }
+    }
+    
+    // Update the bar button icon according to the state.
+    private func updateNavBarButtonIcon() {
+        let iconName = areEditingHandlesHidden ? "eye.slash" : "eye"
+        navigationItem.rightBarButtonItem?.image = UIImage(systemName: iconName)
     }
 }
 
@@ -691,18 +720,27 @@ extension TemplateEditorController: TemplateEditorViewInterface {
     }
     
     func renderCanvasToImage() -> UIImage? {
+        // Check and save border state
+        let bordersState = areEditingHandlesHidden
+        
+        if !areEditingHandlesHidden {
+            areEditingHandlesHidden = true
+        }
         // Step 1: Determine the visible content bounds of the `contentView`
         let visibleBounds = contentView.bounds
         
         // Step 2: Render only the visible bounds
         let renderer = UIGraphicsImageRenderer(size: visibleBounds.size)
-        return renderer.image { context in
+        let image = renderer.image { context in
             // Offset the context to focus on the visible content
             context.cgContext.translateBy(x: -visibleBounds.origin.x, y: -visibleBounds.origin.y)
             
             // Render the entire `contentView`, but only the visible area will be captured
             contentView.layer.render(in: context.cgContext)
         }
+        areEditingHandlesHidden = bordersState
+        
+        return image
     }
 }
 

@@ -39,6 +39,14 @@ class RKUserResizableView: UIView {
     var minHeight: CGFloat = 48.0
     /*private(set)*/ var currentRotation: CGFloat = 0.0
     var isEditingEnabled: Bool = false
+    private var gestureBeganToSelect = false
+    var forceHideEditingHandles: Bool = false {
+        didSet {
+            updateEditingHandlesVisibility()
+        }
+    }
+
+
 
     var id: String?
     
@@ -126,6 +134,13 @@ class RKUserResizableView: UIView {
     }
     
     func showEditingHandles() {
+        // Only show editing handles if we’re not forcing them to be hidden.
+        guard !forceHideEditingHandles else {
+            borderView.isHidden = true
+            rotationButton?.isHidden = true
+            return
+        }
+        borderView.isHidden = false
         borderView.setBorderActive(true)
         rotationButton?.isHidden = false
     }
@@ -134,6 +149,26 @@ class RKUserResizableView: UIView {
         borderView.setBorderActive(false)
         rotationButton?.isHidden = true
     }
+    
+    private func updateEditingHandlesVisibility() {
+        if forceHideEditingHandles {
+            // Force hide them completely.
+            borderView.isHidden = true
+            rotationButton?.isHidden = true
+        } else {
+            // Otherwise, restore the proper state based on isEditingEnabled.
+            if isEditingEnabled {
+                borderView.isHidden = false
+                borderView.setBorderActive(true)
+                rotationButton?.isHidden = false
+            } else {
+                borderView.isHidden = false  // Visible but drawn as inactive (dashed)
+                borderView.setBorderActive(false)
+                rotationButton?.isHidden = true
+            }
+        }
+    }
+
     
     // MARK: - Rotation Handling
     
@@ -153,13 +188,14 @@ class RKUserResizableView: UIView {
     }
     
     @objc private func handleRotationGesture(_ recognizer: UIPanGestureRecognizer) {
+        guard !forceHideEditingHandles else { return }
+        // Only allow rotation if the view is selected (editing is enabled)
+        guard isEditingEnabled else { return }
         guard let superview = self.superview else { return }
         
         // Get the touch location in the superview's coordinate space.
         let locationInSuperview = recognizer.location(in: superview)
-        // Use the view's center as the rotation pivot.
         let centerOfView = self.center
-        // Calculate the current angle from the center to the touch.
         let angle = atan2(locationInSuperview.y - centerOfView.y,
                           locationInSuperview.x - centerOfView.x)
         
@@ -169,27 +205,33 @@ class RKUserResizableView: UIView {
             initialRotation = currentRotation
             initialTouchAngle = angle
         case .changed:
-            // Determine how much the touch angle has changed.
             let deltaAngle = angle - initialTouchAngle
-            // Update the stored rotation.
             currentRotation = initialRotation + deltaAngle
-            // Set the transform directly to the new rotation.
             self.transform = CGAffineTransform(rotationAngle: currentRotation)
         default:
             break
         }
     }
 
-    
     // MARK: - Touches (Resizing & Moving)
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
-        delegate?.userResizableViewDidBeginEditing(self)
-        showEditingHandles()
-        
+        guard !forceHideEditingHandles else { return }
         guard let touch = touches.first, let sv = self.superview else { return }
+        // If the view is not selected, use this gesture to select it and ignore movement/resizing.
+        if !isEditingEnabled {
+            isEditingEnabled = true
+            showEditingHandles()
+            delegate?.userResizableViewDidBeginEditing(self)
+            gestureBeganToSelect = true
+            // Record the starting touch point in the superview's coordinate space.
+            touchStart = touch.location(in: sv)
+            return
+        }
+        
+        // The view is already selected. Clear the selection flag.
+        gestureBeganToSelect = false
         
         // Determine if the touch is on a handle (resizing) or not.
         let pointInSelf = touch.location(in: self)
@@ -201,27 +243,33 @@ class RKUserResizableView: UIView {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first, let sv = self.superview else { return }
+        guard !forceHideEditingHandles else { return }
+        // If this gesture was used to select the view, do not allow movement/resizing.
+        if gestureBeganToSelect {
+            return
+        }
         
-        // Always get the current touch location in the superview's coordinate space.
+        // Always use superview coordinates.
         let currentTouchPoint = touch.location(in: sv)
         
+        // If a resize handle is active, perform resizing; otherwise, translate.
         if let anchor = resizeAnchorPoint, isResizing() {
-            // Use the new resize function.
             resize(usingTouchLocation: currentTouchPoint, anchor: anchor)
         } else {
-            // Use the new translation function.
             translate(usingTouchLocation: currentTouchPoint)
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        gestureBeganToSelect = false
         delegate?.userResizableViewDidEndEditing(self)
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        gestureBeganToSelect = false
         delegate?.userResizableViewDidEndEditing(self)
     }
-    
+
     // MARK: - Movement & Resizing Logic
     
     private func isResizing() -> Bool {
@@ -233,6 +281,7 @@ class RKUserResizableView: UIView {
     }
     
     private func translate(usingTouchLocation touchPoint: CGPoint) {
+        guard !forceHideEditingHandles else { return }
         let newCenter = CGPoint(
             x: center.x + (touchPoint.x - touchStart.x),
             y: center.y + (touchPoint.y - touchStart.y)
@@ -346,15 +395,19 @@ class RKUserResizableView: UIView {
     }
     
     // MARK: - Hit Testing for Rotation Button
-    
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        // Check if the point is inside the rotation button
+        // If the view is not selected, do not allow interaction with the rotation button.
+        if !isEditingEnabled {
+            return super.hitTest(point, with: event)
+        }
+        
+        // Check if the point is inside the rotation button.
         if let rotationButton = rotationButton,
            rotationButton.frame.contains(convert(point, to: self)) {
             return rotationButton
         }
         
-        // Check if the point is inside any of the handle (anchor) areas
+        // Check if the point is inside any of the handle areas.
         if borderView.isActive {
             let buffer: CGFloat = handleSize
             let anchorRects = [
@@ -367,12 +420,12 @@ class RKUserResizableView: UIView {
                 CGRect(x: (bounds.width - buffer) / 2, y: -buffer / 2, width: buffer, height: buffer), // upper-middle
                 CGRect(x: (bounds.width - buffer) / 2, y: bounds.height - buffer / 2, width: buffer, height: buffer), // lower-middle
                 CGRect(x: -buffer / 2, y: (bounds.height - buffer) / 2, width: buffer, height: buffer), // middle-left
-                CGRect(x: bounds.width - buffer / 2, y: (bounds.height - buffer) / 2, width: buffer, height: buffer) // middle-right
+                CGRect(x: bounds.width - buffer / 2, y: (bounds.height - buffer) / 2, width: buffer, height: buffer)  // middle-right
             ]
             
             for anchorRect in anchorRects {
                 if anchorRect.contains(convert(point, to: self)) {
-                    return self // Return the view itself to handle resizing
+                    return self
                 }
             }
         }
