@@ -140,12 +140,12 @@ extension ContactController: UITableViewDelegate {
 
 extension ContactController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        tableView.backgroundView?.isHidden = dataSource.numberOfSections != 0
         return dataSource.numberOfSections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dataSource.numberOfRows
+        tableView.backgroundView?.isHidden = dataSource.numberOfRows > 0
+        return dataSource.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
