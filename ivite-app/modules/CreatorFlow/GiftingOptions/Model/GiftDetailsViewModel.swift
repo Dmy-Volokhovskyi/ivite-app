@@ -11,58 +11,56 @@ final class GiftDetailsViewModel {
     var gifts: [Gift] = []
 }
 
-final class Gift: Codable {
-    let id: UUID
+import Foundation
+
+struct Gift: Codable {
+    let id: String  // Store as String for Firestore
     var name: String
     var link: String?
     var image: Data?
-    var imageURL: URL?
-    var gifterEmail: String?
+    var imageURL: String?
+    var gifterId: String?  // Store user ID instead of email
     
-    init(id: UUID = UUID(), // Generate a new UUID by default
+    init(id: String = UUID().uuidString,
          name: String,
          link: String? = nil,
          image: Data? = nil,
-         imageURL: URL? = nil,
-         gifterEmail: String? = nil) {
+         imageURL: String? = nil,
+         gifterId: String?) {
         self.id = id
         self.name = name
         self.link = link
         self.image = image
         self.imageURL = imageURL
-        self.gifterEmail = gifterEmail
+        self.gifterId = gifterId
     }
     
-    // Custom coding keys for encoding and decoding
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case link
-        case image
-        case imageURL = "image_url"
-        case gifterEmail = "gifter_email"
+    // Convert to Firestore Dictionary
+    func toDictionary() -> [String: Any] {
+        return [
+            "id": id,
+            "name": name,
+            "link": link ?? NSNull(),
+            "image": image?.base64EncodedString() ?? NSNull(), // Store image as Base64 String
+            "imageURL": imageURL ?? NSNull(),
+            "gifterId": gifterId
+        ]
     }
     
-    // Decode from a decoder
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(UUID.self, forKey: .id)
-        name = try container.decode(String.self, forKey: .name)
-        link = try container.decodeIfPresent(String.self, forKey: .link)
-        image = try container.decodeIfPresent(Data.self, forKey: .image)
-        imageURL = try container.decodeIfPresent(URL.self, forKey: .imageURL)
-        gifterEmail = try container.decodeIfPresent(String.self, forKey: .gifterEmail)
-    }
-    
-    // Encode to an encoder
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(name, forKey: .name)
-        try container.encodeIfPresent(link, forKey: .link)
-        try container.encodeIfPresent(image, forKey: .image)
-        try container.encodeIfPresent(imageURL, forKey: .imageURL)
-        try container.encodeIfPresent(gifterEmail, forKey: .gifterEmail)
+    // Convert from Firestore Dictionary
+    static func fromDictionary(_ dictionary: [String: Any]) -> Gift? {
+        guard let id = dictionary["id"] as? String,
+              let name = dictionary["name"] as? String,
+              let gifterId = dictionary["gifterId"] as? String else {
+            return nil
+        }
+        
+        let link = dictionary["link"] as? String
+        let imageURL = dictionary["imageURL"] as? String
+        let imageData: Data? = (dictionary["image"] as? String).flatMap { Data(base64Encoded: $0) }
+        
+        return Gift(id: id, name: name, link: link, image: imageData, imageURL: imageURL, gifterId: gifterId)
     }
 }
+
 

@@ -82,16 +82,16 @@ final class PreviewGiftView: BaseView {
                           gifter: Guest?,
                           previewMode: Bool) {
         self.gift = gift
-        imageView.sd_setImage(with: gift.imageURL, placeholderImage: .giftBoxWithABow2)
+        imageView.sd_setImage(with: URL(string: gift.imageURL ?? ""), placeholderImage: .giftBoxWithABow2)
         imageView.contentMode = gift.imageURL == nil ? .center : .scaleAspectFit
         
         titleLabel.text = gift.name
         linkButton.isHidden = gift.link == nil
         
         if previewMode {
-            let buttonTitle = gift.gifterEmail == nil ? "I'll bring it" : "Gift Claimed"
+            let buttonTitle = gift.gifterId == nil ? "I'll bring it" : "Gift Claimed"
             
-            bringButton.IVsetEnabled(gift.gifterEmail == nil, title: buttonTitle)
+            bringButton.IVsetEnabled(gift.gifterId == nil, title: buttonTitle)
             bringButton.isHidden = false
             gifterView.isHidden = true
         } else {

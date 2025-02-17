@@ -95,6 +95,27 @@ struct CoHost: Codable {
     }
 }
 
+extension CoHost {
+    func toDictionary() -> [String: Any] {
+        return [
+            "id": id,
+            "name": name,
+            "email": email
+        ]
+    }
+}
+
+extension CoHost {
+    static func fromDictionary(_ dictionary: [String: Any]) -> CoHost {
+        return CoHost(
+            id: dictionary["id"] as? String ?? UUID().uuidString,
+            name: dictionary["name"] as? String ?? "Unknown",
+            email: dictionary["email"] as? String ?? "Unknown"
+        )
+    }
+}
+
+
 struct BringListItem: Codable {
     let id: String
     var name: String?
@@ -106,4 +127,25 @@ struct BringListItem: Codable {
         self.count = count
     }
 }
+
+extension BringListItem {
+    func toDictionary() -> [String: Any] {
+        return [
+            "id": id,
+            "name": name ?? NSNull(),
+            "count": count ?? NSNull()
+        ]
+    }
+}
+
+extension BringListItem {
+    static func fromDictionary(_ dictionary: [String: Any]) -> BringListItem {
+        return BringListItem(
+            id: dictionary["id"] as? String ?? UUID().uuidString,
+            name: dictionary["name"] as? String,
+            count: dictionary["count"] as? Int
+        )
+    }
+}
+
 

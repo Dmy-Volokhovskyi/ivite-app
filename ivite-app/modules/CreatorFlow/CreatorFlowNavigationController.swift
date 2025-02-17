@@ -121,14 +121,22 @@ private extension CreatorFlowNavigationController {
                 var updatedEvent = newEvent
                 updatedEvent.canvasImageURL = imageURL
                 
-                // Step 3: Save the updated event to Firestore
+                // Step 3: Save the event (excluding guests & gifts)
                 try await serviceProvider.firestoreManager.saveEvent(updatedEvent)
                 print("Event saved successfully with canvas image URL!")
+                
+                // Step 4: Save guests as a subcollection
+                try await serviceProvider.firestoreManager.saveGuests(for: updatedEvent.id, guests: updatedEvent.guests)
+                
+                // Step 5: Save gifts as a subcollection
+                try await serviceProvider.firestoreManager.saveGifts(for: updatedEvent.id, gifts: updatedEvent.gifts)
+                
             } catch {
                 print("Error saving event with canvas image: \(error.localizedDescription)")
             }
         }
     }
+
     
     private func setupNavBar(for step: Step, in controller: UIViewController) {
         let currentIndex = Step.allCases.firstIndex(of: step) ?? 0

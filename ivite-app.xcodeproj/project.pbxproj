@@ -132,6 +132,7 @@
 		3599D27B2D4C0E7C00E07DD7 /* font_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = 3599D27A2D4C0E7C00E07DD7 /* font_mapping.json */; };
 		3599D27D2D51208B00E07DD7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D27C2D51208B00E07DD7 /* NetworkManager.swift */; };
 		3599D27F2D51209700E07DD7 /* SendGridManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D27E2D51209700E07DD7 /* SendGridManager.swift */; };
+		3599D2812D5E015800E07DD7 /* Guest+ToDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3599D2802D5E015800E07DD7 /* Guest+ToDictionary.swift */; };
 		35B8869C2CEE28DA00FE1F43 /* AddNewGuestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */; };
 		35B8869D2CEE28DA00FE1F43 /* AddNewGuestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */; };
 		35B8869E2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8869A2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift */; };
@@ -439,6 +440,7 @@
 		3599D27A2D4C0E7C00E07DD7 /* font_mapping.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = font_mapping.json; sourceTree = "<group>"; };
 		3599D27C2D51208B00E07DD7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3599D27E2D51209700E07DD7 /* SendGridManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendGridManager.swift; sourceTree = "<group>"; };
+		3599D2802D5E015800E07DD7 /* Guest+ToDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Guest+ToDictionary.swift"; sourceTree = "<group>"; };
 		35B886972CEE28DA00FE1F43 /* AddNewGuestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestBuilder.swift; sourceTree = "<group>"; };
 		35B886982CEE28DA00FE1F43 /* AddNewGuestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestController.swift; sourceTree = "<group>"; };
 		35B886992CEE28DA00FE1F43 /* AddNewGuestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewGuestInteractor.swift; sourceTree = "<group>"; };
@@ -1529,6 +1531,7 @@
 				F6EBF5622CA446EE0058F7B2 /* Layer.swift */,
 				F6EBF5642CA4470C0058F7B2 /* CanvasResponse.swift */,
 				3519A8142CE0C9E000A16715 /* Guest.swift */,
+				3599D2802D5E015800E07DD7 /* Guest+ToDictionary.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1772,6 +1775,7 @@
 				F6936A232CB9608200764197 /* EventDetailsController.swift in Sources */,
 				F6936A242CB9608200764197 /* EventDetailsInteractor.swift in Sources */,
 				3516DE8F2D2C225900FDAED2 /* ToggleControlView.swift in Sources */,
+				3599D2812D5E015800E07DD7 /* Guest+ToDictionary.swift in Sources */,
 				F6936A252CB9608200764197 /* EventDetailsRouter.swift in Sources */,
 				356461CD2CD507EC003350C5 /* ProfileDetailsController.swift in Sources */,
 				356461CE2CD507EC003350C5 /* ProfileDetailsPresenter.swift in Sources */,

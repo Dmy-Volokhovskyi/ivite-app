@@ -92,7 +92,7 @@ final class AddGiftView: BaseView {
     }
     
     @objc private func didTouchAddGift(_ sender: UIButton) {
-        let gift = Gift(name: giftTitleTextFiel.text ?? "''", link: linkTextField.text, image: addImageView.getImageData())
+        let gift = Gift(name: giftTitleTextFiel.text ?? "''", link: linkTextField.text, image: addImageView.getImageData(), gifterId: nil)
         
         giftTitleTextFiel.text = nil
         linkTextField.text = nil

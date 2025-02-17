@@ -35,8 +35,8 @@ class RKUserResizableView: UIView {
     
     var preventsPositionOutsideSuperview: Bool = true
     weak var delegate: RKUserResizableViewDelegate?
-    var minWidth: CGFloat = 48.0
-    var minHeight: CGFloat = 48.0
+    var minWidth: CGFloat = 8.0
+    var minHeight: CGFloat = 8.0
     /*private(set)*/ var currentRotation: CGFloat = 0.0
     var isEditingEnabled: Bool = false
     private var gestureBeganToSelect = false

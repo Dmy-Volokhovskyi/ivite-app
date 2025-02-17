@@ -22,7 +22,7 @@ final class EditGiftView: BaseView{
     private let addGiftRegistryLabel = UILabel()
     private let saveButton = UIButton(configuration: .primary(title: "Save"))
     private let addImageView = GiftRegistryView()
-    private let gift: Gift
+    private var gift: Gift
     
     weak var delegate: EditGiftViewDelegate?
     

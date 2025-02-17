@@ -350,6 +350,13 @@ extension Layer {
     }
 }
 
+extension Layer {
+    func encoded() throws -> [String: Any] {
+        let data = try JSONEncoder().encode(self)
+        return try JSONSerialization.jsonObject(with: data) as! [String: Any]
+    }
+}
+
 // MARK: - Canvas Model
 struct Canvas: Codable {
     let size: Size
@@ -370,6 +377,19 @@ extension Canvas {
             numberOfLayers: self.numberOfLayers,
             content: self.content.map { $0.copy() }
         )
+    }
+}
+
+extension Canvas {
+    func toDictionary() throws -> [String: Any] {
+        return [
+            "size": [
+                "width": size.width,
+                "height": size.height
+            ],
+            "numberOfLayers": numberOfLayers,
+            "content": try content.map { try $0.encoded() } // Convert Layer Enum to Dictionary
+        ]
     }
 }
 

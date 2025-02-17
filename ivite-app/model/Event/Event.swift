@@ -44,7 +44,8 @@ struct Event: Codable {
         guests: [Guest] = [],
         canvas: Canvas? = nil,
         gifts: [Gift] = [],
-        status: EventStatus = .draft
+        status: EventStatus = .draft,
+        canvasImageURL: String?
     ) {
         self.id = id
         self.title = title

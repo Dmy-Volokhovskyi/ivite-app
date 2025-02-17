@@ -64,8 +64,8 @@ final class PreviewGiftsDetailView: BaseView {
         giftsStackView.subviews.forEach({ $0.removeFromSuperview() })
         model.gifts.forEach({ gift in
             let reviewGiftView = PreviewGiftView()
-            let isOwnedByCurrentUser = user?.userId == gift.gifterEmail
-            let gifter: Guest? = guests.first { $0.email == gift.gifterEmail ?? "" }
+            let isOwnedByCurrentUser = user?.userId == gift.gifterId
+            let gifter: Guest? = guests.first { $0.id == gift.gifterId ?? "" }
             reviewGiftView.configure(with: gift,
                                      isOwnedByCurrentUser: isOwnedByCurrentUser,
                                      gifter: gifter,

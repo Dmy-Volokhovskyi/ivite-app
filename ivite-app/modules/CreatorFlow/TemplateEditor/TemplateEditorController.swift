@@ -448,9 +448,8 @@ final class TemplateEditorController: BaseViewController {
         if layer.editable {
             let resizableTextView = RKUserResizableView(frame: CGRect(x: CGFloat(textBoxCoordinates.x) * scale,
                                                                       y: CGFloat(textBoxCoordinates.y) * scale,
-                                                                      width: scaledTextBoxWidth + 20,
-                                                                      height: scaledTextBoxHeight + 20))
-           
+                                                                      width: scaledTextBoxWidth,
+                                                                      height: scaledTextBoxHeight))
             resizableTextView.id = layer.id
             resizableTextView.delegate = self
             print(textView.text, textView.frame.size,textView.frame.width, "Width" , textView.font?.pointSize, "xxx")
