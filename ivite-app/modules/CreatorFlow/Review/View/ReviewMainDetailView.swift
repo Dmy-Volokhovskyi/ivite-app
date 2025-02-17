@@ -24,12 +24,15 @@ final class ReviewMainDetailView: BaseView {
         
         hostStackView.axis = .vertical
         hostStackView.spacing = 16
+        
+        editButton.setImage(.editOrange, for: .normal)
     }
     
     override func addSubviews() {
         super.addSubviews()
         
         [
+            editButton,
             eventTitleLabel,
             timeAndDateView,
             timezoneLabel,
@@ -42,7 +45,13 @@ final class ReviewMainDetailView: BaseView {
     override func constrainSubviews() {
         super.constrainSubviews()
         
-        eventTitleLabel.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16), excludingEdge: .bottom)
+        eventTitleLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)
+        eventTitleLabel.autoPinEdge(toSuperviewEdge: .top, withInset: 16)
+        
+        editButton.autoPinEdge(.leading, to: .trailing, of: eventTitleLabel, withOffset: 16)
+        editButton.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
+        editButton.autoPinEdge(toSuperviewEdge: .top, withInset: 16)
+        editButton.autoSetDimensions(to: CGSize(width: 20, height: 20))
         
         timeAndDateView.autoPinEdge(.top, to: .bottom, of: eventTitleLabel, withOffset: 16)
         timeAndDateView.autoPinEdge(toSuperviewEdge: .leading, withInset: 16)

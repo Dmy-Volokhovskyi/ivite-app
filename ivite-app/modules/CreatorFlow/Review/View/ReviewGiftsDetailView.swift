@@ -42,6 +42,7 @@ final class ReviewGiftsDetailView: BaseView {
         editButton.autoPinEdge(.leading, to: .trailing, of: giftsHeaderView, withOffset: 16)
         editButton.autoPinEdge(toSuperviewEdge: .trailing, withInset: 16)
         editButton.autoPinEdge(toSuperviewEdge: .top, withInset: 16)
+        editButton.autoSetDimensions(to: CGSize(width: 20, height: 20))
         
         giftsStackView.autoPinEdge(.top, to: .bottom, of: giftsHeaderView, withOffset: 16)
         giftsStackView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16), excludingEdge: .top)

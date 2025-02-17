@@ -16,7 +16,6 @@ final class LaunchPresenter: BasePresenter {
 
 extension LaunchPresenter: LaunchEventHandler {
     func viewDidLoad() {
-    #warning("change back")
         let mainScreenController = MainScreenBuilder(serviceProvider: interactor.serviceProvider).make()
         
         router.changeRoot(to: mainScreenController)
