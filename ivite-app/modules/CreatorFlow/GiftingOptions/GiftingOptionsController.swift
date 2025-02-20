@@ -10,6 +10,7 @@ protocol GiftingOptionsEventHandler: AnyObject {
 
 protocol GiftingOptionsDataSource: AnyObject {
     var gifts: [Gift] { get }
+    var nexButtonTitle: String { get }
 }
 
 final class GiftingOptionsController: BaseScrollViewController {
@@ -27,14 +28,16 @@ final class GiftingOptionsController: BaseScrollViewController {
     private let bottomBarView = UIView()
     private let bottomDividerView = DividerView()
     private let backButton = UIButton(configuration: .image(image: .chewroneBack))
-    private let nextButton = UIButton(configuration: .primary(title: "Next"))
+    private let nextButton: UIButton
     
     init(eventHandler: GiftingOptionsEventHandler, dataSource: GiftingOptionsDataSource) {
         self.eventHandler = eventHandler
         self.dataSource = dataSource
         self.giftsView = GiftListView(gifts: dataSource.gifts)
         self.addGiftView = AddGiftView(photoLibraryManager: photoLibraryManager, addImageView: addImageView )
+        self.nextButton = UIButton(configuration: .primary(title: dataSource.nexButtonTitle))
         super.init()
+        
         
         divideView.isHidden = dataSource.gifts.isEmpty
         giftsView.isHidden = dataSource.gifts.isEmpty

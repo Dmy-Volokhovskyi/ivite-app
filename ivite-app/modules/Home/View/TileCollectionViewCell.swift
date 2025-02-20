@@ -46,7 +46,7 @@ final class TileCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with model: Template) {
-        let imageUrl = URL(string: model.prefabricatedImage ?? "")
+        let imageUrl = URL(string: model.prefabricatedImage)
         imageView.sd_setImage(with: imageUrl, placeholderImage: .userAdd)
         titleLabel.text = model.name
     }

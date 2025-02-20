@@ -67,13 +67,22 @@ extension GiftingOptionsPresenter: GiftingOptionsEventHandler {
     }
     
     func didTouchNextButton() {
-        interactor.giftingOptionsDelegate?.didEndGiftingOptions(gifts: interactor.gifts)
+        if interactor.isEditing {
+            router.dismiss(completion: nil)
+            interactor.giftingOptionsDelegate?.didEndGiftingOptions(gifts: interactor.gifts, wasEditing: interactor.isEditing)
+        } else {
+            interactor.giftingOptionsDelegate?.didEndGiftingOptions(gifts: interactor.gifts, wasEditing: interactor.isEditing)
+        }
     }
 }
 
 extension GiftingOptionsPresenter: GiftingOptionsDataSource {
     var gifts: [Gift] {
         interactor.gifts
+    }
+    
+    var nexButtonTitle: String {
+        interactor.isEditing ? "Save" : "Next"
     }
 }
 

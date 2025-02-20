@@ -1,7 +1,7 @@
 import Foundation
 
 final class ReviewBuilder: BaseBuilder {
-    func make(reviewDelegate: ReviewDelegate, creatorFlowModel: CreatorFlowModel) -> ReviewController {
+    func make(reviewDelegate: ReviewDelegate, creatorFlowModel: CreatorFlowModel) -> (ReviewController, ReviewInteractor) {
         let router = ReviewRouter()
         let interactor = ReviewInteractor(creatorFlowModel: creatorFlowModel, serviceProvider: serviceProvider)
         let presenter = ReviewPresenter(router: router, interactor: interactor)
@@ -14,6 +14,6 @@ final class ReviewBuilder: BaseBuilder {
         
         router.controller = controller
 
-        return controller
+        return (controller, interactor)
     }
 }

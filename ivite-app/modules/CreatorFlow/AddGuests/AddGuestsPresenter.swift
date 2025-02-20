@@ -135,7 +135,12 @@ extension AddGuestsPresenter: AddGuestsEventHandler {
     }
     
     func didTouchNextButton() {
-        interactor.addGuestsDelegate?.didFinishAddGuests(with: interactor.invitedGuests)
+        if interactor.isEditing {
+            router.dismiss(completion: nil)
+            interactor.addGuestsDelegate?.didFinishAddGuests(with: interactor.invitedGuests, wasEditing: interactor.isEditing)
+        } else {
+            interactor.addGuestsDelegate?.didFinishAddGuests(with: interactor.invitedGuests, wasEditing: interactor.isEditing)
+        }
     }
 }
 
@@ -146,6 +151,10 @@ extension AddGuestsPresenter: AddGuestsDataSource {
     
     func getAddedGuest(for indexPath: IndexPath) -> Guest {
         filteredGuests[indexPath.row]
+    }
+    
+    var nexButtonTitle: String {
+        interactor.isEditing ? "Save" : "Next"
     }
 }
 

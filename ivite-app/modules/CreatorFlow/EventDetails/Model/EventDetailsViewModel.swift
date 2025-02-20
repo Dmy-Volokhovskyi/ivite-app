@@ -40,6 +40,11 @@ class EventDetailsViewModel {
         !(eventTitle?.isEmpty ?? true) && date != nil && !(timeZone?.isEmpty ?? true)
     }
     
+    var isLocationActive: Bool {
+        !(city?.isEmpty ?? true) || !(location?.isEmpty ?? true) || isBringListActive || !(zipCode?.isEmpty ?? true)
+        || !(state?.isEmpty ?? true)
+    }
+    
     private func notifyIsReadyToSaveChanged() {
         print(isReadyToSave, "IS READY")
         delegate?.isReadyToSaveChanged(to: isReadyToSave)

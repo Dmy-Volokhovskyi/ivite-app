@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ReviewMainDetailViewDelegate: AnyObject {
+    func reviewMainDetailViewDidTapEditButton(_ view: ReviewMainDetailView)
+}
+
 final class ReviewMainDetailView: BaseView {
     private let editButton = UIButton(configuration: .plain())
     private let eventTitleLabel = IVHeaderLabel()
@@ -15,6 +19,8 @@ final class ReviewMainDetailView: BaseView {
     private let dividerView = DividerView()
     
     private let hostStackView = UIStackView()
+    
+    weak var delegate: ReviewMainDetailViewDelegate?
     
     override func setupView() {
         super.setupView()
@@ -26,6 +32,7 @@ final class ReviewMainDetailView: BaseView {
         hostStackView.spacing = 16
         
         editButton.setImage(.editOrange, for: .normal)
+        editButton.addTarget(self, action: #selector(didTouchEditButton), for: .touchUpInside)
     }
     
     override func addSubviews() {
@@ -76,6 +83,7 @@ final class ReviewMainDetailView: BaseView {
         let hostedBy = ReviewTitledView()
         hostedBy.configure(title: "Hosted by", subtitle: hostName, content: nil)
         hostStackView.addArrangedSubview(hostedBy)
+        guard !coHosts.isEmpty else { return }
         let cohostedBy = ReviewTitledView()
         let coHostStackView = UIStackView()
         coHostStackView.axis = .vertical
@@ -95,5 +103,9 @@ final class ReviewMainDetailView: BaseView {
         eventTitleLabel.text = model.eventTitle
         timeAndDateView.configure(title: "Time and date", subtitle: model.formattedDate(), content: nil)
         fillHostViews(hostName: model.hostName, coHosts: model.coHosts)
+    }
+    
+    @objc private func didTouchEditButton(_ sender: UIButton) {
+        delegate?.reviewMainDetailViewDidTapEditButton(self)
     }
 }

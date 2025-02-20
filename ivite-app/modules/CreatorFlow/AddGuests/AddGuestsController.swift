@@ -14,6 +14,7 @@ protocol AddGuestsEventHandler: AnyObject {
 protocol AddGuestsDataSource: AnyObject {
     var numberOfRows: Int { get }
     func getAddedGuest(for indexPath: IndexPath) -> Guest
+    var nexButtonTitle: String { get }
 }
 
 final class AddGuestsController: BaseViewController {
@@ -30,12 +31,12 @@ final class AddGuestsController: BaseViewController {
     private let bottomBarView = UIView()
     private let bottomDividerView = DividerView()
     private let backButton = UIButton(configuration: .image(image: .chewroneBack))
-    private let nextButton = UIButton(configuration: .primary(title: "Next"))
+    private let nextButton: UIButton
     
     init(eventHandler: AddGuestsEventHandler, dataSource: AddGuestsDataSource) {
         self.eventHandler = eventHandler
         self.dataSource = dataSource
-        
+        self.nextButton = UIButton(configuration: .primary(title: dataSource.nexButtonTitle))
         super.init()
     }
     
@@ -157,7 +158,7 @@ extension AddGuestsController: AddGuestsViewInterface {
 extension AddGuestsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableView.backgroundView?.isHidden = dataSource.numberOfRows != 0
-        nextButton.IVsetEnabled(dataSource.numberOfRows != 0, title: "Next")
+        nextButton.IVsetEnabled(dataSource.numberOfRows != 0, title: dataSource.nexButtonTitle)
         return dataSource.numberOfRows
     }
     

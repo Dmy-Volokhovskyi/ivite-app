@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol ReviewGuestsDetailViewDelegate: AnyObject {
+    func reviewGuestsViewDidTapEdit(_ reviewGuestsView: ReviewGuestsDetailView)
+}
+
 final class ReviewGuestsDetailView: BaseView {
     private let editButton = UIButton(configuration: .plain())
     private let guestsHeaderView = IVHeaderLabel(text: "Guests")
     private let guestsStackView = UIStackView()
+    
+    weak var delegate: ReviewGuestsDetailViewDelegate?
     
     override func setupView() {
         super.setupView()
@@ -19,6 +25,7 @@ final class ReviewGuestsDetailView: BaseView {
         backgroundColor = .white
         
         editButton.setImage(.editOrange, for: .normal)
+        editButton.addTarget(self, action: #selector(didTouchEditButton), for: .touchUpInside)
         
         guestsStackView.axis = .vertical
         guestsStackView.spacing = 8
@@ -57,5 +64,9 @@ final class ReviewGuestsDetailView: BaseView {
             guestView.configure(with: guest)
             guestsStackView.addArrangedSubview(guestView)
         }
+    }
+    
+    @objc private func didTouchEditButton(_ sender: UIButton) {
+        delegate?.reviewGuestsViewDidTapEdit(self)
     }
 }

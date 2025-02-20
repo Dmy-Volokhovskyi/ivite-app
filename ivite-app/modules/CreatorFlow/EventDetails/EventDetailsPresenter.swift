@@ -39,7 +39,12 @@ extension EventDetailsPresenter: EventDetailsEventHandler {
     }
     
     func didTouchNextButton() {
-        interactor.eventDetailsDelegate?.didEndEventDetails()
+        if interactor.isEditing {
+            router.dismiss(completion: nil)
+            interactor.eventDetailsDelegate?.didEndEventDetails(wasEditing: interactor.isEditing)
+        } else {
+            interactor.eventDetailsDelegate?.didEndEventDetails(wasEditing: interactor.isEditing)
+        }
     }
     
     func didTouchBackButton() {
@@ -94,6 +99,11 @@ extension EventDetailsPresenter: EventDetailsDataSource {
         interactor.eventDetailsViewModel.coHosts
     }
     var model: EventDetailsViewModel { interactor.eventDetailsViewModel }
+    
+    var nexButtonTitle: String {
+        interactor.isEditing ? "Save" : "Next"
+    }
+    
 }
 
 extension EventDetailsPresenter: EventDetailsInteractorDelegate {

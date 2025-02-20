@@ -115,6 +115,7 @@
 		356461CF2CD507EC003350C5 /* ProfileDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461CC2CD507EC003350C5 /* ProfileDetailsRouter.swift */; };
 		356461D02CD507EC003350C5 /* ProfileDetailsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461C82CD507EC003350C5 /* ProfileDetailsBuilder.swift */; };
 		356461D12CD507EC003350C5 /* ProfileDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461CA2CD507EC003350C5 /* ProfileDetailsInteractor.swift */; };
+		3569DDB02D64C93600562DC9 /* UIButton+IVEnabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDAF2D64C93600562DC9 /* UIButton+IVEnabled.swift */; };
 		357297C12CF8F1FC00F2A282 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357297C02CF8F1FC00F2A282 /* GroupCell.swift */; };
 		357297C32CF8F6AC00F2A282 /* GroupCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357297C22CF8F6AC00F2A282 /* GroupCellModel.swift */; };
 		359783D82CF5090E0012CBE6 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359783D72CF5090E0012CBE6 /* CreateGroupView.swift */; };
@@ -423,6 +424,7 @@
 		356461CA2CD507EC003350C5 /* ProfileDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsInteractor.swift; sourceTree = "<group>"; };
 		356461CB2CD507EC003350C5 /* ProfileDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsPresenter.swift; sourceTree = "<group>"; };
 		356461CC2CD507EC003350C5 /* ProfileDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsRouter.swift; sourceTree = "<group>"; };
+		3569DDAF2D64C93600562DC9 /* UIButton+IVEnabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+IVEnabled.swift"; sourceTree = "<group>"; };
 		357297C02CF8F1FC00F2A282 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		357297C22CF8F6AC00F2A282 /* GroupCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCellModel.swift; sourceTree = "<group>"; };
 		359783D72CF5090E0012CBE6 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
@@ -1221,6 +1223,7 @@
 				35EEC7F92CEA773C003E7758 /* Timezone+FormatedDescription.swift */,
 				35EEC7FB2CEA798F003E7758 /* String+TimezoneAbreviation.swift */,
 				3515B10F2CFF566F00934E4F /* Error+AuthError.swift */,
+				3569DDAF2D64C93600562DC9 /* UIButton+IVEnabled.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -1852,6 +1855,7 @@
 				3599D2742D4C073900E07DD7 /* FontURLProvider.swift in Sources */,
 				35EEC7F62CEA6F13003E7758 /* TimeZonePickerController.swift in Sources */,
 				3519A82F2CE24E2E00A16715 /* ReviewGiftView.swift in Sources */,
+				3569DDB02D64C93600562DC9 /* UIButton+IVEnabled.swift in Sources */,
 				F6936A3B2CBA84AD00764197 /* CoHostView.swift in Sources */,
 				F68CAA872CBD50A400533757 /* BringListItemView.swift in Sources */,
 				76096AFA2C8A58A40004BEE0 /* ListHeaderView.swift in Sources */,

@@ -1,5 +1,5 @@
 protocol GiftingOptionsDelegate: AnyObject {
-    func didEndGiftingOptions(gifts: [Gift])
+    func didEndGiftingOptions(gifts: [Gift], wasEditing: Bool)
 }
 
 protocol GiftingOptionsInteractorDelegate: AnyObject {
@@ -11,11 +11,15 @@ final class GiftingOptionsInteractor: BaseInteractor {
     
     var gifts: [Gift]
     
+    let isEditing: Bool
+    
     init(gifts: [Gift],
          giftingOptionsDelegate: GiftingOptionsDelegate,
+         isEditing: Bool,
          serviceProvider: ServiceProvider) {
         self.giftingOptionsDelegate = giftingOptionsDelegate
         self.gifts = gifts
+        self.isEditing = isEditing
         super.init(serviceProvider: serviceProvider)
         
         self.giftingOptionsDelegate = giftingOptionsDelegate

@@ -4,6 +4,9 @@ protocol ReviewEventHandler: AnyObject {
     func didTouchBackButton()
     func didTouchNextButton()
     func didTouchPreviewButton()
+    func reviewMainDetailViewDidTapEditButton()
+    func reviewGuestsViewDidTapEdit()
+    func reviewGiftsDetailViewDidTapEditButton()
 }
 
 protocol ReviewDataSource: AnyObject {
@@ -55,8 +58,14 @@ final class ReviewController: BaseScrollViewController {
         
         reviewMainDetailView.configure(model: dataSource.creatorFlowModel.eventDetailsViewModel)
         reviewLocationDetailView.configure(model: dataSource.creatorFlowModel.eventDetailsViewModel)
+        reviewLocationDetailView.isHidden = !dataSource.creatorFlowModel.eventDetailsViewModel.isLocationActive
         reviewGiftsDetailView.configure(with: dataSource.creatorFlowModel.giftDetailsViewModel)
+        reviewGiftsDetailView.isHidden = dataSource.creatorFlowModel.giftDetailsViewModel.gifts.isEmpty
         reviewGuestsDetailView.configre(with: dataSource.creatorFlowModel.guests)
+        
+        reviewMainDetailView.delegate = self
+        reviewGiftsDetailView.delegate = self
+        reviewGuestsDetailView.delegate = self
         
         reviewOptionsStack.spacing = 24
         reviewOptionsStack.distribution = .fillEqually
@@ -145,4 +154,33 @@ final class ReviewController: BaseScrollViewController {
 }
 
 extension ReviewController: ReviewViewInterface {
+    func loadData() {
+        invitationImageView.image = dataSource.creatorFlowModel.image
+        invitationImageView.layer.cornerRadius = 9
+        invitationImageView.clipsToBounds = true
+        
+        reviewMainDetailView.configure(model: dataSource.creatorFlowModel.eventDetailsViewModel)
+        reviewLocationDetailView.configure(model: dataSource.creatorFlowModel.eventDetailsViewModel)
+        reviewGiftsDetailView.configure(with: dataSource.creatorFlowModel.giftDetailsViewModel)
+        reviewGiftsDetailView.isHidden = dataSource.creatorFlowModel.giftDetailsViewModel.gifts.isEmpty
+        reviewGuestsDetailView.configre(with: dataSource.creatorFlowModel.guests)
+    }
+}
+
+extension ReviewController: ReviewMainDetailViewDelegate {
+    func reviewMainDetailViewDidTapEditButton(_ view: ReviewMainDetailView) {
+        eventHandler.reviewMainDetailViewDidTapEditButton()
+    }
+}
+
+extension ReviewController: ReviewGuestsDetailViewDelegate {
+    func reviewGuestsViewDidTapEdit(_ reviewGuestsView: ReviewGuestsDetailView) {
+        eventHandler.reviewGuestsViewDidTapEdit()
+    }
+}
+
+extension ReviewController: ReviewGiftsDetailViewDelegate {
+    func reviewGiftsDetailViewDidTapEditButton(_ view: ReviewGiftsDetailView) {
+        eventHandler.reviewGiftsDetailViewDidTapEditButton()
+    }
 }

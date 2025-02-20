@@ -2,10 +2,13 @@ import Foundation
 
 final class GiftingOptionsBuilder: BaseBuilder {
     func make(gifts: [Gift],
-              giftingOptionsDelegate: GiftingOptionsDelegate) -> GiftingOptionsController {
+              giftingOptionsDelegate: GiftingOptionsDelegate,
+              isEditing: Bool = false) -> GiftingOptionsController {
         let router = GiftingOptionsRouter()
         let interactor = GiftingOptionsInteractor(gifts: gifts,
-                                                  giftingOptionsDelegate: giftingOptionsDelegate, serviceProvider: serviceProvider)
+                                                  giftingOptionsDelegate: giftingOptionsDelegate,
+                                                  isEditing: isEditing,
+                                                  serviceProvider: serviceProvider)
         let presenter = GiftingOptionsPresenter(router: router, interactor: interactor)
         let controller = GiftingOptionsController(eventHandler: presenter, dataSource: presenter)
 

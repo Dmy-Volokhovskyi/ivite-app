@@ -1,8 +1,14 @@
 protocol ReviewDelegate: AnyObject {
+    func reviewDidAskForEdit(editOption: EditOption)
     func didEndReview()
 }
 
+protocol ReviewRefreshDelegate: AnyObject {
+    func refreshReviewContent()
+}
+
 protocol ReviewInteractorDelegate: AnyObject {
+    func refreshReviewContent()
 }
 
 final class ReviewInteractor: BaseInteractor {
@@ -14,5 +20,12 @@ final class ReviewInteractor: BaseInteractor {
     init(creatorFlowModel: CreatorFlowModel, serviceProvider: ServiceProvider) {
         self.creatorFlowModel = creatorFlowModel
         super.init(serviceProvider: serviceProvider)
+    }
+}
+
+
+extension ReviewInteractor: ReviewRefreshDelegate {
+    func refreshReviewContent() {
+        delegate?.refreshReviewContent()
     }
 }

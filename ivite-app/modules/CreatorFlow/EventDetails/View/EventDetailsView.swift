@@ -30,6 +30,7 @@ final class EventDetailsView: BaseView {
         self.dateTextControl = IVControl(text: model.formattedDate(), placeholder: "dd/mm/yyyy")
         self.timePicker = IVControl(text: model.formattedTime(), placeholder: "00:00")
         super.init(frame: .zero)
+        eventTitleTextFiel.text = model.eventTitle
     }
     
     @MainActor required init?(coder: NSCoder) {

@@ -8,6 +8,12 @@
 import Combine
 import UIKit
 
+enum EditOption {
+    case mainDetails
+    case gifting
+    case addGuests
+}
+
 protocol CreatorFlowDelegate: AnyObject {
     func didCompleteCreatorFlow()
 }
@@ -24,6 +30,7 @@ final class CreatorFlowNavigationController: UINavigationController {
     private let serviceProvider: ServiceProvider
     private var creatorFlowModel = CreatorFlowModel()
     weak var configurationWizardDelegate: CreatorFlowDelegate?
+    weak var reviewRefreshDelegate: ReviewRefreshDelegate?
     
     private let urlString: String
     init(serviceProvider: ServiceProvider, urlString: String) {
@@ -31,7 +38,7 @@ final class CreatorFlowNavigationController: UINavigationController {
         self.urlString = urlString
         super.init(nibName: nil, bundle: nil)
         
-    #warning("Set up paywall non premium user == 1 draft.")
+#warning("Set up paywall non premium user == 1 draft.")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +57,7 @@ final class CreatorFlowNavigationController: UINavigationController {
             await serviceProvider.sendGridManager.sendEmails(to: [Guest(name: "Banaan", email: "nox8991@gmail.com", phone: "")], eventId: "2BA0CACE-D0E4-47EE-9AD1-8A56398B3B94", senderName: creatorFlowModel.eventDetailsViewModel.hostName ?? "")
         }
     }
-
+    
 }
 
 private extension CreatorFlowNavigationController {
@@ -85,7 +92,9 @@ private extension CreatorFlowNavigationController {
         case .addGuests:
             controller = AddGuestsBuilder(serviceProvider: serviceProvider).make(addGuestDelegate: self, guests: creatorFlowModel.guests)
         case .review:
-            controller = ReviewBuilder(serviceProvider: serviceProvider).make(reviewDelegate: self, creatorFlowModel: creatorFlowModel)
+            let tuple = ReviewBuilder(serviceProvider: serviceProvider).make(reviewDelegate: self, creatorFlowModel: creatorFlowModel)
+            controller = tuple.0
+            reviewRefreshDelegate = tuple.1
         }
         self.setupNavBar(for: nextStep, in: controller)
         // Push the view controller
@@ -96,7 +105,6 @@ private extension CreatorFlowNavigationController {
             self.setupNavBar(for: nextStep, in: controller)
         }
     }
-    
     
     private func saveData(isDraft: Bool) {
         guard let image = creatorFlowModel.image else {
@@ -136,12 +144,11 @@ private extension CreatorFlowNavigationController {
             }
         }
     }
-
+    
     
     private func setupNavBar(for step: Step, in controller: UIViewController) {
         let currentIndex = Step.allCases.firstIndex(of: step) ?? 0
         let totalSteps = Step.allCases.count
-        let title = "\(currentIndex + 1) of \(totalSteps): \(navBarTitle(for: step))"
         
         // Optionally, set titleView if you want a custom UILabel
         let titleAttributes: [NSAttributedString.Key: Any] = [
@@ -223,26 +230,49 @@ extension CreatorFlowNavigationController: TemplateEditorDelegate {
 }
 
 extension CreatorFlowNavigationController: EventDetailsDelegate {
-    func didEndEventDetails() {
-        pushNextStep(for: .eventDetails)
+    func didEndEventDetails(wasEditing: Bool) {
+        wasEditing ? reviewRefreshDelegate?.refreshReviewContent() : pushNextStep(for: .eventDetails)
     }
 }
 
 extension CreatorFlowNavigationController: GiftingOptionsDelegate {
-    func didEndGiftingOptions(gifts: [Gift]) {
+    func didEndGiftingOptions(gifts: [Gift], wasEditing: Bool) {
         creatorFlowModel.giftDetailsViewModel.gifts = gifts
-        pushNextStep(for: .giftingOptions)
+        wasEditing ? reviewRefreshDelegate?.refreshReviewContent() : pushNextStep(for: .giftingOptions)
     }
 }
 
 extension CreatorFlowNavigationController: AddGuestsDelegate {
-    func didFinishAddGuests(with guests: [Guest]) {
+    func didFinishAddGuests(with guests: [Guest], wasEditing: Bool) {
         creatorFlowModel.guests = guests
-        pushNextStep(for: .addGuests)
+        wasEditing ? reviewRefreshDelegate?.refreshReviewContent() : pushNextStep(for: .addGuests)
     }
 }
 
 extension CreatorFlowNavigationController: ReviewDelegate {
+    func reviewDidAskForEdit(editOption: EditOption) {
+        let controller: UIViewController
+        switch editOption {
+        case .mainDetails:
+            controller = EventDetailsBuilder(serviceProvider: serviceProvider)
+                .make(eventDetailsDelegate: self,
+                      eventDetailsViewModel: creatorFlowModel.eventDetailsViewModel,
+                      isEditing: true)
+        case .gifting:
+            controller = GiftingOptionsBuilder(serviceProvider: serviceProvider)
+                .make(gifts: creatorFlowModel.giftDetailsViewModel.gifts,
+                      giftingOptionsDelegate: self,
+                      isEditing: true)
+        case .addGuests:
+            controller = AddGuestsBuilder(serviceProvider: serviceProvider)
+                .make(addGuestDelegate: self,
+                      guests: creatorFlowModel.guests,
+                      isEditing: true)
+        }
+        controller.modalPresentationStyle = .pageSheet
+        present(controller, animated: true)
+    }
+    
     func didEndReview() {
         saveData(isDraft: false)
     }

@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol ReviewGiftsDetailViewDelegate: AnyObject {
+    func reviewGiftsDetailViewDidTapEditButton(_ view: ReviewGiftsDetailView)
+}
+
 final class ReviewGiftsDetailView: BaseView {
     private let editButton = UIButton(configuration: .plain())
     private let giftsHeaderView = IVHeaderLabel(text: "Gifts")
     private let giftsStackView = UIStackView()
+    
+    weak var delegate: ReviewGiftsDetailViewDelegate?
     
     override func setupView() {
         super.setupView()
@@ -19,6 +25,7 @@ final class ReviewGiftsDetailView: BaseView {
         backgroundColor = .white
         
         editButton.setImage(.editOrange, for: .normal)
+        editButton.addTarget(self, action: #selector(didTouchEditButton), for: .touchUpInside)
         
         giftsStackView.axis = .vertical
     }
@@ -60,5 +67,9 @@ final class ReviewGiftsDetailView: BaseView {
                 giftsStackView.addArrangedSubview(separatorView)
             }
         })
+    }
+    
+    @objc private func didTouchEditButton(_ sender: UIButton) {
+        delegate?.reviewGiftsDetailViewDidTapEditButton(self)
     }
 }

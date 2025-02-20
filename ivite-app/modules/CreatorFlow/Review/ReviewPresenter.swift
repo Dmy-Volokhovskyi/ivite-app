@@ -1,6 +1,7 @@
 import Foundation
 
 protocol ReviewViewInterface: AnyObject {
+    func loadData()
 }
 
 final class ReviewPresenter: BasePresenter {
@@ -27,6 +28,17 @@ extension ReviewPresenter: ReviewEventHandler {
         interactor.reviewDelegate?.didEndReview()
     }
     
+    func reviewMainDetailViewDidTapEditButton() {
+        interactor.reviewDelegate?.reviewDidAskForEdit(editOption: .mainDetails)
+    }
+    
+    func reviewGuestsViewDidTapEdit() {
+        interactor.reviewDelegate?.reviewDidAskForEdit(editOption: .addGuests)
+    }
+    
+    func reviewGiftsDetailViewDidTapEditButton() {
+        interactor.reviewDelegate?.reviewDidAskForEdit(editOption: .gifting)
+    }
 }
 
 extension ReviewPresenter: ReviewDataSource {
@@ -34,4 +46,7 @@ extension ReviewPresenter: ReviewDataSource {
 }
 
 extension ReviewPresenter: ReviewInteractorDelegate {
+    func refreshReviewContent() {
+        viewInterface?.loadData()
+    }
 }
