@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol EventCardCellDelegate: AnyObject {
     func didTouchMenu(for cell: BaseTableViewCell)
@@ -83,18 +84,18 @@ final class EventCardCell: BaseTableViewCell {
         menuButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
     
-    func configure(with eventCardModel: EventCardModel) {
-        cardImageView.image = UIImage(named: eventCardModel.imageName)
+    func configure(with eventCardModel: Event) {
+        cardImageView.sd_setImage(with: URL(string: eventCardModel.canvasImageURL ?? ""), placeholderImage: .giftBoxWithABow2)
         
         titleLabel.text = eventCardModel.title
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "E MMM d, yyyy"
         
-        dateLabel.text = dateFormatter.string(from: eventCardModel.date)
+        dateLabel.text = dateFormatter.string(from: eventCardModel.date ?? Date())
         
-        statusLabel.text = eventCardModel.status
-        statusLabel.textColor = eventCardModel.statusColor
+        statusLabel.text = eventCardModel.status.rawValue
+//        statusLabel.textColor = eventCardModel.statusColor.cgColor
     }
     
     @objc private func openMenuDidTouch(_ sender: UIButton) {

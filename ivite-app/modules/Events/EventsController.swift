@@ -13,7 +13,7 @@ protocol EventsDataSource: AnyObject {
     var numberOfSections: Int { get }
     var user: IVUser? { get }
     
-    func eventCardModel(for indexPath: IndexPath) -> EventCardModel
+    func eventCardModel(for indexPath: IndexPath) -> Event
 }
 
 final class EventsController: BaseViewController {

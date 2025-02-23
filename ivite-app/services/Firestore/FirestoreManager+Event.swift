@@ -51,7 +51,7 @@ extension FirestoreManager {
             }
             
             let giftRef = giftsCollectionRef.document(gift.id)
-            let giftData = try gift.toDictionary()
+            let giftData = gift.toDictionary()
             try await giftRef.setData(giftData, merge: true)
         }
     }
@@ -81,7 +81,7 @@ extension FirestoreManager {
         // 🏃‍♂️ Decode Gifts (skip invalid ones)
         let gifts: [Gift] = try await giftsSnapshot.documents.compactMap { doc in
             let giftData = doc.data()
-            return try? Gift.fromDictionary(giftData)
+            return Gift.fromDictionary(giftData)
         }
         
         // ✅ Assign guests & gifts
@@ -95,12 +95,32 @@ extension FirestoreManager {
     func fetchAllEvents() async throws -> [Event] {
         let snapshot = try await db.collection(FirestoreCollection.events.rawValue).getDocuments()
         
-        return try snapshot.documents.compactMap { document in
-            let data = document.data()
-            return try? Event.fromDictionary(data)
+        return snapshot.documents.compactMap { document in
+            do {
+                let originalData = document.data()
+                var cleanData: [String: Any] = [:]
+                let dateFormatter = ISO8601DateFormatter()
+
+                for (key, value) in originalData {
+                    if let timestamp = value as? Timestamp {
+                        cleanData[key] = dateFormatter.string(from: timestamp.dateValue())
+                    } else if let date = value as? Date {
+                        cleanData[key] = dateFormatter.string(from: date)
+                    } else {
+                        cleanData[key] = value
+                    }
+                }
+                
+                // 🔥 Encode AFTER all conversions
+                let jsonData = try JSONSerialization.data(withJSONObject: cleanData, options: [])
+                return try JSONDecoder().decode(Event.self, from: jsonData)
+            } catch {
+                print("❌ Failed to decode Event: \(error)")
+                return nil
+            }
         }
     }
-    
+
     // MARK: - Delete Event
     func deleteEvent(eventId: String) async throws {
         let eventRef = db.collection(FirestoreCollection.events.rawValue).document(eventId)

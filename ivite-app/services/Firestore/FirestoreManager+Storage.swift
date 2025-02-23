@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 import FirebaseStorage
 
 extension FirestoreManager {

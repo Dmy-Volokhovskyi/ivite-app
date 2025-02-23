@@ -71,7 +71,7 @@ extension EventsPresenter: EventsDataSource {
         interactor.currentUser
     }
     
-    func eventCardModel(for indexPath: IndexPath) -> EventCardModel {
+    func eventCardModel(for indexPath: IndexPath) -> Event {
         interactor.eventCards[indexPath.section]
     }
     
@@ -80,7 +80,7 @@ extension EventsPresenter: EventsDataSource {
     }
     
     var numberOfSections: Int {
-        interactor.eventCards.count - 1
+        interactor.eventCards.count
     }
 }
 

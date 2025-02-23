@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct Event: Codable {
     let id: String
@@ -64,5 +65,40 @@ struct Event: Codable {
         self.canvas = canvas
         self.gifts = gifts
         self.status = status
+    }
+}
+
+extension Event  {
+    enum CodingKeys: String, CodingKey {
+        case id, title, date, timeZone, hostName, coHosts, location, city, state, zipCode, note
+        case isBringListActive, bringList, guests, canvas, gifts, status, canvasImageURL
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        title = try container.decode(String.self, forKey: .title)
+        timeZone = try? container.decode(String.self, forKey: .timeZone)
+        hostName = try? container.decode(String.self, forKey: .hostName)
+        coHosts = (try? container.decode([CoHost].self, forKey: .coHosts)) ?? []
+        location = try? container.decode(String.self, forKey: .location)
+        city = try? container.decode(String.self, forKey: .city)
+        state = try? container.decode(String.self, forKey: .state)
+        zipCode = try? container.decode(String.self, forKey: .zipCode)
+        note = try? container.decode(String.self, forKey: .note)
+        isBringListActive = (try? container.decode(Bool.self, forKey: .isBringListActive)) ?? false
+        bringList = (try? container.decode([BringListItem].self, forKey: .bringList)) ?? []
+        guests = (try? container.decode([Guest].self, forKey: .guests)) ?? []
+        canvas = try? container.decode(Canvas.self, forKey: .canvas)
+        gifts = (try? container.decode([Gift].self, forKey: .gifts)) ?? []
+        status = (try? container.decode(EventStatus.self, forKey: .status)) ?? .draft
+        canvasImageURL = try? container.decode(String.self, forKey: .canvasImageURL)
+        
+        // 🔥 Handle Firestore Timestamp conversion
+        if let timestamp = try? container.decode(Timestamp.self, forKey: .date) {
+            date = timestamp.dateValue()
+        } else {
+            date = nil
+        }
     }
 }

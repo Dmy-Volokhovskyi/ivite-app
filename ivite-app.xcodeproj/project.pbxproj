@@ -116,6 +116,26 @@
 		356461D02CD507EC003350C5 /* ProfileDetailsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461C82CD507EC003350C5 /* ProfileDetailsBuilder.swift */; };
 		356461D12CD507EC003350C5 /* ProfileDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356461CA2CD507EC003350C5 /* ProfileDetailsInteractor.swift */; };
 		3569DDB02D64C93600562DC9 /* UIButton+IVEnabled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDAF2D64C93600562DC9 /* UIButton+IVEnabled.swift */; };
+		3569DDB22D6B4F5700562DC9 /* LayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDB12D6B4F5700562DC9 /* LayerProtocol.swift */; };
+		3569DDB42D6B4F6100562DC9 /* LayerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDB32D6B4F6100562DC9 /* LayerType.swift */; };
+		3569DDB62D6B4F6A00562DC9 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDB52D6B4F6A00562DC9 /* Coordinates.swift */; };
+		3569DDB82D6B4F7400562DC9 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDB72D6B4F7400562DC9 /* Size.swift */; };
+		3569DDBA2D6B4F7D00562DC9 /* TextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDB92D6B4F7D00562DC9 /* TextLayer.swift */; };
+		3569DDBC2D6B4F8500562DC9 /* ImageLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDBB2D6B4F8500562DC9 /* ImageLayer.swift */; };
+		3569DDBE2D6B4F8E00562DC9 /* ShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDBD2D6B4F8E00562DC9 /* ShapeLayer.swift */; };
+		3569DDC02D6B4F9800562DC9 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDBF2D6B4F9800562DC9 /* Layer.swift */; };
+		3569DDC22D6B4FAF00562DC9 /* TextBoxCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDC12D6B4FAF00562DC9 /* TextBoxCoordinates.swift */; };
+		3569DDC42D6B4FB700562DC9 /* TextFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDC32D6B4FB700562DC9 /* TextFormatting.swift */; };
+		3569DDC62D6B4FC000562DC9 /* TextAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDC52D6B4FC000562DC9 /* TextAlignment.swift */; };
+		3569DDCA2D6B524000562DC9 /* Layer+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDC92D6B524000562DC9 /* Layer+Codable.swift */; };
+		3569DDCC2D6B524B00562DC9 /* Layer+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDCB2D6B524B00562DC9 /* Layer+Copying.swift */; };
+		3569DDCE2D6B525A00562DC9 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDCD2D6B525A00562DC9 /* JSONHelper.swift */; };
+		3569DDD02D6B53DC00562DC9 /* Canvas+toDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDCF2D6B53DC00562DC9 /* Canvas+toDictionary.swift */; };
+		3569DDD22D6B542000562DC9 /* Layer+Encoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDD12D6B542000562DC9 /* Layer+Encoded.swift */; };
+		3569DDD42D6B544E00562DC9 /* Canvas+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDD32D6B544E00562DC9 /* Canvas+Copying.swift */; };
+		3569DDD72D6B54EA00562DC9 /* ShapeLayer+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDD62D6B54EA00562DC9 /* ShapeLayer+Copying.swift */; };
+		3569DDDA2D6B551700562DC9 /* ImageLayer+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDD92D6B551700562DC9 /* ImageLayer+Copying.swift */; };
+		3569DDDD2D6B555500562DC9 /* TextLayer+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDDC2D6B555500562DC9 /* TextLayer+Copying.swift */; };
 		357297C12CF8F1FC00F2A282 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357297C02CF8F1FC00F2A282 /* GroupCell.swift */; };
 		357297C32CF8F6AC00F2A282 /* GroupCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357297C22CF8F6AC00F2A282 /* GroupCellModel.swift */; };
 		359783D82CF5090E0012CBE6 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359783D72CF5090E0012CBE6 /* CreateGroupView.swift */; };
@@ -298,7 +318,6 @@
 		F6EBF55D2CA441170058F7B2 /* TemplateEditorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5582CA441170058F7B2 /* TemplateEditorInteractor.swift */; };
 		F6EBF55E2CA441170058F7B2 /* TemplateEditorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5572CA441170058F7B2 /* TemplateEditorController.swift */; };
 		F6EBF55F2CA441170058F7B2 /* TemplateEditorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5592CA441170058F7B2 /* TemplateEditorPresenter.swift */; };
-		F6EBF5632CA446EE0058F7B2 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5622CA446EE0058F7B2 /* Layer.swift */; };
 		F6EBF5652CA4470C0058F7B2 /* CanvasResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5642CA4470C0058F7B2 /* CanvasResponse.swift */; };
 		F6EBF5672CA449380058F7B2 /* TileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5662CA449380058F7B2 /* TileCollectionViewCell.swift */; };
 		F6EBF56A2CA4496F0058F7B2 /* TileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EBF5692CA4496F0058F7B2 /* TileModel.swift */; };
@@ -425,6 +444,26 @@
 		356461CB2CD507EC003350C5 /* ProfileDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsPresenter.swift; sourceTree = "<group>"; };
 		356461CC2CD507EC003350C5 /* ProfileDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsRouter.swift; sourceTree = "<group>"; };
 		3569DDAF2D64C93600562DC9 /* UIButton+IVEnabled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+IVEnabled.swift"; sourceTree = "<group>"; };
+		3569DDB12D6B4F5700562DC9 /* LayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerProtocol.swift; sourceTree = "<group>"; };
+		3569DDB32D6B4F6100562DC9 /* LayerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerType.swift; sourceTree = "<group>"; };
+		3569DDB52D6B4F6A00562DC9 /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		3569DDB72D6B4F7400562DC9 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		3569DDB92D6B4F7D00562DC9 /* TextLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLayer.swift; sourceTree = "<group>"; };
+		3569DDBB2D6B4F8500562DC9 /* ImageLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLayer.swift; sourceTree = "<group>"; };
+		3569DDBD2D6B4F8E00562DC9 /* ShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeLayer.swift; sourceTree = "<group>"; };
+		3569DDBF2D6B4F9800562DC9 /* Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
+		3569DDC12D6B4FAF00562DC9 /* TextBoxCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBoxCoordinates.swift; sourceTree = "<group>"; };
+		3569DDC32D6B4FB700562DC9 /* TextFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatting.swift; sourceTree = "<group>"; };
+		3569DDC52D6B4FC000562DC9 /* TextAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAlignment.swift; sourceTree = "<group>"; };
+		3569DDC92D6B524000562DC9 /* Layer+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layer+Codable.swift"; sourceTree = "<group>"; };
+		3569DDCB2D6B524B00562DC9 /* Layer+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layer+Copying.swift"; sourceTree = "<group>"; };
+		3569DDCD2D6B525A00562DC9 /* JSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
+		3569DDCF2D6B53DC00562DC9 /* Canvas+toDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Canvas+toDictionary.swift"; sourceTree = "<group>"; };
+		3569DDD12D6B542000562DC9 /* Layer+Encoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layer+Encoded.swift"; sourceTree = "<group>"; };
+		3569DDD32D6B544E00562DC9 /* Canvas+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Canvas+Copying.swift"; sourceTree = "<group>"; };
+		3569DDD62D6B54EA00562DC9 /* ShapeLayer+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeLayer+Copying.swift"; sourceTree = "<group>"; };
+		3569DDD92D6B551700562DC9 /* ImageLayer+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageLayer+Copying.swift"; sourceTree = "<group>"; };
+		3569DDDC2D6B555500562DC9 /* TextLayer+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextLayer+Copying.swift"; sourceTree = "<group>"; };
 		357297C02CF8F1FC00F2A282 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		357297C22CF8F6AC00F2A282 /* GroupCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCellModel.swift; sourceTree = "<group>"; };
 		359783D72CF5090E0012CBE6 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
@@ -605,7 +644,6 @@
 		F6EBF5582CA441170058F7B2 /* TemplateEditorInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorInteractor.swift; sourceTree = "<group>"; };
 		F6EBF5592CA441170058F7B2 /* TemplateEditorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorPresenter.swift; sourceTree = "<group>"; };
 		F6EBF55A2CA441170058F7B2 /* TemplateEditorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateEditorRouter.swift; sourceTree = "<group>"; };
-		F6EBF5622CA446EE0058F7B2 /* Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
 		F6EBF5642CA4470C0058F7B2 /* CanvasResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasResponse.swift; sourceTree = "<group>"; };
 		F6EBF5662CA449380058F7B2 /* TileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCollectionViewCell.swift; sourceTree = "<group>"; };
 		F6EBF5692CA4496F0058F7B2 /* TileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileModel.swift; sourceTree = "<group>"; };
@@ -874,6 +912,42 @@
 			path = SignIn;
 			sourceTree = "<group>";
 		};
+		3569DDD52D6B54C300562DC9 /* ShapeLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3569DDBD2D6B4F8E00562DC9 /* ShapeLayer.swift */,
+				3569DDD62D6B54EA00562DC9 /* ShapeLayer+Copying.swift */,
+			);
+			path = ShapeLayer;
+			sourceTree = "<group>";
+		};
+		3569DDD82D6B54FC00562DC9 /* ImageLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3569DDBB2D6B4F8500562DC9 /* ImageLayer.swift */,
+				3569DDD92D6B551700562DC9 /* ImageLayer+Copying.swift */,
+			);
+			path = ImageLayer;
+			sourceTree = "<group>";
+		};
+		3569DDDB2D6B554C00562DC9 /* TextLayer */ = {
+			isa = PBXGroup;
+			children = (
+				3569DDB92D6B4F7D00562DC9 /* TextLayer.swift */,
+				3569DDDC2D6B555500562DC9 /* TextLayer+Copying.swift */,
+			);
+			path = TextLayer;
+			sourceTree = "<group>";
+		};
+		3569DDDE2D6B5A5800562DC9 /* Guest */ = {
+			isa = PBXGroup;
+			children = (
+				3519A8142CE0C9E000A16715 /* Guest.swift */,
+				3599D2802D5E015800E07DD7 /* Guest+ToDictionary.swift */,
+			);
+			path = Guest;
+			sourceTree = "<group>";
+		};
 		3578D1582CD11F690079CBBA /* ProfileDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -946,7 +1020,7 @@
 				3515B06A2CFE445C00934E4F /* RoundedTabBar.swift */,
 				35EEC7F02CE692F3003E7758 /* Trash */,
 				35EEC6D62CE295AC003E7758 /* Transition */,
-				3515B06C2CFE46A300934E4F /* UIView+SketchShadow.swift */,
+				3569DDCD2D6B525A00562DC9 /* JSONHelper.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -1215,6 +1289,7 @@
 		76096A7F2C8731990004BEE0 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3515B06C2CFE46A300934E4F /* UIView+SketchShadow.swift */,
 				3599D19F2D40316F00E07DD7 /* String+CapitalizeFirst.swift */,
 				76096A802C8731AD0004BEE0 /* UIFont+Inter.swift */,
 				76096AEE2C88F1900004BEE0 /* UIButton+Configuration.swift */,
@@ -1224,6 +1299,11 @@
 				35EEC7FB2CEA798F003E7758 /* String+TimezoneAbreviation.swift */,
 				3515B10F2CFF566F00934E4F /* Error+AuthError.swift */,
 				3569DDAF2D64C93600562DC9 /* UIButton+IVEnabled.swift */,
+				3569DDCF2D6B53DC00562DC9 /* Canvas+toDictionary.swift */,
+				3569DDC92D6B524000562DC9 /* Layer+Codable.swift */,
+				3569DDCB2D6B524B00562DC9 /* Layer+Copying.swift */,
+				3569DDD32D6B544E00562DC9 /* Canvas+Copying.swift */,
+				3569DDD12D6B542000562DC9 /* Layer+Encoded.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -1328,6 +1408,17 @@
 			isa = PBXGroup;
 			children = (
 				F62D68482CA5ACB40090ADE5 /* Canvas.swift */,
+				3569DDB12D6B4F5700562DC9 /* LayerProtocol.swift */,
+				3569DDB32D6B4F6100562DC9 /* LayerType.swift */,
+				3569DDB52D6B4F6A00562DC9 /* Coordinates.swift */,
+				3569DDB72D6B4F7400562DC9 /* Size.swift */,
+				3569DDDB2D6B554C00562DC9 /* TextLayer */,
+				3569DDD82D6B54FC00562DC9 /* ImageLayer */,
+				3569DDD52D6B54C300562DC9 /* ShapeLayer */,
+				3569DDBF2D6B4F9800562DC9 /* Layer.swift */,
+				3569DDC12D6B4FAF00562DC9 /* TextBoxCoordinates.swift */,
+				3569DDC32D6B4FB700562DC9 /* TextFormatting.swift */,
+				3569DDC52D6B4FC000562DC9 /* TextAlignment.swift */,
 			);
 			path = Canvas;
 			sourceTree = "<group>";
@@ -1531,10 +1622,8 @@
 				3519A8442CE26E7F00A16715 /* PaymentOption.swift */,
 				F6E32BF12CCFD08000D62C37 /* User */,
 				F62D68472CA5ACA90090ADE5 /* Canvas */,
-				F6EBF5622CA446EE0058F7B2 /* Layer.swift */,
 				F6EBF5642CA4470C0058F7B2 /* CanvasResponse.swift */,
-				3519A8142CE0C9E000A16715 /* Guest.swift */,
-				3599D2802D5E015800E07DD7 /* Guest+ToDictionary.swift */,
+				3569DDDE2D6B5A5800562DC9 /* Guest */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1730,9 +1819,9 @@
 				F6D3CBB22CA2E36C00E29761 /* GripViewBorderView.swift in Sources */,
 				3519A8132CDE77D500A16715 /* SearchFilterView.swift in Sources */,
 				76096AF62C89FAF80004BEE0 /* SearchBar.swift in Sources */,
-				F6EBF5632CA446EE0058F7B2 /* Layer.swift in Sources */,
 				F6936A2D2CB9720200764197 /* BaseScrollViewController.swift in Sources */,
 				35EEC7FC2CEA798F003E7758 /* String+TimezoneAbreviation.swift in Sources */,
+				3569DDB62D6B4F6A00562DC9 /* Coordinates.swift in Sources */,
 				76096A072C84F8670004BEE0 /* SceneDelegate.swift in Sources */,
 				76096A3A2C84FE6E0004BEE0 /* UIApplication+AppDelegate.swift in Sources */,
 				F6936A2F2CB9728500764197 /* EventDetailsView.swift in Sources */,
@@ -1751,6 +1840,7 @@
 				3533EF312D04D855005EC055 /* UserDefaultsService.swift in Sources */,
 				76096A732C861C990004BEE0 /* MainScreenController.swift in Sources */,
 				76096AEF2C88F1900004BEE0 /* UIButton+Configuration.swift in Sources */,
+				3569DDB42D6B4F6100562DC9 /* LayerType.swift in Sources */,
 				76096A742C861C990004BEE0 /* MainScreenInteractor.swift in Sources */,
 				3519A8082CDE676D00A16715 /* AddGuestsController.swift in Sources */,
 				3519A8092CDE676D00A16715 /* AddGuestsBuilder.swift in Sources */,
@@ -1774,6 +1864,7 @@
 				35EEC7F82CEA6F7F003E7758 /* BaseTableViewController.swift in Sources */,
 				3519A8332CE25C6800A16715 /* ReviewGuestView.swift in Sources */,
 				F6936A212CB9608200764197 /* EventDetailsBuilder.swift in Sources */,
+				3569DDBA2D6B4F7D00562DC9 /* TextLayer.swift in Sources */,
 				F6936A222CB9608200764197 /* EventDetailsPresenter.swift in Sources */,
 				F6936A232CB9608200764197 /* EventDetailsController.swift in Sources */,
 				F6936A242CB9608200764197 /* EventDetailsInteractor.swift in Sources */,
@@ -1804,6 +1895,7 @@
 				3519A83B2CE2666200A16715 /* PaymentController.swift in Sources */,
 				3519A83C2CE2666200A16715 /* PaymentInteractor.swift in Sources */,
 				3519A83D2CE2666200A16715 /* PaymentRouter.swift in Sources */,
+				3569DDD02D6B53DC00562DC9 /* Canvas+toDictionary.swift in Sources */,
 				3519A83E2CE2666200A16715 /* PaymentPresenter.swift in Sources */,
 				76096B042C8B1E580004BEE0 /* BaseTableViewCell.swift in Sources */,
 				76096A552C861C420004BEE0 /* ContactBuilder.swift in Sources */,
@@ -1832,18 +1924,23 @@
 				76096A812C8731AD0004BEE0 /* UIFont+Inter.swift in Sources */,
 				3516DF7A2D3DA29C00FDAED2 /* Template.swift in Sources */,
 				76096A492C861C1B0004BEE0 /* HomeBuilder.swift in Sources */,
+				3569DDBC2D6B4F8500562DC9 /* ImageLayer.swift in Sources */,
 				F6936A3F2CBA903000764197 /* IVTextView.swift in Sources */,
 				76A34F8F2C8B5035003D3E87 /* TableViewBackgroundView.swift in Sources */,
 				76096A4A2C861C1B0004BEE0 /* HomePresenter.swift in Sources */,
 				35EEC6D82CE295B6003E7758 /* IVTransitioningDelegate.swift in Sources */,
 				F6F3C72A2CCA85DF00ED966A /* AuthentificationService.swift in Sources */,
+				3569DDC22D6B4FAF00562DC9 /* TextBoxCoordinates.swift in Sources */,
+				3569DDD22D6B542000562DC9 /* Layer+Encoded.swift in Sources */,
 				35B886AD2CEE697700FE1F43 /* EditGuestBuilder.swift in Sources */,
 				3516DE8D2D2C124100FDAED2 /* ProVersionBannerView.swift in Sources */,
 				35B886AE2CEE697700FE1F43 /* EditGuestController.swift in Sources */,
 				35B886AF2CEE697700FE1F43 /* EditGuestPresenter.swift in Sources */,
+				3569DDB22D6B4F5700562DC9 /* LayerProtocol.swift in Sources */,
 				35B886B02CEE697700FE1F43 /* EditGuestInteractor.swift in Sources */,
 				35B886B12CEE697700FE1F43 /* EditGuestRouter.swift in Sources */,
 				F6936A292CB960B100764197 /* IVHeaderLabel.swift in Sources */,
+				3569DDD42D6B544E00562DC9 /* Canvas+Copying.swift in Sources */,
 				354EE1552D08D4AD002E7BD3 /* PreviewMainDetailView.swift in Sources */,
 				F68EA7512CBEEE0D00F935FA /* DatePickerViewController.swift in Sources */,
 				76096A212C84FAD60004BEE0 /* LaunchController.swift in Sources */,
@@ -1853,6 +1950,7 @@
 				3515B06B2CFE445C00934E4F /* RoundedTabBar.swift in Sources */,
 				F6F4AA352CC6B1CC00071B0B /* EdditCoHostView.swift in Sources */,
 				3599D2742D4C073900E07DD7 /* FontURLProvider.swift in Sources */,
+				3569DDCA2D6B524000562DC9 /* Layer+Codable.swift in Sources */,
 				35EEC7F62CEA6F13003E7758 /* TimeZonePickerController.swift in Sources */,
 				3519A82F2CE24E2E00A16715 /* ReviewGiftView.swift in Sources */,
 				3569DDB02D64C93600562DC9 /* UIButton+IVEnabled.swift in Sources */,
@@ -1890,6 +1988,7 @@
 				F6EBF56E2CA4A1120058F7B2 /* CreatorFlowModel.swift in Sources */,
 				F6EBF55B2CA441170058F7B2 /* TemplateEditorRouter.swift in Sources */,
 				F6936A392CBA7F8E00764197 /* HostView.swift in Sources */,
+				3569DDC02D6B4F9800562DC9 /* Layer.swift in Sources */,
 				F62D68492CA5ACB40090ADE5 /* Canvas.swift in Sources */,
 				F6EBF55C2CA441170058F7B2 /* TemplateEditorBuilder.swift in Sources */,
 				3519A7522CD7D00900A16715 /* GiftingOptionsRouter.swift in Sources */,
@@ -1902,25 +2001,31 @@
 				3519A7562CD7D00900A16715 /* GiftingOptionsInteractor.swift in Sources */,
 				3516DF5E2D34043400FDAED2 /* SectionHeaderView.swift in Sources */,
 				3519A8152CE0C9E000A16715 /* Guest.swift in Sources */,
+				3569DDDD2D6B555500562DC9 /* TextLayer+Copying.swift in Sources */,
 				3516DE892D2BFA0300FDAED2 /* KeyValueView.swift in Sources */,
 				35EEC7F22CE7A723003E7758 /* AlertViewController.swift in Sources */,
 				F6EBF55D2CA441170058F7B2 /* TemplateEditorInteractor.swift in Sources */,
 				3519A7AB2CD9267400A16715 /* GiftPlaceholderImage.swift in Sources */,
 				F6EBF55E2CA441170058F7B2 /* TemplateEditorController.swift in Sources */,
+				3569DDDA2D6B551700562DC9 /* ImageLayer+Copying.swift in Sources */,
 				F6EBF55F2CA441170058F7B2 /* TemplateEditorPresenter.swift in Sources */,
 				35F43D602CD520E5000CE237 /* ChangeEmailView.swift in Sources */,
 				3515B0652CFA0BC600934E4F /* ContactGroup.swift in Sources */,
 				F6936A372CB9802300764197 /* DividerView.swift in Sources */,
 				76096A222C84FAD60004BEE0 /* LaunchInteractor.swift in Sources */,
+				3569DDD72D6B54EA00562DC9 /* ShapeLayer+Copying.swift in Sources */,
 				35B8869C2CEE28DA00FE1F43 /* AddNewGuestBuilder.swift in Sources */,
 				35B8869D2CEE28DA00FE1F43 /* AddNewGuestInteractor.swift in Sources */,
 				35B8869E2CEE28DA00FE1F43 /* AddNewGuestPresenter.swift in Sources */,
+				3569DDC62D6B4FC000562DC9 /* TextAlignment.swift in Sources */,
+				3569DDCE2D6B525A00562DC9 /* JSONHelper.swift in Sources */,
 				35B8869F2CEE28DA00FE1F43 /* AddNewGuestRouter.swift in Sources */,
 				35B886A02CEE28DA00FE1F43 /* AddNewGuestController.swift in Sources */,
 				F6B47ACE2CB45C4F00E6DF0A /* SpacingPickerView.swift in Sources */,
 				F6B47ACC2CB1966400E6DF0A /* UserImageLibraryManager.swift in Sources */,
 				F6936A332CB973CE00764197 /* IVTextField.swift in Sources */,
 				76096A232C84FAD60004BEE0 /* LaunchRouter.swift in Sources */,
+				3569DDCC2D6B524B00562DC9 /* Layer+Copying.swift in Sources */,
 				3519A8112CDE686E00A16715 /* AddGuestsMenuItem.swift in Sources */,
 				76096A5D2C861C550004BEE0 /* EventsController.swift in Sources */,
 				3519A81E2CE0DB5400A16715 /* ReviewBuilder.swift in Sources */,
@@ -1938,11 +2043,13 @@
 				76096B002C8B1BF90004BEE0 /* EventCardModel.swift in Sources */,
 				F643D96D2CC928FF009A18F0 /* SignInController.swift in Sources */,
 				3519A8432CE26DDA00A16715 /* RadioButton.swift in Sources */,
+				3569DDBE2D6B4F8E00562DC9 /* ShapeLayer.swift in Sources */,
 				3533EF372D04FF9B005EC055 /* ResendButtonView.swift in Sources */,
 				F643D96E2CC928FF009A18F0 /* SignInRouter.swift in Sources */,
 				F643D96F2CC928FF009A18F0 /* SignInBuilder.swift in Sources */,
 				3519A8012CDE60F200A16715 /* EditGiftView.swift in Sources */,
 				3599D1A72D4821B500E07DD7 /* EventStatus.swift in Sources */,
+				3569DDC42D6B4FB700562DC9 /* TextFormatting.swift in Sources */,
 				F643D9702CC928FF009A18F0 /* SignInInteractor.swift in Sources */,
 				F643D9712CC928FF009A18F0 /* SignInPresenter.swift in Sources */,
 				76096A602C861C550004BEE0 /* EventsBuilder.swift in Sources */,
@@ -1953,6 +2060,7 @@
 				3519A7A62CD9191800A16715 /* GiftListView.swift in Sources */,
 				F6F4AA3E2CC8220800071B0B /* CreateAccountController.swift in Sources */,
 				3519A82D2CE24D8B00A16715 /* ReviewGiftsDetailView.swift in Sources */,
+				3569DDB82D6B4F7400562DC9 /* Size.swift in Sources */,
 				F6F4AA3F2CC8220800071B0B /* CreateAccountBuilder.swift in Sources */,
 				3599D27D2D51208B00E07DD7 /* NetworkManager.swift in Sources */,
 				35B886A62CEE390500FE1F43 /* FilterType.swift in Sources */,

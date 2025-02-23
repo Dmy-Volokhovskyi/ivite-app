@@ -35,7 +35,9 @@ extension Event {
         guard let id = dictionary["id"] as? String,
               let title = dictionary["title"] as? String else { return nil }
         
-        let date = (dictionary["date"] as? TimeInterval).flatMap { Date(timeIntervalSince1970: $0) }
+        // 🔹 Convert Firestore Timestamp to Date
+        let date: Date? = (dictionary["date"] as? Timestamp)?.dateValue()
+        
         let timeZone = dictionary["timeZone"] as? String
         let hostName = dictionary["hostName"] as? String
         let location = dictionary["location"] as? String
@@ -44,13 +46,14 @@ extension Event {
         let zipCode = dictionary["zipCode"] as? String
         let note = dictionary["note"] as? String
         let isBringListActive = dictionary["isBringListActive"] as? Bool ?? false
-        let canvasImageURL = dictionary["canvasImageURL"] as? String
+        let canvasImageURL = dictionary["canvasImageURL"] as? String // 🔹 Ensure this is a String, not NSNull
+        
         let status = (dictionary["status"] as? String).flatMap { EventStatus(rawValue: $0) } ?? .draft
         
         return Event(
             id: id,
             title: title,
-            date: date,
+            date: date, // 🔥 FIXED: Firestore Timestamp to Date conversion
             timeZone: timeZone,
             hostName: hostName,
             location: location,
@@ -60,7 +63,7 @@ extension Event {
             note: note,
             isBringListActive: isBringListActive,
             status: status,
-            canvasImageURL: canvasImageURL
+            canvasImageURL: canvasImageURL // 🔥 FIXED: Ensure it's properly extracted
         )
     }
 }
