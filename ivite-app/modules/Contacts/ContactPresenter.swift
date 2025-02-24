@@ -191,7 +191,7 @@ extension ContactPresenter: ContactDataSource {
     }
     
     var numberOfSections: Int {
-        filteredContacts.count - 1
+        filteredContacts.count
     }
 }
 

@@ -8,6 +8,7 @@ protocol AdressBookEventHandler: AnyObject {
     func searchFilterViewDidTapDeleteButton()
     func didTapSelectAllButton()
     func didTapAdd()
+    func viewDidLoad()
 }
 
 protocol AdressBookDataSource: AnyObject {
@@ -107,6 +108,12 @@ final class AdressBookController: BaseViewController {
         addButton.autoPinEdgesToSuperviewSafeArea(with: UIEdgeInsets(top: 24, left: 16, bottom: 12, right: 16), excludingEdge: .top)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        eventHandler.viewDidLoad()
+    }
+    
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -139,7 +146,7 @@ final class AdressBookController: BaseViewController {
     }
     
     @objc private func didTapAdd(_ sender: UIButton) {
-        
+        eventHandler.didTapAdd()
     }
 }
 

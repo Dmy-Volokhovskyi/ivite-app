@@ -79,6 +79,12 @@ final class AdressBookPresenter: BasePresenter {
 }
 
 extension AdressBookPresenter: AdressBookEventHandler {
+    func viewDidLoad() {
+        Task {
+            await interactor.fetchAllContactsAndGroups()
+        }
+    }
+    
     func didTapAdd() {
         interactor.finish()
     }
@@ -232,4 +238,11 @@ extension AdressBookPresenter: AdressBookDataSource {
 }
 
 extension AdressBookPresenter: AdressBookInteractorDelegate {
+    func dismiss() {
+        router.popVC()
+    }
+    
+    func contactDownloadSuccess() {
+        applyFilterAndSort()
+    }
 }

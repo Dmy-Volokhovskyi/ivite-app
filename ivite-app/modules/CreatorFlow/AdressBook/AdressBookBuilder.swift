@@ -3,7 +3,8 @@ import Foundation
 final class AdressBookBuilder: BaseBuilder {
     func make(groups: [ContactGroup],
               contacts: [ContactCardModel],
-              guestList: [Guest]) -> AdressBookController {
+              guestList: [Guest],
+              adressBookDelegate: AdressBookDelegate) -> AdressBookController {
         let router = AdressBookRouter()
         let interactor = AdressBookInteractor(groups: groups,
                                               contacts: contacts,
@@ -15,6 +16,7 @@ final class AdressBookBuilder: BaseBuilder {
         presenter.viewInterface = controller
         
         interactor.delegate = presenter
+        interactor.adressBookDelegate = adressBookDelegate
         
         router.controller = controller
         

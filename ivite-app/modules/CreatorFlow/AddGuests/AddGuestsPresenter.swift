@@ -124,7 +124,9 @@ extension AddGuestsPresenter: AddGuestsEventHandler {
         case .usePastList:
             return
         case .adressBook:
-            router.pushAdressBook(guests: interactor.invitedGuests, adressBookDelegate: self, serviceProvider: interactor.serviceProvider)
+            router.pushAdressBook(guests: interactor.invitedGuests,
+                                  adressBookDelegate: self,
+                                  serviceProvider: interactor.serviceProvider)
         case .addNewGuest:
             router.pushAddGuest(addGuestDelegate: self, serviceProvider: interactor.serviceProvider)
         }

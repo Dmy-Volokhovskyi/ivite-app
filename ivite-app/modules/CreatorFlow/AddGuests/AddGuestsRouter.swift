@@ -11,7 +11,10 @@ final class AddGuestsRouter: BaseRouter {
     }
     
     func pushAdressBook(guests: [Guest], adressBookDelegate: AdressBookDelegate, serviceProvider: ServiceProvider) {
-        let controller = AdressBookBuilder(serviceProvider: serviceProvider).make(groups: [], contacts: [], guestList: guests)
+        let controller = AdressBookBuilder(serviceProvider: serviceProvider).make(groups: [],
+                                                                                  contacts: [],
+                                                                                  guestList: guests,
+                                                                                  adressBookDelegate: adressBookDelegate)
         self.controller?.navigationController?.pushViewController(controller, animated: true)
     }
 }
