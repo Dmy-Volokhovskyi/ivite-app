@@ -122,7 +122,7 @@ extension AddGuestsPresenter: AddGuestsEventHandler {
     func didSelectMenuItem(menuItem: AddGuestMenu) {
         switch menuItem {
         case .usePastList:
-            return
+            router.pushPastGuests(pastListDelegate: self, serviceProvider: interactor.serviceProvider)
         case .adressBook:
             router.pushAdressBook(guests: interactor.invitedGuests,
                                   adressBookDelegate: self,
@@ -181,6 +181,13 @@ extension AddGuestsPresenter: EditGuestDelegate {
 extension AddGuestsPresenter: AdressBookDelegate {
     func didFinishWithGuestList(_ guestList: [Guest]) {
         interactor.invitedGuests = guestList
+        applyFilterAndSort()
+    }
+}
+
+extension AddGuestsPresenter: PastGuestListDelegate {
+    func didFinishPicking(with guests: [Guest]) {
+        interactor.invitedGuests.append(contentsOf: guests)
         applyFilterAndSort()
     }
 }

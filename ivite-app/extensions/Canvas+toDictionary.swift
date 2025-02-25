@@ -14,7 +14,7 @@ extension Canvas {
                 "width": size.width,
                 "height": size.height
             ],
-            "numberOfLayers": numberOfLayers,
+            "number_of_layers": numberOfLayers,
             "content": try content.map { try $0.encoded() } // Convert Layer Enum to Dictionary
         ]
     }

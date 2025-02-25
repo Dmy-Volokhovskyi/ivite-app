@@ -30,7 +30,6 @@ extension Event {
         ]
     }
 
-    
     static func fromDictionary(_ dictionary: [String: Any]) -> Event? {
         guard let id = dictionary["id"] as? String,
               let title = dictionary["title"] as? String else { return nil }

@@ -136,6 +136,12 @@
 		3569DDD72D6B54EA00562DC9 /* ShapeLayer+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDD62D6B54EA00562DC9 /* ShapeLayer+Copying.swift */; };
 		3569DDDA2D6B551700562DC9 /* ImageLayer+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDD92D6B551700562DC9 /* ImageLayer+Copying.swift */; };
 		3569DDDD2D6B555500562DC9 /* TextLayer+Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDDC2D6B555500562DC9 /* TextLayer+Copying.swift */; };
+		3569DDE52D6CFB4F00562DC9 /* PastGuestListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDE42D6CFB4F00562DC9 /* PastGuestListRouter.swift */; };
+		3569DDE62D6CFB4F00562DC9 /* PastGuestListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDE32D6CFB4F00562DC9 /* PastGuestListPresenter.swift */; };
+		3569DDE72D6CFB4F00562DC9 /* PastGuestListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDE12D6CFB4F00562DC9 /* PastGuestListController.swift */; };
+		3569DDE82D6CFB4F00562DC9 /* PastGuestListBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDE02D6CFB4F00562DC9 /* PastGuestListBuilder.swift */; };
+		3569DDE92D6CFB4F00562DC9 /* PastGuestListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDE22D6CFB4F00562DC9 /* PastGuestListInteractor.swift */; };
+		3569DDEC2D6E27B600562DC9 /* PastListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3569DDEB2D6E27B600562DC9 /* PastListCell.swift */; };
 		357297C12CF8F1FC00F2A282 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357297C02CF8F1FC00F2A282 /* GroupCell.swift */; };
 		357297C32CF8F6AC00F2A282 /* GroupCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357297C22CF8F6AC00F2A282 /* GroupCellModel.swift */; };
 		359783D82CF5090E0012CBE6 /* CreateGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359783D72CF5090E0012CBE6 /* CreateGroupView.swift */; };
@@ -464,6 +470,12 @@
 		3569DDD62D6B54EA00562DC9 /* ShapeLayer+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeLayer+Copying.swift"; sourceTree = "<group>"; };
 		3569DDD92D6B551700562DC9 /* ImageLayer+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageLayer+Copying.swift"; sourceTree = "<group>"; };
 		3569DDDC2D6B555500562DC9 /* TextLayer+Copying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextLayer+Copying.swift"; sourceTree = "<group>"; };
+		3569DDE02D6CFB4F00562DC9 /* PastGuestListBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastGuestListBuilder.swift; sourceTree = "<group>"; };
+		3569DDE12D6CFB4F00562DC9 /* PastGuestListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastGuestListController.swift; sourceTree = "<group>"; };
+		3569DDE22D6CFB4F00562DC9 /* PastGuestListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastGuestListInteractor.swift; sourceTree = "<group>"; };
+		3569DDE32D6CFB4F00562DC9 /* PastGuestListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastGuestListPresenter.swift; sourceTree = "<group>"; };
+		3569DDE42D6CFB4F00562DC9 /* PastGuestListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastGuestListRouter.swift; sourceTree = "<group>"; };
+		3569DDEB2D6E27B600562DC9 /* PastListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastListCell.swift; sourceTree = "<group>"; };
 		357297C02CF8F1FC00F2A282 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		357297C22CF8F6AC00F2A282 /* GroupCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCellModel.swift; sourceTree = "<group>"; };
 		359783D72CF5090E0012CBE6 /* CreateGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupView.swift; sourceTree = "<group>"; };
@@ -946,6 +958,27 @@
 				3599D2802D5E015800E07DD7 /* Guest+ToDictionary.swift */,
 			);
 			path = Guest;
+			sourceTree = "<group>";
+		};
+		3569DDDF2D6CFB2D00562DC9 /* PastGuestList */ = {
+			isa = PBXGroup;
+			children = (
+				3569DDEA2D6E278E00562DC9 /* View */,
+				3569DDE02D6CFB4F00562DC9 /* PastGuestListBuilder.swift */,
+				3569DDE12D6CFB4F00562DC9 /* PastGuestListController.swift */,
+				3569DDE22D6CFB4F00562DC9 /* PastGuestListInteractor.swift */,
+				3569DDE32D6CFB4F00562DC9 /* PastGuestListPresenter.swift */,
+				3569DDE42D6CFB4F00562DC9 /* PastGuestListRouter.swift */,
+			);
+			path = PastGuestList;
+			sourceTree = "<group>";
+		};
+		3569DDEA2D6E278E00562DC9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3569DDEB2D6E27B600562DC9 /* PastListCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3578D1582CD11F690079CBBA /* ProfileDetails */ = {
@@ -1585,6 +1618,7 @@
 		F6EBF5552CA440D00058F7B2 /* CreatorFlow */ = {
 			isa = PBXGroup;
 			children = (
+				3569DDDF2D6CFB2D00562DC9 /* PastGuestList */,
 				354EE1482D08D150002E7BD3 /* PreviewInvite */,
 				3519A8342CE2665600A16715 /* Payment */,
 				3519A8182CE0DB4500A16715 /* Review */,
@@ -1863,6 +1897,7 @@
 				35EEC6DA2CE295D7003E7758 /* IVPresentAnimator.swift in Sources */,
 				35EEC7F82CEA6F7F003E7758 /* BaseTableViewController.swift in Sources */,
 				3519A8332CE25C6800A16715 /* ReviewGuestView.swift in Sources */,
+				3569DDEC2D6E27B600562DC9 /* PastListCell.swift in Sources */,
 				F6936A212CB9608200764197 /* EventDetailsBuilder.swift in Sources */,
 				3569DDBA2D6B4F7D00562DC9 /* TextLayer.swift in Sources */,
 				F6936A222CB9608200764197 /* EventDetailsPresenter.swift in Sources */,
@@ -1930,6 +1965,11 @@
 				76096A4A2C861C1B0004BEE0 /* HomePresenter.swift in Sources */,
 				35EEC6D82CE295B6003E7758 /* IVTransitioningDelegate.swift in Sources */,
 				F6F3C72A2CCA85DF00ED966A /* AuthentificationService.swift in Sources */,
+				3569DDE52D6CFB4F00562DC9 /* PastGuestListRouter.swift in Sources */,
+				3569DDE62D6CFB4F00562DC9 /* PastGuestListPresenter.swift in Sources */,
+				3569DDE72D6CFB4F00562DC9 /* PastGuestListController.swift in Sources */,
+				3569DDE82D6CFB4F00562DC9 /* PastGuestListBuilder.swift in Sources */,
+				3569DDE92D6CFB4F00562DC9 /* PastGuestListInteractor.swift in Sources */,
 				3569DDC22D6B4FAF00562DC9 /* TextBoxCoordinates.swift in Sources */,
 				3569DDD22D6B542000562DC9 /* Layer+Encoded.swift in Sources */,
 				35B886AD2CEE697700FE1F43 /* EditGuestBuilder.swift in Sources */,

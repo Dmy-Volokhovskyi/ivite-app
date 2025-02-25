@@ -91,7 +91,13 @@ extension FirestoreManager {
         return event
     }
 
-    // MARK: - Fetch All Events
+    // MARK: - Delete Event
+    func deleteEvent(eventId: String) async throws {
+        let eventRef = db.collection(FirestoreCollection.events.rawValue).document(eventId)
+        try await eventRef.delete()
+    }
+    
+    // MARK: - 1) Fetch main Event only
     func fetchAllEvents() async throws -> [Event] {
         let snapshot = try await db.collection(FirestoreCollection.events.rawValue).getDocuments()
         
@@ -100,7 +106,7 @@ extension FirestoreManager {
                 let originalData = document.data()
                 var cleanData: [String: Any] = [:]
                 let dateFormatter = ISO8601DateFormatter()
-
+                
                 for (key, value) in originalData {
                     if let timestamp = value as? Timestamp {
                         cleanData[key] = dateFormatter.string(from: timestamp.dateValue())
@@ -111,7 +117,7 @@ extension FirestoreManager {
                     }
                 }
                 
-                // 🔥 Encode AFTER all conversions
+                // Encode after all conversions
                 let jsonData = try JSONSerialization.data(withJSONObject: cleanData, options: [])
                 return try JSONDecoder().decode(Event.self, from: jsonData)
             } catch {
@@ -120,10 +126,213 @@ extension FirestoreManager {
             }
         }
     }
-
-    // MARK: - Delete Event
-    func deleteEvent(eventId: String) async throws {
-        let eventRef = db.collection(FirestoreCollection.events.rawValue).document(eventId)
-        try await eventRef.delete()
+    
+    // MARK: - 2) Fetch main Event + Guests
+    func fetchAllEventsWithGuests() async throws -> [Event] {
+        let snapshot = try await db.collection(FirestoreCollection.events.rawValue).getDocuments()
+        var events: [Event] = []
+        
+        for document in snapshot.documents {
+            do {
+                // Decode main Event
+                let originalData = document.data()
+                var cleanData: [String: Any] = [:]
+                let dateFormatter = ISO8601DateFormatter()
+                
+                for (key, value) in originalData {
+                    if let timestamp = value as? Timestamp {
+                        cleanData[key] = dateFormatter.string(from: timestamp.dateValue())
+                    } else if let date = value as? Date {
+                        cleanData[key] = dateFormatter.string(from: date)
+                    } else {
+                        cleanData[key] = value
+                    }
+                }
+                
+                let jsonData = try JSONSerialization.data(withJSONObject: cleanData, options: [])
+                var event = try JSONDecoder().decode(Event.self, from: jsonData)
+                
+                // Now fetch Guests subcollection
+                let guestsSnapshot = try await document.reference.collection("guests").getDocuments()
+                let guests: [Guest] = guestsSnapshot.documents.compactMap { guestDoc in
+                    do {
+                        let guestData = guestDoc.data()
+                        var guestCleanData: [String: Any] = [:]
+                        
+                        for (gKey, gValue) in guestData {
+                            if let timestamp = gValue as? Timestamp {
+                                guestCleanData[gKey] = dateFormatter.string(from: timestamp.dateValue())
+                            } else if let date = gValue as? Date {
+                                guestCleanData[gKey] = dateFormatter.string(from: date)
+                            } else {
+                                guestCleanData[gKey] = gValue
+                            }
+                        }
+                        
+                        let guestJson = try JSONSerialization.data(withJSONObject: guestCleanData, options: [])
+                        return try JSONDecoder().decode(Guest.self, from: guestJson)
+                    } catch {
+                        print("❌ Failed to decode Guest: \(error)")
+                        return nil
+                    }
+                }
+                
+                // Assign guests to the event
+                event.guests = guests
+                events.append(event)
+            } catch {
+                print("❌ Failed to decode Event: \(error)")
+            }
+        }
+        
+        return events
     }
+    
+    // MARK: - 3) Fetch main Event + Gifts
+    func fetchAllEventsWithGifts() async throws -> [Event] {
+        let snapshot = try await db.collection(FirestoreCollection.events.rawValue).getDocuments()
+        var events: [Event] = []
+        
+        for document in snapshot.documents {
+            do {
+                // Decode main Event
+                let originalData = document.data()
+                var cleanData: [String: Any] = [:]
+                let dateFormatter = ISO8601DateFormatter()
+                
+                for (key, value) in originalData {
+                    if let timestamp = value as? Timestamp {
+                        cleanData[key] = dateFormatter.string(from: timestamp.dateValue())
+                    } else if let date = value as? Date {
+                        cleanData[key] = dateFormatter.string(from: date)
+                    } else {
+                        cleanData[key] = value
+                    }
+                }
+                
+                let jsonData = try JSONSerialization.data(withJSONObject: cleanData, options: [])
+                var event = try JSONDecoder().decode(Event.self, from: jsonData)
+                
+                // Now fetch Gifts subcollection
+                let giftsSnapshot = try await document.reference.collection("gifts").getDocuments()
+                let gifts: [Gift] = giftsSnapshot.documents.compactMap { giftDoc in
+                    do {
+                        let giftData = giftDoc.data()
+                        var giftCleanData: [String: Any] = [:]
+                        
+                        for (gKey, gValue) in giftData {
+                            if let timestamp = gValue as? Timestamp {
+                                giftCleanData[gKey] = dateFormatter.string(from: timestamp.dateValue())
+                            } else if let date = gValue as? Date {
+                                giftCleanData[gKey] = dateFormatter.string(from: date)
+                            } else {
+                                giftCleanData[gKey] = gValue
+                            }
+                        }
+                        
+                        let giftJson = try JSONSerialization.data(withJSONObject: giftCleanData, options: [])
+                        return try JSONDecoder().decode(Gift.self, from: giftJson)
+                    } catch {
+                        print("❌ Failed to decode Gift: \(error)")
+                        return nil
+                    }
+                }
+                
+                // Assign gifts to the event
+                event.gifts = gifts
+                events.append(event)
+            } catch {
+                print("❌ Failed to decode Event: \(error)")
+            }
+        }
+        
+        return events
+    }
+    
+    // MARK: - 4) Fetch main Event + Guests + Gifts
+    func fetchAllEventsWithAll() async throws -> [Event] {
+        let snapshot = try await db.collection(FirestoreCollection.events.rawValue).getDocuments()
+        var events: [Event] = []
+        
+        for document in snapshot.documents {
+            do {
+                // Decode main Event
+                let originalData = document.data()
+                var cleanData: [String: Any] = [:]
+                let dateFormatter = ISO8601DateFormatter()
+                
+                for (key, value) in originalData {
+                    if let timestamp = value as? Timestamp {
+                        cleanData[key] = dateFormatter.string(from: timestamp.dateValue())
+                    } else if let date = value as? Date {
+                        cleanData[key] = dateFormatter.string(from: date)
+                    } else {
+                        cleanData[key] = value
+                    }
+                }
+                
+                let jsonData = try JSONSerialization.data(withJSONObject: cleanData, options: [])
+                var event = try JSONDecoder().decode(Event.self, from: jsonData)
+                
+                // ---- Fetch Guests
+                let guestsSnapshot = try await document.reference.collection("guests").getDocuments()
+                let guests: [Guest] = guestsSnapshot.documents.compactMap { guestDoc in
+                    do {
+                        let guestData = guestDoc.data()
+                        var guestCleanData: [String: Any] = [:]
+                        
+                        for (gKey, gValue) in guestData {
+                            if let timestamp = gValue as? Timestamp {
+                                guestCleanData[gKey] = dateFormatter.string(from: timestamp.dateValue())
+                            } else if let date = gValue as? Date {
+                                guestCleanData[gKey] = dateFormatter.string(from: date)
+                            } else {
+                                guestCleanData[gKey] = gValue
+                            }
+                        }
+                        
+                        let guestJson = try JSONSerialization.data(withJSONObject: guestCleanData, options: [])
+                        return try JSONDecoder().decode(Guest.self, from: guestJson)
+                    } catch {
+                        print("❌ Failed to decode Guest: \(error)")
+                        return nil
+                    }
+                }
+                event.guests = guests
+                
+                // ---- Fetch Gifts
+                let giftsSnapshot = try await document.reference.collection("gifts").getDocuments()
+                let gifts: [Gift] = giftsSnapshot.documents.compactMap { giftDoc in
+                    do {
+                        let giftData = giftDoc.data()
+                        var giftCleanData: [String: Any] = [:]
+                        
+                        for (gKey, gValue) in giftData {
+                            if let timestamp = gValue as? Timestamp {
+                                giftCleanData[gKey] = dateFormatter.string(from: timestamp.dateValue())
+                            } else if let date = gValue as? Date {
+                                giftCleanData[gKey] = dateFormatter.string(from: date)
+                            } else {
+                                giftCleanData[gKey] = gValue
+                            }
+                        }
+                        
+                        let giftJson = try JSONSerialization.data(withJSONObject: giftCleanData, options: [])
+                        return try JSONDecoder().decode(Gift.self, from: giftJson)
+                    } catch {
+                        print("❌ Failed to decode Gift: \(error)")
+                        return nil
+                    }
+                }
+                event.gifts = gifts
+                
+                events.append(event)
+            } catch {
+                print("❌ Failed to decode Event: \(error)")
+            }
+        }
+        
+        return events
+    }
+
 }

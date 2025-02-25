@@ -30,4 +30,18 @@ enum TextFormatting: Codable {
             self = .none  // or throw an error if you prefer strict mapping
         }
     }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .allCaps:
+            try container.encode("all_upper")
+        case .allLowercase:
+            try container.encode("all_lower")
+        case .capitalized:
+            try container.encode("capitalized")
+        case .none:
+            try container.encode("none")
+        }
+    }
 }
