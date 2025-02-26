@@ -67,7 +67,6 @@ final class IVTextField: BaseControll, UITextFieldDelegate {
         trailingImageView.addGestureRecognizer(tapGesture)
         
         trailingImageView.isHidden = !secured // Initially hidden if not secure entry
-        print("here")
         textField.text = text
         textField.isUserInteractionEnabled = true
         textField.delegate = self

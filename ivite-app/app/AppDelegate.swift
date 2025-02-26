@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         appearance.stackedLayoutAppearance.selected.iconColor = .accent
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
-            .foregroundColor: UIColor.dark30,
+            .foregroundColor: UIColor.accent,
             .font: UIFont.interFont(ofSize: 12, weight: .regular)
         ]
         UITabBar.appearance().standardAppearance = appearance

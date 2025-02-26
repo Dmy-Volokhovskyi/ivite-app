@@ -39,12 +39,9 @@ final class MainScreenController: BaseTabBarController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupTabBar1()
-    }
-    
-    func setupTabBar1() {
+    override func setupTabBar() {
+        super.setupTabBar()
+        
         let homeController = HomeBuilder(serviceProvider: dataSource.serviceProvider).make()
         let homeNavController = UINavigationController(rootViewController: homeController)
         let eventController = EventsBuilder(serviceProvider: dataSource.serviceProvider).make()
@@ -59,6 +56,7 @@ final class MainScreenController: BaseTabBarController {
         profileNavController.tabBarItem = UITabBarItem(title: "Profile", image: .profile, tag: 3)
         
         self.viewControllers = [homeNavController, eventNavController, contactsController, profileNavController]
+
         setUpTabBarVisibility()
     }
     
