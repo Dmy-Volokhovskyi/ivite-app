@@ -180,7 +180,6 @@ extension CreateAccountController: TermsOfServiceViewDelegate {
             try await Task.sleep(for: .seconds(3))
             signUpButton.hideLoading()
         }
-        print("Did tap")
     }
 }
 

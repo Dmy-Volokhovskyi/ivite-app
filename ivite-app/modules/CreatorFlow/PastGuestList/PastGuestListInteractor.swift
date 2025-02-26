@@ -24,7 +24,6 @@ final class PastGuestListInteractor: BaseInteractor {
             do {
                 // Fetch events from Firestore
                 let events = try await serviceProvider.firestoreManager.fetchAllEventsWithGuests()
-                print(events, "events")
                 // Notify the delegate
                 self.events = events
                 DispatchQueue.main.async {

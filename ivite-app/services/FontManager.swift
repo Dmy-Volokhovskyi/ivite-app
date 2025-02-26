@@ -73,6 +73,8 @@ final class FontManager {
         if fileManager.fileExists(atPath: fontFileURL.path) {
             let data = try Data(contentsOf: fontFileURL)
             if let postScriptName = registerFont(from: data) {
+                #warning("Registering font synchronously is not recommended")
+                
                 registeredFonts[fontName] = postScriptName
                 return postScriptName
             }

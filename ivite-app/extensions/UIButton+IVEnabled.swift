@@ -11,7 +11,6 @@ extension UIButton {
     // Disable the button with its current title
     func IVdisable() {
         if let currentTitle = self.title(for: .normal) {
-            print(self.attributedTitle(for: .normal))
             self.configuration = .disabledPrimary(title: currentTitle)
         }
         self.isUserInteractionEnabled = false
@@ -28,7 +27,7 @@ extension UIButton {
     // Set the button state with a custom title
     func IVsetEnabled(_ enabled: Bool, title: String? = nil) {
         let effectiveTitle = title ?? self.title(for: .normal) ?? ""
-        print(self.attributedTitle(for: .normal))
+
         if enabled {
             self.configuration = .primary(title: effectiveTitle)
         } else {

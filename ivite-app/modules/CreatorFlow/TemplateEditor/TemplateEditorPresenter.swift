@@ -24,7 +24,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
         guard let canvas = interactor.creatorFlowModel.canvas,
               layerIndex >= 0,
               layerIndex < canvas.content.count,
-              case var .image(imageLayer) = canvas.content[layerIndex] else {
+              case let .image(imageLayer) = canvas.content[layerIndex] else {
             return
         }
         
@@ -40,7 +40,6 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
     
     func nextButtonTapped() {
         interactor.creatorFlowModel.image = viewInterface?.getImage()
-        print(interactor.creatorFlowModel.image?.size)
         interactor.editorDelegate?.didEndTemplateEdition(creatorFlowModel: interactor.creatorFlowModel)
     }
     
@@ -114,7 +113,7 @@ extension TemplateEditorPresenter: TemplateEditorEventHandler {
         guard let layer = interactor.creatorFlowModel.canvas?.content.first(where: { $0.id == id }) else { return }
         
         if case let .text(textLayer) = layer {
-            textLayer.textAlignment = alignment as? TextAlignment
+            textLayer.textAlignment = alignment
             viewInterface?.updateTextLayer(textLayer)
         } else {
             // Handle the case where the layer is not a TextLayer, if needed
@@ -258,12 +257,11 @@ extension TemplateEditorPresenter: TemplateEditorDataSource {
         guard let layer = interactor.creatorFlowModel.canvas?.content.first(where: { $0.id == id }) else { return nil }
         
         // Check if it's a text layer and extract the font size
-        if case let .text(textLayer) = layer {
+        if case .text = layer {
             return .text
-        } else if case let .text(textLayer) = layer {
+        } else if case .image = layer {
             return .image
-        }
-        else {
+        } else {
             // If the layer is not a TextLayer, return nil
             return nil
         }

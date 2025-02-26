@@ -133,7 +133,6 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource, 
         // Maintain aspect ratio, for example 4:3 (width:height)
         let aspectRatio: CGFloat = 4.0 / 3.0
         let height = width * aspectRatio
-        print(width,height)
         return CGSize(width: width, height: height + 40)
     }
     

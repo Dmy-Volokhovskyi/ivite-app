@@ -360,11 +360,6 @@ final class TemplateEditorController: BaseViewController {
                     return
                 }
                 
-                guard let displayImage = image else {
-                    print("Image is nil for URL: \(url?.absoluteString ?? "Unknown URL")")
-                    return
-                }
-                
                 // Once the image is loaded, proceed to add it to the contentView
                 self.addImageToContentView(
                     imageView: imageView,
@@ -452,7 +447,7 @@ final class TemplateEditorController: BaseViewController {
                                                                       height: scaledTextBoxHeight))
             resizableTextView.id = layer.id
             resizableTextView.delegate = self
-            print(textView.text, textView.frame.size,textView.frame.width, "Width" , textView.font?.pointSize, "xxx")
+            
             textView.transform = CGAffineTransform(rotationAngle: rotationAngle)
             resizableTextView.preventsPositionOutsideSuperview = false
             resizableTextView.setNeedsLayout()
@@ -503,7 +498,7 @@ final class TemplateEditorController: BaseViewController {
     
     private func applyTextAttributes(to textView: UITextView, layer: TextLayer, scale: CGFloat) {
         let scaledFontSize = CGFloat(layer.fontSize ?? 11) * scale
-        print(scaledFontSize, layer.size , layer.textFormatting, "FONT SIZE HERE")
+        
         let attributedString = NSMutableAttributedString(string: textView.text ?? "")
         
         // Configure the font
@@ -584,7 +579,7 @@ final class TemplateEditorController: BaseViewController {
             return text.lowercased()
         case .capitalized:
             return text.capitalized
-        case .none, .some(.none):
+        case nil, .some(.none):
             return text
         }
     }

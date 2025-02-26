@@ -7,6 +7,7 @@
 
 import UIKit
 
+@MainActor
 protocol DynamicSearchBarDelegate: AnyObject {
    func textFieldDidChange(_ textField: IVTextField)
 }
