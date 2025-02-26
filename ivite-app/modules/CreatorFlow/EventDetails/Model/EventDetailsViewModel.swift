@@ -88,69 +88,31 @@ extension EventDetailsViewModel {
     }
 }
 
-struct CoHost: Codable {
-    let id: String
-    var name: String
-    var email: String
-    
-    init(id: String = UUID().uuidString, name: String, email: String) {
-        self.id = id
-        self.name = name
-        self.email = email
+extension EventDetailsViewModel {
+    convenience init(eventTitle: String?,
+                     date: Date?,
+                     timeZone: String?,
+                     hostName: String?,
+                     coHosts: [CoHost],
+                     location: String?,
+                     city: String?,
+                     state: String?,
+                     zipCode: String?,
+                     note: String?,
+                     isBringListActive: Bool,
+                     bringList: [BringListItem]) {
+        self.init()
+        self.eventTitle = eventTitle
+        self.date = date
+        self.timeZone = timeZone
+        self.hostName = hostName
+        self.coHosts = coHosts
+        self.location = location
+        self.city = city
+        self.state = state
+        self.zipCode = zipCode
+        self.note = note
+        self.isBringListActive = isBringListActive
+        self.bringList = bringList
     }
 }
-
-extension CoHost {
-    func toDictionary() -> [String: Any] {
-        return [
-            "id": id,
-            "name": name,
-            "email": email
-        ]
-    }
-}
-
-extension CoHost {
-    static func fromDictionary(_ dictionary: [String: Any]) -> CoHost {
-        return CoHost(
-            id: dictionary["id"] as? String ?? UUID().uuidString,
-            name: dictionary["name"] as? String ?? "Unknown",
-            email: dictionary["email"] as? String ?? "Unknown"
-        )
-    }
-}
-
-
-struct BringListItem: Codable {
-    let id: String
-    var name: String?
-    var count: Int?
-    
-    init(id: String = UUID().uuidString, name: String? = nil, count: Int? = nil) {
-        self.id = id
-        self.name = name
-        self.count = count
-    }
-}
-
-extension BringListItem {
-    func toDictionary() -> [String: Any] {
-        return [
-            "id": id,
-            "name": name ?? NSNull(),
-            "count": count ?? NSNull()
-        ]
-    }
-}
-
-extension BringListItem {
-    static func fromDictionary(_ dictionary: [String: Any]) -> BringListItem {
-        return BringListItem(
-            id: dictionary["id"] as? String ?? UUID().uuidString,
-            name: dictionary["name"] as? String,
-            count: dictionary["count"] as? Int
-        )
-    }
-}
-
-

@@ -24,7 +24,7 @@ final class EventsInteractor: BaseInteractor {
         Task {
             do {
                 // Fetch events from Firestore
-                let events = try await serviceProvider.firestoreManager.fetchAllEvents()
+                let events = try await serviceProvider.firestoreManager.fetchAllEventsWithAll()
                 print(events, "events")
                 // Notify the delegate
                 eventCards = events

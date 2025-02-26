@@ -5,7 +5,9 @@ protocol EventsEventHandler: AnyObject {
     func viewWillAppear()
     func didTouchMenu(for indexPath: IndexPath?)
     func createNewEventButtonTouch()
-    
+    func didTapFilterButton()
+    func searchFieldTextDidChange(_ text: String?)
+    func didSelectRow(at indexPath: IndexPath)
 }
 
 protocol EventsDataSource: AnyObject {
@@ -57,6 +59,9 @@ final class EventsController: BaseViewController {
         
         tableView.register(EventCardCell.self)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        
+        searchBarView.delegate = self
+        listHeaderView.deeleagate = self
         
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
@@ -112,12 +117,15 @@ final class EventsController: BaseViewController {
 }
 
 extension EventsController: EventsViewInterface {
+    func updateFilter(_ filter: FilterType) {
+        listHeaderView.upateSearchButton(filter)
+    }
+    
     func reloadTableView() {
         tableView.reloadData()
     }
     
     func updateSearchBar() {
-        
         if let remainingInvites = dataSource.user?.remainingInvites {
             invitesLeftView.configure(invitesLeft: remainingInvites)
         }
@@ -125,7 +133,9 @@ extension EventsController: EventsViewInterface {
 }
 
 extension EventsController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        eventHandler.didSelectRow(at: indexPath)
+    }
 }
 
 extension EventsController: UITableViewDataSource {
@@ -168,5 +178,20 @@ extension EventsController: UITableViewDataSource {
 extension EventsController: EventCardCellDelegate {
     func didTouchMenu(for cell: BaseTableViewCell) {
         eventHandler.didTouchMenu(for: tableView.indexPath(for: cell))
+    }
+}
+
+extension EventsController: ListHeaderViewDelegate {
+    func didTapFilterButton() {
+        eventHandler.didTapFilterButton()
+    }
+}
+
+extension EventsController: MainSearchBarViewDelegate {
+    func didTapLogInButton() {
+    }
+    
+    func searchFieldTextDidChange(_ text: String?) {
+        eventHandler.searchFieldTextDidChange(text)
     }
 }

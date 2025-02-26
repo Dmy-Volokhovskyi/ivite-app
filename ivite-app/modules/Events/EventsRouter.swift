@@ -1,3 +1,5 @@
+import UIKit
+
 final class EventsRouter: BaseRouter {
     
     func switchToTab(index: Int) {
@@ -9,9 +11,13 @@ final class EventsRouter: BaseRouter {
     }
     
     func showPreview(creatorFlowModel: CreatorFlowModel, serviceProvider: ServiceProvider) {
+        let previewController = PreviewInviteBuilder(serviceProvider: serviceProvider)
+            .make(previewMode: false, creatorFlowModel: creatorFlowModel)
         
-        let controller = PreviewInviteBuilder(serviceProvider: serviceProvider).make(previewMode: true, creatorFlowModel: creatorFlowModel)
-        controller.modalPresentationStyle = .fullScreen
-        self.controller?.navigationController?.pushViewController(controller, animated: true)
+        let navController = UINavigationController(rootViewController: previewController)
+        navController.modalPresentationStyle = .popover
+
+        self.controller?.present(navController, animated: true, completion: nil)
     }
+
 }

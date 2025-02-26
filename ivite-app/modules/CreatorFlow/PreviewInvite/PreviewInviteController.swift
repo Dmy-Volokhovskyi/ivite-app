@@ -42,7 +42,7 @@ final class PreviewInviteController: BaseScrollViewController {
         contentStackView.axis = .vertical
         contentStackView.spacing = 16
         
-        invitationImageView.image = .testInvite
+        invitationImageView.sd_setImage(with: URL(string: dataSource.creatorFlowModel.canvasImageURL ?? ""))
         invitationImageView.layer.cornerRadius = 9
         invitationImageView.clipsToBounds = true
         

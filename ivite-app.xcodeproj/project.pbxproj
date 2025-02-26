@@ -96,6 +96,8 @@
 		3533EF342D04EF6D005EC055 /* AuthenticationService+MapError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3533EF332D04EF6D005EC055 /* AuthenticationService+MapError.swift */; };
 		3533EF372D04FF9B005EC055 /* ResendButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3533EF362D04FF9B005EC055 /* ResendButtonView.swift */; };
 		3533EFF92D072A7B005EC055 /* SelectGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3533EFF82D072A7B005EC055 /* SelectGroupCell.swift */; };
+		354BA5852D6F9A6C00B4E26A /* CoHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354BA5842D6F9A6C00B4E26A /* CoHost.swift */; };
+		354BA5872D6F9A8D00B4E26A /* BringListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354BA5862D6F9A8D00B4E26A /* BringListItem.swift */; };
 		354EE14E2D08D164002E7BD3 /* PreviewInvitePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE14C2D08D164002E7BD3 /* PreviewInvitePresenter.swift */; };
 		354EE14F2D08D164002E7BD3 /* PreviewInviteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE14A2D08D164002E7BD3 /* PreviewInviteController.swift */; };
 		354EE1502D08D164002E7BD3 /* PreviewInviteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354EE1492D08D164002E7BD3 /* PreviewInviteBuilder.swift */; };
@@ -173,10 +175,6 @@
 		35B886B02CEE697700FE1F43 /* EditGuestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886AA2CEE697700FE1F43 /* EditGuestInteractor.swift */; };
 		35B886B12CEE697700FE1F43 /* EditGuestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B886AC2CEE697700FE1F43 /* EditGuestRouter.swift */; };
 		35CBF9732D1DB7F1006D939F /* IrishGrover-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35CBF9722D1DB7F1006D939F /* IrishGrover-Regular.ttf */; };
-		35EEC6D82CE295B6003E7758 /* IVTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6D72CE295B6003E7758 /* IVTransitioningDelegate.swift */; };
-		35EEC6DA2CE295D7003E7758 /* IVPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6D92CE295D7003E7758 /* IVPresentAnimator.swift */; };
-		35EEC6DC2CE295EF003E7758 /* IVPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6DB2CE295EF003E7758 /* IVPresentationController.swift */; };
-		35EEC6DE2CE298B9003E7758 /* IVBottomPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC6DD2CE298B9003E7758 /* IVBottomPresentAnimator.swift */; };
 		35EEC7ED2CE68B2B003E7758 /* ContentSizeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7EC2CE68B2B003E7758 /* ContentSizeProvider.swift */; };
 		35EEC7EF2CE690E9003E7758 /* ModalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7EE2CE690E9003E7758 /* ModalNavigationController.swift */; };
 		35EEC7F22CE7A723003E7758 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EEC7F12CE7A723003E7758 /* AlertViewController.swift */; };
@@ -436,6 +434,8 @@
 		3533EF332D04EF6D005EC055 /* AuthenticationService+MapError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticationService+MapError.swift"; sourceTree = "<group>"; };
 		3533EF362D04FF9B005EC055 /* ResendButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendButtonView.swift; sourceTree = "<group>"; };
 		3533EFF82D072A7B005EC055 /* SelectGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectGroupCell.swift; sourceTree = "<group>"; };
+		354BA5842D6F9A6C00B4E26A /* CoHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoHost.swift; sourceTree = "<group>"; };
+		354BA5862D6F9A8D00B4E26A /* BringListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BringListItem.swift; sourceTree = "<group>"; };
 		354EE1492D08D164002E7BD3 /* PreviewInviteBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInviteBuilder.swift; sourceTree = "<group>"; };
 		354EE14A2D08D164002E7BD3 /* PreviewInviteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInviteController.swift; sourceTree = "<group>"; };
 		354EE14B2D08D164002E7BD3 /* PreviewInviteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInviteInteractor.swift; sourceTree = "<group>"; };
@@ -507,10 +507,6 @@
 		35B886AB2CEE697700FE1F43 /* EditGuestPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGuestPresenter.swift; sourceTree = "<group>"; };
 		35B886AC2CEE697700FE1F43 /* EditGuestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGuestRouter.swift; sourceTree = "<group>"; };
 		35CBF9722D1DB7F1006D939F /* IrishGrover-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IrishGrover-Regular.ttf"; sourceTree = "<group>"; };
-		35EEC6D72CE295B6003E7758 /* IVTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVTransitioningDelegate.swift; sourceTree = "<group>"; };
-		35EEC6D92CE295D7003E7758 /* IVPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVPresentAnimator.swift; sourceTree = "<group>"; };
-		35EEC6DB2CE295EF003E7758 /* IVPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVPresentationController.swift; sourceTree = "<group>"; };
-		35EEC6DD2CE298B9003E7758 /* IVBottomPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVBottomPresentAnimator.swift; sourceTree = "<group>"; };
 		35EEC7EC2CE68B2B003E7758 /* ContentSizeProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizeProvider.swift; sourceTree = "<group>"; };
 		35EEC7EE2CE690E9003E7758 /* ModalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalNavigationController.swift; sourceTree = "<group>"; };
 		35EEC7F12CE7A723003E7758 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
@@ -1051,7 +1047,6 @@
 			isa = PBXGroup;
 			children = (
 				3515B06A2CFE445C00934E4F /* RoundedTabBar.swift */,
-				35EEC7F02CE692F3003E7758 /* Trash */,
 				35EEC6D62CE295AC003E7758 /* Transition */,
 				3569DDCD2D6B525A00562DC9 /* JSONHelper.swift */,
 			);
@@ -1065,17 +1060,6 @@
 				35EEC7EE2CE690E9003E7758 /* ModalNavigationController.swift */,
 			);
 			path = Transition;
-			sourceTree = "<group>";
-		};
-		35EEC7F02CE692F3003E7758 /* Trash */ = {
-			isa = PBXGroup;
-			children = (
-				35EEC6DD2CE298B9003E7758 /* IVBottomPresentAnimator.swift */,
-				35EEC6DB2CE295EF003E7758 /* IVPresentationController.swift */,
-				35EEC6D92CE295D7003E7758 /* IVPresentAnimator.swift */,
-				35EEC6D72CE295B6003E7758 /* IVTransitioningDelegate.swift */,
-			);
-			path = Trash;
 			sourceTree = "<group>";
 		};
 		35F19CB02D0A3CBF00835195 /* Gift */ = {
@@ -1551,6 +1535,8 @@
 		F6936A272CB9609700764197 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				354BA5862D6F9A8D00B4E26A /* BringListItem.swift */,
+				354BA5842D6F9A6C00B4E26A /* CoHost.swift */,
 				F6936A302CB972DE00764197 /* EventDetailsViewModel.swift */,
 			);
 			path = Model;
@@ -1849,6 +1835,7 @@
 				3516DE812D2843C200FDAED2 /* OrderHistoryPresenter.swift in Sources */,
 				3516DE822D2843C200FDAED2 /* OrderHistoryRouter.swift in Sources */,
 				3516DE832D2843C200FDAED2 /* OrderHistoryBuilder.swift in Sources */,
+				354BA5872D6F9A8D00B4E26A /* BringListItem.swift in Sources */,
 				3516DE842D2843C200FDAED2 /* OrderHistoryController.swift in Sources */,
 				F6D3CBB22CA2E36C00E29761 /* GripViewBorderView.swift in Sources */,
 				3519A8132CDE77D500A16715 /* SearchFilterView.swift in Sources */,
@@ -1894,7 +1881,6 @@
 				76096A762C861C990004BEE0 /* MainScreenBuilder.swift in Sources */,
 				35F19CB42D0F5BDC00835195 /* LoadingButton.swift in Sources */,
 				76096A772C861C990004BEE0 /* MainScreenPresenter.swift in Sources */,
-				35EEC6DA2CE295D7003E7758 /* IVPresentAnimator.swift in Sources */,
 				35EEC7F82CEA6F7F003E7758 /* BaseTableViewController.swift in Sources */,
 				3519A8332CE25C6800A16715 /* ReviewGuestView.swift in Sources */,
 				3569DDEC2D6E27B600562DC9 /* PastListCell.swift in Sources */,
@@ -1937,7 +1923,6 @@
 				F6CBD9672CAB328900911DF7 /* UIColor+Hex.swift in Sources */,
 				F6936A312CB972DE00764197 /* EventDetailsViewModel.swift in Sources */,
 				35F19CA32D09E24500835195 /* PreviewLocationDetailView.swift in Sources */,
-				35EEC6DC2CE295EF003E7758 /* IVPresentationController.swift in Sources */,
 				F6EBF5702CA4A1EA0058F7B2 /* CreationFlowBuilder.swift in Sources */,
 				F6EBF56A2CA4496F0058F7B2 /* TileModel.swift in Sources */,
 				3533EF342D04EF6D005EC055 /* AuthenticationService+MapError.swift in Sources */,
@@ -1963,7 +1948,6 @@
 				F6936A3F2CBA903000764197 /* IVTextView.swift in Sources */,
 				76A34F8F2C8B5035003D3E87 /* TableViewBackgroundView.swift in Sources */,
 				76096A4A2C861C1B0004BEE0 /* HomePresenter.swift in Sources */,
-				35EEC6D82CE295B6003E7758 /* IVTransitioningDelegate.swift in Sources */,
 				F6F3C72A2CCA85DF00ED966A /* AuthentificationService.swift in Sources */,
 				3569DDE52D6CFB4F00562DC9 /* PastGuestListRouter.swift in Sources */,
 				3569DDE62D6CFB4F00562DC9 /* PastGuestListPresenter.swift in Sources */,
@@ -1991,6 +1975,7 @@
 				F6F4AA352CC6B1CC00071B0B /* EdditCoHostView.swift in Sources */,
 				3599D2742D4C073900E07DD7 /* FontURLProvider.swift in Sources */,
 				3569DDCA2D6B524000562DC9 /* Layer+Codable.swift in Sources */,
+				354BA5852D6F9A6C00B4E26A /* CoHost.swift in Sources */,
 				35EEC7F62CEA6F13003E7758 /* TimeZonePickerController.swift in Sources */,
 				3519A82F2CE24E2E00A16715 /* ReviewGiftView.swift in Sources */,
 				3569DDB02D64C93600562DC9 /* UIButton+IVEnabled.swift in Sources */,
@@ -2015,7 +2000,6 @@
 				3533EFF92D072A7B005EC055 /* SelectGroupCell.swift in Sources */,
 				35EEC7EF2CE690E9003E7758 /* ModalNavigationController.swift in Sources */,
 				76096B022C8B1E0A0004BEE0 /* EventCardCell.swift in Sources */,
-				35EEC6DE2CE298B9003E7758 /* IVBottomPresentAnimator.swift in Sources */,
 				F6D5DB582CC83EB000311B20 /* UITapGestureRecognizer+Tap.swift in Sources */,
 				3516DE8B2D2BFA0E00FDAED2 /* OrderHistoryItem.swift in Sources */,
 				76096A2D2C84FB440004BEE0 /* BaseBuilder.swift in Sources */,
