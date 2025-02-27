@@ -27,4 +27,16 @@ extension FirestoreManager {
         // Get the download URL
         return try await storageRef.downloadURL().absoluteString
     }
+    
+    enum PDFFile: String {
+        case privacyPolicy = "PrivacyPolicy/PrivacyPolicyIvite.pdf"
+        case termsOfUse = "PrivacyPolicy/Terms of Use Agreement IVITE.docx.pdf"
+    }
+    
+    func downloadPDF(_ file: PDFFile) async throws -> Data {
+        let storageRef = Storage.storage().reference().child(file.rawValue)
+        
+        let data = try await storageRef.data(maxSize: 50 * 1024 * 1024)
+        return data
+    }
 }
